@@ -12,8 +12,8 @@ interface SettingsProps {
 
 const Settings: React.FC<SettingsProps> = ({ onClose, uiLang, setUiLang, furiganaEnabled, setFuriganaEnabled }) => {
   // Mock states for the UI
-  const [bgm, setBgm] = useState(true);
-  const [sfx, setSfx] = useState(true);
+  const [bgmVolume, setBgmVolume] = useState(50);
+  const [sfxVolume, setSfxVolume] = useState(50);
   const [darkMode, setDarkMode] = useState(true);
 
   return (
@@ -52,30 +52,44 @@ const Settings: React.FC<SettingsProps> = ({ onClose, uiLang, setUiLang, furigan
             </button>
           </div>
 
-          <div className="setting-item">
+          <div className="setting-item slider-item">
             <div className="setting-label">
               <Music size={20} />
               <span>{uiLang === 'EN' ? 'MUSIC' : <ruby>音楽<rt>{furiganaEnabled && 'おんがく'}</rt></ruby>}</span>
             </div>
-            <button 
-              className={`toggle-btn ${bgm ? 'on' : 'off'}`}
-              onClick={() => setBgm(!bgm)}
-            >
-              {bgm ? (uiLang === 'EN' ? 'ON' : 'オン') : (uiLang === 'EN' ? 'OFF' : 'オフ')}
-            </button>
+            <div className="slider-wrapper">
+              <input 
+                type="range" 
+                min="0" 
+                max="100" 
+                value={bgmVolume} 
+                onChange={(e) => setBgmVolume(Number(e.target.value))}
+                className="sharp-slider"
+              />
+              <span className="slider-value">
+                {bgmVolume}<ruby>%<rt>{furiganaEnabled && 'ぱーせんと'}</rt></ruby>
+              </span>
+            </div>
           </div>
 
-          <div className="setting-item">
+          <div className="setting-item slider-item">
             <div className="setting-label">
-              {sfx ? <Volume2 size={20} /> : <VolumeX size={20} />}
+              {sfxVolume > 0 ? <Volume2 size={20} /> : <VolumeX size={20} />}
               <span>{uiLang === 'EN' ? 'SOUND EFFECTS' : <ruby>効果音<rt>{furiganaEnabled && 'こうかおん'}</rt></ruby>}</span>
             </div>
-            <button 
-              className={`toggle-btn ${sfx ? 'on' : 'off'}`}
-              onClick={() => setSfx(!sfx)}
-            >
-              {sfx ? (uiLang === 'EN' ? 'ON' : 'オン') : (uiLang === 'EN' ? 'OFF' : 'オフ')}
-            </button>
+            <div className="slider-wrapper">
+              <input 
+                type="range" 
+                min="0" 
+                max="100" 
+                value={sfxVolume} 
+                onChange={(e) => setSfxVolume(Number(e.target.value))}
+                className="sharp-slider"
+              />
+              <span className="slider-value">
+                {sfxVolume}<ruby>%<rt>{furiganaEnabled && 'ぱーせんと'}</rt></ruby>
+              </span>
+            </div>
           </div>
 
           <div className="setting-item">
