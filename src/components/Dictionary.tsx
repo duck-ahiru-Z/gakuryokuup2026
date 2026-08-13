@@ -68,7 +68,7 @@ const Dictionary: React.FC<DictionaryProps> = ({ onNavigate, uiLang, furiganaEna
     return (
       <div key={sc.id} className="dict-card unlocked">
         <div className="card-top">
-          <div className="keys-massive">
+          <div className={`keys-massive ${sc.keys.length >= 3 ? 'keys-compact' : ''}`}>
             {sc.keys.map((k, i) => (
               <React.Fragment key={i}>
                 <span className="dict-key-massive">{k}</span>
@@ -116,7 +116,7 @@ const Dictionary: React.FC<DictionaryProps> = ({ onNavigate, uiLang, furiganaEna
 
       <div className="dict-section">
         <h3 className="section-title easy-title">
-          🟢 {uiLang === 'EN' ? 'EASY (Basics)' : <ruby>難易度：EASY（超初心者・絶対に覚えるべき基礎）<rt>{furiganaEnabled && 'なんいど:イージー(ちょうしょしんしゃ・ぜったいにおぼえるべききそ)'}</rt></ruby>}
+          {uiLang === 'EN' ? 'EASY (Basics)' : <ruby>難易度：EASY（超初心者・絶対に覚えるべき基礎）<rt>{furiganaEnabled && 'なんいど:イージー(ちょうしょしんしゃ・ぜったいにおぼえるべききそ)'}</rt></ruby>}
         </h3>
         <p className="section-desc">
           {uiLang === 'EN' ? 'The absolute basics.' : <ruby>日常的なPC操作で最もよく使う、絶対に外せない「基本の5つ」です。<rt>{furiganaEnabled && 'にちじょうてきなピーシーそうさでもっともよくつかう、ぜったいにはずせない「きほんの5つ」です。'}</rt></ruby>}
@@ -128,7 +128,7 @@ const Dictionary: React.FC<DictionaryProps> = ({ onNavigate, uiLang, furiganaEna
 
       <div className="dict-section">
         <h3 className="section-title normal-title">
-          🟡 {uiLang === 'EN' ? 'NORMAL (Standard)' : <ruby>難易度：NORMAL（標準・知っていると作業が早い）<rt>{furiganaEnabled && 'なんいど:ノーマル(ひょうじゅん・しっているとさぎょうがはやい)'}</rt></ruby>}
+          {uiLang === 'EN' ? 'NORMAL (Standard)' : <ruby>難易度：NORMAL（標準・知っていると作業が早い）<rt>{furiganaEnabled && 'なんいど:ノーマル(ひょうじゅん・しっているとさぎょうがはやい)'}</rt></ruby>}
         </h3>
         <p className="section-desc">
           {uiLang === 'EN' ? 'Very useful for documents and web.' : <ruby>文章作成や調べ学習の時に知っていると、マウスを使う回数が激減する便利なキーです。<rt>{furiganaEnabled && 'ぶんしょうさくせいやしらべがくしゅうのときにしっていると、マウスをつかうかいすがげきげんするべんりなキーです。'}</rt></ruby>}
@@ -140,7 +140,7 @@ const Dictionary: React.FC<DictionaryProps> = ({ onNavigate, uiLang, furiganaEna
 
       <div className="dict-section">
         <h3 className="section-title hard-title">
-          🔴 {uiLang === 'EN' ? 'HARD (Advanced)' : <ruby>難易度：HARD（むずい・プロっぽさが出る上級技）<rt>{furiganaEnabled && 'なんいど:ハード(むずい・プロっぽさがでるじょうきゅうわざ)'}</rt></ruby>}
+          {uiLang === 'EN' ? 'HARD (Advanced)' : <ruby>難易度：HARD（むずい・プロっぽさが出る上級技）<rt>{furiganaEnabled && 'なんいど:ハード(むずい・プロっぽさがでるじょうきゅうわざ)'}</rt></ruby>}
         </h3>
         <p className="section-desc">
           {uiLang === 'EN' ? 'Advanced techniques.' : <ruby>3つのキーの同時押しや、ドキュメント作成に特化した「知る人ぞ知る」高度なショートカットです。<rt>{furiganaEnabled && '3つのキーのどうじおしや、ドキュメントさくせいにとっかした「しるひとぞしる」こうどなショートカットです。'}</rt></ruby>}
