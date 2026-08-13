@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import type { ViewState, Difficulty } from '../types';
-import { Play, Book, Settings, Type, Shield, Globe } from 'lucide-react';
+import { Play, Book, Settings as SettingsIcon, Type, Shield, Globe } from 'lucide-react';
+import Settings from './Settings';
 import './Home.css';
 
 interface HomeProps {
@@ -12,6 +13,7 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = ({ onNavigate, difficulty, setDifficulty }) => {
   const [furiganaEnabled, setFuriganaEnabled] = useState(false);
   const [uiLang, setUiLang] = useState<'EN' | 'JA'>('JA');
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const APP_TITLE = "Shortcut English";
 
   return (
@@ -69,8 +71,8 @@ const Home: React.FC<HomeProps> = ({ onNavigate, difficulty, setDifficulty }) =>
           <Book size={20} /> 
           <span>{uiLang === 'EN' ? 'ARCHIVES' : <ruby>図鑑{furiganaEnabled && <rt>ずかん</rt>}</ruby>}</span>
         </button>
-        <button className="secondary-btn" onClick={() => alert('設定画面モック')}>
-          <Settings size={20} /> 
+        <button className="secondary-btn" onClick={() => setIsSettingsOpen(true)}>
+          <SettingsIcon size={20} /> 
           <span>{uiLang === 'EN' ? 'SETTINGS' : <ruby>設定{furiganaEnabled && <rt>せってい</rt>}</ruby>}</span>
         </button>
         <button 
@@ -85,7 +87,11 @@ const Home: React.FC<HomeProps> = ({ onNavigate, difficulty, setDifficulty }) =>
           onClick={() => setUiLang(uiLang === 'EN' ? 'JA' : 'EN')}
         >
           <Globe size={20} /> 
-          <span>{uiLang === 'EN' ? 'JA (日本語)' : 'EN (英語)'}</span>
+          <span>
+            {uiLang === 'EN' 
+              ? <>JA (<ruby>日本語{furiganaEnabled && <rt>にほんご</rt>}</ruby>)</> 
+              : <>EN (<ruby>英語{furiganaEnabled && <rt>えいご</rt>}</ruby>)</>}
+          </span>
         </button>
       </div>
 
@@ -96,6 +102,16 @@ const Home: React.FC<HomeProps> = ({ onNavigate, difficulty, setDifficulty }) =>
           <span>{uiLang === 'EN' ? 'ADMIN' : <ruby>管理{furiganaEnabled && <rt>かんり</rt>}</ruby>}</span>
         </button>
       </div>
+
+      {isSettingsOpen && (
+        <Settings 
+          onClose={() => setIsSettingsOpen(false)} 
+          uiLang={uiLang}
+          setUiLang={setUiLang}
+          furiganaEnabled={furiganaEnabled}
+          setFuriganaEnabled={setFuriganaEnabled}
+        />
+      )}
     </div>
   );
 };
