@@ -7,6 +7,7 @@ import Home from '../components/Home';
 import Game from '../components/Game';
 import Result from '../components/Result';
 import Dictionary from '../components/Dictionary';
+import Admin from '../components/Admin';
 import { Terminal } from 'lucide-react';
 
 function Page() {
@@ -49,6 +50,8 @@ function Page() {
         return <Result onNavigate={setCurrentView} />;
       case 'dictionary':
         return <Dictionary onNavigate={setCurrentView} uiLang={uiLang} furiganaEnabled={furiganaEnabled} />;
+      case 'admin':
+        return <Admin onNavigate={setCurrentView} />;
       default:
         return (
           <Home 
