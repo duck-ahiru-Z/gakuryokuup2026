@@ -8,22 +8,20 @@ interface HomeProps {
   onNavigate: (view: ViewState) => void;
   difficulty: Difficulty;
   setDifficulty: (d: Difficulty) => void;
+  uiLang: 'EN' | 'JA';
+  setUiLang: (lang: 'EN' | 'JA') => void;
+  furiganaEnabled: boolean;
+  setFuriganaEnabled: (enabled: boolean) => void;
+  darkMode: boolean;
+  setDarkMode: (enabled: boolean) => void;
 }
 
-const Home: React.FC<HomeProps> = ({ onNavigate, difficulty, setDifficulty }) => {
-  const [furiganaEnabled, setFuriganaEnabled] = useState(false);
-  const [uiLang, setUiLang] = useState<'EN' | 'JA'>('JA');
+const Home: React.FC<HomeProps> = ({ 
+  onNavigate, difficulty, setDifficulty, 
+  uiLang, setUiLang, furiganaEnabled, setFuriganaEnabled, darkMode, setDarkMode 
+}) => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(true);
   const APP_TITLE = "Shortcut English";
-
-  useEffect(() => {
-    if (darkMode) {
-      document.body.classList.remove('light-theme');
-    } else {
-      document.body.classList.add('light-theme');
-    }
-  }, [darkMode]);
 
   return (
     <div className="home-container">

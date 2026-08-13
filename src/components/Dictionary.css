@@ -1,127 +1,185 @@
 .dictionary-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+  gap: 2rem;
 }
 
 .dict-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid var(--border-color);
+  border-bottom: 2px solid var(--accent-color);
   padding-bottom: 1rem;
+}
+
+.dict-header .title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.dict-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.easy-title { color: #4ade80; border-color: #4ade80; }
+.normal-title { color: #facc15; border-color: #facc15; }
+.hard-title { color: #f87171; border-color: #f87171; }
+
+.section-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0 0 1rem 0;
 }
 
 .dict-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 1.5rem;
 }
 
 .dict-card {
-  border: var(--sharp-border);
-  min-height: 200px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
   display: flex;
   flex-direction: column;
   transition: all 0.2s ease;
+  min-height: 250px;
 }
 
+.dict-card:hover {
+  border-color: var(--text-secondary);
+}
+
+/* Locked Card */
 .dict-card.locked {
-  background: var(--bg-tertiary);
   align-items: center;
   justify-content: center;
-  color: var(--text-muted);
-  border-color: var(--border-color);
+  background: var(--bg-primary);
+  opacity: 0.6;
+  gap: 1rem;
 }
 
 .lock-icon {
-  margin-bottom: 1rem;
-  opacity: 0.5;
+  color: var(--text-muted);
 }
 
 .locked-text {
-  font-family: monospace;
-  letter-spacing: 0.1em;
   font-weight: bold;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
 }
 
-.dict-card.unlocked {
-  background: var(--bg-secondary);
-  border-color: var(--accent-color);
-}
-
-.dict-card.unlocked:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 20px rgba(0, 240, 255, 0.2);
-}
-
+/* Unlocked Card */
 .card-top {
-  padding: 1.5rem;
-  background: rgba(0, 240, 255, 0.05);
-  border-bottom: 1px solid var(--border-color);
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: column;
+  padding: 1.5rem;
+  border-bottom: 1px dashed var(--border-color);
+  background: var(--bg-tertiary);
+  gap: 1.25rem;
 }
 
-.keys {
+.word-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.english-word {
+  font-size: 2.25rem;
+  font-weight: 900;
+  margin: 0;
+  color: var(--accent-color);
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
+.word-meaning {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.keys-massive {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
-.dict-key {
+.dict-key-massive {
   background: var(--bg-primary);
-  border: 1px solid var(--accent-color);
-  color: var(--accent-color);
-  padding: 0.25rem 0.5rem;
-  font-family: monospace;
-  font-weight: bold;
-  font-size: 0.9rem;
-}
-
-.plus {
-  color: var(--text-secondary);
-}
-
-.command-name {
-  font-size: 1.2rem;
+  border: 2px solid var(--accent-color);
+  padding: 0.75rem 1.5rem;
   font-weight: 900;
-  text-transform: uppercase;
-  color: var(--text-primary);
+  font-family: monospace;
+  font-size: 2rem;
+  color: var(--accent-color);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.plus-massive {
+  color: var(--text-muted);
+  font-weight: 900;
+  font-size: 2rem;
 }
 
 .card-body {
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1.25rem;
 }
 
-.desc {
-  color: var(--text-primary);
+.label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
   font-weight: bold;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
 }
 
-.meaning {
+.usage-box {
+  background: var(--bg-primary);
+  padding: 1rem;
+  border-left: 3px solid var(--text-primary);
+}
+
+.description-text {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.etymology-box p {
+  font-size: 0.95rem;
   color: var(--text-secondary);
-  font-size: 0.9rem;
-}
-
-.divider {
-  height: 1px;
-  background: var(--border-color);
-  margin: 0.5rem 0;
-}
-
-.etymology, .example {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  line-height: 1.4;
-}
-
-.etymology strong, .example strong {
-  color: var(--accent-color);
+  margin: 0;
+  line-height: 1.5;
 }

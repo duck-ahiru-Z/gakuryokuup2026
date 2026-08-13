@@ -1,85 +1,186 @@
 import type { ShortcutData } from '../types';
 
 export const SHORTCUTS: ShortcutData[] = [
+  // ==========================================
+  // EASY: 超初心者・絶対に覚えるべき基礎
+  // ==========================================
   { 
     id: 'copy', 
+    difficulty: 'EASY',
     keys: ['Ctrl', 'C'], 
     commandName: 'Copy', 
-    description: '選択した項目をコピーする', 
-    wordMeaning: '複製する・写す', 
-    etymology: 'ラテン語の copia (豊富) に由来', 
-    exampleSentence: 'Please copy this file.' 
+    description: '[選択](せんたく)したものをコピーする', 
+    wordMeaning: 'コピー（[選択](せんたく)したものを[写](うつ)し[取](と)る）', 
+    etymology: 'Copy ([写](うつ)し[取](と)る) に由来',
   },
   { 
     id: 'paste', 
+    difficulty: 'EASY',
     keys: ['Ctrl', 'V'], 
     commandName: 'Paste', 
-    description: 'コピーした項目を貼り付ける', 
-    wordMeaning: '貼り付ける・のり', 
-    etymology: '俗ラテン語 pasta (練り粉) に由来。VはCの隣で押しやすいから選ばれた説も', 
-    exampleSentence: 'Paste the text here.' 
+    description: 'コピーしたものを[配置](はいち)する', 
+    wordMeaning: '[貼](は)り[付](つ)け / ペースト', 
+    etymology: 'VはCの[隣](となり)で[押](お)しやすい[為](ため)',
   },
   { 
     id: 'cut', 
+    difficulty: 'EASY',
     keys: ['Ctrl', 'X'], 
     commandName: 'Cut', 
-    description: '選択した項目を切り取る', 
-    wordMeaning: '切る・切り取る', 
-    etymology: 'Xがハサミの形に似ているため', 
-    exampleSentence: 'Cut the image and paste it.' 
+    description: '[選択](せんたく)したものを[切](き)り[取](と)って[移動](いどう)させる', 
+    wordMeaning: '[切](き)り[取](と)り / カット', 
+    etymology: 'Xがハサミの[形](かたち)に似ている[為](ため)',
   },
   { 
     id: 'undo', 
+    difficulty: 'EASY',
     keys: ['Ctrl', 'Z'], 
     commandName: 'Undo', 
-    description: '直前の操作を元に戻す', 
-    wordMeaning: '元に戻す・取り消す', 
-    etymology: 'Zはキーボードの端にあり押しやすいため。un-(逆) + do(する)', 
-    exampleSentence: 'You can undo your mistake.' 
+    description: '1つ[前](まえ)の[状態](じょうたい)・[操作](そうさ)を[取](と)り[消](け)す', 
+    wordMeaning: '[元](もと)に[戻](もど)す', 
+    etymology: 'Zがキーボードの[端](はし)にあり[押](お)しやすい[為](ため)',
   },
   { 
     id: 'save', 
+    difficulty: 'EASY',
     keys: ['Ctrl', 'S'], 
     commandName: 'Save', 
-    description: 'ファイルを保存する', 
-    wordMeaning: '救う・保存する', 
-    etymology: 'ラテン語 salvare (救う) に由来', 
-    exampleSentence: 'Don\'t forget to save your work.' 
+    description: 'データを[保存](ほぞん)する', 
+    wordMeaning: '[上書](うわが)き[保存](ほぞん)', 
+    etymology: 'Save ([保存](ほぞん)する) の[頭文字](かしらもじ)',
+  },
+
+  // ==========================================
+  // NORMAL: 標準・知っていると作業が早い
+  // ==========================================
+  { 
+    id: 'select_all', 
+    difficulty: 'NORMAL',
+    keys: ['Ctrl', 'A'], 
+    commandName: 'Select All', 
+    description: '[画面内](がめんない)の[文字](もじ)やファイルを[全部](ぜんぶ)[選択](せんたく)する', 
+    wordMeaning: 'すべて[選択](せんたく)', 
+    etymology: 'All (すべて) の[頭文字](かしらもじ)',
   },
   { 
     id: 'find', 
+    difficulty: 'NORMAL',
     keys: ['Ctrl', 'F'], 
     commandName: 'Find', 
-    description: '文字を検索する', 
-    wordMeaning: '見つける・探す', 
-    etymology: '古英語 findan (見つける) に由来', 
-    exampleSentence: 'Find the hidden word.' 
+    description: '[画面](がめん)の[中](なか)から[特定](とくてい)の[文字](もじ)を[探](さが)し[出](だ)す', 
+    wordMeaning: '[検索](けんさく)', 
+    etymology: 'Find ([探](さが)す) の[頭文字](かしらもじ)',
   },
   { 
-    id: 'select_all', 
-    keys: ['Ctrl', 'A'], 
-    commandName: 'Select All', 
-    description: 'すべてを選択する', 
-    wordMeaning: 'すべての', 
-    etymology: 'All (すべて) の頭文字', 
-    exampleSentence: 'Select all files in the folder.' 
+    id: 'bold', 
+    difficulty: 'NORMAL',
+    keys: ['Ctrl', 'B'], 
+    commandName: 'Bold', 
+    description: '[文字](もじ)を[強調](きょうちょう)して[太](ふと)くする', 
+    wordMeaning: '[太字](ふとじ)にする', 
+    etymology: 'Bold ([太](ふと)い) の[頭文字](かしらもじ)',
   },
-  {
-    id: 'print',
-    keys: ['Ctrl', 'P'],
-    commandName: 'Print',
-    description: '画面を印刷する',
-    wordMeaning: '印刷する',
-    etymology: 'Print (印刷) の頭文字',
-    exampleSentence: 'Print this document.'
+  { 
+    id: 'italic', 
+    difficulty: 'NORMAL',
+    keys: ['Ctrl', 'I'], 
+    commandName: 'Italic', 
+    description: '[文字](もじ)を[斜](なな)めにする', 
+    wordMeaning: '[斜体](しゃたい)にする', 
+    etymology: 'Italic ([斜体](しゃたい)) の[頭文字](かしらもじ)',
   },
-  {
-    id: 'new',
-    keys: ['Ctrl', 'N'],
-    commandName: 'New',
-    description: '新しいファイル・ウィンドウを開く',
-    wordMeaning: '新しい',
-    etymology: 'New (新しい) の頭文字',
-    exampleSentence: 'Create a new project.'
-  }
+  { 
+    id: 'underline', 
+    difficulty: 'NORMAL',
+    keys: ['Ctrl', 'U'], 
+    commandName: 'Underline', 
+    description: '[文字](もじ)の[下](した)にアンダーラインを[引](ひ)く', 
+    wordMeaning: '[下線](かせん)を[引](ひ)く', 
+    etymology: 'Underline ([下線](かせん)) の[頭文字](かしらもじ)',
+  },
+  { 
+    id: 'print', 
+    difficulty: 'NORMAL',
+    keys: ['Ctrl', 'P'], 
+    commandName: 'Print', 
+    description: '[印刷](いんさつ)[画面](がめん)を[呼](よ)び[出](だ)す', 
+    wordMeaning: '[印刷](いんさつ)する', 
+    etymology: 'Print ([印刷](いんさつ)) の[頭文字](かしらもじ)',
+  },
+
+  // ==========================================
+  // HARD: むずい・プロっぽさが出る上級技
+  // ==========================================
+  { 
+    id: 'redo', 
+    difficulty: 'HARD',
+    keys: ['Ctrl', 'Y'], 
+    commandName: 'Redo', 
+    description: 'Ctrl+Zで[戻](もど)しすぎた[操作](そうさ)をもう[一度](いちど)やり[直](なお)す (Mac: Cmd+Shift+Z)', 
+    wordMeaning: 'やり[直](なお)し / リドゥ', 
+    etymology: 'Zの[隣](となり)のキーである[為](ため)',
+  },
+  { 
+    id: 'paste_plain', 
+    difficulty: 'HARD',
+    keys: ['Ctrl', 'Shift', 'V'], 
+    commandName: 'Paste Plain Text', 
+    description: '[文字](もじ)の[大](おお)きさや[色](いろ)を[消](け)して、[純粋](じゅんすい)な[文字](もじ)データだけを[貼](は)り[付](つ)ける', 
+    wordMeaning: '[書式](しょしき)なしペースト', 
+    etymology: '通常のペースト(Ctrl+V)にShiftを[加](くわ)えて[機能](きのう)を[変化](へんか)',
+  },
+  { 
+    id: 'save_as', 
+    difficulty: 'HARD',
+    keys: ['Ctrl', 'Shift', 'S'], 
+    commandName: 'Save As', 
+    description: '[現在](げんざい)のファイルとは[別](べつ)に、[新](あたら)しい[名前](なまえ)で[保存](ほぞん)する', 
+    wordMeaning: '[名前](なまえ)を[付](つ)けて[保存](ほぞん)', 
+    etymology: 'Save ([保存](ほぞん)) のSにShiftを[加](くわ)えて[別名](べつめい)[保存](ほぞん)',
+  },
+  { 
+    id: 'center_align', 
+    difficulty: 'HARD',
+    keys: ['Ctrl', 'E'], 
+    commandName: 'Center Align', 
+    description: 'タイトルなどを[真ん中](まんなか)に[寄](よ)せる', 
+    wordMeaning: '[中央](ちゅうおう)[揃](ぞろ)え', 
+    etymology: 'cEnter の E に由来 (CはCopyで[使](つか)われているため)',
+  },
+  { 
+    id: 'left_align', 
+    difficulty: 'HARD',
+    keys: ['Ctrl', 'L'], 
+    commandName: 'Left Align', 
+    description: '[文字](もじ)を[左](ひだり)に[寄](よ)せる', 
+    wordMeaning: '[左揃](ひだりぞろ)え', 
+    etymology: 'Left ([左](ひだり)) の[頭文字](かしらもじ)',
+  },
+  { 
+    id: 'zoom_in', 
+    difficulty: 'HARD',
+    keys: ['Ctrl', '+'], 
+    commandName: 'Zoom In', 
+    description: '[画面](がめん)を[拡大](かくだい)する', 
+    wordMeaning: 'ズームイン', 
+    etymology: '+(プラス) 記号で[大](おお)きくなるイメージ',
+  },
+  { 
+    id: 'zoom_out', 
+    difficulty: 'HARD',
+    keys: ['Ctrl', '-'], 
+    commandName: 'Zoom Out', 
+    description: '[画面](がめん)を[縮小](しゅくしょう)する', 
+    wordMeaning: 'ズームアウト', 
+    etymology: '-(マイナス) 記号で[小](ちい)さくなるイメージ',
+  },
+  { 
+    id: 'zoom_reset', 
+    difficulty: 'HARD',
+    keys: ['Ctrl', '0'], 
+    commandName: 'Zoom Reset', 
+    description: '[拡大](かくだい)・[縮小](しゅくしょう)した[画面](がめん)を[一瞬](いっしゅん)で100%に[戻](もど)す', 
+    wordMeaning: 'ズームリセット', 
+    etymology: '0 (ゼロ) でデフォルト[状態](じょうたい)に[戻](もど)す',
+  },
 ];
