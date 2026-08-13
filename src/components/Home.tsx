@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import type { ViewState, Difficulty } from '../types';
 import { Play, Book, Settings as SettingsIcon, Type, Shield, Globe } from 'lucide-react';
 import Settings from './Settings';
@@ -14,7 +14,16 @@ const Home: React.FC<HomeProps> = ({ onNavigate, difficulty, setDifficulty }) =>
   const [furiganaEnabled, setFuriganaEnabled] = useState(false);
   const [uiLang, setUiLang] = useState<'EN' | 'JA'>('JA');
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const APP_TITLE = "Shortcut English";
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.remove('light-theme');
+    } else {
+      document.body.classList.add('light-theme');
+    }
+  }, [darkMode]);
 
   return (
     <div className="home-container">
@@ -110,6 +119,8 @@ const Home: React.FC<HomeProps> = ({ onNavigate, difficulty, setDifficulty }) =>
           setUiLang={setUiLang}
           furiganaEnabled={furiganaEnabled}
           setFuriganaEnabled={setFuriganaEnabled}
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
         />
       )}
     </div>

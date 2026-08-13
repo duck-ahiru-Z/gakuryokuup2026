@@ -8,13 +8,14 @@ interface SettingsProps {
   setUiLang: (lang: 'EN' | 'JA') => void;
   furiganaEnabled: boolean;
   setFuriganaEnabled: (enabled: boolean) => void;
+  darkMode: boolean;
+  setDarkMode: (enabled: boolean) => void;
 }
 
-const Settings: React.FC<SettingsProps> = ({ onClose, uiLang, setUiLang, furiganaEnabled, setFuriganaEnabled }) => {
+const Settings: React.FC<SettingsProps> = ({ onClose, uiLang, setUiLang, furiganaEnabled, setFuriganaEnabled, darkMode, setDarkMode }) => {
   // Mock states for the UI
   const [bgmVolume, setBgmVolume] = useState(50);
   const [sfxVolume, setSfxVolume] = useState(50);
-  const [darkMode, setDarkMode] = useState(true);
 
   return (
     <div className="settings-overlay">
