@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import type { ViewState, UserStats } from '../types';
 import { SHORTCUTS } from '../data/shortcutsData';
 import { storageUtils } from '../utils/storageUtils';
-import { ArrowLeft, Lock, BookOpen } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { useOS, OS } from '../hooks/useOS';
+import { DictionaryCard } from './DictionaryCard';
 import './Dictionary.css';
 
 interface DictionaryProps {
@@ -15,50 +16,6 @@ interface DictionaryProps {
 const Dictionary: React.FC<DictionaryProps> = ({ onNavigate, uiLang, furiganaEnabled }) => {
   const [stats, setStats] = useState<UserStats | null>(null);
   const os = useOS();
-
-  const resolveKeys = (sc: typeof SHORTCUTS[0], currentOS: OS): string[] => {
-    if (currentOS === 'Mac' && sc.macKeys) return sc.macKeys;
-    if (currentOS === 'ChromeOS' && sc.chromeKeys) return sc.chromeKeys;
-    
-    // Generic translation fallback
-    return sc.keys.map(k => {
-      if (currentOS === 'Mac') {
-        if (k === 'Ctrl') return 'Cmd';
-        if (k === 'Alt') return 'Option';
-        if (k === 'Win') return 'Cmd';
-      }
-      if (currentOS === 'ChromeOS') {
-        if (k === 'Win') return 'Search';
-      }
-      return k;
-    });
-  };
-
-  const parseRubyText = (text: string) => {
-    const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
-    const parts = [];
-    let lastIndex = 0;
-    let match;
-    
-    while ((match = regex.exec(text)) !== null) {
-      if (match.index > lastIndex) {
-        parts.push(text.substring(lastIndex, match.index));
-      }
-      parts.push(
-        <ruby key={match.index}>
-          {match[1]}
-          {furiganaEnabled && <rt>{match[2]}</rt>}
-        </ruby>
-      );
-      lastIndex = regex.lastIndex;
-    }
-    
-    if (lastIndex < text.length) {
-      parts.push(text.substring(lastIndex));
-    }
-    
-    return <>{parts}</>;
-  };
 
   useEffect(() => {
     setStats(storageUtils.getStats());
@@ -74,53 +31,15 @@ const Dictionary: React.FC<DictionaryProps> = ({ onNavigate, uiLang, furiganaEna
     // DEBUG: Temporarily unlocking all shortcuts so the user can see the cards
     const isUnlocked = true; // stats.unlockedShortcuts.includes(sc.id);
     
-    if (!isUnlocked) {
-      return (
-        <div key={sc.id} className="dict-card locked">
-          <Lock size={48} className="lock-icon" />
-          <span className="locked-text">
-            {uiLang === 'EN' ? 'RESTRICTED' : <ruby>未解放<rt>{furiganaEnabled && 'みかいほう'}</rt></ruby>}
-          </span>
-        </div>
-      );
-    }
-
-    const displayKeys = resolveKeys(sc, os);
-
     return (
-      <div key={sc.id} className="dict-card unlocked">
-        <div className="card-top">
-          <div className={`keys-massive ${displayKeys.length >= 3 ? 'keys-compact' : ''}`}>
-            {displayKeys.map((k, i) => (
-              <React.Fragment key={i}>
-                <span className="dict-key-massive">{k}</span>
-                {i < displayKeys.length - 1 && <span className="plus-massive">+</span>}
-              </React.Fragment>
-            ))}
-          </div>
-        </div>
-        <div className="card-body">
-          <div className="word-section">
-            <h3 className="english-word">{sc.commandName.toUpperCase()}</h3>
-            <p className="word-meaning">{parseRubyText(sc.wordMeaning)}</p>
-          </div>
-
-          <div className="usage-box">
-            <span className="label">
-              {uiLang === 'EN' ? 'USAGE' : <ruby>用途<rt>{furiganaEnabled && 'ようと'}</rt></ruby>}
-            </span>
-            <p className="description-text">{parseRubyText(sc.description)}</p>
-          </div>
-
-          <div className="etymology-box">
-            <span className="label">
-              <BookOpen size={14} />
-              {uiLang === 'EN' ? 'ORIGIN' : <ruby>語源<rt>{furiganaEnabled && 'ごげん'}</rt></ruby>}
-            </span>
-            <p>{parseRubyText(sc.etymology)}</p>
-          </div>
-        </div>
-      </div>
+      <DictionaryCard 
+        key={sc.id} 
+        sc={sc} 
+        os={os} 
+        uiLang={uiLang} 
+        furiganaEnabled={furiganaEnabled} 
+        isUnlocked={isUnlocked} 
+      />
     );
   };
 
