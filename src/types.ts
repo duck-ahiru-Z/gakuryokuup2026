@@ -5,6 +5,8 @@ export interface ShortcutData {
   id: string;
   difficulty: Difficulty;
   keys: string[]; // e.g., ['Ctrl', 'C']
+  macKeys?: string[]; // OS specific overrides
+  chromeKeys?: string[];
   commandName: string; // e.g., 'Copy'
   description: string; // "文章を複製する"
   wordMeaning: string; // "複製する"

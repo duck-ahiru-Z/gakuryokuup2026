@@ -3,6 +3,7 @@ import type { ViewState, UserStats } from '../types';
 import { SHORTCUTS } from '../data/shortcutsData';
 import { storageUtils } from '../utils/storageUtils';
 import { ArrowLeft, Lock, BookOpen } from 'lucide-react';
+import { useOS, OS } from '../hooks/useOS';
 import './Dictionary.css';
 
 interface DictionaryProps {
@@ -13,6 +14,25 @@ interface DictionaryProps {
 
 const Dictionary: React.FC<DictionaryProps> = ({ onNavigate, uiLang, furiganaEnabled }) => {
   const [stats, setStats] = useState<UserStats | null>(null);
+  const os = useOS();
+
+  const resolveKeys = (sc: typeof SHORTCUTS[0], currentOS: OS): string[] => {
+    if (currentOS === 'Mac' && sc.macKeys) return sc.macKeys;
+    if (currentOS === 'ChromeOS' && sc.chromeKeys) return sc.chromeKeys;
+    
+    // Generic translation fallback
+    return sc.keys.map(k => {
+      if (currentOS === 'Mac') {
+        if (k === 'Ctrl') return 'Cmd';
+        if (k === 'Alt') return 'Option';
+        if (k === 'Win') return 'Cmd';
+      }
+      if (currentOS === 'ChromeOS') {
+        if (k === 'Win') return 'Search';
+      }
+      return k;
+    });
+  };
 
   const parseRubyText = (text: string) => {
     const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
@@ -65,14 +85,16 @@ const Dictionary: React.FC<DictionaryProps> = ({ onNavigate, uiLang, furiganaEna
       );
     }
 
+    const displayKeys = resolveKeys(sc, os);
+
     return (
       <div key={sc.id} className="dict-card unlocked">
         <div className="card-top">
-          <div className={`keys-massive ${sc.keys.length >= 3 ? 'keys-compact' : ''}`}>
-            {sc.keys.map((k, i) => (
+          <div className={`keys-massive ${displayKeys.length >= 3 ? 'keys-compact' : ''}`}>
+            {displayKeys.map((k, i) => (
               <React.Fragment key={i}>
                 <span className="dict-key-massive">{k}</span>
-                {i < sc.keys.length - 1 && <span className="plus-massive">+</span>}
+                {i < displayKeys.length - 1 && <span className="plus-massive">+</span>}
               </React.Fragment>
             ))}
           </div>

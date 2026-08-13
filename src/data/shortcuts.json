@@ -129,8 +129,9 @@
     "id": "redo", 
     "difficulty": "HARD",
     "keys": ["Ctrl", "Y"], 
+    "macKeys": ["Cmd", "Shift", "Z"],
     "commandName": "Redo", 
-    "description": "Ctrl+Zで[戻](もど)しすぎた[操作](そうさ)をもう[一度](いちど)やり[直](なお)す (Mac: Cmd+Shift+Z)", 
+    "description": "Ctrl+Zで[戻](もど)しすぎた[操作](そうさ)をもう[一度](いちど)やり[直](なお)す", 
     "wordMeaning": "やり[直](なお)し / リドゥ", 
     "etymology": "Zの[隣](となり)のキーである[為](ため)"
   },
@@ -196,5 +197,67 @@
     "description": "[拡大](かくだい)・[縮小](しゅくしょう)した[画面](がめん)を[一瞬](いっしゅん)で100%に[戻](もど)す", 
     "wordMeaning": "ズームリセット", 
     "etymology": "0 (ゼロ) でデフォルト[状態](じょうたい)に[戻](もど)す"
+  },
+  {
+    "id": "insert_link", 
+    "difficulty": "NORMAL",
+    "keys": ["Ctrl", "K"],
+    "macKeys": ["Cmd", "K"],
+    "commandName": "Insert Link",
+    "description": "[選択](せんたく)した[文字](もじ)にURL（リンク）を[埋](う)め[込](こ)む",
+    "wordMeaning": "リンクの[挿入](そうにゅう)",
+    "etymology": "Lin[K] の K に由来 (Lは既に使われているため)"
+  },
+  {
+    "id": "reload", 
+    "difficulty": "NORMAL",
+    "keys": ["Ctrl", "R"],
+    "macKeys": ["Cmd", "R"],
+    "commandName": "Reload",
+    "description": "Webページなどを[最新](さいしん)の[状態](じょうたい)に[再読](さいよ)み[込](こ)みする",
+    "wordMeaning": "[更新](こうしん) / リロード",
+    "etymology": "Reload ([再読](さいよ)み[込](こ)み) の[頭文字](かしらもじ)"
+  },
+  {
+    "id": "replace", 
+    "difficulty": "NORMAL",
+    "keys": ["Ctrl", "H"],
+    "macKeys": ["Cmd", "Option", "F"],
+    "commandName": "Replace",
+    "description": "[文章中](ぶんしょうちゅう)の[文字](もじ)を、[別](べつ)の[文字](もじ)に[一括](いっかつ)で[書](か)き[換](か)える",
+    "wordMeaning": "[置換](ちかん)",
+    "etymology": "[検索](けんさく)(F)の[隣](となり)にある[機能](きのう)だからなど諸説あり"
+  },
+  {
+    "id": "reopen_tab", 
+    "difficulty": "HARD",
+    "keys": ["Ctrl", "Shift", "T"],
+    "macKeys": ["Cmd", "Shift", "T"],
+    "commandName": "Reopen Tab",
+    "description": "[直前](ちょくぜん)に[閉](と)じたタブを[一瞬](いっしゅん)で[復活](ふっかつ)させる",
+    "wordMeaning": "[閉](と)じたタブを[開](ひら)く",
+    "etymology": "Tab (タブ) に Shift ([追加](ついか)/[逆](ぎゃく)) を[組](く)み[合](あ)わせたもの"
+  },
+  {
+    "id": "screenshot", 
+    "difficulty": "HARD",
+    "keys": ["Win", "Shift", "S"],
+    "macKeys": ["Cmd", "Shift", "4"],
+    "chromeKeys": ["Ctrl", "Shift", "📸"],
+    "commandName": "Screenshot",
+    "description": "[画面](がめん)の[一部](いちぶ)を[四角](しかく)く[切](き)り[取](と)って[画像](がぞう)としてコピーする",
+    "wordMeaning": "スクリーンショット",
+    "etymology": "Screen または Snipping の S に由来"
+  },
+  {
+    "id": "clipboard_history", 
+    "difficulty": "HARD",
+    "keys": ["Win", "V"],
+    "macKeys": ["Cmd", "C", "C"], 
+    "chromeKeys": ["Search", "V"],
+    "commandName": "Clipboard History",
+    "description": "[過去](かこ)にコピーした[文字](もじ)や[画像](がぞう)を[一覧](いちらん)から[選](えら)んで[貼](は)り[付](つ)ける",
+    "wordMeaning": "クリップボード[履歴](りれき)",
+    "etymology": "Paste (V) のWindows[拡張版](かくちょうばん)として"
   }
 ]
