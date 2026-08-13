@@ -1,4 +1,4 @@
-export type ViewState = 'home' | 'game' | 'result' | 'dictionary';
+export type ViewState = 'home' | 'game' | 'result' | 'dictionary' | 'admin';
 export type Difficulty = 'EASY' | 'NORMAL' | 'HARD';
 
 export interface ShortcutData {

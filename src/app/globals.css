@@ -9,10 +9,10 @@
   
   --border-color: #333333;
   --border-hover: #525252;
-  --border-active: #00f0ff;
+  --border-active: #ffffff;
 
-  --accent-color: #00f0ff;
-  --accent-hover: #00c3cf;
+  --accent-color: #ffffff;
+  --accent-hover: #e5e5e5;
   
   --success-color: #00ff66;
   --error-color: #ff003c;
@@ -69,7 +69,6 @@ button:hover {
   background: var(--bg-tertiary);
   border-color: var(--accent-color);
   color: var(--accent-color);
-  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
 }
 
 button:active {
