@@ -72,6 +72,14 @@ const Home: React.FC<HomeProps> = ({
         </button>
       </div>
 
+      {/* 実践モード(デバック用) */}
+      <div className="main-action-wrapper">
+        <button className="primary-btn" onClick={() => onNavigate('game2')}>
+          <Play size={24} /> 
+          <span>{uiLang === 'EN' ? 'PRACTICE MODE' : '実践モード'}</span>
+        </button>
+      </div>
+
       {/* Sub Actions */}
       <div className="sub-actions-grid">
         <button className="secondary-btn" onClick={() => onNavigate('dictionary')}>

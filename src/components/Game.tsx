@@ -3,7 +3,7 @@ import type { ViewState, Difficulty } from '../types';
 import { useGameState } from '../hooks/useGameState';
 import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
 import { storageUtils } from '../utils/storageUtils';
-import Keyboard from './Keyboard';
+import  Keyboard  from './Keyboard';
 import './Game.css';
 
 interface GameProps {
