@@ -65,24 +65,19 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
               {uiLang === 'EN' ? 'NORMAL MODE' : renderJa('通常モード', 'つうじょう')}
             </h3>
             <div className="diff-buttons">
-              <button 
-                className={`sidebar-btn diff-btn ${selectedModeId === 'normal' && difficulty === 'EASY' ? 'active' : ''}`}
-                onClick={() => handleSelectNormal('EASY')}
-              >
-                {uiLang === 'EN' ? 'EASY' : renderJa('初心者', 'しょしんしゃ')}
-              </button>
-              <button 
-                className={`sidebar-btn diff-btn ${selectedModeId === 'normal' && difficulty === 'NORMAL' ? 'active' : ''}`}
-                onClick={() => handleSelectNormal('NORMAL')}
-              >
-                {uiLang === 'EN' ? 'NORMAL' : renderJa('通常', 'つうじょう')}
-              </button>
-              <button 
-                className={`sidebar-btn diff-btn ${selectedModeId === 'normal' && difficulty === 'HARD' ? 'active' : ''}`}
-                onClick={() => handleSelectNormal('HARD')}
-              >
-                {uiLang === 'EN' ? 'HARD' : renderJa('上級者', 'じょうきゅうしゃ')}
-              </button>
+              {[
+                { id: 'EASY' as Difficulty, labelEn: 'EASY', labelJa: '初心者', rubyJa: 'しょしんしゃ' },
+                { id: 'NORMAL' as Difficulty, labelEn: 'NORMAL', labelJa: '通常', rubyJa: 'つうじょう' },
+                { id: 'HARD' as Difficulty, labelEn: 'HARD', labelJa: '上級者', rubyJa: 'じょうきゅうしゃ' }
+              ].map(diff => (
+                <button 
+                  key={diff.id}
+                  className={`sidebar-btn diff-btn ${selectedModeId === 'normal' && difficulty === diff.id ? 'active' : ''}`}
+                  onClick={() => handleSelectNormal(diff.id)}
+                >
+                  {uiLang === 'EN' ? diff.labelEn : renderJa(diff.labelJa, diff.rubyJa)}
+                </button>
+              ))}
             </div>
           </div>
 
