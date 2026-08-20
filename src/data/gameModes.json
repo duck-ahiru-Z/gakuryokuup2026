@@ -2,23 +2,29 @@
   {
     "id": "normal",
     "type": "normal",
-    "titleJa": "通常モード",
+    "titleJa": "[通常](つうじょう)モード",
     "titleEn": "NORMAL MODE",
-    "descriptionJa": "ランダムに出題されるショートカットキーを入力し、素早く正確に操作する力を鍛えます。初心者から上級者まで対応しています。",
+    "descriptionJa": "ランダムに[出題](しゅつだい)されるショートカットキーを[入力](にゅうりょく)し、[素早](すばや)く[正確](せいかく)に[操作](そうさ)する[力](ちから)を[鍛](きた)えます。[初心者](しょしんしゃ)から[上級者](じょうきゅうしゃ)まで[対応](たいおう)しています。",
     "descriptionEn": "Train your speed and accuracy by typing randomly presented shortcut keys. Suitable for all levels."
   },
   {
     "id": "practical_1",
     "type": "practical",
-    "titleJa": "学校新聞作成編",
+    "titleJa": "[学校](がっこう)[新聞](しんぶん)[作成編](さくせいへん)",
     "titleEn": "School Newspaper Edition",
-    "descriptionJa": "あなたは新聞係です！Wordなどのソフトを使い、記事をコピーしたり、間違えたら元に戻したりしながら、効率よく新聞を作り上げましょう。",
+    "descriptionJa": "あなたは[新聞係](しんぶんがかり)です！Wordなどのソフトを使い、[記事](きじ)をコピーしたり、[間違](まちが)えたら[元](もと)に[戻](もど)したりしながら、[効率良](こうりつよ)く[新聞](しんぶん)を[作](つく)り上(あ)げましょう。",
     "descriptionEn": "You are in charge of the school newspaper! Use shortcuts to copy articles and undo mistakes to finish the job efficiently.",
-    "missions": [
-      "文字をコピーする (Ctrl+C)",
-      "文字を貼り付ける (Ctrl+V)",
-      "間違えた操作を元に戻す (Ctrl+Z)",
-      "新聞を保存する (Ctrl+S)"
+    "missionsJa": [
+      "[文字](もじ)をコピーする",
+      "[文字](もじ)を[貼](は)り[付](つ)ける",
+      "[間違](まちが)えた[操作](そうさ)を[元](もと)に[戻](もど)す",
+      "[新聞](しんぶん)を[保存](ほぞん)する"
+    ],
+    "missionsEn": [
+      "Copy text",
+      "Paste text",
+      "Undo a mistake",
+      "Save the newspaper"
     ]
   }
 ]

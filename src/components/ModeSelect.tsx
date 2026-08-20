@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import type { ViewState, GameModeData, Difficulty } from '../types';
 import gameModes from '../data/gameModes.json';
 import { ArrowLeft, PlayCircle, FileText, Play } from 'lucide-react';
+import { parseRubyText } from '../utils/shortcutUtils';
 import './ModeSelect.css';
 
 interface ModeSelectProps {
@@ -17,11 +18,14 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
 }) => {
   const [selectedModeId, setSelectedModeId] = useState<string | null>(null);
 
-  const normalModeData = (gameModes as GameModeData[]).find(m => m.type === 'normal');
   const practicalModes = (gameModes as GameModeData[]).filter(m => m.type === 'practical');
 
   const renderJa = (text: string, rubyText: string) => {
     return furiganaEnabled ? <ruby>{text}<rt>{rubyText}</rt></ruby> : text;
+  };
+
+  const renderDynamicText = (enText: string, jaText: string) => {
+    return uiLang === 'EN' ? enText : parseRubyText(jaText, furiganaEnabled);
   };
 
   const handleSelectNormal = (diff: Difficulty) => {
@@ -95,7 +99,8 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
                   className={`sidebar-btn practical-btn ${selectedModeId === mode.id ? 'active' : ''}`}
                   onClick={() => setSelectedModeId(mode.id)}
                 >
-                  {uiLang === 'EN' ? `${index + 1}. ${mode.titleEn}` : `${index + 1}. ${mode.titleJa}`}
+                  <span style={{ marginRight: '0.5rem' }}>{index + 1}.</span>
+                  {renderDynamicText(mode.titleEn, mode.titleJa)}
                 </button>
               ))}
               {Array.from({ length: Math.max(0, 6 - practicalModes.length) }).map((_, i) => (
@@ -113,20 +118,21 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
           {selectedData ? (
             <div className="detail-content animate-fade-in">
               <h2 className="detail-title">
-                {uiLang === 'EN' ? selectedData.titleEn : selectedData.titleJa}
+                {renderDynamicText(selectedData.titleEn, selectedData.titleJa)}
                 {selectedData.type === 'normal' && ` - ${difficulty}`}
               </h2>
               <p className="detail-desc">
-                {uiLang === 'EN' ? selectedData.descriptionEn : selectedData.descriptionJa}
+                {renderDynamicText(selectedData.descriptionEn, selectedData.descriptionJa)}
               </p>
 
-              {selectedData.type === 'practical' && selectedData.missions && (
+              {selectedData.type === 'practical' && (
                 <div className="missions-box">
                   <h4>{uiLang === 'EN' ? 'MISSION OBJECTIVES' : renderJa('ミッション内容', 'ないよう')}</h4>
                   <ul>
-                    {selectedData.missions.map((m, idx) => (
-                      <li key={idx}>{m}</li>
-                    ))}
+                    {uiLang === 'EN' 
+                      ? selectedData.missionsEn?.map((m, idx) => <li key={idx}>{m}</li>)
+                      : selectedData.missionsJa?.map((m, idx) => <li key={idx}>{parseRubyText(m, furiganaEnabled)}</li>)
+                    }
                   </ul>
                 </div>
               )}
