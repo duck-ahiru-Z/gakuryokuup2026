@@ -10,7 +10,6 @@ import Result from '../components/Result';
 import Dictionary from '../components/Dictionary';
 import Admin from '../components/Admin';
 import ModeSelect from '../components/ModeSelect';
-import PrepScreen from '../components/PrepScreen';
 import { Terminal } from 'lucide-react';
 
 function Page() {
@@ -52,16 +51,6 @@ function Page() {
         return (
           <ModeSelect 
             onNavigate={setCurrentView}
-            onSelectMode={setSelectedModeId}
-            uiLang={uiLang}
-            furiganaEnabled={furiganaEnabled}
-          />
-        );
-      case 'prep':
-        return (
-          <PrepScreen 
-            onNavigate={setCurrentView}
-            modeId={selectedModeId}
             difficulty={difficulty}
             setDifficulty={setDifficulty}
             uiLang={uiLang}
