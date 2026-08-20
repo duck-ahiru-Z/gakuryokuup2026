@@ -1,0 +1,104 @@
+.prep-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  gap: 2rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.prep-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+
+.prep-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2.5rem;
+  background: var(--bg-secondary);
+  padding: 3rem;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.prep-title {
+  font-size: 3rem;
+  font-weight: 900;
+  margin: 0;
+  color: var(--accent-color);
+}
+
+.prep-desc {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+/* 難易度選択の再利用スタイル微調整 */
+.prep-diff {
+  background: var(--bg-primary);
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+}
+.prep-diff .difficulty-selector {
+  margin-top: 1rem;
+}
+
+.missions-container {
+  width: 100%;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--success-color);
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.missions-title {
+  font-size: 1.25rem;
+  margin: 0 0 1rem 0;
+  color: var(--text-primary);
+}
+
+.missions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.missions-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.missions-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--success-color);
+  font-weight: bold;
+}
+
+.prep-start-btn {
+  margin-top: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .prep-content {
+    padding: 1.5rem;
+  }
+  .prep-title {
+    font-size: 2rem;
+  }
+}

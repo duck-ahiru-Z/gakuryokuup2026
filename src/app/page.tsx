@@ -9,11 +9,14 @@ import Game2 from '../components/Game2';//デバック用
 import Result from '../components/Result';
 import Dictionary from '../components/Dictionary';
 import Admin from '../components/Admin';
+import ModeSelect from '../components/ModeSelect';
+import PrepScreen from '../components/PrepScreen';
 import { Terminal } from 'lucide-react';
 
 function Page() {
   const [currentView, setCurrentView] = useState<ViewState>('home');
   const [difficulty, setDifficulty] = useState<Difficulty>('NORMAL');
+  const [selectedModeId, setSelectedModeId] = useState<string>('normal');
 
   // Global Settings State
   const [uiLang, setUiLang] = useState<'EN' | 'JA'>('JA');
@@ -43,6 +46,26 @@ function Page() {
             setFuriganaEnabled={setFuriganaEnabled}
             darkMode={darkMode}
             setDarkMode={setDarkMode}
+          />
+        );
+      case 'modeSelect':
+        return (
+          <ModeSelect 
+            onNavigate={setCurrentView}
+            onSelectMode={setSelectedModeId}
+            uiLang={uiLang}
+            furiganaEnabled={furiganaEnabled}
+          />
+        );
+      case 'prep':
+        return (
+          <PrepScreen 
+            onNavigate={setCurrentView}
+            modeId={selectedModeId}
+            difficulty={difficulty}
+            setDifficulty={setDifficulty}
+            uiLang={uiLang}
+            furiganaEnabled={furiganaEnabled}
           />
         );
       case 'game':
