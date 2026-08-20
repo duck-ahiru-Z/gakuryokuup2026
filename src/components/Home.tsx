@@ -27,6 +27,49 @@ const Home: React.FC<HomeProps> = ({
     return furiganaEnabled ? <ruby>{text}<rt>{rubyText}</rt></ruby> : text;
   };
 
+  const MENU_ITEMS = [
+    {
+      id: 'dictionary',
+      icon: Book,
+      labelEn: 'ARCHIVES',
+      labelJa: renderJa('図鑑', 'ずかん'),
+      onClick: () => onNavigate('dictionary'),
+      isActive: false
+    },
+    {
+      id: 'status',
+      icon: Trophy,
+      labelEn: 'STATUS',
+      labelJa: renderJa('経験値', 'けいけんち'),
+      onClick: () => onNavigate('result'),
+      isActive: false
+    },
+    {
+      id: 'furigana',
+      icon: Type,
+      labelEn: 'RUBY',
+      labelJa: 'ふりがな',
+      onClick: () => setFuriganaEnabled(!furiganaEnabled),
+      isActive: furiganaEnabled
+    },
+    {
+      id: 'lang',
+      icon: Globe,
+      labelEn: <>EN ({renderJa('英語', 'えいご')})</>,
+      labelJa: <>JA ({renderJa('日本語', 'にほんご')})</>,
+      onClick: () => setUiLang(uiLang === 'EN' ? 'JA' : 'EN'),
+      isActive: false
+    },
+    {
+      id: 'settings',
+      icon: SettingsIcon,
+      labelEn: 'SETTINGS',
+      labelJa: renderJa('設定', 'せってい'),
+      onClick: () => setIsSettingsOpen(true),
+      isActive: false
+    }
+  ];
+
   return (
     <div className="home-container">
       {/* Title Section */}
@@ -51,41 +94,19 @@ const Home: React.FC<HomeProps> = ({
 
       {/* Sub Actions */}
       <div className="sub-actions-grid">
-        {/* Row 1 */}
-        <button className="secondary-btn" onClick={() => onNavigate('dictionary')}>
-          <Book size={20} /> 
-          <span>{uiLang === 'EN' ? 'ARCHIVES' : renderJa('図鑑', 'ずかん')}</span>
-        </button>
-        <button className="secondary-btn" onClick={() => onNavigate('result')}>
-          <Trophy size={20} />
-          <span>{uiLang === 'EN' ? 'STATUS' : renderJa('経験値', 'けいけんち')}</span>
-        </button>
-        
-        {/* Row 2 */}
-        <button 
-          className={`secondary-btn ${furiganaEnabled ? 'active-toggle' : ''}`} 
-          onClick={() => setFuriganaEnabled(!furiganaEnabled)}
-        >
-          <Type size={20} /> 
-          <span>{uiLang === 'EN' ? 'RUBY' : 'ふりがな'}</span>
-        </button>
-        <button 
-          className="secondary-btn" 
-          onClick={() => setUiLang(uiLang === 'EN' ? 'JA' : 'EN')}
-        >
-          <Globe size={20} /> 
-          <span>
-            {uiLang === 'EN' 
-              ? <>JA ({renderJa('日本語', 'にほんご')})</> 
-              : <>EN ({renderJa('英語', 'えいご')})</>}
-          </span>
-        </button>
-
-        {/* Row 3 */}
-        <button className="secondary-btn" onClick={() => setIsSettingsOpen(true)}>
-          <SettingsIcon size={20} /> 
-          <span>{uiLang === 'EN' ? 'SETTINGS' : renderJa('設定', 'せってい')}</span>
-        </button>
+        {MENU_ITEMS.map((item) => {
+          const Icon = item.icon;
+          return (
+            <button 
+              key={item.id} 
+              className={`secondary-btn ${item.isActive ? 'active-toggle' : ''}`} 
+              onClick={item.onClick}
+            >
+              <Icon size={20} /> 
+              <span>{uiLang === 'EN' ? item.labelEn : item.labelJa}</span>
+            </button>
+          );
+        })}
         <div className="empty-slot"></div>
       </div>
 
