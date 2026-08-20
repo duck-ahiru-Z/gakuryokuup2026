@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { ViewState, Difficulty } from '../types';
-import { Play, Book, Settings as SettingsIcon, Type, Shield, Globe } from 'lucide-react';
+import { Play, Book, Settings as SettingsIcon, Type, Shield, Globe, Trophy } from 'lucide-react';
 import Settings from './Settings';
 import './Home.css';
 
@@ -37,33 +37,6 @@ const Home: React.FC<HomeProps> = ({
         </p>
       </div>
       
-      {/* Level Selection */}
-      <div className="difficulty-container">
-        <span className="diff-label">
-          {uiLang === 'EN' ? 'LEVEL SELECT' : 'レベル選択'}
-        </span>
-        <div className="difficulty-selector">
-          <button 
-            className={`diff-btn ${difficulty === 'EASY' ? 'active' : ''}`}
-            onClick={() => setDifficulty('EASY')}
-          >
-            {uiLang === 'EN' ? 'EASY' : <ruby>初心者{furiganaEnabled && <rt>しょしんしゃ</rt>}</ruby>}
-          </button>
-          <button 
-            className={`diff-btn ${difficulty === 'NORMAL' ? 'active' : ''}`}
-            onClick={() => setDifficulty('NORMAL')}
-          >
-            {uiLang === 'EN' ? 'NORMAL' : <ruby>通常{furiganaEnabled && <rt>つうじょう</rt>}</ruby>}
-          </button>
-          <button 
-            className={`diff-btn ${difficulty === 'HARD' ? 'active' : ''}`}
-            onClick={() => setDifficulty('HARD')}
-          >
-            {uiLang === 'EN' ? 'HARD' : <ruby>上級者{furiganaEnabled && <rt>じょうきゅうしゃ</rt>}</ruby>}
-          </button>
-        </div>
-      </div>
-
       {/* Main Actions */}
       <div className="main-action-wrapper">
         <button className="primary-btn" onClick={() => onNavigate('game')}>
@@ -82,14 +55,17 @@ const Home: React.FC<HomeProps> = ({
 
       {/* Sub Actions */}
       <div className="sub-actions-grid">
+        {/* Row 1 */}
         <button className="secondary-btn" onClick={() => onNavigate('dictionary')}>
           <Book size={20} /> 
           <span>{uiLang === 'EN' ? 'ARCHIVES' : <ruby>図鑑{furiganaEnabled && <rt>ずかん</rt>}</ruby>}</span>
         </button>
-        <button className="secondary-btn" onClick={() => setIsSettingsOpen(true)}>
-          <SettingsIcon size={20} /> 
-          <span>{uiLang === 'EN' ? 'SETTINGS' : <ruby>設定{furiganaEnabled && <rt>せってい</rt>}</ruby>}</span>
+        <button className="secondary-btn" onClick={() => onNavigate('result')}>
+          <Trophy size={20} />
+          <span>{uiLang === 'EN' ? 'STATUS' : <ruby>経験値{furiganaEnabled && <rt>けいけんち</rt>}</ruby>}</span>
         </button>
+        
+        {/* Row 2 */}
         <button 
           className={`secondary-btn ${furiganaEnabled ? 'active-toggle' : ''}`} 
           onClick={() => setFuriganaEnabled(!furiganaEnabled)}
@@ -108,6 +84,13 @@ const Home: React.FC<HomeProps> = ({
               : <>EN (<ruby>英語{furiganaEnabled && <rt>えいご</rt>}</ruby>)</>}
           </span>
         </button>
+
+        {/* Row 3 */}
+        <button className="secondary-btn" onClick={() => setIsSettingsOpen(true)}>
+          <SettingsIcon size={20} /> 
+          <span>{uiLang === 'EN' ? 'SETTINGS' : <ruby>設定{furiganaEnabled && <rt>せってい</rt>}</ruby>}</span>
+        </button>
+        <div className="empty-slot"></div>
       </div>
 
       {/* Secret Admin Link */}
