@@ -23,6 +23,10 @@ const Home: React.FC<HomeProps> = ({
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const APP_TITLE = "Shortcut English";
 
+  const renderJa = (text: string, rubyText: string) => {
+    return furiganaEnabled ? <ruby>{text}<rt>{rubyText}</rt></ruby> : text;
+  };
+
   return (
     <div className="home-container">
       {/* Title Section */}
@@ -31,9 +35,9 @@ const Home: React.FC<HomeProps> = ({
           <h1 className="title">{APP_TITLE}</h1>
         </div>
         <p className="subtitle">
-          ショートカットキーの<ruby>語源{furiganaEnabled && <rt>ごげん</rt>}</ruby>を知り、
-          <ruby>英語{furiganaEnabled && <rt>えいご</rt>}</ruby>とPC<ruby>操作{furiganaEnabled && <rt>そうさ</rt>}</ruby>を
-          <ruby>同時{furiganaEnabled && <rt>どうじ</rt>}</ruby>にマスターしよう
+          ショートカットキーの{renderJa('語源', 'ごげん')}を知り、
+          {renderJa('英語', 'えいご')}とPC{renderJa('操作', 'そうさ')}を
+          {renderJa('同時', 'どうじ')}にマスターしよう
         </p>
       </div>
       
@@ -45,24 +49,16 @@ const Home: React.FC<HomeProps> = ({
         </button>
       </div>
 
-      {/* 実践モード(デバック用) */}
-      <div className="main-action-wrapper">
-        <button className="primary-btn" onClick={() => onNavigate('game2')}>
-          <Play size={24} /> 
-          <span>{uiLang === 'EN' ? 'PRACTICE MODE' : '実践モード'}</span>
-        </button>
-      </div>
-
       {/* Sub Actions */}
       <div className="sub-actions-grid">
         {/* Row 1 */}
         <button className="secondary-btn" onClick={() => onNavigate('dictionary')}>
           <Book size={20} /> 
-          <span>{uiLang === 'EN' ? 'ARCHIVES' : <ruby>図鑑{furiganaEnabled && <rt>ずかん</rt>}</ruby>}</span>
+          <span>{uiLang === 'EN' ? 'ARCHIVES' : renderJa('図鑑', 'ずかん')}</span>
         </button>
         <button className="secondary-btn" onClick={() => onNavigate('result')}>
           <Trophy size={20} />
-          <span>{uiLang === 'EN' ? 'STATUS' : <ruby>経験値{furiganaEnabled && <rt>けいけんち</rt>}</ruby>}</span>
+          <span>{uiLang === 'EN' ? 'STATUS' : renderJa('経験値', 'けいけんち')}</span>
         </button>
         
         {/* Row 2 */}
@@ -80,15 +76,15 @@ const Home: React.FC<HomeProps> = ({
           <Globe size={20} /> 
           <span>
             {uiLang === 'EN' 
-              ? <>JA (<ruby>日本語{furiganaEnabled && <rt>にほんご</rt>}</ruby>)</> 
-              : <>EN (<ruby>英語{furiganaEnabled && <rt>えいご</rt>}</ruby>)</>}
+              ? <>JA ({renderJa('日本語', 'にほんご')})</> 
+              : <>EN ({renderJa('英語', 'えいご')})</>}
           </span>
         </button>
 
         {/* Row 3 */}
         <button className="secondary-btn" onClick={() => setIsSettingsOpen(true)}>
           <SettingsIcon size={20} /> 
-          <span>{uiLang === 'EN' ? 'SETTINGS' : <ruby>設定{furiganaEnabled && <rt>せってい</rt>}</ruby>}</span>
+          <span>{uiLang === 'EN' ? 'SETTINGS' : renderJa('設定', 'せってい')}</span>
         </button>
         <div className="empty-slot"></div>
       </div>

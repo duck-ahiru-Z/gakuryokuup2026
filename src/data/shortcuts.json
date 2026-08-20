@@ -1,107 +1,152 @@
 [
-  { 
-    "id": "copy", 
+  {
+    "id": "new_1787198268822",
+    "difficulty": "NORMAL",
+    "keys": [],
+    "commandName": "",
+    "description": "",
+    "wordMeaning": "",
+    "etymology": ""
+  },
+  {
+    "id": "copy",
     "difficulty": "EASY",
-    "keys": ["Ctrl", "C"], 
-    "commandName": "Copy", 
-    "description": "[選択](せんたく)したものをコピーする", 
-    "wordMeaning": "コピー（[選択](せんたく)したものを[写](うつ)し[取](と)る）", 
+    "keys": [
+      "Ctrl",
+      "C"
+    ],
+    "commandName": "Copy (test)",
+    "description": "[選択](せんたく)したものをコピーする",
+    "wordMeaning": "コピー（[選択](せんたく)したものを[写](うつ)し[取](と)る）",
     "etymology": "Copy ([写](うつ)し[取](と)る) に由来"
   },
-  { 
-    "id": "paste", 
+  {
+    "id": "paste",
     "difficulty": "EASY",
-    "keys": ["Ctrl", "V"], 
-    "commandName": "Paste", 
-    "description": "コピーしたものを[配置](はいち)する", 
-    "wordMeaning": "[貼](は)り[付](つ)け / ペースト", 
+    "keys": [
+      "Ctrl",
+      "V"
+    ],
+    "commandName": "Paste",
+    "description": "コピーしたものを[配置](はいち)する",
+    "wordMeaning": "[貼](は)り[付](つ)け / ペースト",
     "etymology": "VはCの[隣](となり)で[押](お)しやすい[為](ため)"
   },
-  { 
-    "id": "cut", 
+  {
+    "id": "cut",
     "difficulty": "EASY",
-    "keys": ["Ctrl", "X"], 
-    "commandName": "Cut", 
-    "description": "[選択](せんたく)したものを[切](き)り[取](と)って[移動](いどう)させる", 
-    "wordMeaning": "[切](き)り[取](と)り / カット", 
+    "keys": [
+      "Ctrl",
+      "X"
+    ],
+    "commandName": "Cut",
+    "description": "[選択](せんたく)したものを[切](き)り[取](と)って[移動](いどう)させる",
+    "wordMeaning": "[切](き)り[取](と)り / カット",
     "etymology": "Xがハサミの[形](かたち)に似ている[為](ため)"
   },
-  { 
-    "id": "undo", 
+  {
+    "id": "undo",
     "difficulty": "EASY",
-    "keys": ["Ctrl", "Z"], 
-    "commandName": "Undo", 
-    "description": "1つ[前](まえ)の[状態](じょうたい)・[操作](そうさ)を[取](と)り[消](け)す", 
-    "wordMeaning": "[元](もと)に[戻](もど)す", 
+    "keys": [
+      "Ctrl",
+      "Z"
+    ],
+    "commandName": "Undo",
+    "description": "1つ[前](まえ)の[状態](じょうたい)・[操作](そうさ)を[取](と)り[消](け)す",
+    "wordMeaning": "[元](もと)に[戻](もど)す",
     "etymology": "Zがキーボードの[端](はし)にあり[押](お)しやすい[為](ため)"
   },
-  { 
-    "id": "save", 
+  {
+    "id": "save",
     "difficulty": "EASY",
-    "keys": ["Ctrl", "S"], 
-    "commandName": "Save", 
-    "description": "データを[保存](ほぞん)する", 
-    "wordMeaning": "[上書](うわが)き[保存](ほぞん)", 
+    "keys": [
+      "Ctrl",
+      "S"
+    ],
+    "commandName": "Save",
+    "description": "データを[保存](ほぞん)する",
+    "wordMeaning": "[上書](うわが)き[保存](ほぞん)",
     "etymology": "Save ([保存](ほぞん)する) の[頭文字](かしらもじ)"
   },
-  { 
-    "id": "select_all", 
+  {
+    "id": "select_all",
     "difficulty": "NORMAL",
-    "keys": ["Ctrl", "A"], 
-    "commandName": "Select All", 
-    "description": "[画面内](がめんない)の[文字](もじ)やファイルを[全部](ぜんぶ)[選択](せんたく)する", 
-    "wordMeaning": "すべて[選択](せんたく)", 
+    "keys": [
+      "Ctrl",
+      "A"
+    ],
+    "commandName": "Select All",
+    "description": "[画面内](がめんない)の[文字](もじ)やファイルを[全部](ぜんぶ)[選択](せんたく)する",
+    "wordMeaning": "すべて[選択](せんたく)",
     "etymology": "All (すべて) の[頭文字](かしらもじ)"
   },
-  { 
-    "id": "find", 
+  {
+    "id": "find",
     "difficulty": "NORMAL",
-    "keys": ["Ctrl", "F"], 
-    "commandName": "Find", 
-    "description": "[画面](がめん)の[中](なか)から[特定](とくてい)の[文字](もじ)を[探](さが)し[出](だ)す", 
-    "wordMeaning": "[検索](けんさく)", 
+    "keys": [
+      "Ctrl",
+      "F"
+    ],
+    "commandName": "Find",
+    "description": "[画面](がめん)の[中](なか)から[特定](とくてい)の[文字](もじ)を[探](さが)し[出](だ)す",
+    "wordMeaning": "[検索](けんさく)",
     "etymology": "Find ([探](さが)す) の[頭文字](かしらもじ)"
   },
-  { 
-    "id": "bold", 
+  {
+    "id": "bold",
     "difficulty": "NORMAL",
-    "keys": ["Ctrl", "B"], 
-    "commandName": "Bold", 
-    "description": "[文字](もじ)を[強調](きょうちょう)して[太](ふと)くする", 
-    "wordMeaning": "[太字](ふとじ)にする", 
+    "keys": [
+      "Ctrl",
+      "B"
+    ],
+    "commandName": "Bold",
+    "description": "[文字](もじ)を[強調](きょうちょう)して[太](ふと)くする",
+    "wordMeaning": "[太字](ふとじ)にする",
     "etymology": "Bold ([太](ふと)い) の[頭文字](かしらもじ)"
   },
-  { 
-    "id": "italic", 
+  {
+    "id": "italic",
     "difficulty": "NORMAL",
-    "keys": ["Ctrl", "I"], 
-    "commandName": "Italic", 
-    "description": "[文字](もじ)を[斜](なな)めにする", 
-    "wordMeaning": "[斜体](しゃたい)にする", 
+    "keys": [
+      "Ctrl",
+      "I"
+    ],
+    "commandName": "Italic",
+    "description": "[文字](もじ)を[斜](なな)めにする",
+    "wordMeaning": "[斜体](しゃたい)にする",
     "etymology": "Italic ([斜体](しゃたい)) の[頭文字](かしらもじ)"
   },
-  { 
-    "id": "underline", 
+  {
+    "id": "underline",
     "difficulty": "NORMAL",
-    "keys": ["Ctrl", "U"], 
-    "commandName": "Underline", 
-    "description": "[文字](もじ)の[下](した)にアンダーラインを[引](ひ)く", 
-    "wordMeaning": "[下線](かせん)を[引](ひ)く", 
+    "keys": [
+      "Ctrl",
+      "U"
+    ],
+    "commandName": "Underline",
+    "description": "[文字](もじ)の[下](した)にアンダーラインを[引](ひ)く",
+    "wordMeaning": "[下線](かせん)を[引](ひ)く",
     "etymology": "Underline ([下線](かせん)) の[頭文字](かしらもじ)"
   },
-  { 
-    "id": "print", 
+  {
+    "id": "print",
     "difficulty": "NORMAL",
-    "keys": ["Ctrl", "P"], 
-    "commandName": "Print", 
-    "description": "[印刷](いんさつ)[画面](がめん)を[呼](よ)び[出](だ)す", 
-    "wordMeaning": "[印刷](いんさつ)する", 
+    "keys": [
+      "Ctrl",
+      "P"
+    ],
+    "commandName": "Print",
+    "description": "[印刷](いんさつ)[画面](がめん)を[呼](よ)び[出](だ)す",
+    "wordMeaning": "[印刷](いんさつ)する",
     "etymology": "Print ([印刷](いんさつ)) の[頭文字](かしらもじ)"
   },
   {
     "id": "new",
     "difficulty": "NORMAL",
-    "keys": ["Ctrl", "N"],
+    "keys": [
+      "Ctrl",
+      "N"
+    ],
     "commandName": "New",
     "description": "[新](あたら)しいファイルやウィンドウを開く",
     "wordMeaning": "[新規作成](しんきさくせい)",
@@ -110,7 +155,10 @@
   {
     "id": "new_tab",
     "difficulty": "NORMAL",
-    "keys": ["Ctrl", "T"],
+    "keys": [
+      "Ctrl",
+      "T"
+    ],
     "commandName": "New Tab",
     "description": "ブラウザなどで[新](あたら)しいタブを開く",
     "wordMeaning": "[新](あたら)しいタブ",
@@ -119,142 +167,224 @@
   {
     "id": "close",
     "difficulty": "NORMAL",
-    "keys": ["Ctrl", "W"],
+    "keys": [
+      "Ctrl",
+      "W"
+    ],
     "commandName": "Close",
     "description": "[現在](げんざい)のウィンドウやタブを[閉](と)じる",
     "wordMeaning": "[閉](と)じる",
     "etymology": "Window (ウィンドウ) を[閉](と)じることから"
   },
-  { 
-    "id": "redo", 
+  {
+    "id": "redo",
     "difficulty": "HARD",
-    "keys": ["Ctrl", "Y"], 
-    "macKeys": ["Cmd", "Shift", "Z"],
-    "commandName": "Redo", 
-    "description": "Ctrl+Zで[戻](もど)しすぎた[操作](そうさ)をもう[一度](いちど)やり[直](なお)す", 
-    "wordMeaning": "やり[直](なお)し / リドゥ", 
+    "keys": [
+      "Ctrl",
+      "Y"
+    ],
+    "macKeys": [
+      "Cmd",
+      "Shift",
+      "Z"
+    ],
+    "commandName": "Redo",
+    "description": "Ctrl+Zで[戻](もど)しすぎた[操作](そうさ)をもう[一度](いちど)やり[直](なお)す",
+    "wordMeaning": "やり[直](なお)し / リドゥ",
     "etymology": "Zの[隣](となり)のキーである[為](ため)"
   },
-  { 
-    "id": "paste_plain", 
+  {
+    "id": "paste_plain",
     "difficulty": "HARD",
-    "keys": ["Ctrl", "Shift", "V"], 
-    "commandName": "Paste Plain Text", 
-    "description": "[文字](もじ)の[大](おお)きさや[色](いろ)を[消](け)して、[純粋](じゅんすい)な[文字](もじ)データだけを[貼](は)り[付](つ)ける", 
-    "wordMeaning": "[書式](しょしき)なしペースト", 
+    "keys": [
+      "Ctrl",
+      "Shift",
+      "V"
+    ],
+    "commandName": "Paste Plain Text",
+    "description": "[文字](もじ)の[大](おお)きさや[色](いろ)を[消](け)して、[純粋](じゅんすい)な[文字](もじ)データだけを[貼](は)り[付](つ)ける",
+    "wordMeaning": "[書式](しょしき)なしペースト",
     "etymology": "通常のペースト(Ctrl+V)にShiftを[加](くわ)えて[機能](きのう)を[変化](へんか)"
   },
-  { 
-    "id": "save_as", 
+  {
+    "id": "save_as",
     "difficulty": "HARD",
-    "keys": ["Ctrl", "Shift", "S"], 
-    "commandName": "Save As", 
-    "description": "[現在](げんざい)のファイルとは[別](べつ)に、[新](あたら)しい[名前](なまえ)で[保存](ほぞん)する", 
-    "wordMeaning": "[名前](なまえ)を[付](つ)けて[保存](ほぞん)", 
+    "keys": [
+      "Ctrl",
+      "Shift",
+      "S"
+    ],
+    "commandName": "Save As",
+    "description": "[現在](げんざい)のファイルとは[別](べつ)に、[新](あたら)しい[名前](なまえ)で[保存](ほぞん)する",
+    "wordMeaning": "[名前](なまえ)を[付](つ)けて[保存](ほぞん)",
     "etymology": "Save ([保存](ほぞん)) のSにShiftを[加](くわ)えて[別名](べつめい)[保存](ほぞん)"
   },
-  { 
-    "id": "center_align", 
+  {
+    "id": "center_align",
     "difficulty": "HARD",
-    "keys": ["Ctrl", "E"], 
-    "commandName": "Center Align", 
-    "description": "タイトルなどを[真ん中](まんなか)に[寄](よ)せる", 
-    "wordMeaning": "[中央](ちゅうおう)[揃](ぞろ)え", 
+    "keys": [
+      "Ctrl",
+      "E"
+    ],
+    "commandName": "Center Align",
+    "description": "タイトルなどを[真ん中](まんなか)に[寄](よ)せる",
+    "wordMeaning": "[中央](ちゅうおう)[揃](ぞろ)え",
     "etymology": "cEnter の E に由来 (CはCopyで[使](つか)われているため)"
   },
-  { 
-    "id": "left_align", 
+  {
+    "id": "left_align",
     "difficulty": "HARD",
-    "keys": ["Ctrl", "L"], 
-    "commandName": "Left Align", 
-    "description": "[文字](もじ)を[左](ひだり)に[寄](よ)せる", 
-    "wordMeaning": "[左揃](ひだりぞろ)え", 
+    "keys": [
+      "Ctrl",
+      "L"
+    ],
+    "commandName": "Left Align",
+    "description": "[文字](もじ)を[左](ひだり)に[寄](よ)せる",
+    "wordMeaning": "[左揃](ひだりぞろ)え",
     "etymology": "Left ([左](ひだり)) の[頭文字](かしらもじ)"
   },
-  { 
-    "id": "zoom_in", 
+  {
+    "id": "zoom_in",
     "difficulty": "HARD",
-    "keys": ["Ctrl", "+"], 
-    "commandName": "Zoom In", 
-    "description": "[画面](がめん)を[拡大](かくだい)する", 
-    "wordMeaning": "ズームイン", 
+    "keys": [
+      "Ctrl",
+      "+"
+    ],
+    "commandName": "Zoom In",
+    "description": "[画面](がめん)を[拡大](かくだい)する",
+    "wordMeaning": "ズームイン",
     "etymology": "+(プラス) 記号で[大](おお)きくなるイメージ"
   },
-  { 
-    "id": "zoom_out", 
+  {
+    "id": "zoom_out",
     "difficulty": "HARD",
-    "keys": ["Ctrl", "-"], 
-    "commandName": "Zoom Out", 
-    "description": "[画面](がめん)を[縮小](しゅくしょう)する", 
-    "wordMeaning": "ズームアウト", 
+    "keys": [
+      "Ctrl",
+      "-"
+    ],
+    "commandName": "Zoom Out",
+    "description": "[画面](がめん)を[縮小](しゅくしょう)する",
+    "wordMeaning": "ズームアウト",
     "etymology": "-(マイナス) 記号で[小](ちい)さくなるイメージ"
   },
-  { 
-    "id": "zoom_reset", 
+  {
+    "id": "zoom_reset",
     "difficulty": "HARD",
-    "keys": ["Ctrl", "0"], 
-    "commandName": "Zoom Reset", 
-    "description": "[拡大](かくだい)・[縮小](しゅくしょう)した[画面](がめん)を[一瞬](いっしゅん)で100%に[戻](もど)す", 
-    "wordMeaning": "ズームリセット", 
+    "keys": [
+      "Ctrl",
+      "0"
+    ],
+    "commandName": "Zoom Reset",
+    "description": "[拡大](かくだい)・[縮小](しゅくしょう)した[画面](がめん)を[一瞬](いっしゅん)で100%に[戻](もど)す",
+    "wordMeaning": "ズームリセット",
     "etymology": "0 (ゼロ) でデフォルト[状態](じょうたい)に[戻](もど)す"
   },
   {
-    "id": "insert_link", 
+    "id": "insert_link",
     "difficulty": "NORMAL",
-    "keys": ["Ctrl", "K"],
-    "macKeys": ["Cmd", "K"],
+    "keys": [
+      "Ctrl",
+      "K"
+    ],
+    "macKeys": [
+      "Cmd",
+      "K"
+    ],
     "commandName": "Insert Link",
     "description": "[選択](せんたく)した[文字](もじ)にURL（リンク）を[埋](う)め[込](こ)む",
     "wordMeaning": "リンクの[挿入](そうにゅう)",
     "etymology": "Lin[K] の K に由来 (Lは既に使われているため)"
   },
   {
-    "id": "reload", 
+    "id": "reload",
     "difficulty": "NORMAL",
-    "keys": ["Ctrl", "R"],
-    "macKeys": ["Cmd", "R"],
+    "keys": [
+      "Ctrl",
+      "R"
+    ],
+    "macKeys": [
+      "Cmd",
+      "R"
+    ],
     "commandName": "Reload",
     "description": "Webページなどを[最新](さいしん)の[状態](じょうたい)に[再読](さいよ)み[込](こ)みする",
     "wordMeaning": "[更新](こうしん) / リロード",
     "etymology": "Reload ([再読](さいよ)み[込](こ)み) の[頭文字](かしらもじ)"
   },
   {
-    "id": "replace", 
+    "id": "replace",
     "difficulty": "NORMAL",
-    "keys": ["Ctrl", "H"],
-    "macKeys": ["Cmd", "Option", "F"],
+    "keys": [
+      "Ctrl",
+      "H"
+    ],
+    "macKeys": [
+      "Cmd",
+      "Option",
+      "F"
+    ],
     "commandName": "Replace",
     "description": "[文章中](ぶんしょうちゅう)の[文字](もじ)を、[別](べつ)の[文字](もじ)に[一括](いっかつ)で[書](か)き[換](か)える",
     "wordMeaning": "[置換](ちかん)",
     "etymology": "[検索](けんさく)(F)の[隣](となり)にある[機能](きのう)だからなど諸説あり"
   },
   {
-    "id": "reopen_tab", 
+    "id": "reopen_tab",
     "difficulty": "HARD",
-    "keys": ["Ctrl", "Shift", "T"],
-    "macKeys": ["Cmd", "Shift", "T"],
+    "keys": [
+      "Ctrl",
+      "Shift",
+      "T"
+    ],
+    "macKeys": [
+      "Cmd",
+      "Shift",
+      "T"
+    ],
     "commandName": "Reopen Tab",
     "description": "[直前](ちょくぜん)に[閉](と)じたタブを[一瞬](いっしゅん)で[復活](ふっかつ)させる",
     "wordMeaning": "[閉](と)じたタブを[開](ひら)く",
     "etymology": "Tab (タブ) に Shift ([追加](ついか)/[逆](ぎゃく)) を[組](く)み[合](あ)わせたもの"
   },
   {
-    "id": "screenshot", 
+    "id": "screenshot",
     "difficulty": "HARD",
-    "keys": ["Win", "Shift", "S"],
-    "macKeys": ["Cmd", "Shift", "4"],
-    "chromeKeys": ["Ctrl", "Shift", "📸"],
+    "keys": [
+      "Win",
+      "Shift",
+      "S"
+    ],
+    "macKeys": [
+      "Cmd",
+      "Shift",
+      "4"
+    ],
+    "chromeKeys": [
+      "Ctrl",
+      "Shift",
+      "📸"
+    ],
     "commandName": "Screenshot",
     "description": "[画面](がめん)の[一部](いちぶ)を[四角](しかく)く[切](き)り[取](と)って[画像](がぞう)としてコピーする",
     "wordMeaning": "スクリーンショット",
     "etymology": "Screen または Snipping の S に由来"
   },
   {
-    "id": "clipboard_history", 
+    "id": "clipboard_history",
     "difficulty": "HARD",
-    "keys": ["Win", "V"],
-    "macKeys": ["Cmd", "C", "C"], 
-    "chromeKeys": ["Search", "V"],
+    "keys": [
+      "Win",
+      "V"
+    ],
+    "macKeys": [
+      "Cmd",
+      "C",
+      "C"
+    ],
+    "chromeKeys": [
+      "Search",
+      "V"
+    ],
     "commandName": "Clipboard History",
     "description": "[過去](かこ)にコピーした[文字](もじ)や[画像](がぞう)を[一覧](いちらん)から[選](えら)んで[貼](は)り[付](つ)ける",
     "wordMeaning": "クリップボード[履歴](りれき)",
