@@ -1,0 +1,24 @@
+[
+  {
+    "id": "normal",
+    "type": "normal",
+    "titleJa": "通常モード",
+    "titleEn": "NORMAL MODE",
+    "descriptionJa": "ランダムに出題されるショートカットキーを入力し、素早く正確に操作する力を鍛えます。初心者から上級者まで対応しています。",
+    "descriptionEn": "Train your speed and accuracy by typing randomly presented shortcut keys. Suitable for all levels."
+  },
+  {
+    "id": "practical_1",
+    "type": "practical",
+    "titleJa": "学校新聞作成編",
+    "titleEn": "School Newspaper Edition",
+    "descriptionJa": "あなたは新聞係です！Wordなどのソフトを使い、記事をコピーしたり、間違えたら元に戻したりしながら、効率よく新聞を作り上げましょう。",
+    "descriptionEn": "You are in charge of the school newspaper! Use shortcuts to copy articles and undo mistakes to finish the job efficiently.",
+    "missions": [
+      "文字をコピーする (Ctrl+C)",
+      "文字を貼り付ける (Ctrl+V)",
+      "間違えた操作を元に戻す (Ctrl+Z)",
+      "新聞を保存する (Ctrl+S)"
+    ]
+  }
+]

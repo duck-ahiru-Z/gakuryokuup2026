@@ -86,9 +86,9 @@ const Home: React.FC<HomeProps> = ({
       
       {/* Main Actions */}
       <div className="main-action-wrapper">
-        <button className="primary-btn" onClick={() => onNavigate('game')}>
+        <button className="primary-btn" onClick={() => onNavigate('modeSelect')}>
           <Play size={24} /> 
-          <span>{uiLang === 'EN' ? 'START' : 'スタート'}</span>
+          <span>{uiLang === 'EN' ? 'SELECT' : renderJa('モード選択', 'せんたく')}</span>
         </button>
       </div>
 
