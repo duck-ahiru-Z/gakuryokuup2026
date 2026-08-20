@@ -89,14 +89,6 @@ const Home: React.FC<HomeProps> = ({
         <div className="empty-slot"></div>
       </div>
 
-      {/* Secret Admin Link */}
-      <div className="admin-link-wrapper">
-        <button className="admin-btn" onClick={() => onNavigate('admin' as ViewState)}>
-          <Shield size={14} />
-          <span>{uiLang === 'EN' ? 'ADMIN' : <ruby>管理{furiganaEnabled && <rt>かんり</rt>}</ruby>}</span>
-        </button>
-      </div>
-
       {isSettingsOpen && (
         <Settings 
           onClose={() => setIsSettingsOpen(false)} 
