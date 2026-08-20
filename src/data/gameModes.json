@@ -5,7 +5,8 @@
     "titleJa": "[通常](つうじょう)モード",
     "titleEn": "NORMAL MODE",
     "descriptionJa": "ランダムに[出題](しゅつだい)されるショートカットキーを[入力](にゅうりょく)し、[素早](すばや)く[正確](せいかく)に[操作](そうさ)する[力](ちから)を[鍛](きた)えます。[初心者](しょしんしゃ)から[上級者](じょうきゅうしゃ)まで[対応](たいおう)しています。",
-    "descriptionEn": "Train your speed and accuracy by typing randomly presented shortcut keys. Suitable for all levels."
+    "descriptionEn": "Train your speed and accuracy by typing randomly presented shortcut keys. Suitable for all levels.",
+    "imageUri": ""
   },
   {
     "id": "practical_1",
@@ -14,17 +15,6 @@
     "titleEn": "School Newspaper Edition",
     "descriptionJa": "あなたは[新聞係](しんぶんがかり)です！Wordなどのソフトを使い、[記事](きじ)をコピーしたり、[間違](まちが)えたら[元](もと)に[戻](もど)したりしながら、[効率良](こうりつよ)く[新聞](しんぶん)を[作](つく)り上(あ)げましょう。",
     "descriptionEn": "You are in charge of the school newspaper! Use shortcuts to copy articles and undo mistakes to finish the job efficiently.",
-    "missionsJa": [
-      "[文字](もじ)をコピーする",
-      "[文字](もじ)を[貼](は)り[付](つ)ける",
-      "[間違](まちが)えた[操作](そうさ)を[元](もと)に[戻](もど)す",
-      "[新聞](しんぶん)を[保存](ほぞん)する"
-    ],
-    "missionsEn": [
-      "Copy text",
-      "Paste text",
-      "Undo a mistake",
-      "Save the newspaper"
-    ]
+    "imageUri": ""
   }
 ]

@@ -119,23 +119,22 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
             <div className="detail-content animate-fade-in">
               <h2 className="detail-title">
                 {renderDynamicText(selectedData.titleEn, selectedData.titleJa)}
-                {selectedData.type === 'normal' && ` - ${difficulty}`}
               </h2>
+              
+              <div className="mode-image-wrapper">
+                {selectedData.imageUri ? (
+                  <img src={selectedData.imageUri} alt="Mode preview" className="mode-image" />
+                ) : (
+                  <div className="mode-image-placeholder">
+                    <FileText size={48} opacity={0.5} />
+                    <span>NO IMAGE AVAILABLE</span>
+                  </div>
+                )}
+              </div>
+
               <p className="detail-desc">
                 {renderDynamicText(selectedData.descriptionEn, selectedData.descriptionJa)}
               </p>
-
-              {selectedData.type === 'practical' && (
-                <div className="missions-box">
-                  <h4>{uiLang === 'EN' ? 'MISSION OBJECTIVES' : renderJa('ミッション内容', 'ないよう')}</h4>
-                  <ul>
-                    {uiLang === 'EN' 
-                      ? selectedData.missionsEn?.map((m, idx) => <li key={idx}>{m}</li>)
-                      : selectedData.missionsJa?.map((m, idx) => <li key={idx}>{parseRubyText(m, furiganaEnabled)}</li>)
-                    }
-                  </ul>
-                </div>
-              )}
 
               <button className="primary-btn start-btn" onClick={handleStart}>
                 <Play size={24} /> 

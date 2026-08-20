@@ -156,40 +156,31 @@
   line-height: 1.6;
 }
 
-.missions-box {
+.mode-image-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
-  border-left: 4px solid var(--success-color);
-  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.missions-box h4 {
-  margin: 0 0 1rem 0;
-  font-size: 1.1rem;
-  color: var(--text-primary);
+.mode-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.missions-box ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.mode-image-placeholder {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-}
-
-.missions-box li {
-  position: relative;
-  padding-left: 1.5rem;
-  color: var(--text-secondary);
-}
-
-.missions-box li::before {
-  content: "→";
-  position: absolute;
-  left: 0;
-  color: var(--success-color);
+  align-items: center;
+  gap: 1rem;
+  color: var(--text-muted);
   font-weight: bold;
+  letter-spacing: 0.1em;
 }
 
 .start-btn {

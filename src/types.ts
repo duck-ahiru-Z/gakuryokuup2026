@@ -8,8 +8,7 @@ export interface GameModeData {
   titleEn: string;
   descriptionJa: string;
   descriptionEn: string;
-  missionsJa?: string[];
-  missionsEn?: string[];
+  imageUri?: string;
 }
 
 export interface ShortcutData {
