@@ -114,6 +114,7 @@
 
 .primary-btn:hover {
   background: var(--text-primary);
+  color: var(--bg-primary);
   box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
 }
 
