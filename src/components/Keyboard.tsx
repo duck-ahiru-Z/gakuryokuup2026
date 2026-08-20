@@ -1,26 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Keyboard.css';
 import { useOS } from '../hooks/useOS';
 
-interface KeyboardProps {
-  pressedKeys: Set<string>;
-}
+  const Keyboard: React.FC = () => {
+  // 1. OSの判定
+  const os = useOS();
+  const isMac = os === 'Mac';
 
-const Keyboard: React.FC<KeyboardProps> = ({ pressedKeys }) => {
-  const { isMac } = useOS();
+  // 2. 押されているキーの状態をこのファイル内で管理
+  const [pressedKeys, setPressedKeys] = useState<Set<string>>(new Set());
+
+  // 3. キーイベントの監視
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Macの場合は Control キーの入力を無視（反応させない）
+      if (isMac && e.key === 'Control') {
+        return;
+      }
+
+      setPressedKeys((prev) => new Set(prev).add(e.key));
+    };
+
+    const handleKeyUp = (e: KeyboardEvent) => {
+      setPressedKeys((prev) => {
+        const next = new Set(prev);
+        next.delete(e.key);
+        return next;
+      });
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+    };
+  }, [isMac]);
 
   const isPressed = (logicalKey: string) => {
     return pressedKeys.has(logicalKey);
   };
 
   const renderKey = (logicalKey: string, display: string = logicalKey, widthClass: string = 'key-normal') => (
-    <div className={`kb-key ${widthClass} ${isPressed(logicalKey) ? 'pressed' : ''}`}>
+    <div key={logicalKey} className={`kb-key ${widthClass} ${isPressed(logicalKey) ? 'pressed' : ''}`}>
       {display}
     </div>
   );
-
-  const ctrlDisplay = isMac ? '⌘ CMD' : 'CTRL';
-  const altDisplay = isMac ? '⌥ OPT' : 'ALT';
 
   return (
     <div className="virtual-keyboard">
@@ -49,15 +75,35 @@ const Keyboard: React.FC<KeyboardProps> = ({ pressedKeys }) => {
         {renderKey('Shift', 'SHIFT', 'key-widest')}
       </div>
       <div className="kb-row">
-        {renderKey('Ctrl', ctrlDisplay, 'key-wide')}
+        {/* {renderKey('Ctrl', ctrlDisplay, 'key-wide')}
         {!isMac && renderKey('Meta', 'WIN', 'key-wide')}
         {renderKey('Alt', altDisplay, 'key-wide')}
         {renderKey(' ', 'SPACE', 'key-space')}
         {renderKey('Alt', altDisplay, 'key-wide')}
-        {renderKey('Ctrl', ctrlDisplay, 'key-wide')}
+        {renderKey('Ctrl', ctrlDisplay, 'key-wide')} */}
+      {isMac ? (
+          <>
+            {renderKey('Control', 'Control', 'key-wide')}
+            {renderKey('Alt', '⌥ OPT', 'key-wide')}
+            {renderKey('Meta', '⌘ CMD', 'key-wider')}
+            {renderKey(' ', 'SPACE', 'key-space')}
+            {renderKey('Meta', '⌘ CMD', 'key-wider')}
+            {renderKey('Alt', '⌥ OPT', 'key-wide')}
+          </>
+        ) : (
+          <>
+            {renderKey('Control', 'CTRL', 'key-wide')}
+            {renderKey('Meta', 'WIN', 'key-wide')}
+            {renderKey('Alt', 'ALT', 'key-wide')}
+            {renderKey(' ', 'SPACE', 'key-space')}
+            {renderKey('Alt', 'ALT', 'key-wide')}
+            {renderKey('Control', 'CTRL', 'key-wide')}
+          </>
+        )}
       </div>
     </div>
   );
 };
 
 export default Keyboard;
+

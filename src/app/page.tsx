@@ -5,6 +5,7 @@ import '../App.css'; // Will be updated if App.css is moved, or we can keep it a
 import type { ViewState, Difficulty } from '../types';
 import Home from '../components/Home';
 import Game from '../components/Game';
+import Game2 from '../components/Game2';//デバック用
 import Result from '../components/Result';
 import Dictionary from '../components/Dictionary';
 import Admin from '../components/Admin';
@@ -46,6 +47,9 @@ function Page() {
         );
       case 'game':
         return <Game onNavigate={setCurrentView} difficulty={difficulty} />;
+      //game2はデバック用
+      case 'game2' as any:
+        return <Game2 onNavigate={setCurrentView} difficulty={difficulty} />;
       case 'result':
         return <Result onNavigate={setCurrentView} />;
       case 'dictionary':
