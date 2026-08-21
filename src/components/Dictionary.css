@@ -60,9 +60,9 @@
   border-bottom: 1px solid var(--border-color);
 }
 
-.easy-title { color: #4ade80; border-color: #4ade80; }
-.normal-title { color: #facc15; border-color: #facc15; }
-.hard-title { color: #f87171; border-color: #f87171; }
+.easy-title { color: var(--easy-color); border-color: var(--easy-color); }
+.normal-title { color: var(--normal-color); border-color: var(--normal-color); }
+.hard-title { color: var(--hard-color); border-color: var(--hard-color); }
 
 .section-desc {
   font-size: 1rem;
