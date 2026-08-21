@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import type { ViewState, Difficulty } from '../types';
 import { Play, Book, Settings as SettingsIcon, Type, Shield, Globe, Trophy } from 'lucide-react';
 import Settings from './Settings';
+import { parseRubyText } from '../utils/shortcutUtils';
 import './Home.css';
 
 interface HomeProps {
@@ -23,16 +24,14 @@ const Home: React.FC<HomeProps> = ({
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const APP_TITLE = "Shortcut English";
 
-  const renderJa = (text: string, rubyText: string) => {
-    return furiganaEnabled ? <ruby>{text}<rt>{rubyText}</rt></ruby> : text;
-  };
+
 
   const MENU_ITEMS = [
     {
       id: 'dictionary',
       icon: Book,
       labelEn: 'ARCHIVES',
-      labelJa: renderJa('図鑑', 'ずかん'),
+      labelJa: parseRubyText('[図鑑](ずかん)', furiganaEnabled),
       onClick: () => onNavigate('dictionary'),
       isActive: false
     },
@@ -40,7 +39,7 @@ const Home: React.FC<HomeProps> = ({
       id: 'status',
       icon: Trophy,
       labelEn: 'STATUS',
-      labelJa: renderJa('経験値', 'けいけんち'),
+      labelJa: parseRubyText('[経験値](けいけんち)', furiganaEnabled),
       onClick: () => onNavigate('result'),
       isActive: false
     },
@@ -55,8 +54,8 @@ const Home: React.FC<HomeProps> = ({
     {
       id: 'lang',
       icon: Globe,
-      labelEn: <>EN ({renderJa('英語', 'えいご')})</>,
-      labelJa: <>JA ({renderJa('日本語', 'にほんご')})</>,
+      labelEn: <>EN ({parseRubyText('[英語](えいご)', furiganaEnabled)})</>,
+      labelJa: <>JA ({parseRubyText('[日本語](にほんご)', furiganaEnabled)})</>,
       onClick: () => setUiLang(uiLang === 'EN' ? 'JA' : 'EN'),
       isActive: false
     },
@@ -64,7 +63,7 @@ const Home: React.FC<HomeProps> = ({
       id: 'settings',
       icon: SettingsIcon,
       labelEn: 'SETTINGS',
-      labelJa: renderJa('設定', 'せってい'),
+      labelJa: parseRubyText('[設定](せってい)', furiganaEnabled),
       onClick: () => setIsSettingsOpen(true),
       isActive: false
     }
@@ -78,9 +77,9 @@ const Home: React.FC<HomeProps> = ({
           <h1 className="title">{APP_TITLE}</h1>
         </div>
         <p className="subtitle">
-          ショートカットキーの{renderJa('語源', 'ごげん')}を知り、
-          {renderJa('英語', 'えいご')}とPC{renderJa('操作', 'そうさ')}を
-          {renderJa('同時', 'どうじ')}にマスターしよう
+          ショートカットキーの{parseRubyText('[語源](ごげん)', furiganaEnabled)}を知り、
+          {parseRubyText('[英語](えいご)', furiganaEnabled)}とPC{parseRubyText('[操作](そうさ)', furiganaEnabled)}を
+          {parseRubyText('[同時](どうじ)', furiganaEnabled)}にマスターしよう
         </p>
       </div>
       
@@ -88,7 +87,7 @@ const Home: React.FC<HomeProps> = ({
       <div className="main-action-wrapper">
         <button className="primary-btn" onClick={() => onNavigate('modeSelect')}>
           <Play size={24} /> 
-          <span>{uiLang === 'EN' ? 'SELECT' : renderJa('モード選択', 'せんたく')}</span>
+          <span>{uiLang === 'EN' ? 'SELECT' : parseRubyText('モード[選択](せんたく)', furiganaEnabled)}</span>
         </button>
       </div>
 

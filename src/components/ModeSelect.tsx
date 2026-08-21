@@ -20,9 +20,7 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
 
   const practicalModes = (gameModes as GameModeData[]).filter(m => m.type === 'practical');
 
-  const renderJa = (text: string, rubyText: string) => {
-    return furiganaEnabled ? <ruby>{text}<rt>{rubyText}</rt></ruby> : text;
-  };
+
 
   const renderDynamicText = (enText: string, jaText: string) => {
     return uiLang === 'EN' ? enText : parseRubyText(jaText, furiganaEnabled);
@@ -49,9 +47,9 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
       <div className="mode-header">
         <button className="secondary-btn back-btn" onClick={() => onNavigate('home')}>
           <ArrowLeft size={20} />
-          <span>{uiLang === 'EN' ? 'BACK' : renderJa('戻る', 'もどる')}</span>
+          <span>{uiLang === 'EN' ? 'BACK' : parseRubyText('[戻](もど)る', furiganaEnabled)}</span>
         </button>
-        <h2 className="mode-title">{uiLang === 'EN' ? 'SELECT MODE' : renderJa('モード選択', 'せんたく')}</h2>
+        <h2 className="mode-title">{uiLang === 'EN' ? 'SELECT MODE' : parseRubyText('モード[選択](せんたく)', furiganaEnabled)}</h2>
       </div>
 
       <div className="mode-layout">
@@ -62,20 +60,20 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
           <div className="sidebar-section">
             <h3 className="sidebar-title">
               <PlayCircle size={20} />
-              {uiLang === 'EN' ? 'NORMAL MODE' : renderJa('通常モード', 'つうじょう')}
+              {uiLang === 'EN' ? 'NORMAL MODE' : parseRubyText('[通常](つうじょう)モード', furiganaEnabled)}
             </h3>
             <div className="diff-buttons">
               {[
-                { id: 'EASY' as Difficulty, labelEn: 'EASY', labelJa: '初心者', rubyJa: 'しょしんしゃ' },
-                { id: 'NORMAL' as Difficulty, labelEn: 'NORMAL', labelJa: '通常', rubyJa: 'つうじょう' },
-                { id: 'HARD' as Difficulty, labelEn: 'HARD', labelJa: '上級者', rubyJa: 'じょうきゅうしゃ' }
+                { id: 'EASY' as Difficulty, labelEn: 'EASY', labelJa: '[初心者](しょしんしゃ)' },
+                { id: 'NORMAL' as Difficulty, labelEn: 'NORMAL', labelJa: '[通常](つうじょう)' },
+                { id: 'HARD' as Difficulty, labelEn: 'HARD', labelJa: '[上級者](じょうきゅうしゃ)' }
               ].map(diff => (
                 <button 
                   key={diff.id}
                   className={`sidebar-btn diff-btn ${selectedModeId === 'normal' && difficulty === diff.id ? 'active' : ''}`}
                   onClick={() => handleSelectNormal(diff.id)}
                 >
-                  {uiLang === 'EN' ? diff.labelEn : renderJa(diff.labelJa, diff.rubyJa)}
+                  {uiLang === 'EN' ? diff.labelEn : parseRubyText(diff.labelJa, furiganaEnabled)}
                 </button>
               ))}
             </div>
@@ -85,7 +83,7 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
           <div className="sidebar-section">
             <h3 className="sidebar-title">
               <FileText size={20} />
-              {uiLang === 'EN' ? 'PRACTICAL EXAMS' : renderJa('実技問題', 'じつぎもんだい')}
+              {uiLang === 'EN' ? 'PRACTICAL EXAMS' : parseRubyText('[実技問題](じつぎもんだい)', furiganaEnabled)}
             </h3>
             <div className="practical-list">
               {practicalModes.map((mode, index) => (
@@ -133,12 +131,12 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
 
               <button className="primary-btn start-btn" onClick={handleStart}>
                 <Play size={24} /> 
-                <span>{uiLang === 'EN' ? 'START' : renderJa('スタート', 'すたーと')}</span>
+                <span>{uiLang === 'EN' ? 'START' : parseRubyText('[スタート](すたーと)', furiganaEnabled)}</span>
               </button>
             </div>
           ) : (
             <div className="detail-empty">
-              <p>{uiLang === 'EN' ? 'Please select a mode from the left.' : renderJa('左のメニューからプレイするモードを選択してください。', 'ひだりのめにゅーからぷれいするもーどをせんたくしてください。')}</p>
+              <p>{uiLang === 'EN' ? 'Please select a mode from the left.' : parseRubyText('[左](ひだり)のメニューからプレイするモードを[選択](せんたく)してください。', furiganaEnabled)}</p>
             </div>
           )}
         </div>
