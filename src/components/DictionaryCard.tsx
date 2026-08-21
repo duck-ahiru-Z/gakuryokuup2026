@@ -16,10 +16,22 @@ export const DictionaryCard: React.FC<DictionaryCardProps> = ({ sc, os, uiLang, 
   if (!isUnlocked) {
     return (
       <div className="dict-card locked">
-        <Lock size={48} className="lock-icon" />
-        <span className="locked-text">
-          {uiLang === 'EN' ? 'RESTRICTED' : parseRubyText('[未解放](みかいほう)', furiganaEnabled)}
-        </span>
+        <div className="card-top">
+          <div className="keys-massive">
+            <span className="dict-key-massive secret-key">?</span>
+            <span className="plus-massive">+</span>
+            <span className="dict-key-massive secret-key">?</span>
+          </div>
+        </div>
+        <div className="card-body secret-body">
+          <Lock size={48} className="lock-icon" />
+          <span className="locked-text">
+            {uiLang === 'EN' ? 'RESTRICTED' : parseRubyText('[未解放](みかいほう)', furiganaEnabled)}
+          </span>
+          <p className="secret-hint">
+            {uiLang === 'EN' ? 'Unlock by using this in missions!' : parseRubyText('ミッションで[成功](せいこう)すると[解放](かいほう)されます', furiganaEnabled)}
+          </p>
+        </div>
       </div>
     );
   }

@@ -67,6 +67,9 @@ export const storageUtils = {
     stats.totalAttempts++;
     if (isCorrect) {
       stats.correctAttempts++;
+      if (shortcutId && !stats.unlockedShortcuts.includes(shortcutId)) {
+        stats.unlockedShortcuts.push(shortcutId);
+      }
     } else if (shortcutId) {
       stats.shortcutMistakes[shortcutId] = (stats.shortcutMistakes[shortcutId] || 0) + 1;
     }

@@ -1,14 +1,5 @@
 [
   {
-    "id": "new_1787198268822",
-    "difficulty": "NORMAL",
-    "keys": [],
-    "commandName": "",
-    "description": "",
-    "wordMeaning": "",
-    "etymology": ""
-  },
-  {
     "id": "copy",
     "difficulty": "EASY",
     "keys": [
@@ -70,7 +61,7 @@
   },
   {
     "id": "select_all",
-    "difficulty": "NORMAL",
+    "difficulty": "EASY",
     "keys": [
       "Ctrl",
       "A"
@@ -151,18 +142,6 @@
     "description": "[新](あたら)しいファイルやウィンドウを開く",
     "wordMeaning": "[新規作成](しんきさくせい)",
     "etymology": "New ([新](あたら)しい) の[頭文字](かしらもじ)"
-  },
-  {
-    "id": "new_tab",
-    "difficulty": "NORMAL",
-    "keys": [
-      "Ctrl",
-      "T"
-    ],
-    "commandName": "New Tab",
-    "description": "ブラウザなどで[新](あたら)しいタブを開く",
-    "wordMeaning": "[新](あたら)しいタブ",
-    "etymology": "Tab (タブ) の[頭文字](かしらもじ)"
   },
   {
     "id": "close",

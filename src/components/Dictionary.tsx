@@ -26,8 +26,8 @@ const Dictionary: React.FC<DictionaryProps> = ({ onNavigate, uiLang, furiganaEna
   if (!stats) return null;
 
   const renderCard = (sc: typeof SHORTCUTS[0]) => {
-    // DEBUG: Temporarily unlocking all shortcuts so the user can see the cards
-    const isUnlocked = true; // stats.unlockedShortcuts.includes(sc.id);
+    // Check if the shortcut is unlocked by the user
+    const isUnlocked = stats.unlockedShortcuts.includes(sc.id);
     
     return (
       <DictionaryCard 
@@ -51,7 +51,7 @@ const Dictionary: React.FC<DictionaryProps> = ({ onNavigate, uiLang, furiganaEna
         <h2 className="title">
           {uiLang === 'EN' ? 'WORD ARCHIVES' : parseRubyText('[単語図鑑](たんごずかん)', furiganaEnabled)}
         </h2>
-        <button className="secondary-btn" onClick={() => onNavigate('home')}>
+        <button className="dict-back-btn" onClick={() => onNavigate('home')}>
           <ArrowLeft size={20} /> 
           <span>{uiLang === 'EN' ? 'RETURN' : parseRubyText('[戻](もど)る', furiganaEnabled)}</span>
         </button>
