@@ -49,7 +49,7 @@ const Dictionary: React.FC<DictionaryProps> = ({ onNavigate, uiLang, furiganaEna
     <div className="dictionary-container">
       <div className="dict-header">
         <h2 className="title">
-          {uiLang === 'EN' ? 'WORD ARCHIVES' : parseRubyText('[単語図鑑](たんごずかん)', furiganaEnabled)}
+          {uiLang === 'EN' ? 'COLLECTED SHORTCUTS' : parseRubyText('[集](あつ)めたショートカットキー', furiganaEnabled)}
         </h2>
         <button className="dict-back-btn" onClick={() => onNavigate('home')}>
           <ArrowLeft size={20} /> 
