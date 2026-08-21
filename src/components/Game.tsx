@@ -138,7 +138,7 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
       </div>
 
       <div className="keyboard-area">
-        <Keyboard pressedKeys={pressedKeys} />
+        <Keyboard />
       </div>
     </div>
   );
