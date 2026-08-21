@@ -11,9 +11,10 @@ interface GameProps {
   onNavigate: (view: ViewState) => void;
   difficulty: Difficulty;
   furiganaEnabled: boolean;
+  uiLang: 'EN' | 'JA';
 }
 
-const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled }) => {
+const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, uiLang }) => {
   const [finalScore, setFinalScore] = useState<number | null>(null);
 
   const handleGameEnd = (score: number) => {
@@ -44,14 +45,16 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled }) 
   if (finalScore !== null) {
     return (
       <div className="game-over-container">
-        <h2 className="title">TIME <span className="highlight">UP</span></h2>
+        <h2 className="title">{uiLang === 'EN' ? 'TIME ' : 'タイム'}<span className="highlight">{uiLang === 'EN' ? 'UP' : 'アップ'}</span></h2>
         <div className="final-stats">
           <div className="stat-row">
-            <span>FINAL SCORE:</span>
+            <span>{uiLang === 'EN' ? 'FINAL SCORE:' : '最終スコア:'}</span>
             <span className="highlight">{finalScore}</span>
           </div>
         </div>
-        <button className="primary-btn mt-2" onClick={() => onNavigate('result')}>VIEW STATUS</button>
+        <button className="primary-btn mt-2" onClick={() => onNavigate('result')}>
+          {uiLang === 'EN' ? 'VIEW STATUS' : 'ステータスを確認'}
+        </button>
       </div>
     );
   }
@@ -60,7 +63,7 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled }) 
     <div className="game-container">
       <div className="status-bar">
         <div className="score-box">
-          <span className="label">SCORE</span>
+          <span className="label">{uiLang === 'EN' ? 'SCORE' : 'スコア'}</span>
           <span className="value" style={{ color: 'var(--accent-color)' }}>{playerScore}</span>
         </div>
         <div className="timer">
@@ -77,14 +80,18 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled }) 
       <div className="mission-area">
         {showExplanation && currentMission ? (
           <div className="explanation-card">
-            <h3 className="success-text">SYSTEM OVERRIDE SUCCESS</h3>
+            <h3 className="success-text">{uiLang === 'EN' ? 'SUCCESS' : '正解！'}</h3>
             <div className="word-header">
               <span className="command">{currentMission.commandName}</span>
-              <span className="meaning">{currentMission.wordMeaning}</span>
+              <span className="meaning">{parseRubyText(currentMission.wordMeaning, furiganaEnabled)}</span>
             </div>
             <div className="info-box">
-              <p className="etymology"><strong>ORIGIN:</strong> {currentMission.etymology}</p>
-              <p className="example"><strong>EXAMPLE:</strong> {currentMission.exampleSentence}</p>
+              <p className="etymology">
+                <strong>{uiLang === 'EN' ? 'ORIGIN:' : '語源:'}</strong> {parseRubyText(currentMission.etymology, furiganaEnabled)}
+              </p>
+              <p className="example">
+                <strong>{uiLang === 'EN' ? 'EXAMPLE:' : '例文:'}</strong> {parseRubyText(currentMission.exampleSentence, furiganaEnabled)}
+              </p>
             </div>
           </div>
         ) : (
