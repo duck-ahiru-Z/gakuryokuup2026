@@ -99,21 +99,29 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
             <h3 className="success-text">{uiLang === 'EN' ? 'SUCCESS' : '正解！'}</h3>
             <div className="word-header">
               <span className="command">{currentMission.commandName}</span>
-              <span className="meaning">{parseRubyText(currentMission.wordMeaning, furiganaEnabled)}</span>
+              <span className="meaning">
+                {uiLang === 'EN' && currentMission.wordMeaningEn ? currentMission.wordMeaningEn : parseRubyText(currentMission.wordMeaning, furiganaEnabled)}
+              </span>
             </div>
             <div className="info-box">
               <p className="etymology">
-                <strong>{uiLang === 'EN' ? 'ORIGIN:' : '語源:'}</strong> {parseRubyText(currentMission.etymology, furiganaEnabled)}
+                <strong>{uiLang === 'EN' ? 'ORIGIN:' : '語源:'}</strong>{' '}
+                {uiLang === 'EN' && currentMission.etymologyEn ? currentMission.etymologyEn : parseRubyText(currentMission.etymology, furiganaEnabled)}
               </p>
               <p className="example">
-                <strong>{uiLang === 'EN' ? 'EXAMPLE:' : '例文:'}</strong> {parseRubyText(currentMission.exampleSentence, furiganaEnabled)}
+                <strong>{uiLang === 'EN' ? 'EXAMPLE:' : '例文:'}</strong>{' '}
+                {uiLang === 'EN' && currentMission.exampleSentenceEn ? currentMission.exampleSentenceEn : parseRubyText(currentMission.exampleSentence, furiganaEnabled)}
               </p>
             </div>
           </div>
         ) : (
           <div className="mission-card">
             <p className="mission-desc">
-              {currentMission ? parseRubyText(currentMission.description, furiganaEnabled) : ''}
+              {currentMission 
+                ? (uiLang === 'EN' && currentMission.descriptionEn 
+                    ? currentMission.descriptionEn 
+                    : parseRubyText(currentMission.description, furiganaEnabled)) 
+                : ''}
             </p>
             <div className="target-keys">
               {difficulty === 'HARD' ? (

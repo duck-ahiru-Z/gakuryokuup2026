@@ -19,9 +19,13 @@ export interface ShortcutData {
   chromeKeys?: string[];
   commandName: string; // e.g., 'Copy'
   description: string; // "文章を複製する"
+  descriptionEn?: string;
   wordMeaning: string; // "複製する"
+  wordMeaningEn?: string;
   etymology: string; // "ラテン語の 'copia' (豊富) に由来"
+  etymologyEn?: string;
   exampleSentence?: string;
+  exampleSentenceEn?: string;
 }
 
 export interface UserStats {

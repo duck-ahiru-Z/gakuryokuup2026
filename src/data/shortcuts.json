@@ -9,7 +9,11 @@
     "commandName": "Copy (test)",
     "description": "[選択](せんたく)したものをコピーする",
     "wordMeaning": "コピー（[選択](せんたく)したものを[写](うつ)し[取](と)る）",
-    "etymology": "Copy ([写](うつ)し[取](と)る) に由来"
+    "etymology": "Copy ([写](うつ)し[取](と)る) に由来",
+    "descriptionEn": "Copy the selected item",
+    "wordMeaningEn": "To make a copy",
+    "etymologyEn": "From Latin 'copia' (abundance)",
+    "exampleSentenceEn": "I copied the text."
   },
   {
     "id": "paste",
@@ -21,7 +25,11 @@
     "commandName": "Paste",
     "description": "コピーしたものを[配置](はいち)する",
     "wordMeaning": "[貼](は)り[付](つ)け / ペースト",
-    "etymology": "VはCの[隣](となり)で[押](お)しやすい[為](ため)"
+    "etymology": "VはCの[隣](となり)で[押](お)しやすい[為](ため)",
+    "descriptionEn": "Paste the copied item",
+    "wordMeaningEn": "To paste",
+    "etymologyEn": "V is next to C (Copy) on the keyboard",
+    "exampleSentenceEn": "I pasted the image."
   },
   {
     "id": "cut",
@@ -33,7 +41,11 @@
     "commandName": "Cut",
     "description": "[選択](せんたく)したものを[切](き)り[取](と)って[移動](いどう)させる",
     "wordMeaning": "[切](き)り[取](と)り / カット",
-    "etymology": "Xがハサミの[形](かたち)に似ている[為](ため)"
+    "etymology": "Xがハサミの[形](かたち)に似ている[為](ため)",
+    "descriptionEn": "Cut the selected item",
+    "wordMeaningEn": "To cut and remove",
+    "etymologyEn": "X looks like a pair of scissors",
+    "exampleSentenceEn": "I cut the text to move it."
   },
   {
     "id": "undo",
@@ -45,7 +57,11 @@
     "commandName": "Undo",
     "description": "1つ[前](まえ)の[状態](じょうたい)・[操作](そうさ)を[取](と)り[消](け)す",
     "wordMeaning": "[元](もと)に[戻](もど)す",
-    "etymology": "Zがキーボードの[端](はし)にあり[押](お)しやすい[為](ため)"
+    "etymology": "Zがキーボードの[端](はし)にあり[押](お)しやすい[為](ため)",
+    "descriptionEn": "Undo the last action",
+    "wordMeaningEn": "To undo a mistake",
+    "etymologyEn": "Z is easily accessible with the left hand",
+    "exampleSentenceEn": "I made a mistake, so I undid it."
   },
   {
     "id": "save",
@@ -57,7 +73,11 @@
     "commandName": "Save",
     "description": "データを[保存](ほぞん)する",
     "wordMeaning": "[上書](うわが)き[保存](ほぞん)",
-    "etymology": "Save ([保存](ほぞん)する) の[頭文字](かしらもじ)"
+    "etymology": "Save ([保存](ほぞん)する) の[頭文字](かしらもじ)",
+    "descriptionEn": "Save the current file",
+    "wordMeaningEn": "To save",
+    "etymologyEn": "S for Save",
+    "exampleSentenceEn": "I saved my document."
   },
   {
     "id": "select_all",
@@ -69,7 +89,11 @@
     "commandName": "Select All",
     "description": "[画面内](がめんない)の[文字](もじ)やファイルを[全部](ぜんぶ)[選択](せんたく)する",
     "wordMeaning": "すべて[選択](せんたく)",
-    "etymology": "All (すべて) の[頭文字](かしらもじ)"
+    "etymology": "All (すべて) の[頭文字](かしらもじ)",
+    "descriptionEn": "Select all items",
+    "wordMeaningEn": "To select everything",
+    "etymologyEn": "A for All",
+    "exampleSentenceEn": "I selected all files."
   },
   {
     "id": "find",
@@ -81,7 +105,11 @@
     "commandName": "Find",
     "description": "[画面](がめん)の[中](なか)から[特定](とくてい)の[文字](もじ)を[探](さが)し[出](だ)す",
     "wordMeaning": "[検索](けんさく)",
-    "etymology": "Find ([探](さが)す) の[頭文字](かしらもじ)"
+    "etymology": "Find ([探](さが)す) の[頭文字](かしらもじ)",
+    "descriptionEn": "Find text in the document",
+    "wordMeaningEn": "To search",
+    "etymologyEn": "F for Find",
+    "exampleSentenceEn": "I found the keyword."
   },
   {
     "id": "bold",
@@ -93,7 +121,11 @@
     "commandName": "Bold",
     "description": "[文字](もじ)を[強調](きょうちょう)して[太](ふと)くする",
     "wordMeaning": "[太字](ふとじ)にする",
-    "etymology": "Bold ([太](ふと)い) の[頭文字](かしらもじ)"
+    "etymology": "Bold ([太](ふと)い) の[頭文字](かしらもじ)",
+    "descriptionEn": "Make text bold",
+    "wordMeaningEn": "To embolden",
+    "etymologyEn": "B for Bold",
+    "exampleSentenceEn": "The title is bold."
   },
   {
     "id": "italic",
@@ -105,7 +137,11 @@
     "commandName": "Italic",
     "description": "[文字](もじ)を[斜](なな)めにする",
     "wordMeaning": "[斜体](しゃたい)にする",
-    "etymology": "Italic ([斜体](しゃたい)) の[頭文字](かしらもじ)"
+    "etymology": "Italic ([斜体](しゃたい)) の[頭文字](かしらもじ)",
+    "descriptionEn": "Make text italic",
+    "wordMeaningEn": "To italicize",
+    "etymologyEn": "I for Italic",
+    "exampleSentenceEn": "The quote is in italics."
   },
   {
     "id": "underline",
@@ -117,7 +153,11 @@
     "commandName": "Underline",
     "description": "[文字](もじ)の[下](した)にアンダーラインを[引](ひ)く",
     "wordMeaning": "[下線](かせん)を[引](ひ)く",
-    "etymology": "Underline ([下線](かせん)) の[頭文字](かしらもじ)"
+    "etymology": "Underline ([下線](かせん)) の[頭文字](かしらもじ)",
+    "descriptionEn": "Underline text",
+    "wordMeaningEn": "To draw a line under",
+    "etymologyEn": "U for Underline",
+    "exampleSentenceEn": "I underlined the important part."
   },
   {
     "id": "print",
@@ -129,7 +169,11 @@
     "commandName": "Print",
     "description": "[印刷](いんさつ)[画面](がめん)を[呼](よ)び[出](だ)す",
     "wordMeaning": "[印刷](いんさつ)する",
-    "etymology": "Print ([印刷](いんさつ)) の[頭文字](かしらもじ)"
+    "etymology": "Print ([印刷](いんさつ)) の[頭文字](かしらもじ)",
+    "descriptionEn": "Print the document",
+    "wordMeaningEn": "To print",
+    "etymologyEn": "P for Print",
+    "exampleSentenceEn": "I printed the report."
   },
   {
     "id": "new",
@@ -141,7 +185,11 @@
     "commandName": "New",
     "description": "[新](あたら)しいファイルやウィンドウを開く",
     "wordMeaning": "[新規作成](しんきさくせい)",
-    "etymology": "New ([新](あたら)しい) の[頭文字](かしらもじ)"
+    "etymology": "New ([新](あたら)しい) の[頭文字](かしらもじ)",
+    "descriptionEn": "Create a new file",
+    "wordMeaningEn": "To create new",
+    "etymologyEn": "N for New",
+    "exampleSentenceEn": "I created a new document."
   },
   {
     "id": "close",
@@ -153,7 +201,11 @@
     "commandName": "Close",
     "description": "[現在](げんざい)のウィンドウやタブを[閉](と)じる",
     "wordMeaning": "[閉](と)じる",
-    "etymology": "Window (ウィンドウ) を[閉](と)じることから"
+    "etymology": "Window (ウィンドウ) を[閉](と)じることから",
+    "descriptionEn": "Close the current window or tab",
+    "wordMeaningEn": "To close",
+    "etymologyEn": "W for Window",
+    "exampleSentenceEn": "I closed the window."
   },
   {
     "id": "redo",
@@ -170,7 +222,11 @@
     "commandName": "Redo",
     "description": "Ctrl+Zで[戻](もど)しすぎた[操作](そうさ)をもう[一度](いちど)やり[直](なお)す",
     "wordMeaning": "やり[直](なお)し / リドゥ",
-    "etymology": "Zの[隣](となり)のキーである[為](ため)"
+    "etymology": "Zの[隣](となり)のキーである[為](ため)",
+    "descriptionEn": "Redo the last undone action",
+    "wordMeaningEn": "To redo",
+    "etymologyEn": "Y is next to Z on standard layouts",
+    "exampleSentenceEn": "I redid my action."
   },
   {
     "id": "paste_plain",
@@ -183,7 +239,11 @@
     "commandName": "Paste Plain Text",
     "description": "[文字](もじ)の[大](おお)きさや[色](いろ)を[消](け)して、[純粋](じゅんすい)な[文字](もじ)データだけを[貼](は)り[付](つ)ける",
     "wordMeaning": "[書式](しょしき)なしペースト",
-    "etymology": "通常のペースト(Ctrl+V)にShiftを[加](くわ)えて[機能](きのう)を[変化](へんか)"
+    "etymology": "通常のペースト(Ctrl+V)にShiftを[加](くわ)えて[機能](きのう)を[変化](へんか)",
+    "descriptionEn": "Paste without formatting",
+    "wordMeaningEn": "To paste plain text",
+    "etymologyEn": "Shift modifies the standard paste behavior",
+    "exampleSentenceEn": "I pasted the text without styles."
   },
   {
     "id": "save_as",
@@ -196,7 +256,11 @@
     "commandName": "Save As",
     "description": "[現在](げんざい)のファイルとは[別](べつ)に、[新](あたら)しい[名前](なまえ)で[保存](ほぞん)する",
     "wordMeaning": "[名前](なまえ)を[付](つ)けて[保存](ほぞん)",
-    "etymology": "Save ([保存](ほぞん)) のSにShiftを[加](くわ)えて[別名](べつめい)[保存](ほぞん)"
+    "etymology": "Save ([保存](ほぞん)) のSにShiftを[加](くわ)えて[別名](べつめい)[保存](ほぞん)",
+    "descriptionEn": "Save as a new file",
+    "wordMeaningEn": "To save as",
+    "etymologyEn": "Shift modifies the standard save behavior",
+    "exampleSentenceEn": "I saved it as a PDF."
   },
   {
     "id": "center_align",
@@ -208,7 +272,11 @@
     "commandName": "Center Align",
     "description": "タイトルなどを[真ん中](まんなか)に[寄](よ)せる",
     "wordMeaning": "[中央](ちゅうおう)[揃](ぞろ)え",
-    "etymology": "cEnter の E に由来 (CはCopyで[使](つか)われているため)"
+    "etymology": "cEnter の E に由来 (CはCopyで[使](つか)われているため)",
+    "descriptionEn": "Center align text",
+    "wordMeaningEn": "To align to center",
+    "etymologyEn": "E for cEnter (C is for copy)",
+    "exampleSentenceEn": "The title is centered."
   },
   {
     "id": "left_align",
@@ -220,7 +288,11 @@
     "commandName": "Left Align",
     "description": "[文字](もじ)を[左](ひだり)に[寄](よ)せる",
     "wordMeaning": "[左揃](ひだりぞろ)え",
-    "etymology": "Left ([左](ひだり)) の[頭文字](かしらもじ)"
+    "etymology": "Left ([左](ひだり)) の[頭文字](かしらもじ)",
+    "descriptionEn": "Left align text",
+    "wordMeaningEn": "To align to left",
+    "etymologyEn": "L for Left",
+    "exampleSentenceEn": "The paragraph is left-aligned."
   },
   {
     "id": "zoom_in",
@@ -232,7 +304,11 @@
     "commandName": "Zoom In",
     "description": "[画面](がめん)を[拡大](かくだい)する",
     "wordMeaning": "ズームイン",
-    "etymology": "+(プラス) 記号で[大](おお)きくなるイメージ"
+    "etymology": "+(プラス) 記号で[大](おお)きくなるイメージ",
+    "descriptionEn": "Zoom in",
+    "wordMeaningEn": "To enlarge",
+    "etymologyEn": "+ symbol for increasing size",
+    "exampleSentenceEn": "I zoomed in to read it."
   },
   {
     "id": "zoom_out",
@@ -244,7 +320,11 @@
     "commandName": "Zoom Out",
     "description": "[画面](がめん)を[縮小](しゅくしょう)する",
     "wordMeaning": "ズームアウト",
-    "etymology": "-(マイナス) 記号で[小](ちい)さくなるイメージ"
+    "etymology": "-(マイナス) 記号で[小](ちい)さくなるイメージ",
+    "descriptionEn": "Zoom out",
+    "wordMeaningEn": "To shrink",
+    "etymologyEn": "- symbol for decreasing size",
+    "exampleSentenceEn": "I zoomed out to see the whole page."
   },
   {
     "id": "zoom_reset",
@@ -256,7 +336,11 @@
     "commandName": "Zoom Reset",
     "description": "[拡大](かくだい)・[縮小](しゅくしょう)した[画面](がめん)を[一瞬](いっしゅん)で100%に[戻](もど)す",
     "wordMeaning": "ズームリセット",
-    "etymology": "0 (ゼロ) でデフォルト[状態](じょうたい)に[戻](もど)す"
+    "etymology": "0 (ゼロ) でデフォルト[状態](じょうたい)に[戻](もど)す",
+    "descriptionEn": "Reset zoom level to default",
+    "wordMeaningEn": "To reset zoom",
+    "etymologyEn": "0 for default (zero modification)",
+    "exampleSentenceEn": "I reset the zoom to 100%."
   },
   {
     "id": "insert_link",
@@ -272,7 +356,11 @@
     "commandName": "Insert Link",
     "description": "[選択](せんたく)した[文字](もじ)にURL（リンク）を[埋](う)め[込](こ)む",
     "wordMeaning": "リンクの[挿入](そうにゅう)",
-    "etymology": "Lin[K] の K に由来 (Lは既に使われているため)"
+    "etymology": "Lin[K] の K に由来 (Lは既に使われているため)",
+    "descriptionEn": "Insert a hyperlink",
+    "wordMeaningEn": "To link",
+    "etymologyEn": "K for linK (L is for Left align)",
+    "exampleSentenceEn": "I inserted a link to the website."
   },
   {
     "id": "reload",
@@ -288,7 +376,11 @@
     "commandName": "Reload",
     "description": "Webページなどを[最新](さいしん)の[状態](じょうたい)に[再読](さいよ)み[込](こ)みする",
     "wordMeaning": "[更新](こうしん) / リロード",
-    "etymology": "Reload ([再読](さいよ)み[込](こ)み) の[頭文字](かしらもじ)"
+    "etymology": "Reload ([再読](さいよ)み[込](こ)み) の[頭文字](かしらもじ)",
+    "descriptionEn": "Reload the current page",
+    "wordMeaningEn": "To refresh",
+    "etymologyEn": "R for Reload / Refresh",
+    "exampleSentenceEn": "I reloaded the webpage."
   },
   {
     "id": "replace",
@@ -305,7 +397,11 @@
     "commandName": "Replace",
     "description": "[文章中](ぶんしょうちゅう)の[文字](もじ)を、[別](べつ)の[文字](もじ)に[一括](いっかつ)で[書](か)き[換](か)える",
     "wordMeaning": "[置換](ちかん)",
-    "etymology": "[検索](けんさく)(F)の[隣](となり)にある[機能](きのう)だからなど諸説あり"
+    "etymology": "[検索](けんさく)(F)の[隣](となり)にある[機能](きのう)だからなど諸説あり",
+    "descriptionEn": "Find and replace text",
+    "wordMeaningEn": "To replace",
+    "etymologyEn": "H stands for... well, it was available!",
+    "exampleSentenceEn": "I replaced the old word with a new one."
   },
   {
     "id": "reopen_tab",
@@ -323,7 +419,11 @@
     "commandName": "Reopen Tab",
     "description": "[直前](ちょくぜん)に[閉](と)じたタブを[一瞬](いっしゅん)で[復活](ふっかつ)させる",
     "wordMeaning": "[閉](と)じたタブを[開](ひら)く",
-    "etymology": "Tab (タブ) に Shift ([追加](ついか)/[逆](ぎゃく)) を[組](く)み[合](あ)わせたもの"
+    "etymology": "Tab (タブ) に Shift ([追加](ついか)/[逆](ぎゃく)) を[組](く)み[合](あ)わせたもの",
+    "descriptionEn": "Reopen the last closed tab",
+    "wordMeaningEn": "To reopen tab",
+    "etymologyEn": "Shift modifies the standard tab opening",
+    "exampleSentenceEn": "I accidentally closed a tab, so I reopened it."
   },
   {
     "id": "screenshot",
@@ -346,7 +446,11 @@
     "commandName": "Screenshot",
     "description": "[画面](がめん)の[一部](いちぶ)を[四角](しかく)く[切](き)り[取](と)って[画像](がぞう)としてコピーする",
     "wordMeaning": "スクリーンショット",
-    "etymology": "Screen または Snipping の S に由来"
+    "etymology": "Screen または Snipping の S に由来",
+    "descriptionEn": "Take a partial screenshot",
+    "wordMeaningEn": "To capture screen",
+    "etymologyEn": "S for Screen (Shift+Windows modifies behavior)",
+    "exampleSentenceEn": "I took a screenshot of the error."
   },
   {
     "id": "clipboard_history",
@@ -367,6 +471,10 @@
     "commandName": "Clipboard History",
     "description": "[過去](かこ)にコピーした[文字](もじ)や[画像](がぞう)を[一覧](いちらん)から[選](えら)んで[貼](は)り[付](つ)ける",
     "wordMeaning": "クリップボード[履歴](りれき)",
-    "etymology": "Paste (V) のWindows[拡張版](かくちょうばん)として"
+    "etymology": "Paste (V) のWindows[拡張版](かくちょうばん)として",
+    "descriptionEn": "Open clipboard history",
+    "wordMeaningEn": "To view clipboard",
+    "etymologyEn": "V for paste (Windows key makes it history)",
+    "exampleSentenceEn": "I chose an older copied item from the history."
   }
 ]

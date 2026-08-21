@@ -53,14 +53,18 @@ export const DictionaryCard: React.FC<DictionaryCardProps> = ({ sc, os, uiLang, 
       <div className="card-body">
         <div className="word-section">
           <h3 className="english-word">{sc.commandName.toUpperCase()}</h3>
-          <p className="word-meaning">{parseRubyText(sc.wordMeaning, furiganaEnabled)}</p>
+          <p className="word-meaning">
+            {uiLang === 'EN' && sc.wordMeaningEn ? sc.wordMeaningEn : parseRubyText(sc.wordMeaning, furiganaEnabled)}
+          </p>
         </div>
 
         <div className="usage-box">
           <span className="label">
             {uiLang === 'EN' ? 'USAGE' : parseRubyText('[用途](ようと)', furiganaEnabled)}
           </span>
-          <p className="description-text">{parseRubyText(sc.description, furiganaEnabled)}</p>
+          <p className="description-text">
+            {uiLang === 'EN' && sc.descriptionEn ? sc.descriptionEn : parseRubyText(sc.description, furiganaEnabled)}
+          </p>
         </div>
 
         <div className="etymology-box">
@@ -68,7 +72,9 @@ export const DictionaryCard: React.FC<DictionaryCardProps> = ({ sc, os, uiLang, 
             <BookOpen size={14} />
             {uiLang === 'EN' ? 'ORIGIN' : parseRubyText('[語源](ごげん)', furiganaEnabled)}
           </span>
-          <p>{parseRubyText(sc.etymology, furiganaEnabled)}</p>
+          <p>
+            {uiLang === 'EN' && sc.etymologyEn ? sc.etymologyEn : parseRubyText(sc.etymology, furiganaEnabled)}
+          </p>
         </div>
       </div>
     </div>
