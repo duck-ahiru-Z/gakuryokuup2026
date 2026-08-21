@@ -64,7 +64,7 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
-        <h2 className="title">{uiLang === 'EN' ? 'AGENT ' : renderJa('エージェント', 'えーじぇんと')}<span className="highlight">{uiLang === 'EN' ? 'STATUS' : renderJa('情報', 'じょうほう')}</span></h2>
+        <h2 className="title">{uiLang === 'EN' ? 'PLAYER ' : renderJa('プレイヤー', 'ぷれいやー')}<span className="highlight">{uiLang === 'EN' ? 'STATUS' : renderJa('ステータス', 'すてーたす')}</span></h2>
       </div>
 
       <div className="dashboard-grid">
@@ -176,13 +176,9 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
       </div>
 
       <div className="action-buttons">
-        <button className="primary-btn" onClick={() => onNavigate('dictionary')}>
-          <Book size={20} /> 
-          <span>{uiLang === 'EN' ? 'VIEW ARCHIVES' : renderJa('図鑑を見る', 'ずかんをみる')}</span>
-        </button>
-        <button className="secondary-btn" onClick={() => onNavigate('home')}>
+        <button className="primary-btn" onClick={() => onNavigate('home')}>
           <ArrowLeft size={20} /> 
-          <span>{uiLang === 'EN' ? 'RETURN TO BASE' : renderJa('ベースへ戻る', 'べーすへもどる')}</span>
+          <span>{uiLang === 'EN' ? 'RETURN TO HOME' : renderJa('ホームへ戻る', 'ほーむへもどる')}</span>
         </button>
       </div>
     </div>
