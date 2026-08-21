@@ -44,6 +44,13 @@ const Admin: React.FC<AdminProps> = ({ onNavigate }) => {
   }, []);
 
   const handleSave = async () => {
+    const invalidItem = shortcuts.find(sc => !sc.id.trim() || !sc.commandName.trim() || !sc.keys || sc.keys.length === 0);
+    if (invalidItem) {
+      setMessage('エラー：ID、Command Name、Keysが空の項目があります。入力するか削除してください。');
+      setTimeout(() => setMessage(''), 5000);
+      return;
+    }
+
     setSaving(true);
     setMessage('保存中...');
     try {

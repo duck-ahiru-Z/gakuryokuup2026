@@ -18,7 +18,7 @@ export const DictionaryCard: React.FC<DictionaryCardProps> = ({ sc, os, uiLang, 
       <div className="dict-card locked">
         <Lock size={48} className="lock-icon" />
         <span className="locked-text">
-          {uiLang === 'EN' ? 'RESTRICTED' : <ruby>未解放<rt>{furiganaEnabled && 'みかいほう'}</rt></ruby>}
+          {uiLang === 'EN' ? 'RESTRICTED' : parseRubyText('[未解放](みかいほう)', furiganaEnabled)}
         </span>
       </div>
     );
@@ -46,7 +46,7 @@ export const DictionaryCard: React.FC<DictionaryCardProps> = ({ sc, os, uiLang, 
 
         <div className="usage-box">
           <span className="label">
-            {uiLang === 'EN' ? 'USAGE' : <ruby>用途<rt>{furiganaEnabled && 'ようと'}</rt></ruby>}
+            {uiLang === 'EN' ? 'USAGE' : parseRubyText('[用途](ようと)', furiganaEnabled)}
           </span>
           <p className="description-text">{parseRubyText(sc.description, furiganaEnabled)}</p>
         </div>
@@ -54,7 +54,7 @@ export const DictionaryCard: React.FC<DictionaryCardProps> = ({ sc, os, uiLang, 
         <div className="etymology-box">
           <span className="label">
             <BookOpen size={14} />
-            {uiLang === 'EN' ? 'ORIGIN' : <ruby>語源<rt>{furiganaEnabled && 'ごげん'}</rt></ruby>}
+            {uiLang === 'EN' ? 'ORIGIN' : parseRubyText('[語源](ごげん)', furiganaEnabled)}
           </span>
           <p>{parseRubyText(sc.etymology, furiganaEnabled)}</p>
         </div>

@@ -9,11 +9,13 @@ import Game2 from '../components/Game2';//デバック用
 import Result from '../components/Result';
 import Dictionary from '../components/Dictionary';
 import Admin from '../components/Admin';
+import ModeSelect from '../components/ModeSelect';
 import { Terminal } from 'lucide-react';
 
 function Page() {
   const [currentView, setCurrentView] = useState<ViewState>('home');
   const [difficulty, setDifficulty] = useState<Difficulty>('NORMAL');
+  const [selectedModeId, setSelectedModeId] = useState<string>('normal');
 
   // Global Settings State
   const [uiLang, setUiLang] = useState<'EN' | 'JA'>('JA');
@@ -45,13 +47,23 @@ function Page() {
             setDarkMode={setDarkMode}
           />
         );
+      case 'modeSelect':
+        return (
+          <ModeSelect 
+            onNavigate={setCurrentView}
+            difficulty={difficulty}
+            setDifficulty={setDifficulty}
+            uiLang={uiLang}
+            furiganaEnabled={furiganaEnabled}
+          />
+        );
       case 'game':
-        return <Game onNavigate={setCurrentView} difficulty={difficulty} />;
+        return <Game onNavigate={setCurrentView} difficulty={difficulty} furiganaEnabled={furiganaEnabled} uiLang={uiLang} />;
       //game2はデバック用
       case 'game2' as any:
         return <Game2 onNavigate={setCurrentView} difficulty={difficulty} />;
       case 'result':
-        return <Result onNavigate={setCurrentView} />;
+        return <Result onNavigate={setCurrentView} uiLang={uiLang} furiganaEnabled={furiganaEnabled} />;
       case 'dictionary':
         return <Dictionary onNavigate={setCurrentView} uiLang={uiLang} furiganaEnabled={furiganaEnabled} />;
       case 'admin':

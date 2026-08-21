@@ -42,8 +42,8 @@ import { useOS } from '../hooks/useOS';
     return pressedKeys.has(logicalKey);
   };
 
-  const renderKey = (logicalKey: string, display: string = logicalKey, widthClass: string = 'key-normal') => (
-    <div key={logicalKey} className={`kb-key ${widthClass} ${isPressed(logicalKey) ? 'pressed' : ''}`}>
+  const renderKey = (logicalKey: string, display: string = logicalKey, widthClass: string = 'key-normal', uniqueKey: string = logicalKey) => (
+    <div key={uniqueKey} className={`kb-key ${widthClass} ${isPressed(logicalKey) ? 'pressed' : ''}`}>
       {display}
     </div>
   );
@@ -69,10 +69,10 @@ import { useOS } from '../hooks/useOS';
         {renderKey(';', ';')} {renderKey('\'', '\'')} {renderKey('Enter', 'ENTER', 'key-wider')}
       </div>
       <div className="kb-row">
-        {renderKey('Shift', 'SHIFT', 'key-widest')}
+        {renderKey('Shift', 'SHIFT', 'key-widest', 'ShiftLeft')}
         {renderKey('Z')} {renderKey('X')} {renderKey('C')} {renderKey('V')} {renderKey('B')}
         {renderKey('N')} {renderKey('M')} {renderKey(',', ',')} {renderKey('.', '.')} {renderKey('/', '/')}
-        {renderKey('Shift', 'SHIFT', 'key-widest')}
+        {renderKey('Shift', 'SHIFT', 'key-widest', 'ShiftRight')}
       </div>
       <div className="kb-row">
         {/* {renderKey('Ctrl', ctrlDisplay, 'key-wide')}
@@ -83,21 +83,21 @@ import { useOS } from '../hooks/useOS';
         {renderKey('Ctrl', ctrlDisplay, 'key-wide')} */}
       {isMac ? (
           <>
-            {renderKey('Control', 'Control', 'key-wide')}
-            {renderKey('Alt', '⌥ OPT', 'key-wide')}
-            {renderKey('Meta', '⌘ CMD', 'key-wider')}
+            {renderKey('Control', 'Control', 'key-wide', 'ControlLeft')}
+            {renderKey('Alt', '⌥ OPT', 'key-wide', 'AltLeft')}
+            {renderKey('Meta', '⌘ CMD', 'key-wider', 'MetaLeft')}
             {renderKey(' ', 'SPACE', 'key-space')}
-            {renderKey('Meta', '⌘ CMD', 'key-wider')}
-            {renderKey('Alt', '⌥ OPT', 'key-wide')}
+            {renderKey('Meta', '⌘ CMD', 'key-wider', 'MetaRight')}
+            {renderKey('Alt', '⌥ OPT', 'key-wide', 'AltRight')}
           </>
         ) : (
           <>
-            {renderKey('Control', 'CTRL', 'key-wide')}
-            {renderKey('Meta', 'WIN', 'key-wide')}
-            {renderKey('Alt', 'ALT', 'key-wide')}
+            {renderKey('Control', 'CTRL', 'key-wide', 'ControlLeft')}
+            {renderKey('Meta', 'WIN', 'key-wide', 'MetaLeft')}
+            {renderKey('Alt', 'ALT', 'key-wide', 'AltLeft')}
             {renderKey(' ', 'SPACE', 'key-space')}
-            {renderKey('Alt', 'ALT', 'key-wide')}
-            {renderKey('Control', 'CTRL', 'key-wide')}
+            {renderKey('Alt', 'ALT', 'key-wide', 'AltRight')}
+            {renderKey('Control', 'CTRL', 'key-wide', 'ControlRight')}
           </>
         )}
       </div>
@@ -106,4 +106,3 @@ import { useOS } from '../hooks/useOS';
 };
 
 export default Keyboard;
-
