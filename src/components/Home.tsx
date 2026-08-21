@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { ViewState, Difficulty } from '../types';
-import { Play, Book, Settings as SettingsIcon, Type, Shield, Globe, Trophy } from 'lucide-react';
+import { Play, Book, Settings as SettingsIcon, Type, Shield, Globe, Trophy, Moon, Sun } from 'lucide-react';
 import Settings from './Settings';
 import { parseRubyText } from '../utils/shortcutUtils';
 import './Home.css';
@@ -66,6 +66,14 @@ const Home: React.FC<HomeProps> = ({
       labelJa: parseRubyText('[設定](せってい)', furiganaEnabled),
       onClick: () => setIsSettingsOpen(true),
       isActive: false
+    },
+    {
+      id: 'theme',
+      icon: darkMode ? Sun : Moon,
+      labelEn: darkMode ? 'LIGHT MODE' : 'DARK MODE',
+      labelJa: darkMode ? parseRubyText('[明](あか)るく', furiganaEnabled) : parseRubyText('[暗](くら)く', furiganaEnabled),
+      onClick: () => setDarkMode(!darkMode),
+      isActive: false
     }
   ];
 
@@ -106,7 +114,6 @@ const Home: React.FC<HomeProps> = ({
             </button>
           );
         })}
-        <div className="empty-slot"></div>
       </div>
 
       {isSettingsOpen && (
