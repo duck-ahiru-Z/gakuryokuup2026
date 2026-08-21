@@ -21,6 +21,7 @@ export interface ShortcutData {
   description: string; // "文章を複製する"
   wordMeaning: string; // "複製する"
   etymology: string; // "ラテン語の 'copia' (豊富) に由来"
+  exampleSentence?: string;
 }
 
 export interface UserStats {
