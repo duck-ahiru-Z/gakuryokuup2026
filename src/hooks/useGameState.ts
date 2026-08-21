@@ -2,10 +2,14 @@ import { useState, useEffect, useCallback } from 'react';
 import { SHORTCUTS } from '../data/shortcutsData';
 import type { ShortcutData, Difficulty } from '../types';
 
+const GAME_DURATION_SECONDS = 30;
+const BASE_SCORE_PER_SUCCESS = 100;
+const EXPLANATION_DURATION_MS = 2000;
+
 export function useGameState(isActive: boolean, difficulty: Difficulty, onGameEnd: (score: number) => void) {
   const [currentMission, setCurrentMission] = useState<ShortcutData | null>(null);
   const [playerScore, setPlayerScore] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(30); 
+  const [timeLeft, setTimeLeft] = useState(GAME_DURATION_SECONDS); 
   const [showExplanation, setShowExplanation] = useState(false);
   
   const generateMission = useCallback(() => {
@@ -17,7 +21,7 @@ export function useGameState(isActive: boolean, difficulty: Difficulty, onGameEn
   useEffect(() => {
     if (isActive) {
       setPlayerScore(0);
-      setTimeLeft(30);
+      setTimeLeft(GAME_DURATION_SECONDS);
       generateMission();
     }
   }, [isActive, generateMission]);
@@ -38,14 +42,13 @@ export function useGameState(isActive: boolean, difficulty: Difficulty, onGameEn
   }, [isActive, timeLeft, onGameEnd, playerScore]);
 
   const handleSuccess = useCallback(() => {
-    // Add bonus multiplier for HARD mode
     const multiplier = difficulty === 'HARD' ? 1.5 : (difficulty === 'EASY' ? 0.8 : 1.0);
-    setPlayerScore(prev => prev + Math.floor(100 * multiplier));
+    setPlayerScore(prev => prev + Math.floor(BASE_SCORE_PER_SUCCESS * multiplier));
     setShowExplanation(true);
     
     setTimeout(() => {
       generateMission();
-    }, 2000);
+    }, EXPLANATION_DURATION_MS);
   }, [generateMission, difficulty]);
 
   return {
