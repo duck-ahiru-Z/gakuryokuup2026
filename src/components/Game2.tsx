@@ -260,7 +260,7 @@ return (
 
     {/* 画面下部：キーボードUI */}
     <div className="keyboard-area">
-    <Keyboard pressedKeys={pressedKeys} />
+    <Keyboard />
     </div>
 </div>
 );
