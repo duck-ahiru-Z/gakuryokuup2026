@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import type { ViewState, Difficulty } from '../types';
 import { useGameState } from '../hooks/useGameState';
 import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
@@ -19,6 +19,7 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
 
   const handleGameEnd = (score: number) => {
     storageUtils.addXP(score);
+    storageUtils.recordGameResult(difficulty, score);
     setFinalScore(score);
   };
 
@@ -30,17 +31,32 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
     handleSuccess,
   } = useGameState(finalScore === null, difficulty, handleGameEnd);
 
-  const { pressedKeys, checkMatch, clearKeys } = useKeyboardShortcut(finalScore === null);
-
-  useEffect(() => {
+  const handleAttempt = useCallback((keys: Set<string>) => {
     if (currentMission && !showExplanation) {
-      if (checkMatch(currentMission.keys)) {
+      // Create a temporary array of pressed keys for checking
+      const keysArray = Array.from(keys);
+      let isMatch = keysArray.length === currentMission.keys.length;
+      if (isMatch) {
+        for (const targetKey of currentMission.keys) {
+          if (!keys.has(targetKey)) {
+            isMatch = false;
+            break;
+          }
+        }
+      }
+
+      if (isMatch) {
+        storageUtils.recordAttempt(true, currentMission.id);
         storageUtils.addXP(0, currentMission.id); 
         handleSuccess();
         clearKeys();
+      } else {
+        storageUtils.recordAttempt(false, currentMission.id);
       }
     }
-  }, [pressedKeys, currentMission, checkMatch, handleSuccess, showExplanation, clearKeys]);
+  }, [currentMission, showExplanation, handleSuccess]);
+
+  const { pressedKeys, clearKeys } = useKeyboardShortcut(finalScore === null, handleAttempt);
 
   if (finalScore !== null) {
     return (

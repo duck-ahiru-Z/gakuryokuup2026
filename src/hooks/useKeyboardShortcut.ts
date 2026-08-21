@@ -1,13 +1,12 @@
 import { useEffect, useState, useCallback } from 'react';
 
-export function useKeyboardShortcut(isActive: boolean) {
+export function useKeyboardShortcut(isActive: boolean, onAttempt?: (keys: Set<string>) => void) {
   const [pressedKeys, setPressedKeys] = useState<Set<string>>(new Set());
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (!isActive) return;
     
     // Prevent browser default actions during active gameplay
-    // This blocks Ctrl+S, Ctrl+F, Ctrl+P, etc. (Note: Ctrl+N/Ctrl+T cannot be blocked by browsers)
     if (e.ctrlKey || e.metaKey || e.altKey || (e.key && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey)) {
       if (e.key !== 'F12' && e.key !== 'F5') { // Allow dev tools and refresh
         e.preventDefault();
@@ -24,10 +23,15 @@ export function useKeyboardShortcut(isActive: boolean) {
     const isModifier = ['CONTROL', 'META', 'SHIFT', 'ALT'].includes(key.toUpperCase());
     if (!isModifier) {
       newKeys.add(key);
+      
+      // Fire attempt callback since a non-modifier key was just pressed
+      if (onAttempt) {
+        onAttempt(newKeys);
+      }
     }
     
     setPressedKeys(newKeys);
-  }, [isActive]);
+  }, [isActive, onAttempt]);
 
   const handleKeyUp = useCallback((_e: KeyboardEvent) => {
     if (!isActive) return;

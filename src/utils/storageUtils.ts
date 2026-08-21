@@ -6,6 +6,10 @@ const defaultStats: UserStats = {
   xp: 0,
   rank: 'Trainee',
   unlockedShortcuts: [],
+  recentScores: [],
+  totalAttempts: 0,
+  correctAttempts: 0,
+  shortcutMistakes: {}
 };
 
 export const storageUtils = {
@@ -13,7 +17,8 @@ export const storageUtils = {
     try {
       const item = localStorage.getItem(STORAGE_KEY);
       if (item) {
-        return JSON.parse(item) as UserStats;
+        const parsed = JSON.parse(item) as Partial<UserStats>;
+        return { ...defaultStats, ...parsed }; // Merge to safely add new properties
       }
     } catch (e) {
       console.error('Failed to parse stats from localStorage', e);
@@ -46,5 +51,25 @@ export const storageUtils = {
 
     storageUtils.saveStats(stats);
     return stats;
+  },
+
+  recordGameResult: (modeId: string, score: number): void => {
+    const stats = storageUtils.getStats();
+    stats.recentScores.unshift({ modeId, score, timestamp: Date.now() });
+    if (stats.recentScores.length > 5) {
+      stats.recentScores = stats.recentScores.slice(0, 5); // Keep last 5
+    }
+    storageUtils.saveStats(stats);
+  },
+
+  recordAttempt: (isCorrect: boolean, shortcutId?: string): void => {
+    const stats = storageUtils.getStats();
+    stats.totalAttempts++;
+    if (isCorrect) {
+      stats.correctAttempts++;
+    } else if (shortcutId) {
+      stats.shortcutMistakes[shortcutId] = (stats.shortcutMistakes[shortcutId] || 0) + 1;
+    }
+    storageUtils.saveStats(stats);
   }
 };

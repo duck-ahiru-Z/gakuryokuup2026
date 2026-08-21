@@ -63,7 +63,7 @@ function Page() {
       case 'game2' as any:
         return <Game2 onNavigate={setCurrentView} difficulty={difficulty} />;
       case 'result':
-        return <Result onNavigate={setCurrentView} />;
+        return <Result onNavigate={setCurrentView} uiLang={uiLang} furiganaEnabled={furiganaEnabled} />;
       case 'dictionary':
         return <Dictionary onNavigate={setCurrentView} uiLang={uiLang} furiganaEnabled={furiganaEnabled} />;
       case 'admin':

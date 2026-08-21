@@ -27,4 +27,8 @@ export interface UserStats {
   xp: number;
   rank: string;
   unlockedShortcuts: string[];
+  recentScores: { modeId: string; score: number; timestamp: number }[];
+  totalAttempts: number;
+  correctAttempts: number;
+  shortcutMistakes: Record<string, number>;
 }
