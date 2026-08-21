@@ -4,14 +4,16 @@ import { useGameState } from '../hooks/useGameState';
 import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
 import { storageUtils } from '../utils/storageUtils';
 import  Keyboard  from './Keyboard';
+import { parseRubyText } from '../utils/shortcutUtils';
 import './Game.css';
 
 interface GameProps {
   onNavigate: (view: ViewState) => void;
   difficulty: Difficulty;
+  furiganaEnabled: boolean;
 }
 
-const Game: React.FC<GameProps> = ({ onNavigate, difficulty }) => {
+const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled }) => {
   const [finalScore, setFinalScore] = useState<number | null>(null);
 
   const handleGameEnd = (score: number) => {
@@ -87,8 +89,9 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty }) => {
           </div>
         ) : (
           <div className="mission-card">
-            <h3 className="mission-title">CURRENT DIRECTIVE</h3>
-            <p className="mission-desc">{currentMission?.description}</p>
+            <p className="mission-desc">
+              {currentMission ? parseRubyText(currentMission.description, furiganaEnabled) : ''}
+            </p>
             <div className="target-keys">
               {difficulty === 'HARD' ? (
                 <span className="key-badge highlight">?</span>

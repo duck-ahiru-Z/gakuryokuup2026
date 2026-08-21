@@ -58,7 +58,7 @@ function Page() {
           />
         );
       case 'game':
-        return <Game onNavigate={setCurrentView} difficulty={difficulty} />;
+        return <Game onNavigate={setCurrentView} difficulty={difficulty} furiganaEnabled={furiganaEnabled} />;
       //game2はデバック用
       case 'game2' as any:
         return <Game2 onNavigate={setCurrentView} difficulty={difficulty} />;
