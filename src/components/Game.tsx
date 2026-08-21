@@ -22,7 +22,6 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty }) => {
   const {
     currentMission,
     playerScore,
-    aiScore,
     timeLeft,
     showExplanation,
     handleSuccess,
@@ -43,23 +42,12 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty }) => {
   if (finalScore !== null) {
     return (
       <div className="game-over-container">
-        <h2 className="title">MISSION <span className="highlight">COMPLETE</span></h2>
+        <h2 className="title">TIME <span className="highlight">UP</span></h2>
         <div className="final-stats">
           <div className="stat-row">
-            <span>YOUR SCORE:</span>
+            <span>FINAL SCORE:</span>
             <span className="highlight">{finalScore}</span>
           </div>
-          <div className="stat-row">
-            <span>AI SCORE:</span>
-            <span style={{ color: 'var(--error-color)' }}>{aiScore}</span>
-          </div>
-        </div>
-        <div className="result-status">
-          {finalScore >= aiScore ? (
-            <span style={{ color: 'var(--success-color)', fontSize: '2rem', fontWeight: 'bold' }}>VICTORY</span>
-          ) : (
-            <span style={{ color: 'var(--error-color)', fontSize: '2rem', fontWeight: 'bold' }}>DEFEAT</span>
-          )}
         </div>
         <button className="primary-btn mt-2" onClick={() => onNavigate('result')}>VIEW STATUS</button>
       </div>
@@ -70,24 +58,17 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty }) => {
     <div className="game-container">
       <div className="status-bar">
         <div className="score-box">
-          <span className="label">YOU</span>
+          <span className="label">SCORE</span>
           <span className="value" style={{ color: 'var(--accent-color)' }}>{playerScore}</span>
         </div>
         <div className="timer">
           00:{timeLeft.toString().padStart(2, '0')}
-        </div>
-        <div className="score-box align-right">
-          <span className="label">AI</span>
-          <span className="value" style={{ color: 'var(--error-color)' }}>{aiScore}</span>
         </div>
       </div>
 
       <div className="progress-bars">
         <div className="bar-container">
           <div className="bar player-bar" style={{ width: `${Math.min(playerScore / 20, 100)}%` }}></div>
-        </div>
-        <div className="bar-container">
-          <div className="bar ai-bar" style={{ width: `${Math.min(aiScore / 20, 100)}%` }}></div>
         </div>
       </div>
 
