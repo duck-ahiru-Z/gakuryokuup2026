@@ -54,8 +54,8 @@ const Home: React.FC<HomeProps> = ({
     {
       id: 'lang',
       icon: Globe,
-      labelEn: <>EN ({parseRubyText('[英語](えいご)', furiganaEnabled)})</>,
-      labelJa: <>JA ({parseRubyText('[日本語](にほんご)', furiganaEnabled)})</>,
+      labelEn: <>JA ({parseRubyText('[日本語](にほんご)', furiganaEnabled)})</>,
+      labelJa: <>EN ({parseRubyText('[英語](えいご)', furiganaEnabled)})</>,
       onClick: () => setUiLang(uiLang === 'EN' ? 'JA' : 'EN'),
       isActive: false
     },
