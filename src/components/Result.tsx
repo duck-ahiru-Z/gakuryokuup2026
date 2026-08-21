@@ -33,9 +33,7 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
   const nextRankTarget = Math.max(200, Math.ceil((stats.xp + 1) / 500) * 500);
   const progressPercent = Math.min(100, (stats.xp / nextRankTarget) * 100);
 
-  const renderJa = (text: string, rubyText: string) => {
-    return furiganaEnabled ? <ruby>{text}<rt>{rubyText}</rt></ruby> : text;
-  };
+
 
   const getRankName = (rankId: string) => {
     if (uiLang === 'EN') return rankId.toUpperCase();
@@ -64,7 +62,7 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
-        <h2 className="title">{uiLang === 'EN' ? 'PLAYER ' : renderJa('プレイヤー', 'ぷれいやー')}<span className="highlight">{uiLang === 'EN' ? 'STATUS' : renderJa('ステータス', 'すてーたす')}</span></h2>
+        <h2 className="title">{uiLang === 'EN' ? 'PLAYER ' : parseRubyText('[プレイヤー](ぷれいやー)', furiganaEnabled)}<span className="highlight">{uiLang === 'EN' ? 'STATUS' : parseRubyText('[ステータス](すてーたす)', furiganaEnabled)}</span></h2>
       </div>
 
       <div className="dashboard-grid">
@@ -72,11 +70,11 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
         <div className="dash-card status-card">
           <div className="card-header">
             <Trophy className="icon highlight" />
-            <h3>{uiLang === 'EN' ? 'CURRENT STATUS' : renderJa('現在のステータス', 'げんざいのすてーたす')}</h3>
+            <h3>{uiLang === 'EN' ? 'CURRENT STATUS' : parseRubyText('[現在](げんざい)のステータス', furiganaEnabled)}</h3>
           </div>
           <div className="status-main">
             <div className="rank-display">
-              <span className="rank-label">{uiLang === 'EN' ? 'RANK' : renderJa('ランク', 'らんく')}</span>
+              <span className="rank-label">{uiLang === 'EN' ? 'RANK' : parseRubyText('[ランク](らんく)', furiganaEnabled)}</span>
               <span className="rank-value">{getRankName(stats.rank)}</span>
               {uiLang === 'JA' && <span className="rank-sub">{stats.rank.toUpperCase()}</span>}
             </div>
@@ -91,7 +89,7 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
             </div>
             <div className="unlocked-stats">
               <Book size={16} />
-              <span>{uiLang === 'EN' ? 'UNLOCKED ARCHIVES: ' : renderJa('図鑑解放数: ', 'ずかんかいほうすう: ')}</span>
+              <span>{uiLang === 'EN' ? 'UNLOCKED ARCHIVES: ' : parseRubyText('[図鑑解放数](ずかんかいほうすう): ', furiganaEnabled)}</span>
               <span className="highlight fw-bold">{stats.unlockedShortcuts.length} / {SHORTCUTS.length}</span>
             </div>
           </div>
@@ -101,7 +99,7 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
         <div className="dash-card activity-card">
           <div className="card-header">
             <Activity className="icon text-primary" />
-            <h3>{uiLang === 'EN' ? 'RECENT ACTIVITY' : renderJa('最近の活動', 'さいきんのかつどう')}</h3>
+            <h3>{uiLang === 'EN' ? 'RECENT ACTIVITY' : parseRubyText('[最近](さいきん)の[活動](かつどう)', furiganaEnabled)}</h3>
           </div>
           <div className="activity-list">
             {stats.recentScores && stats.recentScores.length > 0 ? (
@@ -112,7 +110,7 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
                 </div>
               ))
             ) : (
-              <div className="empty-state">{uiLang === 'EN' ? 'No recent activity.' : renderJa('最近の活動はありません。', 'さいきんのかつどうはありません。')}</div>
+              <div className="empty-state">{uiLang === 'EN' ? 'No recent activity.' : parseRubyText('[最近](さいきん)の[活動](かつどう)はありません。', furiganaEnabled)}</div>
             )}
           </div>
         </div>
@@ -121,7 +119,7 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
         <div className="dash-card performance-card">
           <div className="card-header">
             <Crosshair className="icon text-success" />
-            <h3>{uiLang === 'EN' ? 'PERFORMANCE' : renderJa('総合パフォーマンス', 'そうごうぱふぉーまんす')}</h3>
+            <h3>{uiLang === 'EN' ? 'PERFORMANCE' : parseRubyText('[総合](そうごう)パフォーマンス', furiganaEnabled)}</h3>
           </div>
           <div className="perf-stats">
             <div className="perf-circle">
@@ -135,15 +133,15 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
                 />
                 <text x="18" y="20.35" className="percentage">{accuracy}%</text>
               </svg>
-              <div className="perf-label">{uiLang === 'EN' ? 'ACCURACY' : renderJa('正解率', 'せいかいりつ')}</div>
+              <div className="perf-label">{uiLang === 'EN' ? 'ACCURACY' : parseRubyText('[正解率](せいかいりつ)', furiganaEnabled)}</div>
             </div>
             <div className="perf-details">
               <div className="perf-row">
-                <span>{uiLang === 'EN' ? 'Total Attempts' : renderJa('総入力回数', 'そうにゅうりょくかいすう')}</span>
+                <span>{uiLang === 'EN' ? 'Total Attempts' : parseRubyText('[総入力回数](そうにゅうりょくかいすう)', furiganaEnabled)}</span>
                 <span className="fw-bold">{stats.totalAttempts}</span>
               </div>
               <div className="perf-row">
-                <span>{uiLang === 'EN' ? 'Correct' : renderJa('正解数', 'せいかいすう')}</span>
+                <span>{uiLang === 'EN' ? 'Correct' : parseRubyText('[正解数](せいかいすう)', furiganaEnabled)}</span>
                 <span className="fw-bold text-success">{stats.correctAttempts}</span>
               </div>
             </div>
@@ -154,7 +152,7 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
         <div className="dash-card weak-card">
           <div className="card-header">
             <AlertCircle className="icon text-error" />
-            <h3>{uiLang === 'EN' ? 'WEAK POINTS' : renderJa('苦手なキー', 'にがてなきー')}</h3>
+            <h3>{uiLang === 'EN' ? 'WEAK POINTS' : parseRubyText('[苦手](にがて)なキー', furiganaEnabled)}</h3>
           </div>
           <div className="weak-list">
             {sortedMistakes.length > 0 ? (
@@ -164,12 +162,12 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
                     {mistake.shortcut ? mistake.shortcut.keys.join('+') : 'Unknown'}
                   </div>
                   <div className="weak-count text-error">
-                    {mistake.count} {uiLang === 'EN' ? 'misses' : renderJa('ミス', 'みす')}
+                    {mistake.count} {uiLang === 'EN' ? 'misses' : parseRubyText('[ミス](みす)', furiganaEnabled)}
                   </div>
                 </div>
               ))
             ) : (
-              <div className="empty-state">{uiLang === 'EN' ? 'No data yet.' : renderJa('データがありません。', 'でーたがありません。')}</div>
+              <div className="empty-state">{uiLang === 'EN' ? 'No data yet.' : parseRubyText('データがありません。', furiganaEnabled)}</div>
             )}
           </div>
         </div>
@@ -178,7 +176,7 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
       <div className="action-buttons">
         <button className="primary-btn" onClick={() => onNavigate('home')}>
           <ArrowLeft size={20} /> 
-          <span>{uiLang === 'EN' ? 'RETURN TO HOME' : renderJa('ホームへ戻る', 'ほーむへもどる')}</span>
+          <span>{uiLang === 'EN' ? 'RETURN TO HOME' : parseRubyText('ホームへ[戻](もど)る', furiganaEnabled)}</span>
         </button>
       </div>
     </div>

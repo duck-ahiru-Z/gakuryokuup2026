@@ -85,9 +85,10 @@ const Home: React.FC<HomeProps> = ({
           <h1 className="title">{APP_TITLE}</h1>
         </div>
         <p className="subtitle">
-          ショートカットキーの{parseRubyText('[語源](ごげん)', furiganaEnabled)}を知り、
-          {parseRubyText('[英語](えいご)', furiganaEnabled)}とPC{parseRubyText('[操作](そうさ)', furiganaEnabled)}を
-          {parseRubyText('[同時](どうじ)', furiganaEnabled)}にマスターしよう
+          {uiLang === 'EN' 
+            ? "Learn shortcut etymologies and master PC skills effortlessly."
+            : <>ショートカットキーの{parseRubyText('[語源](ごげん)', furiganaEnabled)}を知り、{parseRubyText('[英語](えいご)', furiganaEnabled)}とPC{parseRubyText('[操作](そうさ)', furiganaEnabled)}を{parseRubyText('[同時](どうじ)', furiganaEnabled)}にマスターしよう</>
+          }
         </p>
       </div>
       
