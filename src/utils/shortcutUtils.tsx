@@ -20,7 +20,8 @@ export const resolveKeys = (sc: ShortcutData, currentOS: OS): string[] => {
   });
 };
 
-export const parseRubyText = (text: string, furiganaEnabled: boolean) => {
+export const parseRubyText = (text: string | undefined | null, furiganaEnabled: boolean) => {
+  if (!text) return null;
   const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
   const parts = [];
   let lastIndex = 0;

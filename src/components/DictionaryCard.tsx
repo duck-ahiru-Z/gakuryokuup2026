@@ -16,10 +16,22 @@ export const DictionaryCard: React.FC<DictionaryCardProps> = ({ sc, os, uiLang, 
   if (!isUnlocked) {
     return (
       <div className="dict-card locked">
-        <Lock size={48} className="lock-icon" />
-        <span className="locked-text">
-          {uiLang === 'EN' ? 'RESTRICTED' : <ruby>未解放<rt>{furiganaEnabled && 'みかいほう'}</rt></ruby>}
-        </span>
+        <div className="card-top">
+          <div className="keys-massive">
+            <span className="dict-key-massive secret-key">?</span>
+            <span className="plus-massive">+</span>
+            <span className="dict-key-massive secret-key">?</span>
+          </div>
+        </div>
+        <div className="card-body secret-body">
+          <Lock size={48} className="lock-icon" />
+          <span className="locked-text">
+            {uiLang === 'EN' ? 'RESTRICTED' : parseRubyText('[未解放](みかいほう)', furiganaEnabled)}
+          </span>
+          <p className="secret-hint">
+            {uiLang === 'EN' ? 'Unlock by using this in missions!' : parseRubyText('ミッションで[成功](せいこう)すると[解放](かいほう)されます', furiganaEnabled)}
+          </p>
+        </div>
       </div>
     );
   }
@@ -41,22 +53,28 @@ export const DictionaryCard: React.FC<DictionaryCardProps> = ({ sc, os, uiLang, 
       <div className="card-body">
         <div className="word-section">
           <h3 className="english-word">{sc.commandName.toUpperCase()}</h3>
-          <p className="word-meaning">{parseRubyText(sc.wordMeaning, furiganaEnabled)}</p>
+          <p className="word-meaning">
+            {uiLang === 'EN' && sc.wordMeaningEn ? sc.wordMeaningEn : parseRubyText(sc.wordMeaning, furiganaEnabled)}
+          </p>
         </div>
 
         <div className="usage-box">
           <span className="label">
-            {uiLang === 'EN' ? 'USAGE' : <ruby>用途<rt>{furiganaEnabled && 'ようと'}</rt></ruby>}
+            {uiLang === 'EN' ? 'USAGE' : parseRubyText('[用途](ようと)', furiganaEnabled)}
           </span>
-          <p className="description-text">{parseRubyText(sc.description, furiganaEnabled)}</p>
+          <p className="description-text">
+            {uiLang === 'EN' && sc.descriptionEn ? sc.descriptionEn : parseRubyText(sc.description, furiganaEnabled)}
+          </p>
         </div>
 
         <div className="etymology-box">
           <span className="label">
             <BookOpen size={14} />
-            {uiLang === 'EN' ? 'ORIGIN' : <ruby>語源<rt>{furiganaEnabled && 'ごげん'}</rt></ruby>}
+            {uiLang === 'EN' ? 'ORIGIN' : parseRubyText('[語源](ごげん)', furiganaEnabled)}
           </span>
-          <p>{parseRubyText(sc.etymology, furiganaEnabled)}</p>
+          <p>
+            {uiLang === 'EN' && sc.etymologyEn ? sc.etymologyEn : parseRubyText(sc.etymology, furiganaEnabled)}
+          </p>
         </div>
       </div>
     </div>

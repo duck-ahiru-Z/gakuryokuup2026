@@ -66,10 +66,7 @@
   box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
 }
 
-.ai-bar {
-  background: var(--error-color);
-  box-shadow: 0 0 10px rgba(255, 0, 60, 0.5);
-}
+
 
 .mission-area {
   min-height: 250px;

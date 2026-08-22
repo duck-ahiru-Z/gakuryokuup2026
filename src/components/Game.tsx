@@ -1,67 +1,76 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import type { ViewState, Difficulty } from '../types';
 import { useGameState } from '../hooks/useGameState';
 import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
 import { storageUtils } from '../utils/storageUtils';
 import  Keyboard  from './Keyboard';
+import { parseRubyText } from '../utils/shortcutUtils';
 import './Game.css';
 
 interface GameProps {
   onNavigate: (view: ViewState) => void;
   difficulty: Difficulty;
+  furiganaEnabled: boolean;
+  uiLang: 'EN' | 'JA';
 }
 
-const Game: React.FC<GameProps> = ({ onNavigate, difficulty }) => {
+const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, uiLang }) => {
   const [finalScore, setFinalScore] = useState<number | null>(null);
 
   const handleGameEnd = (score: number) => {
     storageUtils.addXP(score);
+    storageUtils.recordGameResult(difficulty, score);
     setFinalScore(score);
   };
 
   const {
     currentMission,
     playerScore,
-    aiScore,
     timeLeft,
     showExplanation,
     handleSuccess,
   } = useGameState(finalScore === null, difficulty, handleGameEnd);
 
-  const { pressedKeys, checkMatch, clearKeys } = useKeyboardShortcut(finalScore === null);
-
-  useEffect(() => {
+  const handleAttempt = useCallback((keys: Set<string>) => {
     if (currentMission && !showExplanation) {
-      if (checkMatch(currentMission.keys)) {
+      // Create a temporary array of pressed keys for checking
+      const keysArray = Array.from(keys);
+      let isMatch = keysArray.length === currentMission.keys.length;
+      if (isMatch) {
+        for (const targetKey of currentMission.keys) {
+          if (!keys.has(targetKey)) {
+            isMatch = false;
+            break;
+          }
+        }
+      }
+
+      if (isMatch) {
+        storageUtils.recordAttempt(true, currentMission.id);
         storageUtils.addXP(0, currentMission.id); 
         handleSuccess();
         clearKeys();
+      } else {
+        storageUtils.recordAttempt(false, currentMission.id);
       }
     }
-  }, [pressedKeys, currentMission, checkMatch, handleSuccess, showExplanation, clearKeys]);
+  }, [currentMission, showExplanation, handleSuccess]);
+
+  const { pressedKeys, clearKeys } = useKeyboardShortcut(finalScore === null, handleAttempt);
 
   if (finalScore !== null) {
     return (
       <div className="game-over-container">
-        <h2 className="title">MISSION <span className="highlight">COMPLETE</span></h2>
+        <h2 className="title">{uiLang === 'EN' ? 'TIME ' : 'タイム'}<span className="highlight">{uiLang === 'EN' ? 'UP' : 'アップ'}</span></h2>
         <div className="final-stats">
           <div className="stat-row">
-            <span>YOUR SCORE:</span>
+            <span>{uiLang === 'EN' ? 'FINAL SCORE:' : '最終スコア:'}</span>
             <span className="highlight">{finalScore}</span>
           </div>
-          <div className="stat-row">
-            <span>AI SCORE:</span>
-            <span style={{ color: 'var(--error-color)' }}>{aiScore}</span>
-          </div>
         </div>
-        <div className="result-status">
-          {finalScore >= aiScore ? (
-            <span style={{ color: 'var(--success-color)', fontSize: '2rem', fontWeight: 'bold' }}>VICTORY</span>
-          ) : (
-            <span style={{ color: 'var(--error-color)', fontSize: '2rem', fontWeight: 'bold' }}>DEFEAT</span>
-          )}
-        </div>
-        <button className="primary-btn mt-2" onClick={() => onNavigate('result')}>VIEW STATUS</button>
+        <button className="primary-btn mt-2" onClick={() => onNavigate('result')}>
+          {uiLang === 'EN' ? 'VIEW STATUS' : 'ステータスを確認'}
+        </button>
       </div>
     );
   }
@@ -70,15 +79,11 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty }) => {
     <div className="game-container">
       <div className="status-bar">
         <div className="score-box">
-          <span className="label">YOU</span>
+          <span className="label">{uiLang === 'EN' ? 'SCORE' : 'スコア'}</span>
           <span className="value" style={{ color: 'var(--accent-color)' }}>{playerScore}</span>
         </div>
         <div className="timer">
           00:{timeLeft.toString().padStart(2, '0')}
-        </div>
-        <div className="score-box align-right">
-          <span className="label">AI</span>
-          <span className="value" style={{ color: 'var(--error-color)' }}>{aiScore}</span>
         </div>
       </div>
 
@@ -86,28 +91,38 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty }) => {
         <div className="bar-container">
           <div className="bar player-bar" style={{ width: `${Math.min(playerScore / 20, 100)}%` }}></div>
         </div>
-        <div className="bar-container">
-          <div className="bar ai-bar" style={{ width: `${Math.min(aiScore / 20, 100)}%` }}></div>
-        </div>
       </div>
 
       <div className="mission-area">
         {showExplanation && currentMission ? (
           <div className="explanation-card">
-            <h3 className="success-text">SYSTEM OVERRIDE SUCCESS</h3>
+            <h3 className="success-text">{uiLang === 'EN' ? 'SUCCESS' : '正解！'}</h3>
             <div className="word-header">
               <span className="command">{currentMission.commandName}</span>
-              <span className="meaning">{currentMission.wordMeaning}</span>
+              <span className="meaning">
+                {uiLang === 'EN' && currentMission.wordMeaningEn ? currentMission.wordMeaningEn : parseRubyText(currentMission.wordMeaning, furiganaEnabled)}
+              </span>
             </div>
             <div className="info-box">
-              <p className="etymology"><strong>ORIGIN:</strong> {currentMission.etymology}</p>
-              <p className="example"><strong>EXAMPLE:</strong> {currentMission.exampleSentence}</p>
+              <p className="etymology">
+                <strong>{uiLang === 'EN' ? 'ORIGIN:' : '語源:'}</strong>{' '}
+                {uiLang === 'EN' && currentMission.etymologyEn ? currentMission.etymologyEn : parseRubyText(currentMission.etymology, furiganaEnabled)}
+              </p>
+              <p className="example">
+                <strong>{uiLang === 'EN' ? 'EXAMPLE:' : '例文:'}</strong>{' '}
+                {uiLang === 'EN' && currentMission.exampleSentenceEn ? currentMission.exampleSentenceEn : parseRubyText(currentMission.exampleSentence, furiganaEnabled)}
+              </p>
             </div>
           </div>
         ) : (
           <div className="mission-card">
-            <h3 className="mission-title">CURRENT DIRECTIVE</h3>
-            <p className="mission-desc">{currentMission?.description}</p>
+            <p className="mission-desc">
+              {currentMission 
+                ? (uiLang === 'EN' && currentMission.descriptionEn 
+                    ? currentMission.descriptionEn 
+                    : parseRubyText(currentMission.description, furiganaEnabled)) 
+                : ''}
+            </p>
             <div className="target-keys">
               {difficulty === 'HARD' ? (
                 <span className="key-badge highlight">?</span>
@@ -131,7 +146,7 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty }) => {
       </div>
 
       <div className="keyboard-area">
-        <Keyboard pressedKeys={pressedKeys} />
+        <Keyboard />
       </div>
     </div>
   );

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import type { ViewState, Difficulty } from '../types';
-import { Play, Book, Settings as SettingsIcon, Type, Shield, Globe } from 'lucide-react';
+import { Play, Book, Settings as SettingsIcon, Type, Shield, Globe, Trophy, Moon, Sun } from 'lucide-react';
 import Settings from './Settings';
+import { parseRubyText } from '../utils/shortcutUtils';
 import './Home.css';
 
 interface HomeProps {
@@ -23,6 +24,59 @@ const Home: React.FC<HomeProps> = ({
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const APP_TITLE = "Shortcut English";
 
+
+
+  const MENU_ITEMS = [
+    {
+      id: 'dictionary',
+      icon: Book,
+      labelEn: 'ARCHIVES',
+      labelJa: parseRubyText('[図鑑](ずかん)', furiganaEnabled),
+      onClick: () => onNavigate('dictionary'),
+      isActive: false
+    },
+    {
+      id: 'status',
+      icon: Trophy,
+      labelEn: 'STATUS',
+      labelJa: parseRubyText('[経験値](けいけんち)', furiganaEnabled),
+      onClick: () => onNavigate('result'),
+      isActive: false
+    },
+    {
+      id: 'furigana',
+      icon: Type,
+      labelEn: 'RUBY',
+      labelJa: 'ふりがな',
+      onClick: () => setFuriganaEnabled(!furiganaEnabled),
+      isActive: furiganaEnabled
+    },
+    {
+      id: 'lang',
+      icon: Globe,
+      labelEn: <>JA ({parseRubyText('[日本語](にほんご)', furiganaEnabled)})</>,
+      labelJa: <>EN ({parseRubyText('[英語](えいご)', furiganaEnabled)})</>,
+      onClick: () => setUiLang(uiLang === 'EN' ? 'JA' : 'EN'),
+      isActive: false
+    },
+    {
+      id: 'settings',
+      icon: SettingsIcon,
+      labelEn: 'SETTINGS',
+      labelJa: parseRubyText('[設定](せってい)', furiganaEnabled),
+      onClick: () => setIsSettingsOpen(true),
+      isActive: false
+    },
+    {
+      id: 'theme',
+      icon: darkMode ? Sun : Moon,
+      labelEn: darkMode ? 'LIGHT MODE' : 'DARK MODE',
+      labelJa: darkMode ? parseRubyText('[明](あか)るく', furiganaEnabled) : parseRubyText('[暗](くら)く', furiganaEnabled),
+      onClick: () => setDarkMode(!darkMode),
+      isActive: false
+    }
+  ];
+
   return (
     <div className="home-container">
       {/* Title Section */}
@@ -31,91 +85,36 @@ const Home: React.FC<HomeProps> = ({
           <h1 className="title">{APP_TITLE}</h1>
         </div>
         <p className="subtitle">
-          ショートカットキーの<ruby>語源{furiganaEnabled && <rt>ごげん</rt>}</ruby>を知り、
-          <ruby>英語{furiganaEnabled && <rt>えいご</rt>}</ruby>とPC<ruby>操作{furiganaEnabled && <rt>そうさ</rt>}</ruby>を
-          <ruby>同時{furiganaEnabled && <rt>どうじ</rt>}</ruby>にマスターしよう
+          {uiLang === 'EN' 
+            ? "Learn shortcut etymologies and master PC skills effortlessly."
+            : <>ショートカットキーの{parseRubyText('[語源](ごげん)', furiganaEnabled)}を知り、{parseRubyText('[英語](えいご)', furiganaEnabled)}とPC{parseRubyText('[操作](そうさ)', furiganaEnabled)}を{parseRubyText('[同時](どうじ)', furiganaEnabled)}にマスターしよう</>
+          }
         </p>
       </div>
       
-      {/* Level Selection */}
-      <div className="difficulty-container">
-        <span className="diff-label">
-          {uiLang === 'EN' ? 'LEVEL SELECT' : 'レベル選択'}
-        </span>
-        <div className="difficulty-selector">
-          <button 
-            className={`diff-btn ${difficulty === 'EASY' ? 'active' : ''}`}
-            onClick={() => setDifficulty('EASY')}
-          >
-            {uiLang === 'EN' ? 'EASY' : <ruby>初心者{furiganaEnabled && <rt>しょしんしゃ</rt>}</ruby>}
-          </button>
-          <button 
-            className={`diff-btn ${difficulty === 'NORMAL' ? 'active' : ''}`}
-            onClick={() => setDifficulty('NORMAL')}
-          >
-            {uiLang === 'EN' ? 'NORMAL' : <ruby>通常{furiganaEnabled && <rt>つうじょう</rt>}</ruby>}
-          </button>
-          <button 
-            className={`diff-btn ${difficulty === 'HARD' ? 'active' : ''}`}
-            onClick={() => setDifficulty('HARD')}
-          >
-            {uiLang === 'EN' ? 'HARD' : <ruby>上級者{furiganaEnabled && <rt>じょうきゅうしゃ</rt>}</ruby>}
-          </button>
-        </div>
-      </div>
-
       {/* Main Actions */}
       <div className="main-action-wrapper">
-        <button className="primary-btn" onClick={() => onNavigate('game')}>
+        <button className="primary-btn" onClick={() => onNavigate('modeSelect')}>
           <Play size={24} /> 
-          <span>{uiLang === 'EN' ? 'START' : 'スタート'}</span>
-        </button>
-      </div>
-
-      {/* 実践モード(デバック用) */}
-      <div className="main-action-wrapper">
-        <button className="primary-btn" onClick={() => onNavigate('game2')}>
-          <Play size={24} /> 
-          <span>{uiLang === 'EN' ? 'PRACTICE MODE' : '実践モード'}</span>
+          <span>{uiLang === 'EN' ? 'SELECT' : parseRubyText('モード[選択](せんたく)', furiganaEnabled)}</span>
         </button>
       </div>
 
       {/* Sub Actions */}
       <div className="sub-actions-grid">
-        <button className="secondary-btn" onClick={() => onNavigate('dictionary')}>
-          <Book size={20} /> 
-          <span>{uiLang === 'EN' ? 'ARCHIVES' : <ruby>図鑑{furiganaEnabled && <rt>ずかん</rt>}</ruby>}</span>
-        </button>
-        <button className="secondary-btn" onClick={() => setIsSettingsOpen(true)}>
-          <SettingsIcon size={20} /> 
-          <span>{uiLang === 'EN' ? 'SETTINGS' : <ruby>設定{furiganaEnabled && <rt>せってい</rt>}</ruby>}</span>
-        </button>
-        <button 
-          className={`secondary-btn ${furiganaEnabled ? 'active-toggle' : ''}`} 
-          onClick={() => setFuriganaEnabled(!furiganaEnabled)}
-        >
-          <Type size={20} /> 
-          <span>{uiLang === 'EN' ? 'RUBY' : 'ふりがな'}</span>
-        </button>
-        <button 
-          className="secondary-btn" 
-          onClick={() => setUiLang(uiLang === 'EN' ? 'JA' : 'EN')}
-        >
-          <Globe size={20} /> 
-          <span>
-            {uiLang === 'EN' 
-              ? <>JA (<ruby>日本語{furiganaEnabled && <rt>にほんご</rt>}</ruby>)</> 
-              : <>EN (<ruby>英語{furiganaEnabled && <rt>えいご</rt>}</ruby>)</>}
-          </span>
-        </button>
-      </div>
-
-      {/* Secret Admin Link */}
-      <div className="admin-link-wrapper">
-        <button className="admin-btn" onClick={() => onNavigate('admin' as ViewState)}>
-          <Shield size={14} />
-          <span>{uiLang === 'EN' ? 'ADMIN' : <ruby>管理{furiganaEnabled && <rt>かんり</rt>}</ruby>}</span>
-        </button>
+        {MENU_ITEMS.map((item) => {
+          const Icon = item.icon;
+          return (
+            <button 
+              key={item.id} 
+              className={`secondary-btn ${item.isActive ? 'active-toggle' : ''}`} 
+              onClick={item.onClick}
+            >
+              <Icon size={20} /> 
+              <span>{uiLang === 'EN' ? item.labelEn : item.labelJa}</span>
+            </button>
+          );
+        })}
       </div>
 
       {isSettingsOpen && (

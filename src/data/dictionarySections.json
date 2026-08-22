@@ -1,0 +1,26 @@
+[
+  {
+    "id": "EASY",
+    "className": "easy-title",
+    "titleEn": "EASY (Basics)",
+    "titleJa": "[難易度](なんいど)：EASY（[超初心者](ちょうしょしんしゃ)・[絶対](ぜったい)に[覚](おぼ)えるべき[基礎](きそ)）",
+    "descEn": "The absolute basics.",
+    "descJa": "[日常的](にちじょうてき)なPC[操作](そうさ)で[最](もっと)もよく[使](つか)う、[絶対](ぜったい)に[外](はず)せない「[基本](きほん)の5つ」です。"
+  },
+  {
+    "id": "NORMAL",
+    "className": "normal-title",
+    "titleEn": "NORMAL (Standard)",
+    "titleJa": "[難易度](なんいど)：NORMAL（[標準](ひょうじゅん)・[知](し)っていると[作業](さぎょう)が[早](はや)い）",
+    "descEn": "Very useful for documents and web.",
+    "descJa": "[文章作成](ぶんしょうさくせい)や[調](しら)べ[学習](がくしゅう)の[時](とき)に[知](し)っていると、マウスを[使](つか)う[回数](かいすう)が[激減](げきげん)する[便利](べんり)なキーです。"
+  },
+  {
+    "id": "HARD",
+    "className": "hard-title",
+    "titleEn": "HARD (Advanced)",
+    "titleJa": "[難易度](なんいど)：HARD（むずい・プロっぽさが[出](で)る[上級技](じょうきゅうわざ)）",
+    "descEn": "Advanced techniques.",
+    "descJa": "3つのキーの[同時押](どうじお)しや、ドキュメント[作成](さくせい)に[特化](とっか)した「[知](し)る[人](ひと)ぞ[知](し)る」[高度](こうど)なショートカットです。"
+  }
+]
