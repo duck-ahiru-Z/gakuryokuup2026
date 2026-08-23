@@ -31,8 +31,19 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
     setSelectedModeId('normal');
   };
 
-  const handleStart = () => {
+  const handleStart = async () => {
     if (!selectedModeId) return;
+
+    //スタートボタンを押した瞬間に画面全体をフルスクリーン化
+    try {
+      if (document.documentElement.requestFullscreen) {
+        await document.documentElement.requestFullscreen();
+      }
+    } catch (e) {
+      // エラーが起きても（全画面化をブロックされても）処理を止めず次に進む
+      console.warn('Fullscreen execution failed or was denied:', e);
+    }
+
     if (selectedModeId === 'normal') {
       onNavigate('game');
     } else {
