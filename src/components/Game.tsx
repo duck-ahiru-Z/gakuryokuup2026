@@ -5,6 +5,7 @@ import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
 import { storageUtils } from '../utils/storageUtils';
 import  Keyboard  from './Keyboard';
 import { parseRubyText } from '../utils/shortcutUtils';
+import { DisableContextMenu } from './DisableContextMenu'; 
 import './Game.css';
 
 interface GameProps {
@@ -76,79 +77,81 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
   }
 
   return (
-    <div className="game-container">
-      <div className="status-bar">
-        <div className="score-box">
-          <span className="label">{uiLang === 'EN' ? 'SCORE' : 'スコア'}</span>
-          <span className="value" style={{ color: 'var(--accent-color)' }}>{playerScore}</span>
-        </div>
-        <div className="timer">
-          00:{timeLeft.toString().padStart(2, '0')}
-        </div>
-      </div>
-
-      <div className="progress-bars">
-        <div className="bar-container">
-          <div className="bar player-bar" style={{ width: `${Math.min(playerScore / 20, 100)}%` }}></div>
-        </div>
-      </div>
-
-      <div className="mission-area">
-        {showExplanation && currentMission ? (
-          <div className="explanation-card">
-            <h3 className="success-text">{uiLang === 'EN' ? 'SUCCESS' : '正解！'}</h3>
-            <div className="word-header">
-              <span className="command">{currentMission.commandName}</span>
-              <span className="meaning">
-                {uiLang === 'EN' && currentMission.wordMeaningEn ? currentMission.wordMeaningEn : parseRubyText(currentMission.wordMeaning, furiganaEnabled)}
-              </span>
-            </div>
-            <div className="info-box">
-              <p className="etymology">
-                <strong>{uiLang === 'EN' ? 'ORIGIN:' : '語源:'}</strong>{' '}
-                {uiLang === 'EN' && currentMission.etymologyEn ? currentMission.etymologyEn : parseRubyText(currentMission.etymology, furiganaEnabled)}
-              </p>
-              <p className="example">
-                <strong>{uiLang === 'EN' ? 'EXAMPLE:' : '例文:'}</strong>{' '}
-                {uiLang === 'EN' && currentMission.exampleSentenceEn ? currentMission.exampleSentenceEn : parseRubyText(currentMission.exampleSentence, furiganaEnabled)}
-              </p>
-            </div>
+    <DisableContextMenu>
+      <div className="game-container">
+        <div className="status-bar">
+          <div className="score-box">
+            <span className="label">{uiLang === 'EN' ? 'SCORE' : 'スコア'}</span>
+            <span className="value" style={{ color: 'var(--accent-color)' }}>{playerScore}</span>
           </div>
-        ) : (
-          <div className="mission-card">
-            <p className="mission-desc">
-              {currentMission 
-                ? (uiLang === 'EN' && currentMission.descriptionEn 
-                    ? currentMission.descriptionEn 
-                    : parseRubyText(currentMission.description, furiganaEnabled)) 
-                : ''}
-            </p>
-            <div className="target-keys">
-              {difficulty === 'HARD' ? (
-                <span className="key-badge highlight">?</span>
-              ) : (
-                currentMission?.keys.map((k, i) => {
-                  let displayKey = k;
-                  if (k === 'Ctrl') {
-                    displayKey = window.navigator.userAgent.toUpperCase().indexOf('MAC') >= 0 ? '⌘ Cmd' : 'Ctrl';
-                  }
-                  return (
-                    <React.Fragment key={i}>
-                      <span className="key-badge">{displayKey}</span>
-                      {i < currentMission.keys.length - 1 && <span className="plus-sign">+</span>}
-                    </React.Fragment>
-                  );
-                })
-              )}
-            </div>
+          <div className="timer">
+            00:{timeLeft.toString().padStart(2, '0')}
           </div>
-        )}
-      </div>
+        </div>
 
-      <div className="keyboard-area">
-        <Keyboard />
+        <div className="progress-bars">
+          <div className="bar-container">
+            <div className="bar player-bar" style={{ width: `${Math.min(playerScore / 20, 100)}%` }}></div>
+          </div>
+        </div>
+
+        <div className="mission-area">
+          {showExplanation && currentMission ? (
+            <div className="explanation-card">
+              <h3 className="success-text">{uiLang === 'EN' ? 'SUCCESS' : '正解！'}</h3>
+              <div className="word-header">
+                <span className="command">{currentMission.commandName}</span>
+                <span className="meaning">
+                  {uiLang === 'EN' && currentMission.wordMeaningEn ? currentMission.wordMeaningEn : parseRubyText(currentMission.wordMeaning, furiganaEnabled)}
+                </span>
+              </div>
+              <div className="info-box">
+                <p className="etymology">
+                  <strong>{uiLang === 'EN' ? 'ORIGIN:' : '語源:'}</strong>{' '}
+                  {uiLang === 'EN' && currentMission.etymologyEn ? currentMission.etymologyEn : parseRubyText(currentMission.etymology, furiganaEnabled)}
+                </p>
+                <p className="example">
+                  <strong>{uiLang === 'EN' ? 'EXAMPLE:' : '例文:'}</strong>{' '}
+                  {uiLang === 'EN' && currentMission.exampleSentenceEn ? currentMission.exampleSentenceEn : parseRubyText(currentMission.exampleSentence, furiganaEnabled)}
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="mission-card">
+              <p className="mission-desc">
+                {currentMission 
+                  ? (uiLang === 'EN' && currentMission.descriptionEn 
+                      ? currentMission.descriptionEn 
+                      : parseRubyText(currentMission.description, furiganaEnabled)) 
+                  : ''}
+              </p>
+              <div className="target-keys">
+                {difficulty === 'HARD' ? (
+                  <span className="key-badge highlight">?</span>
+                ) : (
+                  currentMission?.keys.map((k, i) => {
+                    let displayKey = k;
+                    if (k === 'Ctrl') {
+                      displayKey = window.navigator.userAgent.toUpperCase().indexOf('MAC') >= 0 ? '⌘ Cmd' : 'Ctrl';
+                    }
+                    return (
+                      <React.Fragment key={i}>
+                        <span className="key-badge">{displayKey}</span>
+                        {i < currentMission.keys.length - 1 && <span className="plus-sign">+</span>}
+                      </React.Fragment>
+                    );
+                  })
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="keyboard-area">
+          <Keyboard />
+        </div>
       </div>
-    </div>
+    </DisableContextMenu>
   );
 };
 

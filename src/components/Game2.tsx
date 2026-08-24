@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import type { ViewState, Difficulty } from '../types';
 import { useOS } from '../hooks/useOS';
 import Keyboard from './Keyboard';
+import { DisableContextMenu } from './DisableContextMenu';
 import './Game2.css';
 
 interface GameProps {
@@ -202,67 +203,69 @@ useEffect(() => {
 // }
 
 return (
-<div className="newspaper-game-container">
-    {/* 画面上部：現在ミッションガイド（正解キー・語源のネタバレは非表示化） */}
-    <div className="mission-banner">
-    <div className="mission-info">
-        <h2>{mission.title}</h2>
-        <p>{mission.description}</p>
-    </div>
-</div>
-
-    {/* 画面中央：2カラム構成（左：取材メモ / 右：新聞編集画面） */}
-    <div className="editor-workspace">
-    {/* 左カラム：取材メモ */}
-    <div className="workspace-column memo-column">
-        <h3>📰 取材メモ（情報源）</h3>
-        <div className="memo-content">
-        <p>10/01: 生徒会幹部ミーティング実施。</p>
-        <p>10/03: 体育祭の準備スタート。雨天時は体育館。</p>
-        <p>10/05: 吹奏楽部、地区大会で金賞受賞！</p>
-        <p className={`target-text ${searchHighlighted ? 'search-found' : ''}`}>
-            10/08: 【重要】文化祭の日程は「10月15日」に決定しました。
-        </p>
-        <p>10/10: 食堂の秋限定メニュー「栗カツ丼」販売開始。</p>
-        <p>10/12: 図書室の新着図書コーナー更新。</p>
+    <DisableContextMenu>
+        <div className="newspaper-game-container">
+            {/* 画面上部：現在ミッションガイド（正解キー・語源のネタバレは非表示化） */}
+            <div className="mission-banner">
+            <div className="mission-info">
+                <h2>{mission.title}</h2>
+                <p>{mission.description}</p>
+            </div>
         </div>
-    </div>
 
-    {/* 右カラム：新聞編集画面 */}
-    <div className="workspace-column article-column">
-        <h3>✏️ 学校新聞「号外」編集画面</h3>
-        <div className="article-preview">
-        <pre>{articleText}</pre>
+            {/* 画面中央：2カラム構成（左：取材メモ / 右：新聞編集画面） */}
+            <div className="editor-workspace">
+            {/* 左カラム：取材メモ */}
+            <div className="workspace-column memo-column">
+                <h3>📰 取材メモ（情報源）</h3>
+                <div className="memo-content">
+                <p>10/01: 生徒会幹部ミーティング実施。</p>
+                <p>10/03: 体育祭の準備スタート。雨天時は体育館。</p>
+                <p>10/05: 吹奏楽部、地区大会で金賞受賞！</p>
+                <p className={`target-text ${searchHighlighted ? 'search-found' : ''}`}>
+                    10/08: 【重要】文化祭の日程は「10月15日」に決定しました。
+                </p>
+                <p>10/10: 食堂の秋限定メニュー「栗カツ丼」販売開始。</p>
+                <p>10/12: 図書室の新着図書コーナー更新。</p>
+                </div>
+            </div>
+
+            {/* 右カラム：新聞編集画面 */}
+            <div className="workspace-column article-column">
+                <h3>✏️ 学校新聞「号外」編集画面</h3>
+                <div className="article-preview">
+                <pre>{articleText}</pre>
+                </div>
+            </div>
+            </div>
+
+            {/* 正解時の演出オーバーレイ */}
+            {showSuccessOverlay && lastClearedMission && (
+            <div className="success-pop-overlay">
+                <div className="success-pop-card">
+                <div className="success-badge">SUCCESS!</div>
+                <h3>
+                    {isMac
+                    ? lastClearedMission.shortcutName.replace('Ctrl', '⌘ Cmd')
+                    : lastClearedMission.shortcutName}
+                </h3>
+                <p className="origin-text">{lastClearedMission.origin}</p>
+                <p className="detail-text">{lastClearedMission.detail}</p>
+
+                {/* ★ クリックでもEnterでも次に進めるボタン */}
+                <button className="next-mission-btn" onClick={advanceToNextStep}>
+                    次へ進む <span className="enter-badge">Enter ↵</span>
+                </button>
+                </div>
+            </div>
+            )}
+
+            {/* 画面下部：キーボードUI */}
+            <div className="keyboard-area">
+            <Keyboard />
+            </div>
         </div>
-    </div>
-    </div>
-
-    {/* 正解時の演出オーバーレイ */}
-    {showSuccessOverlay && lastClearedMission && (
-    <div className="success-pop-overlay">
-        <div className="success-pop-card">
-        <div className="success-badge">SUCCESS!</div>
-        <h3>
-            {isMac
-            ? lastClearedMission.shortcutName.replace('Ctrl', '⌘ Cmd')
-            : lastClearedMission.shortcutName}
-        </h3>
-        <p className="origin-text">{lastClearedMission.origin}</p>
-        <p className="detail-text">{lastClearedMission.detail}</p>
-
-        {/* ★ クリックでもEnterでも次に進めるボタン */}
-        <button className="next-mission-btn" onClick={advanceToNextStep}>
-            次へ進む <span className="enter-badge">Enter ↵</span>
-        </button>
-        </div>
-    </div>
-    )}
-
-    {/* 画面下部：キーボードUI */}
-    <div className="keyboard-area">
-    <Keyboard />
-    </div>
-</div>
+    </DisableContextMenu>
 );
 };
 
