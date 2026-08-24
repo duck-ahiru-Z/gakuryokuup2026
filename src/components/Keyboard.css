@@ -6,9 +6,11 @@
   padding: 1rem;
   border: var(--sharp-border);
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  width: 100%;
-  max-width: 800px; /* 全体の最大幅を指定 */
   box-sizing: border-box;
+  /* --- 変更箇所 --- */
+  width: 100%;           /* 親要素の中で広がるようにする */
+  max-width: 800px;      /* 広がりすぎない上限（お好みのサイズに調整可能） */
+  margin: 0 auto;        /* これで 800px 以下でも以上でも常に中央に寄る */
 }
 
 .kb-row {

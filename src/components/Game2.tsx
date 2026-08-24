@@ -161,45 +161,45 @@ useEffect(() => {
     };
 }, [handleKeyDown, handleKeyUp]);
 
-if (clearTime !== null) {
-    const manualTime = (clearTime * 3.5).toFixed(1);
-    const savedTime = (Number(manualTime) - clearTime).toFixed(1);
+// if (clearTime !== null) {
+//     const manualTime = (clearTime * 3.5).toFixed(1);
+//     const savedTime = (Number(manualTime) - clearTime).toFixed(1);
 
-return (
-    <div className="game-over-container">
-    <h2 className="title">🎉 号外新聞 <span className="highlight">完成！</span></h2>
+// return (
+//     <div className="game-over-container">
+//     <h2 className="title">🎉 号外新聞 <span className="highlight">完成！</span></h2>
     
-    <div className="final-stats">
-        <div className="stat-row">
-        <span>完成タイム:</span>
-        <span className="highlight" style={{ fontSize: '2rem' }}>{clearTime} 秒</span>
-        </div>
-        <div className="stat-row">
-        <span>手作業での想定時間:</span>
-        <span style={{ textDecoration: 'line-through', color: '#888' }}>{manualTime} 秒</span>
-        </div>
-        <div className="stat-row highlight-box">
-        <span>短縮できた学習時間:</span>
-        <span style={{ color: 'var(--success-color)', fontWeight: 'bold' }}>{savedTime} 秒短縮！</span>
-        </div>
-    </div>
+//     <div className="final-stats">
+//         <div className="stat-row">
+//         <span>完成タイム:</span>
+//         <span className="highlight" style={{ fontSize: '2rem' }}>{clearTime} 秒</span>
+//         </div>
+//         <div className="stat-row">
+//         <span>手作業での想定時間:</span>
+//         <span style={{ textDecoration: 'line-through', color: '#888' }}>{manualTime} 秒</span>
+//         </div>
+//         <div className="stat-row highlight-box">
+//         <span>短縮できた学習時間:</span>
+//         <span style={{ color: 'var(--success-color)', fontWeight: 'bold' }}>{savedTime} 秒短縮！</span>
+//         </div>
+//     </div>
 
-    <div className="learning-summary">
-        <h3>💡 今回学んだ英単語とショートカット</h3>
-        <ul>
-        <li><strong>Ctrl + F</strong> ➔ <b>Find</b>（探す）</li>
-        <li><strong>Ctrl + C / V</strong> ➔ <b>Copy & Paste</b>（複製・貼り付け）</li>
-        <li><strong>Ctrl + Z</strong> ➔ <b>Undo</b>（元に戻す）</li>
-        </ul>
-    </div>
+//     <div className="learning-summary">
+//         <h3>💡 今回学んだ英単語とショートカット</h3>
+//         <ul>
+//         <li><strong>Ctrl + F</strong> ➔ <b>Find</b>（探す）</li>
+//         <li><strong>Ctrl + C / V</strong> ➔ <b>Copy & Paste</b>（複製・貼り付け）</li>
+//         <li><strong>Ctrl + Z</strong> ➔ <b>Undo</b>（元に戻す）</li>
+//         </ul>
+//     </div>
 
-    <button className="primary-btn mt-2" onClick={() => onNavigate('result')}>
-        STATUS VIEW
-    </button>
-    </div>
-);
+//     <button className="primary-btn mt-2" onClick={() => onNavigate('result')}>
+//         STATUS VIEW
+//     </button>
+//     </div>
+// );
 
-}
+// }
 
 return (
 <div className="newspaper-game-container">
