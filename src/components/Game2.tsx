@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import type { ViewState, Difficulty } from '../types';
 import { useOS } from '../hooks/useOS';
 import Keyboard from './Keyboard';
+import { DisableContextMenu } from './DisableContextMenu';
 import './Game2.css';
 
 interface GameProps {
@@ -161,108 +162,110 @@ useEffect(() => {
     };
 }, [handleKeyDown, handleKeyUp]);
 
-if (clearTime !== null) {
-    const manualTime = (clearTime * 3.5).toFixed(1);
-    const savedTime = (Number(manualTime) - clearTime).toFixed(1);
+// if (clearTime !== null) {
+//     const manualTime = (clearTime * 3.5).toFixed(1);
+//     const savedTime = (Number(manualTime) - clearTime).toFixed(1);
 
-return (
-    <div className="game-over-container">
-    <h2 className="title">🎉 号外新聞 <span className="highlight">完成！</span></h2>
+// return (
+//     <div className="game-over-container">
+//     <h2 className="title">🎉 号外新聞 <span className="highlight">完成！</span></h2>
     
-    <div className="final-stats">
-        <div className="stat-row">
-        <span>完成タイム:</span>
-        <span className="highlight" style={{ fontSize: '2rem' }}>{clearTime} 秒</span>
-        </div>
-        <div className="stat-row">
-        <span>手作業での想定時間:</span>
-        <span style={{ textDecoration: 'line-through', color: '#888' }}>{manualTime} 秒</span>
-        </div>
-        <div className="stat-row highlight-box">
-        <span>短縮できた学習時間:</span>
-        <span style={{ color: 'var(--success-color)', fontWeight: 'bold' }}>{savedTime} 秒短縮！</span>
-        </div>
-    </div>
+//     <div className="final-stats">
+//         <div className="stat-row">
+//         <span>完成タイム:</span>
+//         <span className="highlight" style={{ fontSize: '2rem' }}>{clearTime} 秒</span>
+//         </div>
+//         <div className="stat-row">
+//         <span>手作業での想定時間:</span>
+//         <span style={{ textDecoration: 'line-through', color: '#888' }}>{manualTime} 秒</span>
+//         </div>
+//         <div className="stat-row highlight-box">
+//         <span>短縮できた学習時間:</span>
+//         <span style={{ color: 'var(--success-color)', fontWeight: 'bold' }}>{savedTime} 秒短縮！</span>
+//         </div>
+//     </div>
 
-    <div className="learning-summary">
-        <h3>💡 今回学んだ英単語とショートカット</h3>
-        <ul>
-        <li><strong>Ctrl + F</strong> ➔ <b>Find</b>（探す）</li>
-        <li><strong>Ctrl + C / V</strong> ➔ <b>Copy & Paste</b>（複製・貼り付け）</li>
-        <li><strong>Ctrl + Z</strong> ➔ <b>Undo</b>（元に戻す）</li>
-        </ul>
-    </div>
+//     <div className="learning-summary">
+//         <h3>💡 今回学んだ英単語とショートカット</h3>
+//         <ul>
+//         <li><strong>Ctrl + F</strong> ➔ <b>Find</b>（探す）</li>
+//         <li><strong>Ctrl + C / V</strong> ➔ <b>Copy & Paste</b>（複製・貼り付け）</li>
+//         <li><strong>Ctrl + Z</strong> ➔ <b>Undo</b>（元に戻す）</li>
+//         </ul>
+//     </div>
 
-    <button className="primary-btn mt-2" onClick={() => onNavigate('result')}>
-        STATUS VIEW
-    </button>
-    </div>
-);
+//     <button className="primary-btn mt-2" onClick={() => onNavigate('result')}>
+//         STATUS VIEW
+//     </button>
+//     </div>
+// );
 
-}
+// }
 
 return (
-<div className="newspaper-game-container">
-    {/* 画面上部：現在ミッションガイド（正解キー・語源のネタバレは非表示化） */}
-    <div className="mission-banner">
-    <div className="mission-info">
-        <h2>{mission.title}</h2>
-        <p>{mission.description}</p>
-    </div>
-</div>
-
-    {/* 画面中央：2カラム構成（左：取材メモ / 右：新聞編集画面） */}
-    <div className="editor-workspace">
-    {/* 左カラム：取材メモ */}
-    <div className="workspace-column memo-column">
-        <h3>📰 取材メモ（情報源）</h3>
-        <div className="memo-content">
-        <p>10/01: 生徒会幹部ミーティング実施。</p>
-        <p>10/03: 体育祭の準備スタート。雨天時は体育館。</p>
-        <p>10/05: 吹奏楽部、地区大会で金賞受賞！</p>
-        <p className={`target-text ${searchHighlighted ? 'search-found' : ''}`}>
-            10/08: 【重要】文化祭の日程は「10月15日」に決定しました。
-        </p>
-        <p>10/10: 食堂の秋限定メニュー「栗カツ丼」販売開始。</p>
-        <p>10/12: 図書室の新着図書コーナー更新。</p>
+    <DisableContextMenu>
+        <div className="newspaper-game-container">
+            {/* 画面上部：現在ミッションガイド（正解キー・語源のネタバレは非表示化） */}
+            <div className="mission-banner">
+            <div className="mission-info">
+                <h2>{mission.title}</h2>
+                <p>{mission.description}</p>
+            </div>
         </div>
-    </div>
 
-    {/* 右カラム：新聞編集画面 */}
-    <div className="workspace-column article-column">
-        <h3>✏️ 学校新聞「号外」編集画面</h3>
-        <div className="article-preview">
-        <pre>{articleText}</pre>
+            {/* 画面中央：2カラム構成（左：取材メモ / 右：新聞編集画面） */}
+            <div className="editor-workspace">
+            {/* 左カラム：取材メモ */}
+            <div className="workspace-column memo-column">
+                <h3>📰 取材メモ（情報源）</h3>
+                <div className="memo-content">
+                <p>10/01: 生徒会幹部ミーティング実施。</p>
+                <p>10/03: 体育祭の準備スタート。雨天時は体育館。</p>
+                <p>10/05: 吹奏楽部、地区大会で金賞受賞！</p>
+                <p className={`target-text ${searchHighlighted ? 'search-found' : ''}`}>
+                    10/08: 【重要】文化祭の日程は「10月15日」に決定しました。
+                </p>
+                <p>10/10: 食堂の秋限定メニュー「栗カツ丼」販売開始。</p>
+                <p>10/12: 図書室の新着図書コーナー更新。</p>
+                </div>
+            </div>
+
+            {/* 右カラム：新聞編集画面 */}
+            <div className="workspace-column article-column">
+                <h3>✏️ 学校新聞「号外」編集画面</h3>
+                <div className="article-preview">
+                <pre>{articleText}</pre>
+                </div>
+            </div>
+            </div>
+
+            {/* 正解時の演出オーバーレイ */}
+            {showSuccessOverlay && lastClearedMission && (
+            <div className="success-pop-overlay">
+                <div className="success-pop-card">
+                <div className="success-badge">SUCCESS!</div>
+                <h3>
+                    {isMac
+                    ? lastClearedMission.shortcutName.replace('Ctrl', '⌘ Cmd')
+                    : lastClearedMission.shortcutName}
+                </h3>
+                <p className="origin-text">{lastClearedMission.origin}</p>
+                <p className="detail-text">{lastClearedMission.detail}</p>
+
+                {/* ★ クリックでもEnterでも次に進めるボタン */}
+                <button className="next-mission-btn" onClick={advanceToNextStep}>
+                    次へ進む <span className="enter-badge">Enter ↵</span>
+                </button>
+                </div>
+            </div>
+            )}
+
+            {/* 画面下部：キーボードUI */}
+            <div className="keyboard-area">
+            <Keyboard />
+            </div>
         </div>
-    </div>
-    </div>
-
-    {/* 正解時の演出オーバーレイ */}
-    {showSuccessOverlay && lastClearedMission && (
-    <div className="success-pop-overlay">
-        <div className="success-pop-card">
-        <div className="success-badge">SUCCESS!</div>
-        <h3>
-            {isMac
-            ? lastClearedMission.shortcutName.replace('Ctrl', '⌘ Cmd')
-            : lastClearedMission.shortcutName}
-        </h3>
-        <p className="origin-text">{lastClearedMission.origin}</p>
-        <p className="detail-text">{lastClearedMission.detail}</p>
-
-        {/* ★ クリックでもEnterでも次に進めるボタン */}
-        <button className="next-mission-btn" onClick={advanceToNextStep}>
-            次へ進む <span className="enter-badge">Enter ↵</span>
-        </button>
-        </div>
-    </div>
-    )}
-
-    {/* 画面下部：キーボードUI */}
-    <div className="keyboard-area">
-    <Keyboard />
-    </div>
-</div>
+    </DisableContextMenu>
 );
 };
 
