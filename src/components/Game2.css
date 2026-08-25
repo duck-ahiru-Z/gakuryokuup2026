@@ -1,58 +1,69 @@
-/* 新聞編集画面のレイアウト */
-.newspaper-game-container {
+/* Game2 (Practical Mode) Layout */
+.game2-container {
     display: flex;
     flex-direction: column;
     gap: 15px;
     max-width: 1000px;
     margin: 0 auto;
+    height: 100%;
 }
 
-.mission-banner {
-    background: var(--bg-tertiary);
-    padding: 15px 20px;
-    border-radius: 8px;
+.game2-container.empty-state {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.g2-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: var(--bg-tertiary);
+    padding: 15px 20px;
+    border-radius: 0;
+    border: 1px solid var(--border-color);
 }
 
-.shortcut-target {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
-}
-
-.origin-tag {
-    font-size: 0.85rem;
-    color: var(--accent-color);
+.g2-title {
+    font-size: 1.2rem;
     font-weight: bold;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.g2-progress {
+    font-weight: bold;
+    color: var(--accent-color);
 }
 
 /* 2カラムワークスペース */
-.editor-workspace {
+.g2-workspace {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
-    height: 260px;
+    height: 280px;
 }
 
-.workspace-column {
+.g2-pane {
     background: var(--bg-primary);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 0;
     padding: 15px;
     display: flex;
     flex-direction: column;
 }
 
-.workspace-column h3 {
+.pane-header {
     font-size: 0.95rem;
     margin-bottom: 10px;
     color: var(--text-secondary);
+    font-weight: bold;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 5px;
 }
 
-.memo-content, .article-preview {
+.pane-content {
     flex: 1;
     overflow-y: auto;
     font-family: monospace;
@@ -60,140 +71,85 @@
     line-height: 1.6;
     background: var(--bg-tertiary);
     padding: 10px;
-    border-radius: 4px;
+    border-radius: 0;
 }
 
-/* Ctrl+F で検索成功した時の黄色のハイライトアニメーション */
-.target-text.search-found {
-background-color: #ffd700;
-color: #000;
-font-weight: bold;
-padding: 2px 4px;
-border-radius: 3px;
-transition: all 0.3s ease;
+/* 検索成功時のハイライト */
+.search-found {
+    background-color: var(--accent-color);
+    color: #000;
+    font-weight: bold;
+    padding: 2px 4px;
+    border-radius: 0;
+    transition: all 0.3s ease;
 }
 
-/* 正解時のポップアップ演出 */
-.success-pop-overlay {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: rgba(0, 0, 0, 0.65);
-display: flex;
-justify-content: center;
-align-items: center;
-z-index: 100;
-backdrop-filter: blur(4px);
+/* ミッション情報エリア */
+.g2-mission-box {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 0;
+    text-align: center;
 }
 
-.success-pop-card {
-background: var(--bg-tertiary, #1e1e2f);
-border: 2px solid var(--success-color, #4caf50);
-padding: 25px 40px;
-border-radius: 12px;
-text-align: center;
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.m-title {
+    font-size: 1.4rem;
+    color: var(--accent-color);
+    margin-bottom: 10px;
 }
 
-.success-badge {
-color: var(--success-color, #4caf50);
-font-size: 1.5rem;
-font-weight: bold;
-letter-spacing: 2px;
+.m-desc {
+    font-size: 1.1rem;
+    color: var(--text-primary);
 }
 
-.success-pop-card h3 {
-font-size: 2.2rem;
-margin: 10px 0 5px 0;
-color: #fff;
+.g2-clear-state h3 {
+    color: var(--success-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
 }
 
-.origin-text {
-font-size: 1.1rem;
-color: var(--accent-color, #00bcd4);
-font-weight: bold;
+.g2-finish-btn {
+    margin-top: 15px;
 }
 
-.detail-text {
-font-size: 0.9rem;
-color: #ccc;
-margin-top: 8px;
+/* 正解時のポップアップオーバーレイ */
+.g2-success-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(4px);
+}
+
+.g2-success-content {
+    background: var(--bg-primary);
+    border: 2px solid var(--success-color);
+    padding: 30px 60px;
+    border-radius: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.g2-success-text {
+    color: var(--success-color);
+    font-size: 2.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
 }
 
 @keyframes popIn {
-from { transform: scale(0.7); opacity: 0; }
-to { transform: scale(1); opacity: 1; }
-}
-
-@keyframes pulse {
-0% { transform: scale(1); }
-50% { transform: scale(1.03); }
-100% { transform: scale(1); }
-}
-
-/* リザルト画面の学習サマリー */
-.learning-summary {
-background: var(--bg-tertiary);
-padding: 15px;
-border-radius: 8px;
-margin: 15px 0;
-text-align: left;
-}
-
-.learning-summary ul {
-margin-top: 8px;
-padding-left: 20px;
-}
-
-/* 「次へ進む」アクションボタン */
-.next-mission-btn {
-    margin-top: 22px;
-    padding: 12px 28px;
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: #ffffff;
-    /* 鮮やかな濃い青のグラデーション */
-    background: linear-gradient(135deg, #1e69ff 0%, #0042cb 100%);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    /* 滑らかな浮き上がりと影の変化を実現するトランジション */
-    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
-                box-shadow 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
-                background 0.25s ease;
-    /* デフォルトの影（存在感出し） */
-    box-shadow: 0 4px 14px rgba(0, 66, 203, 0.4);
-}
-
-/* マウスが近づいた（ホバーした）時の浮き上がり演出 */
-.next-mission-btn:hover {
-    /* 上に4px浮かせる */
-    transform: translateY(-4px) scale(1.02);
-    /* 少し明るい青へ */
-    background: linear-gradient(135deg, #3277ff 0%, #0d51e4 100%);
-    /* 影を強く・広くして浮遊感を強調 */
-    box-shadow: 0 8px 24px rgba(0, 66, 203, 0.6);
-}
-
-/* クリックした（押した）瞬間のフィードバック */
-.next-mission-btn:active {
-  /* 押した感が出るように沈み込ませる */
-    transform: translateY(-1px) scale(0.98);
-    box-shadow: 0 3px 10px rgba(0, 66, 203, 0.5);
-}
-
-/* ボタン内の Enter キーバッジ */
-.enter-badge {
-    background: rgba(255, 255, 255, 0.25);
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    font-family: monospace;
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
