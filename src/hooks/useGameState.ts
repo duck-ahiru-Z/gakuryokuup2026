@@ -13,10 +13,18 @@ export function useGameState(isActive: boolean, difficulty: Difficulty, onGameEn
   const [showExplanation, setShowExplanation] = useState(false);
   
   const generateMission = useCallback(() => {
-    const randomIndex = Math.floor(Math.random() * SHORTCUTS.length);
-    setCurrentMission(SHORTCUTS[randomIndex]);
+    let validShortcuts = SHORTCUTS;
+
+    if (difficulty === 'EASY') {
+      validShortcuts = SHORTCUTS.filter(sc => sc.difficulty === 'EASY');
+    } else if (difficulty === 'NORMAL') {
+      validShortcuts = SHORTCUTS.filter(sc => sc.difficulty === 'EASY' || sc.difficulty === 'NORMAL');
+    }
+    
+    const randomIndex = Math.floor(Math.random() * validShortcuts.length);
+    setCurrentMission(validShortcuts[randomIndex]);
     setShowExplanation(false);
-  }, []);
+  }, [difficulty]);
 
   useEffect(() => {
     if (isActive) {
