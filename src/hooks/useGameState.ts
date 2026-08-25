@@ -1,22 +1,32 @@
 import { useState, useEffect, useCallback } from 'react';
 import { SHORTCUTS } from '../data/shortcutsData';
 import type { ShortcutData, Difficulty } from '../types';
+import { useOS } from './useOS';
 
 const GAME_DURATION_SECONDS = 30;
 const BASE_SCORE_PER_SUCCESS = 100;
 const EXPLANATION_DURATION_MS = 2000;
+
 
 export function useGameState(isActive: boolean, difficulty: Difficulty, onGameEnd: (score: number) => void) {
   const [currentMission, setCurrentMission] = useState<ShortcutData | null>(null);
   const [playerScore, setPlayerScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(GAME_DURATION_SECONDS); 
   const [showExplanation, setShowExplanation] = useState(false);
+  const os = useOS();
   
   const generateMission = useCallback(() => {
-    const randomIndex = Math.floor(Math.random() * SHORTCUTS.length);
-    setCurrentMission(SHORTCUTS[randomIndex]);
+    const validShortcuts = SHORTCUTS.filter(sc => {
+      if (sc.windowsOnly && os !== 'Windows') return false;
+      return true;
+    });
+    
+    if (validShortcuts.length === 0) return; // Safeguard
+    
+    const randomIndex = Math.floor(Math.random() * validShortcuts.length);
+    setCurrentMission(validShortcuts[randomIndex]);
     setShowExplanation(false);
-  }, []);
+  }, [os]);
 
   useEffect(() => {
     if (isActive) {

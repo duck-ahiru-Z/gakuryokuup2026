@@ -16,11 +16,22 @@ export function useKeyboardShortcut(isActive: boolean, onAttempt?: (keys: Set<st
     const key = e.key.length === 1 ? e.key.toUpperCase() : e.key;
     const newKeys = new Set<string>();
     
-    if (e.ctrlKey || e.metaKey) newKeys.add('Ctrl');
+    const isMac = navigator.userAgent.toUpperCase().indexOf('MAC') >= 0;
+    const isChromeOS = navigator.userAgent.toUpperCase().indexOf('CROS') >= 0;
+
+    if (e.ctrlKey) newKeys.add('Ctrl');
+    if (e.metaKey) {
+      if (isMac) newKeys.add('Cmd');
+      else if (isChromeOS) newKeys.add('Search');
+      else newKeys.add('Win');
+    }
     if (e.shiftKey) newKeys.add('Shift');
-    if (e.altKey) newKeys.add('Alt');
+    if (e.altKey) {
+      if (isMac) newKeys.add('Option');
+      else newKeys.add('Alt');
+    }
     
-    const isModifier = ['CONTROL', 'META', 'SHIFT', 'ALT'].includes(key.toUpperCase());
+    const isModifier = ['CONTROL', 'META', 'SHIFT', 'ALT', 'OS'].includes(key.toUpperCase());
     if (!isModifier) {
       newKeys.add(key);
       

@@ -4,9 +4,11 @@ import { useGameState } from '../hooks/useGameState';
 import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
 import { storageUtils } from '../utils/storageUtils';
 import  Keyboard  from './Keyboard';
-import { parseRubyText } from '../utils/shortcutUtils';
+import { parseRubyText, resolveKeys } from '../utils/shortcutUtils';
 import { DisableContextMenu } from './DisableContextMenu'; 
 import './Game.css';
+
+import { useOS } from '../hooks/useOS';
 
 interface GameProps {
   onNavigate: (view: ViewState) => void;
@@ -16,6 +18,7 @@ interface GameProps {
 }
 
 const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, uiLang }) => {
+  const os = useOS();
   const [finalScore, setFinalScore] = useState<number | null>(null);
 
   const handleGameEnd = (score: number) => {
@@ -36,9 +39,10 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
     if (currentMission && !showExplanation) {
       // Create a temporary array of pressed keys for checking
       const keysArray = Array.from(keys);
-      let isMatch = keysArray.length === currentMission.keys.length;
+      const targetKeys = resolveKeys(currentMission, os);
+      let isMatch = keysArray.length === targetKeys.length;
       if (isMatch) {
-        for (const targetKey of currentMission.keys) {
+        for (const targetKey of targetKeys) {
           if (!keys.has(targetKey)) {
             isMatch = false;
             break;
@@ -129,15 +133,11 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
                 {difficulty === 'HARD' ? (
                   <span className="key-badge highlight">?</span>
                 ) : (
-                  currentMission?.keys.map((k, i) => {
-                    let displayKey = k;
-                    if (k === 'Ctrl') {
-                      displayKey = window.navigator.userAgent.toUpperCase().indexOf('MAC') >= 0 ? '⌘ Cmd' : 'Ctrl';
-                    }
+                  currentMission && resolveKeys(currentMission, os).map((displayKey, i) => {
                     return (
                       <React.Fragment key={i}>
                         <span className="key-badge">{displayKey}</span>
-                        {i < currentMission.keys.length - 1 && <span className="plus-sign">+</span>}
+                        {i < resolveKeys(currentMission, os).length - 1 && <span className="plus-sign">+</span>}
                       </React.Fragment>
                     );
                   })

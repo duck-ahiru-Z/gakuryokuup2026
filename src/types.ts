@@ -17,6 +17,7 @@ export interface ShortcutData {
   keys: string[]; // e.g., ['Ctrl', 'C']
   macKeys?: string[]; // OS specific overrides
   chromeKeys?: string[];
+  windowsOnly?: boolean; // True if this shortcut only exists/makes sense on Windows
   commandName: string; // e.g., 'Copy'
   description: string; // "文章を複製する"
   descriptionEn?: string;

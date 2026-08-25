@@ -475,6 +475,7 @@
     "descriptionEn": "Open clipboard history",
     "wordMeaningEn": "To view clipboard",
     "etymologyEn": "V for paste (Windows key makes it history)",
-    "exampleSentenceEn": "I chose an older copied item from the history."
+    "exampleSentenceEn": "I chose an older copied item from the history.",
+    "windowsOnly": true
   }
 ]
