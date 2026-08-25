@@ -1,0 +1,71 @@
+{
+  "id": "practical_1",
+  "titleEn": "School Newspaper Edition",
+  "titleJa": "MISSION 1: 取材メモから「日程」を探せ！",
+  "descriptionEn": "Use search, copy, paste, and undo to edit an article.",
+  "descriptionJa": "大量のメモから「文化祭の日程」を探してください。",
+  "leftColumnTitleEn": "Research Notes",
+  "leftColumnTitleJa": "取材メモ一覧",
+  "rightColumnTitleEn": "Newspaper Article",
+  "rightColumnTitleJa": "学級新聞",
+  "initialLeftText": [
+    "10/01: 生徒会幹部ミーティング実施。",
+    "10/03: 体育祭の準備スタート。雨天時は体育館。",
+    "10/05: 吹奏楽部、地区大会で金賞受賞！",
+    "10/08: 【重要】文化祭の日程は「10月15日」に決定しました。",
+    "10/10: 食堂の秋限定メニュー「栗カツ丼」販売開始。",
+    "10/12: 図書室の新着図書コーナー更新。"
+  ],
+  "initialRightText": "見出し：今年の文化祭について\n\n今年の文化祭の日程についてお知らせします。\n日程は、\n(未定)\n\nとなっております。",
+  "missions": [
+    {
+      "id": 1,
+      "titleEn": "Find the schedule",
+      "titleJa": "MISSION 1: 取材メモから「日程」を探せ！",
+      "descriptionEn": "Find the festival schedule from the notes.",
+      "descriptionJa": "大量のメモから「文化祭の日程」を探してください。",
+      "shortcutId": "search",
+      "successAction": {
+        "type": "highlight_left",
+        "targetText": "10/08: 【重要】文化祭の日程は「10月15日」に決定しました。"
+      }
+    },
+    {
+      "id": 2,
+      "titleEn": "Copy the schedule",
+      "titleJa": "MISSION 1-b: 見つけた日程をコピーせよ！",
+      "descriptionEn": "Copy the festival schedule.",
+      "descriptionJa": "見つけた日程をコピーしてください。",
+      "shortcutId": "copy",
+      "successAction": {
+        "type": "none"
+      }
+    },
+    {
+      "id": 3,
+      "titleEn": "Paste the schedule",
+      "titleJa": "MISSION 2: 見つけた情報を記事に挿入せよ！",
+      "descriptionEn": "Paste the schedule into the article.",
+      "descriptionJa": "コピーした日程を編集画面に貼り付けてください。",
+      "shortcutId": "paste",
+      "successAction": {
+        "type": "replace_right",
+        "replaceTarget": "(未定)",
+        "replaceWith": "【誤】10月25日\n（※あっ！わざと間違えた情報が入ってしまった！）"
+      }
+    },
+    {
+      "id": 4,
+      "titleEn": "Undo the mistake",
+      "titleJa": "MISSION 3: 間違えた入力を取り消せ！",
+      "descriptionEn": "Undo the accidental paste.",
+      "descriptionJa": "⚠️速報：誤った日程が入ってしまいました！ 直前の操作を取り消してください。",
+      "shortcutId": "undo",
+      "successAction": {
+        "type": "replace_right",
+        "replaceTarget": "【誤】10月25日\n（※あっ！わざと間違えた情報が入ってしまった！）",
+        "replaceWith": "10月15日"
+      }
+    }
+  ]
+}

@@ -9,15 +9,15 @@ interface ModeSelectProps {
   onNavigate: (view: ViewState) => void;
   difficulty: Difficulty;
   setDifficulty: (d: Difficulty) => void;
+  selectedModeId: string | null;
+  setSelectedModeId: (id: string | null) => void;
   uiLang: 'EN' | 'JA';
   furiganaEnabled: boolean;
 }
 
 const ModeSelect: React.FC<ModeSelectProps> = ({ 
-  onNavigate, difficulty, setDifficulty, uiLang, furiganaEnabled 
+  onNavigate, difficulty, setDifficulty, selectedModeId, setSelectedModeId, uiLang, furiganaEnabled 
 }) => {
-  const [selectedModeId, setSelectedModeId] = useState<string | null>(null);
-
   const practicalModes = (gameModes as GameModeData[]).filter(m => m.type === 'practical');
 
 
