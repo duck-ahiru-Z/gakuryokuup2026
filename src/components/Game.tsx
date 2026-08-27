@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import type { ViewState, Difficulty } from '../types';
 import { useGameState } from '../hooks/useGameState';
 import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
+import { useAudio } from '../hooks/useAudio';
 import { storageUtils } from '../utils/storageUtils';
 import  Keyboard  from './Keyboard';
 import { parseRubyText } from '../utils/shortcutUtils';
@@ -32,6 +33,8 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
     handleSuccess,
   } = useGameState(finalScore === null, difficulty, handleGameEnd);
 
+  const { playSound, speakWord } = useAudio();
+
   const handleAttempt = useCallback((keys: Set<string>) => {
     if (currentMission && !showExplanation) {
       // Create a temporary array of pressed keys for checking
@@ -47,15 +50,22 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
       }
 
       if (isMatch) {
+        playSound('success');
+        // Read out the command name if it exists
+        if (currentMission.commandName) {
+           speakWord(currentMission.commandName);
+        }
+        
         storageUtils.recordAttempt(true, currentMission.id);
         storageUtils.addXP(0, currentMission.id); 
         handleSuccess();
         clearKeys();
       } else {
+        playSound('error');
         storageUtils.recordAttempt(false, currentMission.id);
       }
     }
-  }, [currentMission, showExplanation, handleSuccess]);
+  }, [currentMission, showExplanation, handleSuccess, playSound, speakWord]);
 
   const { pressedKeys, clearKeys } = useKeyboardShortcut(finalScore === null, handleAttempt);
 
