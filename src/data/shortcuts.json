@@ -475,6 +475,32 @@
     "descriptionEn": "Open clipboard history",
     "wordMeaningEn": "To view clipboard",
     "etymologyEn": "V for paste (Windows key makes it history)",
-    "exampleSentenceEn": "I chose an older copied item from the history."
+    "exampleSentenceEn": "I chose an older copied item from the history.",
+    "windowsOnly": true
+  },
+  {
+    "id": "full_screenshot",
+    "difficulty": "HARD",
+    "keys": [
+      "Win",
+      "PrintScreen"
+    ],
+    "macKeys": [
+      "Cmd",
+      "Shift",
+      "3"
+    ],
+    "chromeKeys": [
+      "Ctrl",
+      "📸"
+    ],
+    "commandName": "Full Screenshot",
+    "description": "[画面全体](がめんぜんたい)を[写真](しゃしん)に[撮](と)って[画像](がぞう)として[保存](ほぞん)する",
+    "wordMeaning": "[全画面](ぜんがめん)スクリーンショット",
+    "etymology": "Print Screen ([画面](がめん)を[印刷](いんさつ)・[撮影](さつえい)する) に由来",
+    "descriptionEn": "Take a screenshot of the entire screen",
+    "wordMeaningEn": "To capture full screen",
+    "etymologyEn": "PrintScreen is dedicated to capturing the screen",
+    "exampleSentenceEn": "I took a full screenshot to share my desktop."
   }
 ]
