@@ -86,6 +86,8 @@ export function useAudio() {
     } catch (e) {
       console.warn('Audio play failed:', e);
     }
+  }, []);
+
   const speakWord = useCallback((text: string) => {
     if (!('speechSynthesis' in window)) return;
     
