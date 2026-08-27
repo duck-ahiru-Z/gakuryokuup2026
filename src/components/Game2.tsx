@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import type { ViewState, Difficulty } from '../types';
 import { useOS } from '../hooks/useOS';
+import { useAudio } from '../hooks/useAudio';
 import Keyboard from './Keyboard';
 import { DisableContextMenu } from './DisableContextMenu';
 import './Game2.css';
@@ -46,6 +47,7 @@ detail: '間違いを恐れずに作業・試行錯誤ができます。',
 
 const Game: React.FC<GameProps> = ({ onNavigate }) => {
 const os = useOS();
+const { playSound, speakWord } = useAudio();
 const isMac = os === 'Mac';
 
 // ゲーム状態
@@ -74,13 +76,14 @@ const ENABLE_AUTO_ADVANCE = true;    // 自動進行を無効化したい場合�
 const advanceToNextStep = useCallback(() => {
     setShowSuccessOverlay(false);
     if (currentStep < MISSIONS.length - 1) {
-    setCurrentStep((prev) => prev + 1);
+      setCurrentStep((prev) => prev + 1);
     } else {
-    // Mission 3 クリア時
-    const totalSeconds = ((Date.now() - startTime) / 1000).toFixed(1);
-    setClearTime(Number(totalSeconds));
+      // Mission 3 クリア時
+      playSound('clear');
+      const totalSeconds = ((Date.now() - startTime) / 1000).toFixed(1);
+      setClearTime(Number(totalSeconds));
     }
-}, [currentStep, startTime]);
+}, [currentStep, startTime, playSound]);
 
 // キー押下判定ロジック
 const handleKeyDown = useCallback(
@@ -113,6 +116,14 @@ const handleKeyDown = useCallback(
     const targetKeyPressed = e.key.toLowerCase() === activeShortcut[1].toLowerCase();
 
     if (modifierPressed && targetKeyPressed) {
+        playSound('success');
+        
+        // Read out the command name (e.g. "Find", "Paste", "Undo")
+        const commandNameMatch = mission.origin.match(/^([A-Za-z]+)\s*=/);
+        if (commandNameMatch) {
+            speakWord(commandNameMatch[1]);
+        }
+        
         // ポップアップ用にクリアしたミッション情報をセット＆表示
         setLastClearedMission(mission);
         setShowSuccessOverlay(true);
@@ -130,7 +141,7 @@ const handleKeyDown = useCallback(
         }
     }
     },
-    [currentStep, isMac, mission, startTime, showSuccessOverlay, clearTime]
+    [currentStep, isMac, mission, startTime, showSuccessOverlay, clearTime, playSound, speakWord, advanceToNextStep]
 );
 
 const handleKeyUp = useCallback((e: KeyboardEvent) => {
