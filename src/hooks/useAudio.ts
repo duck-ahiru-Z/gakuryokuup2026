@@ -27,17 +27,23 @@ export function useAudio() {
 
       switch (type) {
         case 'success':
-          // A pleasant "ding" (high pitch, quick fade)
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(880, now); // A5
-          osc.frequency.exponentialRampToValueAtTime(1760, now + 0.1); // up to A6
+          // A softer, more pleasant double chime (C5 -> G5)
+          osc.type = 'triangle';
           
+          // First note (C5)
+          osc.frequency.setValueAtTime(523.25, now);
+          // Jump to second note (G5) quickly
+          osc.frequency.setValueAtTime(783.99, now + 0.1);
+          
+          // Envelope: Quick attack, slight dip, second attack, fade out
           gainNode.gain.setValueAtTime(0, now);
-          gainNode.gain.linearRampToValueAtTime(0.3, now + 0.05);
-          gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+          gainNode.gain.linearRampToValueAtTime(0.4, now + 0.02); // hit C5
+          gainNode.gain.exponentialRampToValueAtTime(0.1, now + 0.09); // fade C5
+          gainNode.gain.linearRampToValueAtTime(0.4, now + 0.11); // hit G5
+          gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.4); // fade out
           
           osc.start(now);
-          osc.stop(now + 0.5);
+          osc.stop(now + 0.4);
           break;
 
         case 'error':
