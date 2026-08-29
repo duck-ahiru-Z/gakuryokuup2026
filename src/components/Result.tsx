@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import type { ViewState, UserStats } from '../types';
 import { storageUtils } from '../utils/storageUtils';
 import { Trophy, ArrowLeft, Book, Activity, Crosshair, AlertCircle } from 'lucide-react';
-import { parseRubyText } from '../utils/shortcutUtils';
+import { parseRubyText, resolveKeys } from '../utils/shortcutUtils';
+import { useOS } from '../hooks/useOS';
 import { SHORTCUTS } from '../data/shortcutsData';
 import gameModes from '../data/gameModes.json';
 import './Result.css';
@@ -23,6 +24,7 @@ const RANK_MAP: Record<string, string> = {
 
 const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) => {
   const [stats, setStats] = useState<UserStats | null>(null);
+  const os = useOS();
 
   useEffect(() => {
     setStats(storageUtils.getStats());
@@ -58,6 +60,17 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
     if (!mode) return modeId;
     return uiLang === 'EN' ? mode.titleEn : parseRubyText(mode.titleJa, furiganaEnabled);
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const key = e.key.toLowerCase();
+      if (key === 'escape' || key === 'enter') {
+        onNavigate('home');
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onNavigate]);
 
   return (
     <div className="dashboard-container">
@@ -159,7 +172,7 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
               sortedMistakes.map((mistake, idx) => (
                 <div key={idx} className="weak-item">
                   <div className="weak-key">
-                    {mistake.shortcut ? mistake.shortcut.keys.join('+') : 'Unknown'}
+                    {mistake.shortcut ? resolveKeys(mistake.shortcut, os).join('+') : 'Unknown'}
                   </div>
                   <div className="weak-count text-error">
                     {mistake.count} {uiLang === 'EN' ? 'misses' : parseRubyText('[ミス](みす)', furiganaEnabled)}
@@ -174,9 +187,10 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
       </div>
 
       <div className="action-buttons">
-        <button className="primary-btn" onClick={() => onNavigate('home')}>
+        <button className="primary-btn" onClick={() => onNavigate('home')} title="Shortcut: Esc or Enter">
           <ArrowLeft size={20} /> 
           <span>{uiLang === 'EN' ? 'RETURN TO HOME' : parseRubyText('ホームへ[戻](もど)る', furiganaEnabled)}</span>
+          <span className="enter-badge" style={{marginLeft: '10px'}}>Esc</span>
         </button>
       </div>
     </div>
