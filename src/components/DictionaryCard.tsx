@@ -2,7 +2,8 @@ import React from 'react';
 import type { ShortcutData } from '../types';
 import { OS } from '../hooks/useOS';
 import { resolveKeys, parseRubyText } from '../utils/shortcutUtils';
-import { Lock, BookOpen } from 'lucide-react';
+import { Lock, BookOpen, Volume2 } from 'lucide-react';
+import { useAudio } from '../hooks/useAudio';
 
 interface DictionaryCardProps {
   sc: ShortcutData;
@@ -13,6 +14,8 @@ interface DictionaryCardProps {
 }
 
 export const DictionaryCard: React.FC<DictionaryCardProps> = ({ sc, os, uiLang, furiganaEnabled, isUnlocked }) => {
+  const { speakWord } = useAudio();
+
   if (!isUnlocked) {
     return (
       <div className="dict-card locked">
@@ -52,7 +55,17 @@ export const DictionaryCard: React.FC<DictionaryCardProps> = ({ sc, os, uiLang, 
       </div>
       <div className="card-body">
         <div className="word-section">
-          <h3 className="english-word">{sc.commandName.toUpperCase()}</h3>
+          <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+            <h3 className="english-word">{sc.commandName.toUpperCase()}</h3>
+            <button 
+              className="secondary-btn" 
+              style={{padding: '0.25rem 0.5rem', minWidth: 'auto', border: 'none'}}
+              onClick={() => speakWord(sc.commandName)}
+              title="Read aloud"
+            >
+              <Volume2 size={20} />
+            </button>
+          </div>
           <p className="word-meaning">
             {uiLang === 'EN' && sc.wordMeaningEn ? sc.wordMeaningEn : parseRubyText(sc.wordMeaning, furiganaEnabled)}
           </p>

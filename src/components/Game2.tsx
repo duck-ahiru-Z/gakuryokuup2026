@@ -3,6 +3,7 @@ import type { ViewState, Difficulty, PracticalSet } from '../types';
 import { storageUtils } from '../utils/storageUtils';
 import { ArrowLeft, Trophy } from 'lucide-react';
 import { useOS } from '../hooks/useOS';
+import { useAudio } from '../hooks/useAudio';
 import './Game2.css';
 
 // Dynamic import of practical sets
@@ -30,6 +31,7 @@ interface GameProps {
 
 const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1' }) => {
   const os = useOS();
+  const { playSound, speakWord } = useAudio();
   const isMac = os === 'Mac';
   
   const currentSet = PRACTICAL_SETS[selectedModeId] || PRACTICAL_SETS['practical_1'];
@@ -71,6 +73,9 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
       }
 
       if (actionMatches) {
+        playSound('success');
+        speakWord(mission.shortcutId);
+
         // execute action
         const action = mission.successAction;
         if (action.type === 'highlight_left') {
@@ -89,6 +94,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
           if (currentStep < currentSet.missions.length - 1) {
             setCurrentStep(prev => prev + 1);
           } else {
+            playSound('clear');
             if (startTime) {
               setClearTime(Math.floor((Date.now() - startTime) / 1000));
               storageUtils.addXP(300);
@@ -97,7 +103,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         }, 1500);
       }
     },
-    [currentStep, isMac, currentSet, startTime, showSuccessOverlay, clearTime]
+    [currentStep, isMac, currentSet, startTime, showSuccessOverlay, clearTime, playSound, speakWord]
   );
 
   useEffect(() => {
