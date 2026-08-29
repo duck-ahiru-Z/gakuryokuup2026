@@ -42,8 +42,23 @@ const Dictionary: React.FC<DictionaryProps> = ({ onNavigate, uiLang, furiganaEna
   };
 
   const getSectionShortcuts = (difficultyId: string) => {
-    return SHORTCUTS.filter(sc => sc.difficulty === difficultyId as Difficulty);
+    return SHORTCUTS.filter(sc => {
+      if (sc.difficulty !== difficultyId as Difficulty) return false;
+      if (sc.windowsOnly && os !== 'Windows') return false;
+      return true;
+    });
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const key = e.key.toLowerCase();
+      if (key === 'escape' || key === 'enter') {
+        onNavigate('home');
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onNavigate]);
 
   return (
     <div className="dictionary-container">
@@ -51,9 +66,10 @@ const Dictionary: React.FC<DictionaryProps> = ({ onNavigate, uiLang, furiganaEna
         <h2 className="title">
           {uiLang === 'EN' ? 'COLLECTED SHORTCUTS' : parseRubyText('[集](あつ)めたショートカットキー', furiganaEnabled)}
         </h2>
-        <button className="dict-back-btn" onClick={() => onNavigate('home')}>
+        <button className="dict-back-btn" onClick={() => onNavigate('home')} title="Shortcut: Esc or Enter">
           <ArrowLeft size={20} /> 
           <span>{uiLang === 'EN' ? 'RETURN' : parseRubyText('[戻](もど)る', furiganaEnabled)}</span>
+          <span className="enter-badge" style={{marginLeft: '10px'}}>Esc</span>
         </button>
       </div>
 
