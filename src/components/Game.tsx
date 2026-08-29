@@ -6,7 +6,11 @@ import { storageUtils } from '../utils/storageUtils';
 import  Keyboard  from './Keyboard';
 import { parseRubyText, resolveKeys } from '../utils/shortcutUtils';
 import { DisableContextMenu } from './DisableContextMenu'; 
+import { DictionaryCard } from './DictionaryCard';
+import { useOS } from '../hooks/useOS';
 import './Game.css';
+// import Dictionary CSS so that the card styles apply properly
+import './Dictionary.css';
 
 import { useOS } from '../hooks/useOS';
 
@@ -20,6 +24,7 @@ interface GameProps {
 const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, uiLang }) => {
   const os = useOS();
   const [finalScore, setFinalScore] = useState<number | null>(null);
+  const os = useOS();
 
   const handleGameEnd = (score: number) => {
     storageUtils.addXP(score);
@@ -101,23 +106,16 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
 
         <div className="mission-area">
           {showExplanation && currentMission ? (
-            <div className="explanation-card">
-              <h3 className="success-text">{uiLang === 'EN' ? 'SUCCESS' : '正解！'}</h3>
-              <div className="word-header">
-                <span className="command">{currentMission.commandName}</span>
-                <span className="meaning">
-                  {uiLang === 'EN' && currentMission.wordMeaningEn ? currentMission.wordMeaningEn : parseRubyText(currentMission.wordMeaning, furiganaEnabled)}
-                </span>
-              </div>
-              <div className="info-box">
-                <p className="etymology">
-                  <strong>{uiLang === 'EN' ? 'ORIGIN:' : '語源:'}</strong>{' '}
-                  {uiLang === 'EN' && currentMission.etymologyEn ? currentMission.etymologyEn : parseRubyText(currentMission.etymology, furiganaEnabled)}
-                </p>
-                <p className="example">
-                  <strong>{uiLang === 'EN' ? 'EXAMPLE:' : '例文:'}</strong>{' '}
-                  {uiLang === 'EN' && currentMission.exampleSentenceEn ? currentMission.exampleSentenceEn : parseRubyText(currentMission.exampleSentence, furiganaEnabled)}
-                </p>
+            <div className="explanation-wrapper" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', gap: '1rem' }}>
+              <h3 className="success-text" style={{margin: 0, fontSize: '2rem'}}>{uiLang === 'EN' ? 'SUCCESS' : '正解！'}</h3>
+              <div style={{width: '100%', maxWidth: '500px', textAlign: 'left', animation: 'popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'}}>
+                <DictionaryCard 
+                  sc={currentMission} 
+                  os={os} 
+                  uiLang={uiLang} 
+                  furiganaEnabled={furiganaEnabled} 
+                  isUnlocked={true} 
+                />
               </div>
             </div>
           ) : (
