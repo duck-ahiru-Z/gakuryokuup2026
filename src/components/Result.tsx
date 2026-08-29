@@ -61,6 +61,17 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
     return uiLang === 'EN' ? mode.titleEn : parseRubyText(mode.titleJa, furiganaEnabled);
   };
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const key = e.key.toLowerCase();
+      if (key === 'escape' || key === 'enter') {
+        onNavigate('home');
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onNavigate]);
+
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
@@ -176,9 +187,10 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
       </div>
 
       <div className="action-buttons">
-        <button className="primary-btn" onClick={() => onNavigate('home')}>
+        <button className="primary-btn" onClick={() => onNavigate('home')} title="Shortcut: Esc or Enter">
           <ArrowLeft size={20} /> 
           <span>{uiLang === 'EN' ? 'RETURN TO HOME' : parseRubyText('ホームへ[戻](もど)る', furiganaEnabled)}</span>
+          <span className="enter-badge" style={{marginLeft: '10px'}}>Esc</span>
         </button>
       </div>
     </div>
