@@ -42,7 +42,11 @@ const Dictionary: React.FC<DictionaryProps> = ({ onNavigate, uiLang, furiganaEna
   };
 
   const getSectionShortcuts = (difficultyId: string) => {
-    return SHORTCUTS.filter(sc => sc.difficulty === difficultyId as Difficulty);
+    return SHORTCUTS.filter(sc => {
+      if (sc.difficulty !== difficultyId as Difficulty) return false;
+      if (sc.windowsOnly && os !== 'Windows') return false;
+      return true;
+    });
   };
 
   return (

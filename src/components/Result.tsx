@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import type { ViewState, UserStats } from '../types';
 import { storageUtils } from '../utils/storageUtils';
 import { Trophy, ArrowLeft, Book, Activity, Crosshair, AlertCircle } from 'lucide-react';
-import { parseRubyText } from '../utils/shortcutUtils';
+import { parseRubyText, resolveKeys } from '../utils/shortcutUtils';
+import { useOS } from '../hooks/useOS';
 import { SHORTCUTS } from '../data/shortcutsData';
 import gameModes from '../data/gameModes.json';
 import './Result.css';
@@ -23,6 +24,7 @@ const RANK_MAP: Record<string, string> = {
 
 const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) => {
   const [stats, setStats] = useState<UserStats | null>(null);
+  const os = useOS();
 
   useEffect(() => {
     setStats(storageUtils.getStats());
@@ -159,7 +161,7 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
               sortedMistakes.map((mistake, idx) => (
                 <div key={idx} className="weak-item">
                   <div className="weak-key">
-                    {mistake.shortcut ? mistake.shortcut.keys.join('+') : 'Unknown'}
+                    {mistake.shortcut ? resolveKeys(mistake.shortcut, os).join('+') : 'Unknown'}
                   </div>
                   <div className="weak-count text-error">
                     {mistake.count} {uiLang === 'EN' ? 'misses' : parseRubyText('[ミス](みす)', furiganaEnabled)}
