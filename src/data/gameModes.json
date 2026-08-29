@@ -11,10 +11,49 @@
   {
     "id": "practical_1",
     "type": "practical",
-    "titleJa": "[学校](がっこう)[新聞](しんぶん)[作成編](さくせいへん)",
     "titleEn": "School Newspaper Edition",
-    "descriptionJa": "あなたは[新聞係](しんぶんがかり)です！Wordなどのソフトを使い、[記事](きじ)をコピーしたり、[間違](まちが)えたら[元](もと)に[戻](もど)したりしながら、[効率良](こうりつよ)く[新聞](しんぶん)を[作](つく)り上(あ)げましょう。",
-    "descriptionEn": "You are in charge of the school newspaper! Use shortcuts to copy articles and undo mistakes to finish the job efficiently.",
-    "imageUri": ""
+    "titleJa": "[学校新聞](がっこうしんぶん)[作成編](さくせいへん)",
+    "descriptionEn": "Use search, copy, paste, and undo to edit an article.",
+    "descriptionJa": "メモから[日程](にってい)を[探](さが)して[記事](きじ)にまとめる"
+  },
+  {
+    "id": "practical_2",
+    "type": "practical",
+    "titleEn": "Coming Soon",
+    "titleJa": "Coming Soon",
+    "descriptionEn": "Practical mission 2 is under development.",
+    "descriptionJa": "実践問題2は開発中です。"
+  },
+  {
+    "id": "practical_3",
+    "type": "practical",
+    "titleEn": "Coming Soon",
+    "titleJa": "Coming Soon",
+    "descriptionEn": "Practical mission 3 is under development.",
+    "descriptionJa": "実践問題3は開発中です。"
+  },
+  {
+    "id": "practical_4",
+    "type": "practical",
+    "titleEn": "Coming Soon",
+    "titleJa": "Coming Soon",
+    "descriptionEn": "Practical mission 4 is under development.",
+    "descriptionJa": "実践問題4は開発中です。"
+  },
+  {
+    "id": "practical_5",
+    "type": "practical",
+    "titleEn": "Coming Soon",
+    "titleJa": "Coming Soon",
+    "descriptionEn": "Practical mission 5 is under development.",
+    "descriptionJa": "実践問題5は開発中です。"
+  },
+  {
+    "id": "practical_6",
+    "type": "practical",
+    "titleEn": "Coming Soon",
+    "titleJa": "Coming Soon",
+    "descriptionEn": "Practical mission 6 is under development.",
+    "descriptionJa": "実践問題6は開発中です。"
   }
 ]
