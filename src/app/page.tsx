@@ -15,7 +15,7 @@ import { Terminal } from 'lucide-react';
 function Page() {
   const [currentView, setCurrentView] = useState<ViewState>('home');
   const [difficulty, setDifficulty] = useState<Difficulty>('NORMAL');
-  const [selectedModeId, setSelectedModeId] = useState<string>('normal');
+  const [selectedModeId, setSelectedModeId] = useState<string>('practical_1');
 
   // Global Settings State
   const [uiLang, setUiLang] = useState<'EN' | 'JA'>('JA');
@@ -53,6 +53,8 @@ function Page() {
             onNavigate={setCurrentView}
             difficulty={difficulty}
             setDifficulty={setDifficulty}
+            selectedModeId={selectedModeId}
+            setSelectedModeId={setSelectedModeId}
             uiLang={uiLang}
             furiganaEnabled={furiganaEnabled}
           />
@@ -61,7 +63,7 @@ function Page() {
         return <Game onNavigate={setCurrentView} difficulty={difficulty} furiganaEnabled={furiganaEnabled} uiLang={uiLang} />;
       //game2はデバック用
       case 'game2' as any:
-        return <Game2 onNavigate={setCurrentView} difficulty={difficulty} />;
+        return <Game2 onNavigate={setCurrentView} difficulty={difficulty} selectedModeId={selectedModeId} />;
       case 'result':
         return <Result onNavigate={setCurrentView} uiLang={uiLang} furiganaEnabled={furiganaEnabled} />;
       case 'dictionary':

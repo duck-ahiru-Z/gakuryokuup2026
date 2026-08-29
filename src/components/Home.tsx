@@ -33,7 +33,8 @@ const Home: React.FC<HomeProps> = ({
       labelEn: 'ARCHIVES',
       labelJa: parseRubyText('[図鑑](ずかん)', furiganaEnabled),
       onClick: () => onNavigate('dictionary'),
-      isActive: false
+      isActive: false,
+      shortcut: 'A'
     },
     {
       id: 'status',
@@ -41,7 +42,8 @@ const Home: React.FC<HomeProps> = ({
       labelEn: 'STATUS',
       labelJa: parseRubyText('[経験値](けいけんち)', furiganaEnabled),
       onClick: () => onNavigate('result'),
-      isActive: false
+      isActive: false,
+      shortcut: 'S'
     },
     {
       id: 'furigana',
@@ -49,7 +51,8 @@ const Home: React.FC<HomeProps> = ({
       labelEn: 'RUBY',
       labelJa: 'ふりがな',
       onClick: () => setFuriganaEnabled(!furiganaEnabled),
-      isActive: furiganaEnabled
+      isActive: furiganaEnabled,
+      shortcut: 'R'
     },
     {
       id: 'lang',
@@ -57,7 +60,8 @@ const Home: React.FC<HomeProps> = ({
       labelEn: <>JA ({parseRubyText('[日本語](にほんご)', furiganaEnabled)})</>,
       labelJa: <>EN ({parseRubyText('[英語](えいご)', furiganaEnabled)})</>,
       onClick: () => setUiLang(uiLang === 'EN' ? 'JA' : 'EN'),
-      isActive: false
+      isActive: false,
+      shortcut: 'L'
     },
     {
       id: 'settings',
@@ -65,7 +69,8 @@ const Home: React.FC<HomeProps> = ({
       labelEn: 'SETTINGS',
       labelJa: parseRubyText('[設定](せってい)', furiganaEnabled),
       onClick: () => setIsSettingsOpen(true),
-      isActive: false
+      isActive: false,
+      shortcut: 'O'
     },
     {
       id: 'theme',
@@ -73,9 +78,27 @@ const Home: React.FC<HomeProps> = ({
       labelEn: darkMode ? 'LIGHT MODE' : 'DARK MODE',
       labelJa: darkMode ? parseRubyText('[明](あか)るく', furiganaEnabled) : parseRubyText('[暗](くら)く', furiganaEnabled),
       onClick: () => setDarkMode(!darkMode),
-      isActive: false
+      isActive: false,
+      shortcut: 'T'
     }
   ];
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (isSettingsOpen) {
+        if (e.key === 'Escape') setIsSettingsOpen(false);
+        return;
+      }
+      
+      const key = e.key.toLowerCase();
+      if (key === 'enter') onNavigate('modeSelect');
+      const item = MENU_ITEMS.find(m => m.shortcut.toLowerCase() === key);
+      if (item) item.onClick();
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isSettingsOpen, MENU_ITEMS, onNavigate]);
 
   return (
     <div className="home-container">
@@ -97,6 +120,7 @@ const Home: React.FC<HomeProps> = ({
         <button className="primary-btn" onClick={() => onNavigate('modeSelect')}>
           <Play size={24} /> 
           <span>{uiLang === 'EN' ? 'SELECT' : parseRubyText('モード[選択](せんたく)', furiganaEnabled)}</span>
+          <span className="enter-badge" style={{marginLeft: '10px'}}>Enter</span>
         </button>
       </div>
 
@@ -109,9 +133,13 @@ const Home: React.FC<HomeProps> = ({
               key={item.id} 
               className={`secondary-btn ${item.isActive ? 'active-toggle' : ''}`} 
               onClick={item.onClick}
+              title={`Shortcut: ${item.shortcut}`}
             >
-              <Icon size={20} /> 
-              <span>{uiLang === 'EN' ? item.labelEn : item.labelJa}</span>
+              <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
+                <Icon size={20} /> 
+                <span>{uiLang === 'EN' ? item.labelEn : item.labelJa}</span>
+              </div>
+              <span className="enter-badge">{item.shortcut}</span>
             </button>
           );
         })}
