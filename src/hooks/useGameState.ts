@@ -16,17 +16,23 @@ export function useGameState(isActive: boolean, difficulty: Difficulty, onGameEn
   const os = useOS();
   
   const generateMission = useCallback(() => {
-    const validShortcuts = SHORTCUTS.filter(sc => {
+    let validShortcuts = SHORTCUTS.filter(sc => {
       if (sc.windowsOnly && os !== 'Windows') return false;
       return true;
     });
+
+    if (difficulty === 'EASY') {
+      validShortcuts = validShortcuts.filter(sc => sc.difficulty === 'EASY');
+    } else if (difficulty === 'NORMAL') {
+      validShortcuts = validShortcuts.filter(sc => sc.difficulty === 'EASY' || sc.difficulty === 'NORMAL');
+    }
     
     if (validShortcuts.length === 0) return; // Safeguard
     
     const randomIndex = Math.floor(Math.random() * validShortcuts.length);
     setCurrentMission(validShortcuts[randomIndex]);
     setShowExplanation(false);
-  }, [os]);
+  }, [difficulty, os]);
 
   useEffect(() => {
     if (isActive) {
