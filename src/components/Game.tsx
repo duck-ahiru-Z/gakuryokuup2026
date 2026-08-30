@@ -110,10 +110,10 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
                   <strong>{uiLang === 'EN' ? 'ORIGIN:' : '語源:'}</strong>{' '}
                   {uiLang === 'EN' && currentMission.etymologyEn ? currentMission.etymologyEn : parseRubyText(currentMission.etymology, furiganaEnabled)}
                 </p>
-                <p className="example">
+                {/* <p className="example">
                   <strong>{uiLang === 'EN' ? 'EXAMPLE:' : '例文:'}</strong>{' '}
                   {uiLang === 'EN' && currentMission.exampleSentenceEn ? currentMission.exampleSentenceEn : parseRubyText(currentMission.exampleSentence, furiganaEnabled)}
-                </p>
+                </p> */}
               </div>
             </div>
           ) : (

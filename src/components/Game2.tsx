@@ -73,14 +73,19 @@ const ENABLE_AUTO_ADVANCE = true;    // 自動進行を無効化したい場合�
 // ★【追加】次のミッションまたはリザルトへ進む共通関数
 const advanceToNextStep = useCallback(() => {
     setShowSuccessOverlay(false);
-    if (currentStep < MISSIONS.length - 1) {
-    setCurrentStep((prev) => prev + 1);
-    } else {
-    // Mission 3 クリア時
-    const totalSeconds = ((Date.now() - startTime) / 1000).toFixed(1);
-    setClearTime(Number(totalSeconds));
-    }
-}, [currentStep, startTime]);
+
+    setCurrentStep((prev) => {
+        // 最終問題（MISSION 3）をクリアした後に呼ばれた場合のみ画面遷移
+        if (prev >= MISSIONS.length - 1) {
+        const totalSeconds = Number(((Date.now() - startTime) / 1000).toFixed(1));
+        setClearTime(totalSeconds);
+        onNavigate('result');
+        return prev;
+        }
+        // まだ問題が残っている場合は次のステップへ（1 → 2 → 3）
+        return prev + 1;
+    });
+}, [startTime, onNavigate]);
 
 // キー押下判定ロジック
 const handleKeyDown = useCallback(
@@ -161,46 +166,6 @@ useEffect(() => {
     window.removeEventListener('keyup', handleKeyUp);
     };
 }, [handleKeyDown, handleKeyUp]);
-
-// if (clearTime !== null) {
-//     const manualTime = (clearTime * 3.5).toFixed(1);
-//     const savedTime = (Number(manualTime) - clearTime).toFixed(1);
-
-// return (
-//     <div className="game-over-container">
-//     <h2 className="title">🎉 号外新聞 <span className="highlight">完成！</span></h2>
-    
-//     <div className="final-stats">
-//         <div className="stat-row">
-//         <span>完成タイム:</span>
-//         <span className="highlight" style={{ fontSize: '2rem' }}>{clearTime} 秒</span>
-//         </div>
-//         <div className="stat-row">
-//         <span>手作業での想定時間:</span>
-//         <span style={{ textDecoration: 'line-through', color: '#888' }}>{manualTime} 秒</span>
-//         </div>
-//         <div className="stat-row highlight-box">
-//         <span>短縮できた学習時間:</span>
-//         <span style={{ color: 'var(--success-color)', fontWeight: 'bold' }}>{savedTime} 秒短縮！</span>
-//         </div>
-//     </div>
-
-//     <div className="learning-summary">
-//         <h3>💡 今回学んだ英単語とショートカット</h3>
-//         <ul>
-//         <li><strong>Ctrl + F</strong> ➔ <b>Find</b>（探す）</li>
-//         <li><strong>Ctrl + C / V</strong> ➔ <b>Copy & Paste</b>（複製・貼り付け）</li>
-//         <li><strong>Ctrl + Z</strong> ➔ <b>Undo</b>（元に戻す）</li>
-//         </ul>
-//     </div>
-
-//     <button className="primary-btn mt-2" onClick={() => onNavigate('result')}>
-//         STATUS VIEW
-//     </button>
-//     </div>
-// );
-
-// }
 
 return (
     <DisableContextMenu>
