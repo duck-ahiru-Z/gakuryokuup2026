@@ -9,6 +9,7 @@ import { parseRubyText, resolveKeys } from '../utils/shortcutUtils';
 import { DisableContextMenu } from './DisableContextMenu'; 
 import { DictionaryCard } from './DictionaryCard';
 import { useOS } from '../hooks/useOS';
+import { ArrowLeft } from 'lucide-react';
 import './Game.css';
 // import Dictionary CSS so that the card styles apply properly
 import './Dictionary.css';
@@ -96,7 +97,16 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
     <DisableContextMenu>
       <div className="game-container">
         <div className="status-bar">
-          <div className="score-box">
+          <button 
+            className="secondary-btn" 
+            style={{ width: 'auto', padding: '0.5rem 1rem' }} 
+            onClick={() => onNavigate('modeSelect')}
+          >
+            <ArrowLeft size={16} />
+            <span>{uiLang === 'EN' ? 'QUIT' : '中断'}</span>
+          </button>
+          
+          <div className="score-box" style={{ marginLeft: 'auto', marginRight: '2rem' }}>
             <span className="label">{uiLang === 'EN' ? 'SCORE' : 'スコア'}</span>
             <span className="value" style={{ color: 'var(--accent-color)' }}>{playerScore}</span>
           </div>
