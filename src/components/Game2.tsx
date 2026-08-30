@@ -4,6 +4,7 @@ import { storageUtils } from '../utils/storageUtils';
 import { ArrowLeft, Trophy } from 'lucide-react';
 import { useOS } from '../hooks/useOS';
 import { useAudio } from '../hooks/useAudio';
+import Keyboard from './Keyboard'; // ★ Keyboardコンポーネントをインポート
 import './Game2.css';
 
 // Dynamic import of practical sets
@@ -44,7 +45,8 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
   const [rightContent, setRightContent] = useState(currentSet.initialRightText || '');
   
   const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
-  
+  const [pressedKeys, setPressedKeys] = useState<Set<string>>(new Set()); // ★ 押下されたキーを管理する状態
+
   useEffect(() => {
     setStartTime(Date.now());
   }, []);
@@ -55,6 +57,9 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
       if (e.key === 'F12' || e.key === 'F5') return;
       e.preventDefault();
 
+      // ★ キー入力状態の更新
+      setPressedKeys((prev) => new Set(prev).add(e.key));
+
       if (showSuccessOverlay || clearTime !== null) return;
       
       const mission = currentSet.missions[currentStep];
@@ -63,8 +68,6 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
       const modifierPressed = isMac ? e.metaKey : e.ctrlKey;
       let actionMatches = false;
 
-      // In real scenario, we should parse mission.shortcutId from shortcuts.json 
-      // But for Game2 simplicity, we assume Ctrl+key for practical mode mapping
       if (modifierPressed) {
         if (mission.shortcutId === 'search' && e.key.toLowerCase() === 'f') actionMatches = true;
         if (mission.shortcutId === 'copy' && e.key.toLowerCase() === 'c') actionMatches = true;
@@ -106,12 +109,23 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
     [currentStep, isMac, currentSet, startTime, showSuccessOverlay, clearTime, playSound, speakWord]
   );
 
+  // ★ キーを離した時の処理
+  const handleKeyUp = useCallback((e: KeyboardEvent) => {
+    setPressedKeys((prev) => {
+      const next = new Set(prev);
+      next.delete(e.key);
+      return next;
+    });
+  }, []);
+
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown, { passive: false });
+    window.addEventListener('keyup', handleKeyUp);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
     };
-  }, [handleKeyDown]);
+  }, [handleKeyDown, handleKeyUp]);
 
   if (!currentSet.missions || currentSet.missions.length === 0) {
     return (
@@ -186,6 +200,11 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
             </div>
           </div>
         )}
+      </div>
+
+      {/* ★ 画面下部：キーボードUI領域 */}
+      <div className="keyboard-area">
+        <Keyboard pressedKeys={pressedKeys} />
       </div>
 
       {showSuccessOverlay && (
