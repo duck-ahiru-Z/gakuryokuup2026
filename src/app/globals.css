@@ -135,7 +135,7 @@ button:disabled {
   padding: 1.5rem;  
   font-size: 2rem;  
   font-weight: 900;  
-  width: 100%%;  
+  width: 100%;  
   background: var(--accent-color);  
   color: var(--bg-primary);  
   border: 2px solid var(--accent-color);  
@@ -159,7 +159,7 @@ button:disabled {
   align-items: center;  
   justify-content: center;  
   gap: 0.75rem;  
-  width: 100%%;  
+  width: 100%;  
 }  
 .secondary-btn.active-toggle {  
   background: rgba(255, 255, 255, 0.1);  
@@ -172,3 +172,6 @@ button:disabled {
   font-size: 0.85rem;  
   font-family: monospace;  
 }
+
+.primary-btn .enter-badge { background: var(--bg-primary); color: var(--accent-color); letter-spacing: normal; }
+.secondary-btn .enter-badge { letter-spacing: normal; }
