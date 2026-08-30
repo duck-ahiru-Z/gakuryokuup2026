@@ -30,12 +30,21 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
     setStats(storageUtils.getStats());
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const key = e.key.toLowerCase();
+      if (key === 'escape' || key === 'enter') {
+        onNavigate('home');
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onNavigate]);
+
   if (!stats) return null;
 
   const nextRankTarget = Math.max(200, Math.ceil((stats.xp + 1) / 500) * 500);
   const progressPercent = Math.min(100, (stats.xp / nextRankTarget) * 100);
-
-
 
   const getRankName = (rankId: string) => {
     if (uiLang === 'EN') return rankId.toUpperCase();
@@ -60,17 +69,6 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
     if (!mode) return modeId;
     return uiLang === 'EN' ? mode.titleEn : parseRubyText(mode.titleJa, furiganaEnabled);
   };
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      const key = e.key.toLowerCase();
-      if (key === 'escape' || key === 'enter') {
-        onNavigate('home');
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onNavigate]);
 
   return (
     <div className="dashboard-container">
