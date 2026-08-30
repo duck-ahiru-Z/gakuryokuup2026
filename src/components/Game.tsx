@@ -13,8 +13,6 @@ import './Game.css';
 // import Dictionary CSS so that the card styles apply properly
 import './Dictionary.css';
 
-import { useOS } from '../hooks/useOS';
-
 interface GameProps {
   onNavigate: (view: ViewState) => void;
   difficulty: Difficulty;
@@ -25,7 +23,6 @@ interface GameProps {
 const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, uiLang }) => {
   const os = useOS();
   const [finalScore, setFinalScore] = useState<number | null>(null);
-  const os = useOS();
 
   const handleGameEnd = (score: number) => {
     storageUtils.addXP(score);
