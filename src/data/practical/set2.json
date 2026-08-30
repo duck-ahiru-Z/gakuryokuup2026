@@ -1,1 +1,69 @@
-{ "id": "", "titleEn": "Coming Soon", "titleJa": "Coming Soon", "descriptionEn": "", "descriptionJa": "", "leftColumnTitleEn": "", "leftColumnTitleJa": "", "rightColumnTitleEn": "", "rightColumnTitleJa": "", "initialLeftText": [], "initialRightText": "", "missions": [] }
+{
+    "id": "practical_2",
+    "titleEn": "Game Test & Bug Report Edition",
+    "titleJa": "PRACTICAL MISSION: バグ報告と資料修正",
+    "descriptionEn": "Use screenshot, reopen tab, and replace functions to solve game dev issues.",
+    "descriptionJa": "スクリーンショット、閉じたタブの復元、置換機能を使ってゲーム開発の問題を解決してください。",
+    "leftColumnTitleEn": "Test Specification",
+    "leftColumnTitleJa": "情報源（ゲームテスト仕様書）",
+    "rightColumnTitleEn": "Bug Report",
+    "rightColumnTitleJa": "バグ報告書",
+    "initialLeftText": [
+    "【ゲームテスト仕様書】",
+    "PROJECT: STAR QUEST",
+    "",
+    "■ キャラクター",
+    "・主人公：Nova",
+    "・仲間：Luna",
+    "・敵：Dark Wolf",
+    "",
+    "■ ステージ情報",
+    "Stage 1：Forest",
+    "Stage 2：Castle",
+    "Stage 3：Space Station",
+    "",
+    "■ テスト項目",
+    "・キャラクターが正常に移動するか",
+    "・アイテムを取得できるか",
+    "・敵を倒した後、次のステージへ進めるか"
+    ],
+    "initialRightText": "【バグ報告書】\n\n発生場所：\n発生条件：\n確認内容：",
+    "missions": [
+        {
+            "id": 1,
+            "titleEn": "Record the Game Screen",
+            "titleJa": "小問1：ゲーム画面を記録せよ！",
+            "descriptionEn": "Record the current screen to report a visual bug to the dev team.",
+            "descriptionJa": "テスト中に画面表示がおかしくなりました。画面全体をキャプチャ（全画面スクリーンショット）して報告しよう！",
+            "shortcutId": "screenshot",
+            "successAction": {
+            "type": "append_right",
+            "textToAppend": "\n[添付画像: 画面スクリーンショット.png]"
+            }
+        },
+        {
+            "id": 2,
+            "titleEn": "Reopen Closed Tab",
+            "titleJa": "小問2：間違えて閉じた攻略ページを復元せよ！",
+            "descriptionEn": "Reopen the browser tab that was accidentally closed.",
+            "descriptionJa": "バグの原因を調べている最中に重要なページを閉じてしまいました！さっきまで開いていたページをもう一度復元しよう！",
+            "shortcutId": "reopen_tab",
+            "successAction": {
+            "type": "none"
+            }
+        },
+        {
+            "id": 3,
+            "titleEn": "Batch Replace Title",
+            "titleJa": "小問3：開発資料を一気に修正せよ！",
+            "descriptionEn": "Replace 'PROJECT ALPHA' with 'PROJECT NOVA' all at once.",
+            "descriptionJa": "ゲームタイトルの変更が発生しました！資料内に無数にある「PROJECT ALPHA」を「PROJECT NOVA」に一括置換しよう！",
+            "shortcutId": "replace",
+            "successAction": {
+            "type": "replace_right",
+            "replaceTarget": "PROJECT ALPHA",
+            "replaceWith": "PROJECT NOVA"
+            }
+        }
+    ]
+}
