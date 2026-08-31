@@ -79,20 +79,12 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         ? e.code.replace('Key', '').toLowerCase() 
         : e.key.toLowerCase();
 
+      // 標準の修飾キー（Windows: Ctrl, Mac: Cmd）を使用するショートカット
       if (modifierPressed) {
         if (mission.shortcutId === 'search' && pressedChar === 'f') actionMatches = true;
         if (mission.shortcutId === 'copy' && pressedChar === 'c') actionMatches = true;
         if (mission.shortcutId === 'paste' && pressedChar === 'v') actionMatches = true;
         if (mission.shortcutId === 'undo' && pressedChar === 'z') actionMatches = true;
-
-        // 実践問題2（set2）用
-        if (mission.shortcutId === 'screenshot') {
-          // Windows: PrintScreen または Win+Shift+S (Shift+S)
-          // Mac: Cmd+Shift+3 (全画面) または Cmd+Shift+4 (範囲指定)
-          if(e.key === 'PrintScreen' || (e.shiftKey && (pressedChar === '3' || pressedChar === '4' || pressedChar === 's'))) {
-            actionMatches = true;
-          }
-        }
         if (mission.shortcutId === 'reopen_tab' && e.shiftKey && pressedChar === 't') actionMatches = true;
         if (mission.shortcutId === 'replace' && pressedChar === 'h') actionMatches = true;
 
@@ -100,7 +92,19 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         if (mission.shortcutId === 'bold' && pressedChar === 'b') actionMatches = true; // Ctrl/Cmd + B
         if (mission.shortcutId === 'center_align' && pressedChar === 'e') actionMatches = true; // Ctrl/Cmd + E
         if (mission.shortcutId === 'save_as' && e.shiftKey && pressedChar === 's') actionMatches = true; // Ctrl/Cmd + Shift + S
+      }
 
+      // 特殊なキーボードショートカット（PrintScreen, Win+Shift+S など）
+      if (mission.shortcutId === 'screenshot') {
+        if (e.key === 'PrintScreen') {
+          actionMatches = true;
+        } else if (!isMac && e.metaKey && e.shiftKey && pressedChar === 's') {
+          // Windows: Win(metaKey) + Shift + S
+          actionMatches = true;
+        } else if (isMac && e.metaKey && e.shiftKey && (pressedChar === '3' || pressedChar === '4')) {
+          // Mac: Cmd(metaKey) + Shift + 3 or 4
+          actionMatches = true;
+        }
       }
 
       if (actionMatches) {
