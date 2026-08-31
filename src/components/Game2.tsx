@@ -66,7 +66,13 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
       if (e.key === 'F12' || e.key === 'F5') return;
       e.preventDefault();
 
-      if (showSuccessOverlay || clearTime !== null) return;
+      if (clearTime !== null) {
+        if (e.key === 'Enter') {
+          onNavigate('result');
+        }
+        return;
+      }
+      if (showSuccessOverlay) return;
       
       const mission = currentSet.missions[currentStep];
       if (!mission) return;
@@ -126,7 +132,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         }, 1500);
       }
     },
-    [currentStep, isMac, currentSet, startTime, showSuccessOverlay, clearTime, playSound, speakWord]
+    [currentStep, isMac, currentSet, startTime, showSuccessOverlay, clearTime, playSound, speakWord, onNavigate]
   );
 
   useEffect(() => {
@@ -198,7 +204,9 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
               <p>クリアタイム: <span className="highlight">{clearTime} 秒</span></p>
             </div>
             <button className="primary-btn g2-finish-btn" onClick={() => onNavigate('result')}>
-              完了してリザルトへ <ArrowLeft size={20} style={{ transform: 'rotate(180deg)' }}/>
+              完了してリザルトへ 
+              <ArrowLeft size={20} style={{ transform: 'rotate(180deg)', marginLeft: '8px', marginRight: '8px' }}/>
+              <span className="enter-badge">Enter</span>
             </button>
           </div>
         ) : (
@@ -212,9 +220,11 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
       </div>
 
       {/* 画面下部：キーボードUI領域 */}
-      <div className="keyboard-area">
-        <Keyboard />
-      </div>
+      {clearTime === null && (
+        <div className="keyboard-area">
+          <Keyboard />
+        </div>
+      )}
 
       {showSuccessOverlay && (
         <div className="g2-success-overlay">
