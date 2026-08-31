@@ -1,1 +1,61 @@
-{ "id": "", "titleEn": "Coming Soon", "titleJa": "Coming Soon", "descriptionEn": "", "descriptionJa": "", "leftColumnTitleEn": "", "leftColumnTitleJa": "", "rightColumnTitleEn": "", "rightColumnTitleJa": "", "initialLeftText": [], "initialRightText": "", "missions": [] }
+{
+    "id": "practical_3",
+    "titleEn": "Movie Production Edition",
+    "titleJa": "PRACTICAL MISSION: 映画制作チームの一員になろう！",
+    "descriptionEn": "Use bold, center align, and save as shortcuts to complete the movie promo page.",
+    "descriptionJa": "映画企画資料を参考に、太字指定、中央揃え、名前を付けて保存を使って映画の紹介ページを完成させよう！",
+    "leftColumnTitleEn": "Movie Planning Document",
+    "leftColumnTitleJa": "映画企画資料",
+    "rightColumnTitleEn": "Promo Page Editor",
+    "rightColumnTitleJa": "映画紹介ページ 編集画面",
+    "initialLeftText": [
+    "【映画企画資料】",
+    "タイトル：STARLIGHT",
+    "公開日：2026年12月24日",
+    "キャッチコピー：その一歩が、未来を変える。」",
+    "出演：AOI,REN,MIO",
+    "あらすじ：高校生のAOIは、ある日、不思議な光を見つける。",
+    "その光を追いかけた先で、未来を変える大きな選択をすることになる。"
+    ],
+        "initialRightText": "【映画紹介ページ】\n\nタイトル\nSTARLIGHT：\n\n公開日：\n\nキャッチコピー：\n\nあらすじ：",
+        "missions": [
+        {
+            "id": 1,
+            "titleEn": "Make the Title Bold",
+            "titleJa": "小問1：タイトルを目立たせよう【★☆☆】",
+            "descriptionEn": "Make the movie title bold to stand out.",
+            "descriptionJa": "紹介ページのタイトルが普通の文章と同じ見た目になっています。映画のタイトル「STARLIGHT」を太字にして目立たせよう！",
+            "shortcutId": "bold",
+            "successAction": {
+            "type": "replace_right",
+            "replaceTarget": "STARLIGHT：",
+            "replaceWith": "**STARLIGHT**："
+            }
+        },
+        {
+            "id": 2,
+            "titleEn": "Center Align Tagline",
+            "titleJa": "小問2：キャッチコピーを中央に配置しよう【★★☆】",
+            "descriptionEn": "Center align the tagline for better visual appeal.",
+            "descriptionJa": "キャッチコピーが左端に寄っています。ポスターのように印象的に見せるため、キャッチコピーを中央に配置しよう！",
+            "shortcutId": "center_align",
+            "successAction": {
+            "type": "replace_right",
+            "replaceTarget": "キャッチコピー：",
+            "replaceWith": "キャッチコピー：\n    「その一歩が、未来を変える。」"
+            }
+        },
+        {
+            "id": 3,
+            "titleEn": "Save As Final Version",
+            "titleJa": "小問3：映画の紹介ページを別名で保存せよ！【★★★】",
+            "descriptionEn": "Save the completed page with a new file name.",
+            "descriptionJa": "紹介ページが完成！監督の指示通り、現在の完成版を残したまま『STARLIGHT_最終版』として別名保存しよう！",
+            "shortcutId": "save_as",
+            "successAction": {
+            "type": "append_right",
+            "textToAppend": "\n\n[ファイル保存完了: STARLIGHT_最終版.html]"
+            }
+        }
+    ]
+}

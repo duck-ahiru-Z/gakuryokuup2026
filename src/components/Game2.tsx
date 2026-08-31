@@ -4,7 +4,7 @@ import { storageUtils } from '../utils/storageUtils';
 import { ArrowLeft, Trophy } from 'lucide-react';
 import { useOS } from '../hooks/useOS';
 import { useAudio } from '../hooks/useAudio';
-import Keyboard from './Keyboard'; // ★ Keyboardコンポーネントをインポート
+import Keyboard from './Keyboard';
 import './Game2.css';
 
 // Dynamic import of practical sets
@@ -45,11 +45,20 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
   const [rightContent, setRightContent] = useState(currentSet.initialRightText || '');
   
   const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
-   // ★ 押下されたキーを管理する状態
 
   useEffect(() => {
     setStartTime(Date.now());
   }, []);
+
+  // ★ キー識別用ヘルパー関数（e.codeからアルファベットを抽出、またはe.keyを小文字化）
+  const getKeyName = (e: KeyboardEvent): string[] => {
+    const keys: string[] = [e.key.toLowerCase()];
+    // e.code が "KeyF" などの場合は "f" も一緒に追加して確実にマッチさせる
+    if (e.code.startsWith('Key')) {
+      keys.push(e.code.replace('Key', '').toLowerCase());
+    }
+    return keys;
+  };
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -65,11 +74,33 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
       const modifierPressed = isMac ? e.metaKey : e.ctrlKey;
       let actionMatches = false;
 
+      // ★ e.code による判定（Ctrl同時押し時のe.key文字化け対策）
+      const pressedChar = e.code.startsWith('Key') 
+        ? e.code.replace('Key', '').toLowerCase() 
+        : e.key.toLowerCase();
+
       if (modifierPressed) {
-        if (mission.shortcutId === 'search' && e.key.toLowerCase() === 'f') actionMatches = true;
-        if (mission.shortcutId === 'copy' && e.key.toLowerCase() === 'c') actionMatches = true;
-        if (mission.shortcutId === 'paste' && e.key.toLowerCase() === 'v') actionMatches = true;
-        if (mission.shortcutId === 'undo' && e.key.toLowerCase() === 'z') actionMatches = true;
+        if (mission.shortcutId === 'search' && pressedChar === 'f') actionMatches = true;
+        if (mission.shortcutId === 'copy' && pressedChar === 'c') actionMatches = true;
+        if (mission.shortcutId === 'paste' && pressedChar === 'v') actionMatches = true;
+        if (mission.shortcutId === 'undo' && pressedChar === 'z') actionMatches = true;
+
+        // 実践問題2（set2）用
+        if (mission.shortcutId === 'screenshot') {
+          // Windows: PrintScreen または Win+Shift+S (Shift+S)
+          // Mac: Cmd+Shift+3 (全画面) または Cmd+Shift+4 (範囲指定)
+          if(e.key === 'PrintScreen' || (e.shiftKey && (pressedChar === '3' || pressedChar === '4' || pressedChar === 's'))) {
+            actionMatches = true;
+          }
+        }
+        if (mission.shortcutId === 'reopen_tab' && e.shiftKey && pressedChar === 't') actionMatches = true;
+        if (mission.shortcutId === 'replace' && pressedChar === 'h') actionMatches = true;
+
+        // ★ 実践問題3（set3）用 ★
+        if (mission.shortcutId === 'bold' && pressedChar === 'b') actionMatches = true; // Ctrl/Cmd + B
+        if (mission.shortcutId === 'center_align' && pressedChar === 'e') actionMatches = true; // Ctrl/Cmd + E
+        if (mission.shortcutId === 'save_as' && e.shiftKey && pressedChar === 's') actionMatches = true; // Ctrl/Cmd + Shift + S
+
       }
 
       if (actionMatches) {
@@ -188,7 +219,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         )}
       </div>
 
-      {/* ★ 画面下部：キーボードUI領域 */}
+      {/* 画面下部：キーボードUI領域 */}
       <div className="keyboard-area">
         <Keyboard />
       </div>
