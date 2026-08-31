@@ -45,7 +45,6 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
   const [rightContent, setRightContent] = useState(currentSet.initialRightText || '');
   
   const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
-  const [pressedKeys, setPressedKeys] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     setStartTime(Date.now());
@@ -66,15 +65,6 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
       // Allow F12/F5
       if (e.key === 'F12' || e.key === 'F5') return;
       e.preventDefault();
-
-      // ★ キー入力状態の更新（e.key と e.code 由来の純粋な文字の両方をセット）
-      const keysToAdd = getKeyName(e);
-      setPressedKeys((prev) => {
-        const next = new Set(prev);
-        keysToAdd.forEach((k) => next.add(k));
-        next.add(e.key); // キーそのものも保持
-        return next;
-      });
 
       if (showSuccessOverlay || clearTime !== null) return;
       
@@ -147,25 +137,12 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
     [currentStep, isMac, currentSet, startTime, showSuccessOverlay, clearTime, playSound, speakWord]
   );
 
-  // ★ キーを離した時の処理
-  const handleKeyUp = useCallback((e: KeyboardEvent) => {
-    const keysToRemove = getKeyName(e);
-    setPressedKeys((prev) => {
-      const next = new Set(prev);
-      keysToRemove.forEach((k) => next.delete(k));
-      next.delete(e.key);
-      return next;
-    });
-  }, []);
-
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown, { passive: false });
-    window.addEventListener('keyup', handleKeyUp);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('keyup', handleKeyUp);
     };
-  }, [handleKeyDown, handleKeyUp]);
+  }, [handleKeyDown]);
 
   if (!currentSet.missions || currentSet.missions.length === 0) {
     return (
@@ -244,7 +221,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
 
       {/* 画面下部：キーボードUI領域 */}
       <div className="keyboard-area">
-        <Keyboard pressedKeys={pressedKeys} />
+        <Keyboard />
       </div>
 
       {showSuccessOverlay && (
