@@ -162,8 +162,8 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
   return (
     <div className="game2-container">
       <div className="g2-header">
-        <button className="secondary-btn" onClick={() => onNavigate('modeSelect')}>
-          <ArrowLeft size={20} />
+        <button className="secondary-btn" style={{ width: 'auto', padding: '0.5rem 1rem' }} onClick={() => onNavigate('modeSelect')}>
+          <ArrowLeft size={16} />
           <span>中断</span>
         </button>
         <h2 className="g2-title">{currentSet.titleJa}</h2>
