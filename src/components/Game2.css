@@ -1,5 +1,7 @@
 /* Game2 (Practical Mode) Layout */
 .game2-container {
+    overflow-y: auto;
+    padding-bottom: 2rem;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -42,7 +44,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
-    height: 280px;
+    height: 35vh;
+    min-height: 200px;
 }
 
 .g2-pane {

@@ -19,18 +19,18 @@
   {
     "id": "practical_2",
     "type": "practical",
-    "titleEn": "Coming Soon",
-    "titleJa": "Coming Soon",
-    "descriptionEn": "Practical mission 2 is under development.",
-    "descriptionJa": "実践問題2は開発中です。"
+    "titleEn": "Bug Report & Fixes",
+    "titleJa": "[バグ報告](ばぐほうこく)と[資料修正](しりょうしゅうせい)",
+    "descriptionEn": "Capture the screen, paste into a report, and save.",
+    "descriptionJa": "[画面](がめん)をキャプチャし、[報告書](ほうこくしょ)に[貼](は)り[付](つ)けて[保存](ほぞん)する"
   },
   {
     "id": "practical_3",
     "type": "practical",
-    "titleEn": "Coming Soon",
-    "titleJa": "Coming Soon",
-    "descriptionEn": "Practical mission 3 is under development.",
-    "descriptionJa": "実践問題3は開発中です。"
+    "titleEn": "Movie Production Team",
+    "titleJa": "[映画制作](えいがせいさく)チーム",
+    "descriptionEn": "Make text bold or italic to convey the charm.",
+    "descriptionJa": "[文字](もじ)を[太字](ふとじ)や[斜体](しゃたい)にして[魅力](みりょく)を[伝](つた)える"
   },
   {
     "id": "practical_4",
