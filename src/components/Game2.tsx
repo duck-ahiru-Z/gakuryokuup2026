@@ -98,7 +98,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         // ★ 実践問題3（set3）用 ★
         if (mission.shortcutId === 'bold' && pressedChar === 'b') actionMatches = true; // Ctrl/Cmd + B
         if (mission.shortcutId === 'center_align' && pressedChar === 'e') actionMatches = true; // Ctrl/Cmd + E
-        if (mission.shortcutId === 'save_as' && e.shiftKey && pressedChar === 's') actionMatches = true; // Ctrl/Cmd + Shift + S
+        if (mission.shortcutId === 'save' && pressedChar === 's') actionMatches = true; // Ctrl/Cmd + S
       }
 
       if (actionMatches) {

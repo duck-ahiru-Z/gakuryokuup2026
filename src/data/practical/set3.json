@@ -2,8 +2,8 @@
     "id": "practical_3",
     "titleEn": "Movie Production Edition",
     "titleJa": "PRACTICAL MISSION: 映画制作チームの一員になろう！",
-    "descriptionEn": "Use bold, center align, and save as shortcuts to complete the movie promo page.",
-    "descriptionJa": "映画企画資料を参考に、太字指定、中央揃え、名前を付けて保存を使って映画の紹介ページを完成させよう！",
+    "descriptionEn": "Use bold, center align, and save shortcuts to complete the movie promo page.",
+    "descriptionJa": "映画企画資料を参考に、太字指定、中央揃え、上書き保存を使って映画の紹介ページを完成させよう！",
     "leftColumnTitleEn": "Movie Planning Document",
     "leftColumnTitleJa": "映画企画資料",
     "rightColumnTitleEn": "Promo Page Editor",
@@ -47,14 +47,14 @@
         },
         {
             "id": 3,
-            "titleEn": "Save As Final Version",
-            "titleJa": "小問3：映画の紹介ページを別名で保存せよ！【★★★】",
-            "descriptionEn": "Save the completed page with a new file name.",
-            "descriptionJa": "紹介ページが完成！監督の指示通り、現在の完成版を残したまま『STARLIGHT_最終版』として別名保存しよう！",
-            "shortcutId": "save_as",
+            "titleEn": "Save the Document",
+            "titleJa": "小問3：映画の紹介ページを保存せよ！【★★★】",
+            "descriptionEn": "Save your completed introduction page.",
+            "descriptionJa": "紹介ページが完成！せっかく作ったデータが消えないように、上書き保存（セーブ）しよう！",
+            "shortcutId": "save",
             "successAction": {
             "type": "append_right",
-            "textToAppend": "\n\n[ファイル保存完了: STARLIGHT_最終版.html]"
+            "textToAppend": "\n\n[ファイル保存完了]"
             }
         }
     ]
