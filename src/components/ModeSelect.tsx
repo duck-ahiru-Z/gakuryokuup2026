@@ -62,6 +62,8 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
       if (key === '2') handleSelectNormal('NORMAL');
       if (key === '3') handleSelectNormal('HARD');
       if (key === '4') setSelectedModeId('practical_1');
+      if (key === '5') setSelectedModeId('practical_2');
+      if (key === '6') setSelectedModeId('practical_3');
     };
     
     window.addEventListener('keydown', handleKeyDown);
@@ -116,21 +118,25 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
               {uiLang === 'EN' ? 'PRACTICAL EXAMS' : parseRubyText('[実技問題](じつぎもんだい)', furiganaEnabled)}
             </h3>
             <div className="practical-list">
-              {practicalModes.map((mode, index) => (
-                <button 
-                  key={mode.id} 
-                  className={`sidebar-btn practical-btn ${selectedModeId === mode.id ? 'active' : ''}`}
-                  onClick={() => setSelectedModeId(mode.id)}
-                >
-                  <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%'}}>
-                    <span>
-                      <span style={{ marginRight: '0.5rem' }}>{index + 1}.</span>
-                      {renderDynamicText(mode.titleEn, mode.titleJa)}
-                    </span>
-                    <span className="enter-badge">{index + 4}</span>
-                  </div>
-                </button>
-              ))}
+              {practicalModes.map((mode, index) => {
+                const isLocked = mode.titleEn === 'Coming Soon';
+                return (
+                  <button 
+                    key={mode.id} 
+                    className={`sidebar-btn practical-btn ${selectedModeId === mode.id ? 'active' : ''} ${isLocked ? 'locked' : ''}`}
+                    onClick={() => !isLocked && setSelectedModeId(mode.id)}
+                    disabled={isLocked}
+                  >
+                    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%'}}>
+                      <span>
+                        <span style={{ marginRight: '0.5rem' }}>{index + 1}.</span>
+                        {renderDynamicText(mode.titleEn, mode.titleJa)}
+                      </span>
+                      <span className="enter-badge">{index + 4}</span>
+                    </div>
+                  </button>
+                );
+              })}
               {Array.from({ length: Math.max(0, 6 - practicalModes.length) }).map((_, i) => (
                 <button key={`placeholder-${i}`} className="sidebar-btn practical-btn locked" disabled>
                   <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%'}}>

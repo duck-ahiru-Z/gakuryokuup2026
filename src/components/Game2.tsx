@@ -66,7 +66,13 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
       if (e.key === 'F12' || e.key === 'F5') return;
       e.preventDefault();
 
-      if (showSuccessOverlay || clearTime !== null) return;
+      if (clearTime !== null) {
+        if (e.key === 'Enter') {
+          onNavigate('result');
+        }
+        return;
+      }
+      if (showSuccessOverlay) return;
       
       const mission = currentSet.missions[currentStep];
       if (!mission) return;
@@ -79,28 +85,20 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         ? e.code.replace('Key', '').toLowerCase() 
         : e.key.toLowerCase();
 
+      // 標準の修飾キー（Windows: Ctrl, Mac: Cmd）を使用するショートカット
       if (modifierPressed) {
+        if (mission.shortcutId === 'select_all' && pressedChar === 'a') actionMatches = true;
         if (mission.shortcutId === 'search' && pressedChar === 'f') actionMatches = true;
         if (mission.shortcutId === 'copy' && pressedChar === 'c') actionMatches = true;
         if (mission.shortcutId === 'paste' && pressedChar === 'v') actionMatches = true;
         if (mission.shortcutId === 'undo' && pressedChar === 'z') actionMatches = true;
-
-        // 実践問題2（set2）用
-        if (mission.shortcutId === 'screenshot') {
-          // Windows: PrintScreen または Win+Shift+S (Shift+S)
-          // Mac: Cmd+Shift+3 (全画面) または Cmd+Shift+4 (範囲指定)
-          if(e.key === 'PrintScreen' || (e.shiftKey && (pressedChar === '3' || pressedChar === '4' || pressedChar === 's'))) {
-            actionMatches = true;
-          }
-        }
         if (mission.shortcutId === 'reopen_tab' && e.shiftKey && pressedChar === 't') actionMatches = true;
         if (mission.shortcutId === 'replace' && pressedChar === 'h') actionMatches = true;
 
         // ★ 実践問題3（set3）用 ★
         if (mission.shortcutId === 'bold' && pressedChar === 'b') actionMatches = true; // Ctrl/Cmd + B
         if (mission.shortcutId === 'center_align' && pressedChar === 'e') actionMatches = true; // Ctrl/Cmd + E
-        if (mission.shortcutId === 'save_as' && e.shiftKey && pressedChar === 's') actionMatches = true; // Ctrl/Cmd + Shift + S
-
+        if (mission.shortcutId === 'save' && pressedChar === 's') actionMatches = true; // Ctrl/Cmd + S
       }
 
       if (actionMatches) {
@@ -134,7 +132,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         }, 1500);
       }
     },
-    [currentStep, isMac, currentSet, startTime, showSuccessOverlay, clearTime, playSound, speakWord]
+    [currentStep, isMac, currentSet, startTime, showSuccessOverlay, clearTime, playSound, speakWord, onNavigate]
   );
 
   useEffect(() => {
@@ -206,7 +204,9 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
               <p>クリアタイム: <span className="highlight">{clearTime} 秒</span></p>
             </div>
             <button className="primary-btn g2-finish-btn" onClick={() => onNavigate('result')}>
-              完了してリザルトへ <ArrowLeft size={20} style={{ transform: 'rotate(180deg)' }}/>
+              完了してリザルトへ 
+              <ArrowLeft size={20} style={{ transform: 'rotate(180deg)', marginLeft: '8px', marginRight: '8px' }}/>
+              <span className="enter-badge">Enter</span>
             </button>
           </div>
         ) : (
@@ -220,9 +220,11 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
       </div>
 
       {/* 画面下部：キーボードUI領域 */}
-      <div className="keyboard-area">
-        <Keyboard />
-      </div>
+      {clearTime === null && (
+        <div className="keyboard-area">
+          <Keyboard />
+        </div>
+      )}
 
       {showSuccessOverlay && (
         <div className="g2-success-overlay">
