@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { X, Volume2, VolumeX, Music, Moon, Sun } from 'lucide-react';
 import './Settings.css';
 
@@ -10,12 +10,13 @@ interface SettingsProps {
   setFuriganaEnabled: (enabled: boolean) => void;
   darkMode: boolean;
   setDarkMode: (enabled: boolean) => void;
+  bgmVolume: number;
+  setBgmVolume: (volume: number) => void;
+  sfxVolume: number;
+  setSfxVolume: (volume: number) => void;
 }
 
-const Settings: React.FC<SettingsProps> = ({ onClose, uiLang, setUiLang, furiganaEnabled, setFuriganaEnabled, darkMode, setDarkMode }) => {
-  // Mock states for the UI
-  const [bgmVolume, setBgmVolume] = useState(50);
-  const [sfxVolume, setSfxVolume] = useState(50);
+const Settings: React.FC<SettingsProps> = ({ onClose, uiLang, setUiLang, furiganaEnabled, setFuriganaEnabled, darkMode, setDarkMode, bgmVolume, setBgmVolume, sfxVolume, setSfxVolume }) => {
 
   return (
     <div className="settings-overlay">

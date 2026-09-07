@@ -29,11 +29,12 @@ interface GameProps {
   difficulty: Difficulty;
   selectedModeId?: string;
   uiLang: 'EN' | 'JA';
+  sfxVolume: number;
 }
 
-const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1', uiLang }) => {
+const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1', uiLang, sfxVolume }) => {
   const os = useOS();
-  const { playSound, speakWord } = useAudio();
+  const { playSound, speakWord } = useAudio(sfxVolume);
   const isMac = os === 'Mac';
   
   const currentSet = PRACTICAL_SETS[selectedModeId] || PRACTICAL_SETS['practical_1'];

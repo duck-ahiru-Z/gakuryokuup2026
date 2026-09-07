@@ -21,16 +21,22 @@ function Page() {
   const [uiLang, setUiLang] = useState<'EN' | 'JA'>('JA');
   const [furiganaEnabled, setFuriganaEnabled] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
+  const [bgmVolume, setBgmVolume] = useState(50);
+  const [sfxVolume, setSfxVolume] = useState(50);
   const [settingsLoaded, setSettingsLoaded] = useState(false);
 
   useEffect(() => {
     const savedLang = window.localStorage.getItem('shortcutAcademy.uiLang');
     const savedFurigana = window.localStorage.getItem('shortcutAcademy.furiganaEnabled');
     const savedDarkMode = window.localStorage.getItem('shortcutAcademy.darkMode');
+    const savedBgmVolume = window.localStorage.getItem('shortcutAcademy.bgmVolume');
+    const savedSfxVolume = window.localStorage.getItem('shortcutAcademy.sfxVolume');
 
     if (savedLang === 'EN' || savedLang === 'JA') setUiLang(savedLang);
     if (savedFurigana !== null) setFuriganaEnabled(savedFurigana === 'true');
     if (savedDarkMode !== null) setDarkMode(savedDarkMode === 'true');
+    if (savedBgmVolume !== null) setBgmVolume(Number(savedBgmVolume));
+    if (savedSfxVolume !== null) setSfxVolume(Number(savedSfxVolume));
     setSettingsLoaded(true);
   }, []);
 
@@ -39,7 +45,9 @@ function Page() {
     window.localStorage.setItem('shortcutAcademy.uiLang', uiLang);
     window.localStorage.setItem('shortcutAcademy.furiganaEnabled', String(furiganaEnabled));
     window.localStorage.setItem('shortcutAcademy.darkMode', String(darkMode));
-  }, [uiLang, furiganaEnabled, darkMode, settingsLoaded]);
+    window.localStorage.setItem('shortcutAcademy.bgmVolume', String(bgmVolume));
+    window.localStorage.setItem('shortcutAcademy.sfxVolume', String(sfxVolume));
+  }, [uiLang, furiganaEnabled, darkMode, bgmVolume, sfxVolume, settingsLoaded]);
 
   const updateUiLang = (lang: 'EN' | 'JA') => {
     setUiLang(lang);
@@ -79,6 +87,10 @@ function Page() {
             setFuriganaEnabled={updateFuriganaEnabled}
             darkMode={darkMode}
             setDarkMode={updateDarkMode}
+            bgmVolume={bgmVolume}
+            setBgmVolume={setBgmVolume}
+            sfxVolume={sfxVolume}
+            setSfxVolume={setSfxVolume}
           />
         );
       case 'modeSelect':
@@ -94,10 +106,10 @@ function Page() {
           />
         );
       case 'game':
-        return <Game onNavigate={setCurrentView} difficulty={difficulty} furiganaEnabled={furiganaEnabled} uiLang={uiLang} />;
+        return <Game onNavigate={setCurrentView} difficulty={difficulty} furiganaEnabled={furiganaEnabled} uiLang={uiLang} sfxVolume={sfxVolume} />;
       //game2はデバック用
       case 'game2' as any:
-        return <Game2 onNavigate={setCurrentView} difficulty={difficulty} selectedModeId={selectedModeId} uiLang={uiLang} />;
+        return <Game2 onNavigate={setCurrentView} difficulty={difficulty} selectedModeId={selectedModeId} uiLang={uiLang} sfxVolume={sfxVolume} />;
       case 'result':
         return <Result onNavigate={setCurrentView} uiLang={uiLang} furiganaEnabled={furiganaEnabled} />;
       case 'dictionary':
@@ -116,6 +128,10 @@ function Page() {
             setFuriganaEnabled={updateFuriganaEnabled}
             darkMode={darkMode}
             setDarkMode={updateDarkMode}
+            bgmVolume={bgmVolume}
+            setBgmVolume={setBgmVolume}
+            sfxVolume={sfxVolume}
+            setSfxVolume={setSfxVolume}
           />
         );
     }
