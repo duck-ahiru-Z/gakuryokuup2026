@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../App.css'; // Will be updated if App.css is moved, or we can keep it as is
 import type { ViewState, Difficulty } from '../types';
 import Home from '../components/Home';
@@ -21,6 +21,40 @@ function Page() {
   const [uiLang, setUiLang] = useState<'EN' | 'JA'>('JA');
   const [furiganaEnabled, setFuriganaEnabled] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
+  const [settingsLoaded, setSettingsLoaded] = useState(false);
+
+  useEffect(() => {
+    const savedLang = window.localStorage.getItem('shortcutAcademy.uiLang');
+    const savedFurigana = window.localStorage.getItem('shortcutAcademy.furiganaEnabled');
+    const savedDarkMode = window.localStorage.getItem('shortcutAcademy.darkMode');
+
+    if (savedLang === 'EN' || savedLang === 'JA') setUiLang(savedLang);
+    if (savedFurigana !== null) setFuriganaEnabled(savedFurigana === 'true');
+    if (savedDarkMode !== null) setDarkMode(savedDarkMode === 'true');
+    setSettingsLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (!settingsLoaded) return;
+    window.localStorage.setItem('shortcutAcademy.uiLang', uiLang);
+    window.localStorage.setItem('shortcutAcademy.furiganaEnabled', String(furiganaEnabled));
+    window.localStorage.setItem('shortcutAcademy.darkMode', String(darkMode));
+  }, [uiLang, furiganaEnabled, darkMode, settingsLoaded]);
+
+  const updateUiLang = (lang: 'EN' | 'JA') => {
+    setUiLang(lang);
+    window.localStorage.setItem('shortcutAcademy.uiLang', lang);
+  };
+
+  const updateFuriganaEnabled = (enabled: boolean) => {
+    setFuriganaEnabled(enabled);
+    window.localStorage.setItem('shortcutAcademy.furiganaEnabled', String(enabled));
+  };
+
+  const updateDarkMode = (enabled: boolean) => {
+    setDarkMode(enabled);
+    window.localStorage.setItem('shortcutAcademy.darkMode', String(enabled));
+  };
 
   // Apply dark mode to body
   React.useEffect(() => {
@@ -40,11 +74,11 @@ function Page() {
             difficulty={difficulty} 
             setDifficulty={setDifficulty} 
             uiLang={uiLang}
-            setUiLang={setUiLang}
+            setUiLang={updateUiLang}
             furiganaEnabled={furiganaEnabled}
-            setFuriganaEnabled={setFuriganaEnabled}
+            setFuriganaEnabled={updateFuriganaEnabled}
             darkMode={darkMode}
-            setDarkMode={setDarkMode}
+            setDarkMode={updateDarkMode}
           />
         );
       case 'modeSelect':
@@ -77,11 +111,11 @@ function Page() {
             difficulty={difficulty} 
             setDifficulty={setDifficulty}
             uiLang={uiLang}
-            setUiLang={setUiLang}
+            setUiLang={updateUiLang}
             furiganaEnabled={furiganaEnabled}
-            setFuriganaEnabled={setFuriganaEnabled}
+            setFuriganaEnabled={updateFuriganaEnabled}
             darkMode={darkMode}
-            setDarkMode={setDarkMode}
+            setDarkMode={updateDarkMode}
           />
         );
     }
