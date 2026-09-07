@@ -156,3 +156,7 @@
     from { transform: scale(0.7); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
+
+.centered-line {
+    text-align: center;
+}

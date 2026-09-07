@@ -21,8 +21,8 @@
     "type": "practical",
     "titleEn": "Bug Report & Fixes",
     "titleJa": "[バグ報告](ばぐほうこく)と[資料修正](しりょうしゅうせい)",
-    "descriptionEn": "Capture the screen, paste into a report, and save.",
-    "descriptionJa": "[画面](がめん)をキャプチャし、[報告書](ほうこくしょ)に[貼](は)り[付](つ)けて[保存](ほぞん)する"
+    "descriptionEn": "Use select all, reopen tab, and replace functions to solve game dev issues.",
+    "descriptionJa": "[全選択](ぜんせんたく)、[閉](と)じたタブの[復元](ふくげん)、[置換](ちかん)の[機能](きのう)を[使](つか)ってゲーム[開発](かいはつ)の[問題](もんだい)を[解決](かいけつ)してください。"
   },
   {
     "id": "practical_3",
