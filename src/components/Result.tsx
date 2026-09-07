@@ -65,6 +65,18 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
     });
 
   const getModeTitle = (modeId: string) => {
+    const difficultyLabels: Record<string, { en: string; ja: string }> = {
+      EASY: { en: 'BEGINNER', ja: '[初心者](しょしんしゃ)' },
+      NORMAL: { en: 'NORMAL', ja: '[通常](つうじょう)' },
+      HARD: { en: 'ADVANCED', ja: '[上級者](じょうきゅうしゃ)' },
+    };
+    const difficultyLabel = difficultyLabels[modeId];
+    if (difficultyLabel) {
+      return uiLang === 'EN'
+        ? difficultyLabel.en
+        : parseRubyText(difficultyLabel.ja, furiganaEnabled);
+    }
+
     const mode = gameModes.find(m => m.id === modeId);
     if (!mode) return modeId;
     return uiLang === 'EN' ? mode.titleEn : parseRubyText(mode.titleJa, furiganaEnabled);
