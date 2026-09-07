@@ -28,9 +28,10 @@ interface GameProps {
   onNavigate: (view: ViewState) => void;
   difficulty: Difficulty;
   selectedModeId?: string;
+  uiLang: 'EN' | 'JA';
 }
 
-const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1' }) => {
+const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1', uiLang }) => {
   const os = useOS();
   const { playSound, speakWord } = useAudio();
   const isMac = os === 'Mac';
@@ -43,6 +44,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
   
   const [searchHighlighted, setSearchHighlighted] = useState(false);
   const [rightContent, setRightContent] = useState(currentSet.initialRightText || '');
+  const [centeredLine, setCenteredLine] = useState<string | null>(null);
   
   const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
 
@@ -111,6 +113,9 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
           setSearchHighlighted(true);
         } else if (action.type === 'replace_right') {
           setRightContent(prev => prev.replace(action.replaceTarget || '', action.replaceWith || ''));
+          if (mission.shortcutId === 'center_align') {
+            setCenteredLine('その一歩が、未来を変える。');
+          }
         } else if (action.type === 'append_right') {
           setRightContent(prev => prev + (action.textToAppend || ''));
         }
@@ -145,11 +150,11 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
   if (!currentSet.missions || currentSet.missions.length === 0) {
     return (
       <div className="game2-container empty-state">
-        <h2 className="title">Coming Soon</h2>
-        <p>This practical mission is currently under development.</p>
+        <h2 className="title">{uiLang === 'EN' ? 'Coming Soon' : '準備中'}</h2>
+        <p>{uiLang === 'EN' ? 'This practical mission is currently under development.' : 'この実践問題は現在準備中です。'}</p>
         <button className="primary-btn mt-4" onClick={() => onNavigate('modeSelect')}>
           <ArrowLeft size={20} />
-          戻る
+          {uiLang === 'EN' ? 'BACK' : '戻る'}
         </button>
       </div>
     );
@@ -162,17 +167,17 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
       <div className="g2-header">
         <button className="secondary-btn" style={{ width: 'auto', padding: '0.5rem 1rem' }} onClick={() => onNavigate('modeSelect')}>
           <ArrowLeft size={16} />
-          <span>中断</span>
+          <span>{uiLang === 'EN' ? 'QUIT' : '中断'}</span>
         </button>
-        <h2 className="g2-title">{currentSet.titleJa}</h2>
+        <h2 className="g2-title">{uiLang === 'EN' ? currentSet.titleEn : currentSet.titleJa}</h2>
         <div className="g2-progress">
-          STEP {Math.min(currentStep + 1, currentSet.missions.length)} / {currentSet.missions.length}
+          {uiLang === 'EN' ? 'STEP' : 'ステップ'} {Math.min(currentStep + 1, currentSet.missions.length)} / {currentSet.missions.length}
         </div>
       </div>
 
       <div className="g2-workspace">
         <div className="g2-pane left-pane">
-          <div className="pane-header">{currentSet.leftColumnTitleJa}</div>
+          <div className="pane-header">{uiLang === 'EN' ? currentSet.leftColumnTitleEn : currentSet.leftColumnTitleJa}</div>
           <div className="pane-content">
             {currentSet.initialLeftText && currentSet.initialLeftText.map((line, idx) => {
               const action = currentMission?.successAction;
@@ -187,10 +192,12 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         </div>
 
         <div className="g2-pane right-pane">
-          <div className="pane-header">{currentSet.rightColumnTitleJa}</div>
+          <div className="pane-header">{uiLang === 'EN' ? currentSet.rightColumnTitleEn : currentSet.rightColumnTitleJa}</div>
           <div className="pane-content right-content-area">
             {rightContent.split('\n').map((line, idx) => (
-              <p key={idx}>{line}</p>
+              <p key={idx} className={centeredLine && line.includes(centeredLine) ? 'centered-line' : ''}>
+                {line.includes('**') ? <strong>{line.replace(/\*\*/g, '')}</strong> : line}
+              </p>
             ))}
           </div>
         </div>
@@ -199,12 +206,12 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
       <div className="g2-mission-box">
         {clearTime !== null ? (
           <div className="g2-clear-state">
-            <h3><Trophy className="icon-highlight" size={28} /> ALL MISSIONS CLEARED!</h3>
+            <h3><Trophy className="icon-highlight" size={28} /> {uiLang === 'EN' ? 'ALL MISSIONS CLEARED!' : '全ミッションクリア！'}</h3>
             <div className="g2-stats">
-              <p>クリアタイム: <span className="highlight">{clearTime} 秒</span></p>
+              <p>{uiLang === 'EN' ? 'Clear time:' : 'クリアタイム:'} <span className="highlight">{clearTime} {uiLang === 'EN' ? 'sec' : '秒'}</span></p>
             </div>
             <button className="primary-btn g2-finish-btn" onClick={() => onNavigate('result')}>
-              完了してリザルトへ 
+              {uiLang === 'EN' ? 'FINISH AND VIEW RESULTS' : '完了してリザルトへ'}
               <ArrowLeft size={20} style={{ transform: 'rotate(180deg)', marginLeft: '8px', marginRight: '8px' }}/>
               <span className="enter-badge">Enter</span>
             </button>
@@ -212,8 +219,8 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         ) : (
           <div className="g2-mission-info">
             <div className="m-header">
-              <h3 className="m-title">{currentMission.titleJa}</h3>
-              <p className="m-desc">{currentMission.descriptionJa}</p>
+              <h3 className="m-title">{uiLang === 'EN' ? currentMission.titleEn : currentMission.titleJa}</h3>
+              <p className="m-desc">{uiLang === 'EN' ? currentMission.descriptionEn : currentMission.descriptionJa}</p>
             </div>
           </div>
         )}
