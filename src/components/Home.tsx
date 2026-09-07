@@ -15,11 +15,16 @@ interface HomeProps {
   setFuriganaEnabled: (enabled: boolean) => void;
   darkMode: boolean;
   setDarkMode: (enabled: boolean) => void;
+  bgmVolume: number;
+  setBgmVolume: (volume: number) => void;
+  sfxVolume: number;
+  setSfxVolume: (volume: number) => void;
 }
 
 const Home: React.FC<HomeProps> = ({ 
   onNavigate, difficulty, setDifficulty, 
-  uiLang, setUiLang, furiganaEnabled, setFuriganaEnabled, darkMode, setDarkMode 
+  uiLang, setUiLang, furiganaEnabled, setFuriganaEnabled, darkMode, setDarkMode,
+  bgmVolume, setBgmVolume, sfxVolume, setSfxVolume
 }) => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const APP_TITLE = "Shortcut English";
@@ -154,6 +159,10 @@ const Home: React.FC<HomeProps> = ({
           setFuriganaEnabled={setFuriganaEnabled}
           darkMode={darkMode}
           setDarkMode={setDarkMode}
+          bgmVolume={bgmVolume}
+          setBgmVolume={setBgmVolume}
+          sfxVolume={sfxVolume}
+          setSfxVolume={setSfxVolume}
         />
       )}
     </div>

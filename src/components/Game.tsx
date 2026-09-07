@@ -19,9 +19,10 @@ interface GameProps {
   difficulty: Difficulty;
   furiganaEnabled: boolean;
   uiLang: 'EN' | 'JA';
+  sfxVolume: number;
 }
 
-const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, uiLang }) => {
+const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, uiLang, sfxVolume }) => {
   const os = useOS();
   const [finalScore, setFinalScore] = useState<number | null>(null);
 
@@ -39,7 +40,7 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
     handleSuccess,
   } = useGameState(finalScore === null, difficulty, handleGameEnd);
 
-  const { playSound, speakWord } = useAudio();
+  const { playSound, speakWord } = useAudio(sfxVolume);
 
   const handleAttempt = useCallback((keys: Set<string>) => {
     if (currentMission && !showExplanation) {
