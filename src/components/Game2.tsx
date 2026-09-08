@@ -40,6 +40,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
   const currentSet = PRACTICAL_SETS[selectedModeId] || PRACTICAL_SETS['practical_1'];
 
   const [currentStep, setCurrentStep] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
   const [startTime, setStartTime] = useState<number | null>(null);
   const [clearTime, setClearTime] = useState<number | null>(null);
   const [isNewRecord, setIsNewRecord] = useState(false);
@@ -49,10 +50,6 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
   const [centeredLine, setCenteredLine] = useState<string | null>(null);
   
   const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
-
-  useEffect(() => {
-    setStartTime(Date.now());
-  }, []);
 
   // ★ キー識別用ヘルパー関数（e.codeからアルファベットを抽出、またはe.keyを小文字化）
   const getKeyName = (e: KeyboardEvent): string[] => {
@@ -69,6 +66,8 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
       // Allow F12/F5
       if (e.key === 'F12' || e.key === 'F5') return;
       e.preventDefault();
+
+      if (!hasStarted) return;
 
       if (clearTime !== null) {
         if (e.key === 'Enter') {
@@ -152,7 +151,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         }, 1500);
       }
     },
-    [currentStep, isMac, currentSet, startTime, showSuccessOverlay, clearTime, playSound, speakWord, onNavigate]
+    [currentStep, hasStarted, isMac, currentSet, startTime, showSuccessOverlay, clearTime, playSound, speakWord, onNavigate]
   );
 
   useEffect(() => {
@@ -171,6 +170,37 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
           <ArrowLeft size={20} />
           {uiLang === 'EN' ? 'BACK' : '戻る'}
         </button>
+      </div>
+    );
+  }
+
+  if (!hasStarted) {
+    return (
+      <div className="game2-container g2-prep">
+        <div className="g2-prep-card">
+          <p className="g2-prep-kicker">{uiLang === 'EN' ? 'PRACTICAL MODE' : '実践モード'}</p>
+          <h2>{uiLang === 'EN' ? currentSet.titleEn : currentSet.titleJa}</h2>
+          <h3>{uiLang === 'EN' ? 'How to play' : '遊び方'}</h3>
+          <ol>
+            <li>{uiLang === 'EN' ? 'Read the mission shown in the center.' : '画面中央のミッションを読みます。'}</li>
+            <li>{uiLang === 'EN' ? 'Press the shortcut that completes the task.' : 'お題を達成するショートカットキーを押します。'}</li>
+            <li>{uiLang === 'EN' ? 'A correct answer advances you to the next step.' : '正解すると次のステップへ進みます。'}</li>
+          </ol>
+          <p className="g2-prep-note">
+            {uiLang === 'EN'
+              ? 'Not sure what to do? Use the Hint button during the mission. You can also skip a mission if needed.'
+              : 'わからないときは、プレイ中のヒントボタンを使えます。それでも難しいときはスキップできます。'}
+          </p>
+          <div className="g2-prep-actions">
+            <button className="secondary-btn" onClick={() => onNavigate('modeSelect')}>
+              <ArrowLeft size={16} />
+              {uiLang === 'EN' ? 'BACK' : '戻る'}
+            </button>
+            <button className="primary-btn" onClick={() => { setStartTime(Date.now()); setHasStarted(true); }}>
+              {uiLang === 'EN' ? 'START PRACTICE' : '実技を始める'}
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

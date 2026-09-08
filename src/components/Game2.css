@@ -157,6 +157,56 @@
     to { transform: scale(1); opacity: 1; }
 }
 
+.g2-prep {
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.g2-prep-card {
+    width: min(680px, 100%);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    padding: 2rem;
+}
+
+.g2-prep-kicker {
+    color: var(--accent-color);
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    margin: 0 0 0.5rem;
+}
+
+.g2-prep-card h2 {
+    color: var(--text-primary);
+    margin: 0 0 1.5rem;
+}
+
+.g2-prep-card h3 {
+    color: var(--accent-color);
+    margin-bottom: 0.75rem;
+}
+
+.g2-prep-card ol {
+    color: var(--text-primary);
+    line-height: 1.9;
+    padding-left: 1.5rem;
+}
+
+.g2-prep-note {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    border-left: 3px solid var(--accent-color);
+    padding-left: 0.75rem;
+}
+
+.g2-prep-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
 .new-record-badge {
     display: inline-block;
     color: var(--bg-primary);
