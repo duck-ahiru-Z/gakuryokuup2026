@@ -103,6 +103,28 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
     }
   };
 
+  const startPractice = useCallback(() => {
+    setStartTime(Date.now());
+    setHasStarted(true);
+  }, []);
+
+  useEffect(() => {
+    if (hasStarted) return;
+
+    const handlePrepKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        startPractice();
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        onNavigate('modeSelect');
+      }
+    };
+
+    window.addEventListener('keydown', handlePrepKeyDown);
+    return () => window.removeEventListener('keydown', handlePrepKeyDown);
+  }, [hasStarted, onNavigate, startPractice]);
+
   // ★ キー識別用ヘルパー関数（e.codeからアルファベットを抽出、またはe.keyを小文字化）
   const getKeyName = (e: KeyboardEvent): string[] => {
     const keys: string[] = [e.key.toLowerCase()];
@@ -244,12 +266,14 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
               : 'わからないときは、プレイ中のヒントボタンを使えます。それでも難しいときはスキップできます。'}
           </p>
           <div className="g2-prep-actions">
-            <button className="secondary-btn" onClick={() => onNavigate('modeSelect')}>
+            <button className="secondary-btn" onClick={() => onNavigate('modeSelect')} title="Shortcut: Esc">
               <ArrowLeft size={16} />
               {uiLang === 'EN' ? 'BACK' : '戻る'}
+              <span className="enter-badge">Esc</span>
             </button>
-            <button className="primary-btn" onClick={() => { setStartTime(Date.now()); setHasStarted(true); }}>
+            <button className="primary-btn" onClick={startPractice} title="Shortcut: Enter">
               {uiLang === 'EN' ? 'START PRACTICE' : '実技を始める'}
+              <span className="enter-badge">Enter</span>
             </button>
           </div>
         </div>
