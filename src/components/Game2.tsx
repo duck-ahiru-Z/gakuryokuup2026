@@ -94,7 +94,9 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         if (mission.shortcutId === 'search' && pressedChar === 'f') actionMatches = true;
         if (mission.shortcutId === 'copy' && pressedChar === 'c') actionMatches = true;
         if (mission.shortcutId === 'paste' && pressedChar === 'v') actionMatches = true;
+        if (mission.shortcutId === 'cut' && pressedChar === 'x') actionMatches = true;
         if (mission.shortcutId === 'undo' && pressedChar === 'z') actionMatches = true;
+        if (mission.shortcutId === 'redo' && (isMac ? (pressedChar === 'z' && e.shiftKey) : pressedChar === 'y')) actionMatches = true;
         if (mission.shortcutId === 'reopen_tab' && e.shiftKey && pressedChar === 't') actionMatches = true;
         if (mission.shortcutId === 'replace' && pressedChar === 'h') actionMatches = true;
 

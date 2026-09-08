@@ -35,25 +35,25 @@
   {
     "id": "practical_4",
     "type": "practical",
-    "titleEn": "Coming Soon",
-    "titleJa": "Coming Soon",
-    "descriptionEn": "Practical mission 4 is under development.",
-    "descriptionJa": "実践問題4は開発中です。"
+    "titleEn": "Class Presentation Edition",
+    "titleJa": "[学級発表会](がっきゅうはっぴょうかい)のスライド[準備](じゅんび)",
+    "descriptionEn": "Prepare a clear presentation slide by removing old text and correcting a mistake.",
+    "descriptionJa": "学級発表会のスライドを、必要な情報だけが伝わる形に整えよう。"
   },
   {
     "id": "practical_5",
     "type": "practical",
-    "titleEn": "Coming Soon",
-    "titleJa": "Coming Soon",
-    "descriptionEn": "Practical mission 5 is under development.",
-    "descriptionJa": "実践問題5は開発中です。"
+    "titleEn": "Science Report Edition",
+    "titleJa": "[科学部](かがくぶ)の[実験](じっけん)レポートを[完成](かんせい)させよう",
+    "descriptionEn": "Use editing shortcuts to organize observations and complete a science report.",
+    "descriptionJa": "観察メモを整理し、読み手に伝わる実験レポートに仕上げよう。"
   },
   {
     "id": "practical_6",
     "type": "practical",
-    "titleEn": "Coming Soon",
-    "titleJa": "Coming Soon",
-    "descriptionEn": "Practical mission 6 is under development.",
-    "descriptionJa": "実践問題6は開発中です。"
+    "titleEn": "Career Interview Edition",
+    "titleJa": "[進路](しんろ)インタビューを[記事](きじ)にまとめよう",
+    "descriptionEn": "Turn interview notes into a clear article for the school website.",
+    "descriptionJa": "将来の仕事について聞いたメモを、学校サイトの記事にまとめよう。"
   }
 ]

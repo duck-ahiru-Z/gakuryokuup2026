@@ -1,1 +1,58 @@
-{ "id": "", "titleEn": "Coming Soon", "titleJa": "Coming Soon", "descriptionEn": "", "descriptionJa": "", "leftColumnTitleEn": "", "leftColumnTitleJa": "", "rightColumnTitleEn": "", "rightColumnTitleJa": "", "initialLeftText": [], "initialRightText": "", "missions": [] }
+{
+  "id": "practical_4",
+  "titleEn": "Class Presentation Edition",
+  "titleJa": "学級発表会のスライド準備",
+  "descriptionEn": "Prepare a clear presentation slide by removing old text and correcting a mistake.",
+  "descriptionJa": "学級発表会のスライドを、必要な情報だけが伝わる形に整えよう。",
+  "leftColumnTitleEn": "Presentation Plan",
+  "leftColumnTitleJa": "発表会の企画メモ",
+  "rightColumnTitleEn": "Slide Draft",
+  "rightColumnTitleJa": "発表スライド案",
+  "initialLeftText": [
+    "【学級発表会 企画メモ】",
+    "テーマ：地域の防災について",
+    "発表日：11月8日（金）",
+    "担当：2年3組 防災チーム",
+    "伝えたいこと：家族で避難場所を確認しておく",
+    "発表の順番：問題提起 → 調査結果 → 自分たちの提案"
+  ],
+  "initialRightText": "【発表スライド案】\n\nタイトル：\n（タイトル未定）\n\n発表日：11月8日（金）\n\nメッセージ：\n（ここにメッセージ）\n（ここにメッセージ）",
+  "missions": [
+    {
+      "id": 1,
+      "titleEn": "Select the plan notes",
+      "titleJa": "小問1：発表のポイントをすべて選択しよう！",
+      "descriptionEn": "Select all of the planning notes before moving them into the slide.",
+      "descriptionJa": "企画メモを確認して、発表に使う情報をまとめて選択しよう！",
+      "shortcutId": "select_all",
+      "successAction": { "type": "highlight_left", "targetText": "テーマ：地域の防災について" }
+    },
+    {
+      "id": 2,
+      "titleEn": "Remove the duplicate placeholder",
+      "titleJa": "小問2：重複したメッセージ欄を切り取ろう！",
+      "descriptionEn": "Cut the extra placeholder so the slide has room for one clear message.",
+      "descriptionJa": "同じ入力欄が2つあります。余分な欄を切り取って、読みやすくしよう！",
+      "shortcutId": "cut",
+      "successAction": { "type": "replace_right", "replaceTarget": "（ここにメッセージ）\n（ここにメッセージ）", "replaceWith": "（ここにメッセージ）" }
+    },
+    {
+      "id": 3,
+      "titleEn": "Paste the key message",
+      "titleJa": "小問3：大切なメッセージを貼り付けよう！",
+      "descriptionEn": "Paste the team's key message into the slide. A wrong sentence may appear, so check the result.",
+      "descriptionJa": "家族で避難場所を確認しておく、という提案をスライドに貼り付けよう。もし違う文章が出たら、次の操作で直そう！",
+      "shortcutId": "paste",
+      "successAction": { "type": "replace_right", "replaceTarget": "（ここにメッセージ）", "replaceWith": "別の文章が貼り付けられました" }
+    },
+    {
+      "id": 4,
+      "titleEn": "Undo the wrong paste",
+      "titleJa": "小問4：間違った文章を元に戻そう！",
+      "descriptionEn": "A wrong sentence was pasted into the slide. Undo that last action.",
+      "descriptionJa": "別の文章が貼り付けられてしまいました。直前の操作を取り消して、正しい内容に戻そう！",
+      "shortcutId": "undo",
+      "successAction": { "type": "replace_right", "replaceTarget": "別の文章が貼り付けられました", "replaceWith": "家族で避難場所を確認しておく" }
+    }
+  ]
+}

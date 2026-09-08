@@ -1,1 +1,57 @@
-{ "id": "", "titleEn": "Coming Soon", "titleJa": "Coming Soon", "descriptionEn": "", "descriptionJa": "", "leftColumnTitleEn": "", "leftColumnTitleJa": "", "rightColumnTitleEn": "", "rightColumnTitleJa": "", "initialLeftText": [], "initialRightText": "", "missions": [] }
+{
+  "id": "practical_6",
+  "titleEn": "Career Interview Edition",
+  "titleJa": "進路インタビューを記事にまとめよう",
+  "descriptionEn": "Turn interview notes into a clear article for the school website.",
+  "descriptionJa": "将来の仕事について聞いたメモを、学校サイトの記事にまとめよう。",
+  "leftColumnTitleEn": "Interview Notes",
+  "leftColumnTitleJa": "インタビューメモ",
+  "rightColumnTitleEn": "School Website Article",
+  "rightColumnTitleJa": "学校サイトの記事案",
+  "initialLeftText": [
+    "【卒業生インタビュー】",
+    "仕事：地域の図書館で働く司書",
+    "大切にしていること：相手の知りたい気持ちを尊重する",
+    "中学生へのアドバイス：好きなことを少しずつ深めよう",
+    "印象に残った言葉：本は知らない世界への入口になる"
+  ],
+  "initialRightText": "【進路インタビュー】\n\n仕事：\n（ここに仕事）\n\n大切にしていること：\n（ここに内容）\n\n中学生へのアドバイス：\n（ここにアドバイス）",
+  "missions": [
+    {
+      "id": 1,
+      "titleEn": "Select the interview notes",
+      "titleJa": "小問1：インタビューのメモをすべて選択しよう！",
+      "descriptionEn": "Select all the notes before transferring the important information.",
+      "descriptionJa": "記事に使うメモを確認するため、まず全体を選択しよう！",
+      "shortcutId": "select_all",
+      "successAction": { "type": "highlight_left", "targetText": "仕事：地域の図書館で働く司書" }
+    },
+    {
+      "id": 2,
+      "titleEn": "Copy the job title",
+      "titleJa": "小問2：仕事の名前をコピーしよう！",
+      "descriptionEn": "Copy the interviewee's job so the article can introduce it correctly.",
+      "descriptionJa": "卒業生の仕事を正しく紹介するため、仕事の名前をコピーしよう！",
+      "shortcutId": "copy",
+      "successAction": { "type": "highlight_left", "targetText": "仕事：地域の図書館で働く司書" }
+    },
+    {
+      "id": 3,
+      "titleEn": "Paste the job title",
+      "titleJa": "小問3：仕事の名前を記事に貼り付けよう！",
+      "descriptionEn": "Paste the copied job title into the article.",
+      "descriptionJa": "コピーした仕事の名前を、記事の空欄に貼り付けよう！",
+      "shortcutId": "paste",
+      "successAction": { "type": "replace_right", "replaceTarget": "（ここに仕事）", "replaceWith": "地域の図書館で働く司書" }
+    },
+    {
+      "id": 4,
+      "titleEn": "Redo the article edit",
+      "titleJa": "小問4：取り消した編集をやり直そう！",
+      "descriptionEn": "The correct advice disappeared after an undo. Redo the edit to restore it.",
+      "descriptionJa": "正しいアドバイスまで消えてしまいました。取り消した編集をやり直して記事を完成させよう！",
+      "shortcutId": "redo",
+      "successAction": { "type": "replace_right", "replaceTarget": "（ここにアドバイス）", "replaceWith": "好きなことを少しずつ深めよう" }
+    }
+  ]
+}

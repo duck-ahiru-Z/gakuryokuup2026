@@ -1,1 +1,58 @@
-{ "id": "", "titleEn": "Coming Soon", "titleJa": "Coming Soon", "descriptionEn": "", "descriptionJa": "", "leftColumnTitleEn": "", "leftColumnTitleJa": "", "rightColumnTitleEn": "", "rightColumnTitleJa": "", "initialLeftText": [], "initialRightText": "", "missions": [] }
+{
+  "id": "practical_5",
+  "titleEn": "Science Report Edition",
+  "titleJa": "科学部の実験レポートを完成させよう",
+  "descriptionEn": "Use editing shortcuts to organize observations and complete a science report.",
+  "descriptionJa": "観察メモを整理し、読み手に伝わる実験レポートに仕上げよう。",
+  "leftColumnTitleEn": "Observation Notes",
+  "leftColumnTitleJa": "観察メモ",
+  "rightColumnTitleEn": "Experiment Report",
+  "rightColumnTitleJa": "実験レポート",
+  "initialLeftText": [
+    "【ペットボトルロケット実験】",
+    "目的：空気の力でどこまで飛ぶか調べる",
+    "条件：水の量を変えて3回飛ばす",
+    "結果：水が少なすぎると、あまり飛ばなかった",
+    "結果：水が多すぎると、重くなって飛ばなかった",
+    "結論：水の量には、よく飛ぶちょうどよい範囲がある"
+  ],
+  "initialRightText": "【実験レポート】\n\n実験名：ペットボトルロケット\n\n目的：\n（ここに目的）\n\n結果：\n（ここに結果）\n\n結論：\n（ここに結論）",
+  "missions": [
+    {
+      "id": 1,
+      "titleEn": "Copy the purpose",
+      "titleJa": "小問1：実験の目的をコピーしよう！",
+      "descriptionEn": "Copy the purpose from the observation notes so it can be used in the report.",
+      "descriptionJa": "観察メモから実験の目的をコピーして、レポートに使えるようにしよう！",
+      "shortcutId": "copy",
+      "successAction": { "type": "highlight_left", "targetText": "目的：空気の力でどこまで飛ぶか調べる" }
+    },
+    {
+      "id": 2,
+      "titleEn": "Paste the purpose",
+      "titleJa": "小問2：目的をレポートに貼り付けよう！",
+      "descriptionEn": "Paste the copied purpose into the report.",
+      "descriptionJa": "コピーした目的を、レポートの空欄に貼り付けよう！",
+      "shortcutId": "paste",
+      "successAction": { "type": "replace_right", "replaceTarget": "（ここに目的）", "replaceWith": "空気の力でどこまで飛ぶか調べる" }
+    },
+    {
+      "id": 3,
+      "titleEn": "Cut the repeated result",
+      "titleJa": "小問3：重複した結果を切り取ろう！",
+      "descriptionEn": "Remove the repeated result sentence from the report.",
+      "descriptionJa": "結果が同じ内容で重複しています。不要な文章を切り取って整理しよう！",
+      "shortcutId": "cut",
+      "successAction": { "type": "replace_right", "replaceTarget": "（ここに結果）", "replaceWith": "水の量によって飛ぶ距離が変わった" }
+    },
+    {
+      "id": 4,
+      "titleEn": "Undo the rushed edit",
+      "titleJa": "小問4：急いで消した文章を元に戻そう！",
+      "descriptionEn": "Undo the rushed edit so the report can be completed accurately.",
+      "descriptionJa": "結論を書く前に文章を消してしまいました。直前の操作を取り消そう！",
+      "shortcutId": "undo",
+      "successAction": { "type": "replace_right", "replaceTarget": "（ここに結論）", "replaceWith": "水の量には、よく飛ぶちょうどよい範囲がある" }
+    }
+  ]
+}
