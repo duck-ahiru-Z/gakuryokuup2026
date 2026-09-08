@@ -142,7 +142,7 @@ function Page() {
       <header>
         <div className="logo" onClick={() => setCurrentView('home')} style={{ cursor: 'pointer' }}>
           <Terminal className="highlight" size={28} />
-          <span>Shortcut<span className="highlight">Academy</span></span>
+          <span>Shortcut<span className="highlight">English</span></span>
         </div>
       </header>
       <main className="main-content">
