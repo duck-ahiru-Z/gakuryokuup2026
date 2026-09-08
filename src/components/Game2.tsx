@@ -42,6 +42,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
   const [currentStep, setCurrentStep] = useState(0);
   const [startTime, setStartTime] = useState<number | null>(null);
   const [clearTime, setClearTime] = useState<number | null>(null);
+  const [isNewRecord, setIsNewRecord] = useState(false);
   
   const [searchHighlighted, setSearchHighlighted] = useState(false);
   const [rightContent, setRightContent] = useState(currentSet.initialRightText || '');
@@ -142,7 +143,9 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
           } else {
             playSound('clear');
             if (startTime) {
-              setClearTime(Math.floor((Date.now() - startTime) / 1000));
+              const elapsed = Math.floor((Date.now() - startTime) / 1000);
+              setIsNewRecord(storageUtils.recordPracticalTime(selectedModeId, elapsed));
+              setClearTime(elapsed);
               storageUtils.addXP(300);
             }
           }
@@ -219,6 +222,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         {clearTime !== null ? (
           <div className="g2-clear-state">
             <h3><Trophy className="icon-highlight" size={28} /> {uiLang === 'EN' ? 'ALL MISSIONS CLEARED!' : '全ミッションクリア！'}</h3>
+            {isNewRecord && <div className="new-record-badge">NEW</div>}
             <div className="g2-stats">
               <p>{uiLang === 'EN' ? 'Clear time:' : 'クリアタイム:'} <span className="highlight">{clearTime} {uiLang === 'EN' ? 'sec' : '秒'}</span></p>
             </div>

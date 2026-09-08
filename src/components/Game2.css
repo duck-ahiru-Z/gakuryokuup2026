@@ -157,6 +157,16 @@
     to { transform: scale(1); opacity: 1; }
 }
 
+.new-record-badge {
+    display: inline-block;
+    color: var(--bg-primary);
+    background: var(--accent-color);
+    padding: 0.25rem 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5rem;
+}
+
 .centered-line {
     text-align: center;
 }

@@ -3,6 +3,7 @@ import type { ViewState, GameModeData, Difficulty } from '../types';
 import gameModes from '../data/gameModes.json';
 import { ArrowLeft, PlayCircle, FileText, Play } from 'lucide-react';
 import { parseRubyText } from '../utils/shortcutUtils';
+import { storageUtils } from '../utils/storageUtils';
 import './ModeSelect.css';
 
 interface ModeSelectProps {
@@ -19,6 +20,7 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
   onNavigate, difficulty, setDifficulty, selectedModeId, setSelectedModeId, uiLang, furiganaEnabled 
 }) => {
   const practicalModes = (gameModes as GameModeData[]).filter(m => m.type === 'practical');
+  const [bestTime, setBestTime] = useState<number | null>(null);
 
 
 
@@ -61,6 +63,10 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
   const selectedDisplayData = selectedData && selectedModeId === 'normal'
     ? { ...selectedData, ...normalDifficultyTitles[difficulty] }
     : selectedData;
+
+  useEffect(() => {
+    setBestTime(selectedModeId?.startsWith('practical_') ? storageUtils.getBestTime(selectedModeId) : null);
+  }, [selectedModeId]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -169,6 +175,13 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
               <h2 className="detail-title">
                 {renderDynamicText(selectedDisplayData.titleEn, selectedDisplayData.titleJa)}
               </h2>
+
+              {selectedModeId?.startsWith('practical_') && (
+                <div className="best-time-display">
+                  <span>{uiLang === 'EN' ? 'BEST TIME' : '最短記録'}</span>
+                  <strong>{bestTime === null ? (uiLang === 'EN' ? 'NO RECORD' : '未記録') : `${bestTime}${uiLang === 'EN' ? ' sec' : '秒'}`}</strong>
+                </div>
+              )}
               
               <div className="mode-image-wrapper">
                 {selectedDisplayData.imageUri ? (

@@ -34,6 +34,7 @@ export interface UserStats {
   rank: string;
   unlockedShortcuts: string[];
   recentScores: { modeId: string; score: number; timestamp: number }[];
+  bestTimes: Record<string, number>;
   totalAttempts: number;
   correctAttempts: number;
   shortcutMistakes: Record<string, number>;
