@@ -344,18 +344,23 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
               <h3 className="m-title">{uiLang === 'EN' ? currentMission.titleEn : currentMission.titleJa}</h3>
               <p className="m-desc">{uiLang === 'EN' ? currentMission.descriptionEn : currentMission.descriptionJa}</p>
               {hintMessage && <p className="g2-hint-message">{hintMessage}</p>}
-              <button className="secondary-btn g2-hint-btn" onClick={handleHint}>
-                {hintedSteps.includes(currentStep)
-                  ? (uiLang === 'EN' ? 'SHOW HINT AGAIN' : 'ヒントを再表示')
-                  : (uiLang === 'EN' ? 'HINT (-10 XP)' : 'ヒント（-10XP）')}
-              </button>
-              <button className="secondary-btn g2-skip-btn" onClick={handleSkip}>
-                {uiLang === 'EN' ? 'SKIP (-25 XP)' : 'スキップ（-25XP）'}
-              </button>
             </div>
           </div>
         )}
       </div>
+
+      {clearTime === null && (
+        <div className="g2-action-bar" aria-label={uiLang === 'EN' ? 'Mission assistance' : 'ミッション補助'}>
+          <button className="secondary-btn g2-hint-btn" onClick={handleHint}>
+            {hintedSteps.includes(currentStep)
+              ? (uiLang === 'EN' ? 'SHOW HINT AGAIN' : 'ヒントを再表示')
+              : (uiLang === 'EN' ? 'HINT (-10 XP)' : 'ヒント（-10XP）')}
+          </button>
+          <button className="secondary-btn g2-skip-btn" onClick={handleSkip}>
+            {uiLang === 'EN' ? 'SKIP (-25 XP)' : 'スキップ（-25XP）'}
+          </button>
+        </div>
+      )}
 
       {/* 画面下部：キーボードUI領域 */}
       {clearTime === null && (
