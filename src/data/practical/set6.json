@@ -1,1 +1,57 @@
-{ "id": "", "titleEn": "Coming Soon", "titleJa": "Coming Soon", "descriptionEn": "", "descriptionJa": "", "leftColumnTitleEn": "", "leftColumnTitleJa": "", "rightColumnTitleEn": "", "rightColumnTitleJa": "", "initialLeftText": [], "initialRightText": "", "missions": [] }
+{
+  "id": "practical_6",
+  "titleEn": "Space Team Web Editor",
+  "titleJa": "宇宙開発チームの紹介ページを作ろう",
+  "descriptionEn": "Design and save a web page introducing a future space development team.",
+  "descriptionJa": "将来の宇宙開発チームを紹介するページを、見やすく完成させよう。",
+  "leftColumnTitleEn": "Mission Briefing",
+  "leftColumnTitleJa": "宇宙開発ミッション資料",
+  "rightColumnTitleEn": "Team Web Page",
+  "rightColumnTitleJa": "チーム紹介ページ",
+  "initialLeftText": [
+    "【PROJECT ORBIT】",
+    "2038年、月面基地から火星探査機を出発させる計画",
+    "チームの目標：遠い星の環境を調べ、未来の暮らしに役立てる",
+    "合言葉：知りたい気持ちが、未来を動かす",
+    "メンバー：操縦担当、観測担当、通信担当、地上サポート"
+  ],
+  "initialRightText": "【PROJECT ORBIT チーム紹介】\n\nPROJECT ORBIT\n\n目標：\n遠い星の環境を調べ、未来の暮らしに役立てる\n\n合言葉：\n知りたい気持ちが、未来を動かす\n\n[下書き]",
+  "missions": [
+    {
+      "id": 1,
+      "titleEn": "Italicize the mission motto",
+      "titleJa": "小問1：ミッションの合言葉を斜体にしよう！",
+      "descriptionEn": "Italicize the motto to give the future-focused message a special tone.",
+      "descriptionJa": "未来への思いが伝わるように、ミッションの合言葉を斜体で強調しよう！",
+      "shortcutId": "italic",
+      "successAction": { "type": "replace_right", "replaceTarget": "PROJECT ORBIT\n", "replaceWith": "**PROJECT ORBIT**\n" }
+    },
+    {
+      "id": 2,
+      "titleEn": "Underline the launch goal",
+      "titleJa": "小問2：打ち上げの目標に下線を引こう！",
+      "descriptionEn": "Underline the goal so readers can find the team's purpose quickly.",
+      "descriptionJa": "ページを読む人が目的をすぐ見つけられるよう、目標に下線を引こう！",
+      "shortcutId": "underline",
+      "successAction": { "type": "replace_right", "replaceTarget": "遠い星の環境を調べ、未来の暮らしに役立てる", "replaceWith": "遠い星の環境を調べ、未来の暮らしに役立てる" }
+    },
+    {
+      "id": 3,
+      "titleEn": "Restore the mission page",
+      "titleJa": "小問3：閉じてしまった資料ページを復元しよう！",
+      "descriptionEn": "The mission brief was closed by mistake. Reopen the last closed tab.",
+      "descriptionJa": "ミッション資料のページを間違えて閉じてしまいました。直前のタブを復元しよう！",
+      "shortcutId": "reopen_tab",
+      "successAction": { "type": "none" }
+    },
+    {
+      "id": 4,
+      "titleEn": "Save a named launch version",
+      "titleJa": "小問4：完成した紹介ページを別名保存しよう！",
+      "descriptionEn": "Save a named version before publishing the team page.",
+      "descriptionJa": "公開前に、完成した紹介ページを名前を付けて保存しよう！",
+      "shortcutId": "save_as",
+      "successAction": { "type": "append_right", "textToAppend": "\n\n[PROJECT ORBIT 紹介ページ・別名保存完了]" }
+    }
+  ]
+}

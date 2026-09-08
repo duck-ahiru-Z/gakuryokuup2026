@@ -7,6 +7,7 @@ const defaultStats: UserStats = {
   rank: 'Trainee',
   unlockedShortcuts: [],
   recentScores: [],
+  bestTimes: {},
   totalAttempts: 0,
   correctAttempts: 0,
   shortcutMistakes: {}
@@ -60,6 +61,22 @@ export const storageUtils = {
       stats.recentScores = stats.recentScores.slice(0, 5); // Keep last 5
     }
     storageUtils.saveStats(stats);
+  },
+
+  getBestTime: (modeId: string): number | null => {
+    const bestTime = storageUtils.getStats().bestTimes?.[modeId];
+    return typeof bestTime === 'number' ? bestTime : null;
+  },
+
+  recordPracticalTime: (modeId: string, time: number): boolean => {
+    const stats = storageUtils.getStats();
+    const previousBest = stats.bestTimes?.[modeId];
+    const isNewRecord = previousBest === undefined || time < previousBest;
+    if (isNewRecord) {
+      stats.bestTimes[modeId] = time;
+      storageUtils.saveStats(stats);
+    }
+    return isNewRecord;
   },
 
   recordAttempt: (isCorrect: boolean, shortcutId?: string): void => {

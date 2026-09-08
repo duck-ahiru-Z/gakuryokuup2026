@@ -1,4 +1,4 @@
-# Shortcut Academy (ショートカット・アカデミー) 🚀
+# Shortcut English 🚀
 
 「PC操作のスピードアップ」と「英語の語源学習」を同時に実現する、新感覚の学習用Webアプリケーションです。Next.js (App Router) と TypeScript で構築されています。
 

@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import '../App.css';
 
 export const metadata: Metadata = {
-  title: 'Shortcut Academy',
+  title: 'Shortcut English',
   description: 'Learn keyboard shortcuts while fighting an AI rival.',
 };
 

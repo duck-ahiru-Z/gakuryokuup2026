@@ -42,6 +42,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
   const [currentStep, setCurrentStep] = useState(0);
   const [startTime, setStartTime] = useState<number | null>(null);
   const [clearTime, setClearTime] = useState<number | null>(null);
+  const [isNewRecord, setIsNewRecord] = useState(false);
   
   const [searchHighlighted, setSearchHighlighted] = useState(false);
   const [rightContent, setRightContent] = useState(currentSet.initialRightText || '');
@@ -94,7 +95,18 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         if (mission.shortcutId === 'search' && pressedChar === 'f') actionMatches = true;
         if (mission.shortcutId === 'copy' && pressedChar === 'c') actionMatches = true;
         if (mission.shortcutId === 'paste' && pressedChar === 'v') actionMatches = true;
+        if (mission.shortcutId === 'cut' && pressedChar === 'x') actionMatches = true;
         if (mission.shortcutId === 'undo' && pressedChar === 'z') actionMatches = true;
+        if (mission.shortcutId === 'redo' && (isMac ? (pressedChar === 'z' && e.shiftKey) : pressedChar === 'y')) actionMatches = true;
+        if (mission.shortcutId === 'italic' && pressedChar === 'i') actionMatches = true;
+        if (mission.shortcutId === 'underline' && pressedChar === 'u') actionMatches = true;
+        if (mission.shortcutId === 'insert_link' && pressedChar === 'k') actionMatches = true;
+        if (mission.shortcutId === 'paste_plain' && e.shiftKey && pressedChar === 'v') actionMatches = true;
+        if (mission.shortcutId === 'save_as' && e.shiftKey && pressedChar === 's') actionMatches = true;
+        if (mission.shortcutId === 'left_align' && pressedChar === 'l') actionMatches = true;
+        if (mission.shortcutId === 'zoom_in' && (e.key === '+' || e.code === 'NumpadAdd')) actionMatches = true;
+        if (mission.shortcutId === 'zoom_out' && (e.key === '-' || e.code === 'NumpadSubtract')) actionMatches = true;
+        if (mission.shortcutId === 'zoom_reset' && pressedChar === '0') actionMatches = true;
         if (mission.shortcutId === 'reopen_tab' && e.shiftKey && pressedChar === 't') actionMatches = true;
         if (mission.shortcutId === 'replace' && pressedChar === 'h') actionMatches = true;
 
@@ -131,7 +143,9 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
           } else {
             playSound('clear');
             if (startTime) {
-              setClearTime(Math.floor((Date.now() - startTime) / 1000));
+              const elapsed = Math.floor((Date.now() - startTime) / 1000);
+              setIsNewRecord(storageUtils.recordPracticalTime(selectedModeId, elapsed));
+              setClearTime(elapsed);
               storageUtils.addXP(300);
             }
           }
@@ -208,6 +222,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         {clearTime !== null ? (
           <div className="g2-clear-state">
             <h3><Trophy className="icon-highlight" size={28} /> {uiLang === 'EN' ? 'ALL MISSIONS CLEARED!' : '全ミッションクリア！'}</h3>
+            {isNewRecord && <div className="new-record-badge">NEW</div>}
             <div className="g2-stats">
               <p>{uiLang === 'EN' ? 'Clear time:' : 'クリアタイム:'} <span className="highlight">{clearTime} {uiLang === 'EN' ? 'sec' : '秒'}</span></p>
             </div>

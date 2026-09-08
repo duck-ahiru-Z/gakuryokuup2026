@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import '../App.css'; // Will be updated if App.css is moved, or we can keep it as is
 import type { ViewState, Difficulty } from '../types';
 import Home from '../components/Home';
 import Game from '../components/Game';
@@ -142,7 +141,7 @@ function Page() {
       <header>
         <div className="logo" onClick={() => setCurrentView('home')} style={{ cursor: 'pointer' }}>
           <Terminal className="highlight" size={28} />
-          <span>Shortcut<span className="highlight">Academy</span></span>
+          <span>Shortcut<span className="highlight">English</span></span>
         </div>
       </header>
       <main className="main-content">

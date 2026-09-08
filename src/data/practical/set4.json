@@ -1,1 +1,58 @@
-{ "id": "", "titleEn": "Coming Soon", "titleJa": "Coming Soon", "descriptionEn": "", "descriptionJa": "", "leftColumnTitleEn": "", "leftColumnTitleJa": "", "rightColumnTitleEn": "", "rightColumnTitleJa": "", "initialLeftText": [], "initialRightText": "", "missions": [] }
+{
+  "id": "practical_4",
+  "titleEn": "Science Contest Investigation",
+  "titleJa": "科学コンテストの謎を調査せよ！",
+  "descriptionEn": "Investigate conflicting experiment notes and prepare reliable evidence.",
+  "descriptionJa": "食い違う実験メモを調べて、信頼できる発表材料を見つけよう。",
+  "leftColumnTitleEn": "Lab Notebook",
+  "leftColumnTitleJa": "科学部の実験ノート",
+  "rightColumnTitleEn": "Contest Presentation",
+  "rightColumnTitleJa": "コンテスト発表資料",
+  "initialLeftText": [
+    "【テーマ：植物は音楽で成長する？】",
+    "実験日：6月12日　A班：毎日10分、静かな音楽を流した",
+    "実験日：6月12日　B班：毎日10分、何も流さなかった",
+    "結果メモ：A班の平均は12cm、B班の平均は9cm",
+    "注意メモ：測定した時間が班ごとに違っていた可能性あり",
+    "発表のポイント：音楽だけが原因だと決めつけず、追加実験が必要"
+  ],
+  "initialRightText": "【科学コンテスト 発表資料】\n\n問い：音楽は植物の成長に影響する？\n\n観察結果：\n（ここに見つけた結果）\n\n考察：\n（ここに考察）\n\n次の実験：\n（ここに提案）",
+  "missions": [
+    {
+      "id": 1,
+      "titleEn": "Find the measurement note",
+      "titleJa": "小問1：測定結果を検索して見つけよう！",
+      "descriptionEn": "Search the lab notebook for the numerical result needed in the presentation.",
+      "descriptionJa": "発表に必要な数値を、実験ノートの中から検索して見つけよう！",
+      "shortcutId": "search",
+      "successAction": { "type": "highlight_left", "targetText": "結果メモ：A班の平均は12cm、B班の平均は9cm" }
+    },
+    {
+      "id": 2,
+      "titleEn": "Redo the comparison table",
+      "titleJa": "小問2：消えてしまった比較結果をやり直そう！",
+      "descriptionEn": "The comparison table was undone by mistake. Redo the last edit to restore the evidence.",
+      "descriptionJa": "比較結果を取り消してしまいました。やり直して、発表に必要な証拠を復元しよう！",
+      "shortcutId": "redo",
+      "successAction": { "type": "highlight_left", "targetText": "結果メモ：A班の平均は12cm、B班の平均は9cm" }
+    },
+    {
+      "id": 3,
+      "titleEn": "Paste the evidence without formatting",
+      "titleJa": "小問3：書式なしで結果を貼り付けよう！",
+      "descriptionEn": "Paste the measurement as plain text so the presentation style stays consistent.",
+      "descriptionJa": "資料の見た目を崩さないように、測定結果を文字だけで貼り付けよう！",
+      "shortcutId": "paste_plain",
+      "successAction": { "type": "replace_right", "replaceTarget": "（ここに見つけた結果）", "replaceWith": "A班の平均は12cm、B班の平均は9cm" }
+    },
+    {
+      "id": 4,
+      "titleEn": "Save the revised evidence",
+      "titleJa": "小問4：修正した発表資料を別名保存しよう！",
+      "descriptionEn": "Save the careful version as a separate file before submitting it.",
+      "descriptionJa": "決めつけを避けた発表資料を、元のメモとは別のファイルとして保存しよう！",
+      "shortcutId": "save_as",
+      "successAction": { "type": "append_right", "textToAppend": "\n\n[科学コンテスト提出版・別名保存完了]" }
+    }
+  ]
+}
