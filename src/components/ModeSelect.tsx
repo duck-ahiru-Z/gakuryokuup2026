@@ -28,7 +28,7 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
 
   const normalDifficultyTitles: Record<Difficulty, { titleEn: string; titleJa: string }> = {
     EASY: { titleEn: 'BEGINNER', titleJa: '[初心者](しょしんしゃ)' },
-    NORMAL: { titleEn: 'BASIC MODE', titleJa: '[基本](きほん)モード' },
+    NORMAL: { titleEn: 'INTERMEDIATE', titleJa: '[中級者](ちゅうきゅうしゃ)' },
     HARD: { titleEn: 'ADVANCED', titleJa: '[上級者](じょうきゅうしゃ)' }
   };
 
@@ -103,7 +103,7 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
             <div className="diff-buttons">
               {[
                 { id: 'EASY' as Difficulty, labelEn: 'EASY', labelJa: '[初心者](しょしんしゃ)', key: '1' },
-                { id: 'NORMAL' as Difficulty, labelEn: 'NORMAL', labelJa: '[通常](つうじょう)', key: '2' },
+                { id: 'NORMAL' as Difficulty, labelEn: 'INTERMEDIATE', labelJa: '[中級者](ちゅうきゅうしゃ)', key: '2' },
                 { id: 'HARD' as Difficulty, labelEn: 'HARD', labelJa: '[上級者](じょうきゅうしゃ)', key: '3' }
               ].map(diff => (
                 <button 
