@@ -82,6 +82,27 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
     );
   };
 
+  const handleSkip = () => {
+    if (!storageUtils.spendXP(25)) {
+      setHintMessage(uiLang === 'EN' ? 'You need 25 XP to skip a mission.' : 'スキップには25XP必要です。');
+      return;
+    }
+
+    setHintMessage(null);
+    if (currentStep < currentSet.missions.length - 1) {
+      setCurrentStep(prev => prev + 1);
+      return;
+    }
+
+    playSound('clear');
+    if (startTime) {
+      const elapsed = Math.floor((Date.now() - startTime) / 1000);
+      setIsNewRecord(storageUtils.recordPracticalTime(selectedModeId, elapsed));
+      setClearTime(elapsed);
+      storageUtils.addXP(300);
+    }
+  };
+
   // ★ キー識別用ヘルパー関数（e.codeからアルファベットを抽出、またはe.keyを小文字化）
   const getKeyName = (e: KeyboardEvent): string[] => {
     const keys: string[] = [e.key.toLowerCase()];
@@ -303,6 +324,9 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
                 {hintedSteps.includes(currentStep)
                   ? (uiLang === 'EN' ? 'SHOW HINT AGAIN' : 'ヒントを再表示')
                   : (uiLang === 'EN' ? 'HINT (-10 XP)' : 'ヒント（-10XP）')}
+              </button>
+              <button className="secondary-btn g2-skip-btn" onClick={handleSkip}>
+                {uiLang === 'EN' ? 'SKIP (-25 XP)' : 'スキップ（-25XP）'}
               </button>
             </div>
           </div>

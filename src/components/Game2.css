@@ -162,6 +162,12 @@
     width: auto;
 }
 
+.g2-skip-btn {
+    margin-top: 0.75rem;
+    width: auto;
+    color: var(--text-secondary);
+}
+
 .g2-hint-message {
     color: var(--accent-color);
     font-weight: 700;
