@@ -172,6 +172,7 @@
     align-items: center;
     gap: 0.75rem;
     padding: 0 0.25rem;
+    margin-top: -0.25rem;
 }
 
 .g2-hint-message {
@@ -187,10 +188,10 @@
 }
 
 .g2-prep-card {
-    width: min(680px, 100%);
+    width: min(920px, 100%);
     background: var(--bg-tertiary);
     border: 1px solid var(--border-color);
-    padding: 2rem;
+    padding: 2.25rem 3rem;
 }
 
 .g2-prep-kicker {
@@ -228,6 +229,36 @@
     justify-content: space-between;
     gap: 1rem;
     margin-top: 1.5rem;
+}
+
+.g2-prep-actions .primary-btn,
+.g2-prep-actions .secondary-btn {
+    width: auto;
+    min-width: 0;
+    padding: 0.7rem 1.25rem;
+}
+
+.g2-prep-actions .primary-btn {
+    min-width: 220px;
+}
+
+@media (max-width: 620px) {
+    .g2-prep-card {
+        padding: 1.5rem;
+    }
+
+    .g2-prep-actions {
+        flex-direction: column-reverse;
+    }
+
+    .g2-prep-actions .primary-btn,
+    .g2-prep-actions .secondary-btn {
+        width: 100%;
+    }
+
+    .g2-action-bar {
+        justify-content: center;
+    }
 }
 
 .new-record-badge {

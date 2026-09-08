@@ -349,6 +349,13 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         )}
       </div>
 
+      {/* 画面下部：キーボードUI領域 */}
+      {clearTime === null && (
+        <div className="keyboard-area">
+          <Keyboard resetKey={`${currentStep}-${showSuccessOverlay}-${clearTime !== null}`} />
+        </div>
+      )}
+
       {clearTime === null && (
         <div className="g2-action-bar" aria-label={uiLang === 'EN' ? 'Mission assistance' : 'ミッション補助'}>
           <button className="secondary-btn g2-hint-btn" onClick={handleHint}>
@@ -359,13 +366,6 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
           <button className="secondary-btn g2-skip-btn" onClick={handleSkip}>
             {uiLang === 'EN' ? 'SKIP (-25 XP)' : 'スキップ（-25XP）'}
           </button>
-        </div>
-      )}
-
-      {/* 画面下部：キーボードUI領域 */}
-      {clearTime === null && (
-        <div className="keyboard-area">
-          <Keyboard resetKey={`${currentStep}-${showSuccessOverlay}-${clearTime !== null}`} />
         </div>
       )}
 
