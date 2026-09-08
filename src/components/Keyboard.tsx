@@ -10,6 +10,63 @@ import { useOS } from '../hooks/useOS';
   // 2. 押されているキーの状態をこのファイル内で管理
   const [pressedKeys, setPressedKeys] = useState<Set<string>>(new Set());
 
+  const normalizeKey = (key: string) => key.length === 1 ? key.toUpperCase() : key;
+
+  const modifierState = (keys: Set<string>) => ({
+    ctrlKey: keys.has('Control'),
+    shiftKey: keys.has('Shift'),
+    altKey: keys.has('Alt'),
+    metaKey: keys.has('Meta')
+  });
+
+  const dispatchVirtualKey = (key: string, type: 'keydown' | 'keyup', keys: Set<string>) => {
+    const eventKey = key === ' ' ? ' ' : key;
+    const event = new KeyboardEvent(type, {
+      key: eventKey,
+      code: key.length === 1 ? `Key${key.toUpperCase()}` : key,
+      bubbles: true,
+      cancelable: true,
+      ...modifierState(keys)
+    });
+    window.dispatchEvent(event);
+  };
+
+  const isModifierKey = (key: string) => ['Control', 'Shift', 'Alt', 'Meta'].includes(key);
+
+  const handleVirtualKeyDown = (logicalKey: string) => {
+    setPressedKeys((prev) => {
+      const next = new Set(prev);
+      if (isModifierKey(logicalKey) && next.has(logicalKey)) {
+        next.delete(logicalKey);
+        dispatchVirtualKey(logicalKey, 'keyup', next);
+      } else {
+        next.add(logicalKey);
+        dispatchVirtualKey(logicalKey, 'keydown', next);
+      }
+      return next;
+    });
+  };
+
+  const handleVirtualKeyUp = (logicalKey: string) => {
+    if (isModifierKey(logicalKey)) return;
+    setPressedKeys((prev) => {
+      const next = new Set(prev);
+      next.delete(logicalKey);
+      dispatchVirtualKey(logicalKey, 'keyup', next);
+      return next;
+    });
+  };
+
+  const handleVirtualKeyTap = (logicalKey: string) => {
+    if (isModifierKey(logicalKey)) {
+      handleVirtualKeyDown(logicalKey);
+      return;
+    }
+
+    handleVirtualKeyDown(logicalKey);
+    window.setTimeout(() => handleVirtualKeyUp(logicalKey), 0);
+  };
+
   // 3. キーイベントの監視
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -18,13 +75,13 @@ import { useOS } from '../hooks/useOS';
         return;
       }
 
-      setPressedKeys((prev) => new Set(prev).add(e.key));
+      setPressedKeys((prev) => new Set(prev).add(normalizeKey(e.key)));
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
       setPressedKeys((prev) => {
         const next = new Set(prev);
-        next.delete(e.key);
+        next.delete(normalizeKey(e.key));
         return next;
       });
     };
@@ -38,14 +95,18 @@ import { useOS } from '../hooks/useOS';
     };
   }, [isMac]);
 
-  const isPressed = (logicalKey: string) => {
-    return pressedKeys.has(logicalKey);
-  };
+  const isPressed = (logicalKey: string) => pressedKeys.has(normalizeKey(logicalKey));
 
   const renderKey = (logicalKey: string, display: string = logicalKey, widthClass: string = 'key-normal', uniqueKey: string = logicalKey) => (
-    <div key={uniqueKey} className={`kb-key ${widthClass} ${isPressed(logicalKey) ? 'pressed' : ''}`}>
+    <button
+      key={uniqueKey}
+      type="button"
+      className={`kb-key ${widthClass} ${isPressed(logicalKey) ? 'pressed' : ''}`}
+      onClick={() => handleVirtualKeyTap(logicalKey)}
+      onContextMenu={(e) => e.preventDefault()}
+    >
       {display}
-    </div>
+    </button>
   );
 
   return (
@@ -54,7 +115,7 @@ import { useOS } from '../hooks/useOS';
         {renderKey('Escape', 'ESC')}
         {renderKey('1')} {renderKey('2')} {renderKey('3')} {renderKey('4')} {renderKey('5')}
         {renderKey('6')} {renderKey('7')} {renderKey('8')} {renderKey('9')} {renderKey('0')}
-        {renderKey('-', '-')} {renderKey('=', '=')} {renderKey('Backspace', 'BACKSPACE', 'key-wide')}
+        {renderKey('-', '-')} {renderKey('=', '=')} {renderKey('+', '+', 'key-normal', 'Plus')} {renderKey('Backspace', 'BACKSPACE', 'key-wide')}
       </div>
       <div className="kb-row">
         {renderKey('Tab', 'TAB', 'key-wide')}

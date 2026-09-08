@@ -21,6 +21,8 @@
 }
 
 .kb-key {
+  appearance: none;
+  -webkit-appearance: none;
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
   color: var(--text-secondary);
@@ -35,6 +37,9 @@
   user-select: none;
   min-width: 0; /* フレックス要素のはみ出し防止 */
   white-space: nowrap; /* 文字の折り返し防止 */
+  padding: 0;
+  cursor: pointer;
+  touch-action: none;
 }
 
 .kb-key.pressed {
