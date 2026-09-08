@@ -245,7 +245,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
       {/* 画面下部：キーボードUI領域 */}
       {clearTime === null && (
         <div className="keyboard-area">
-          <Keyboard />
+          <Keyboard resetKey={`${currentStep}-${showSuccessOverlay}-${clearTime !== null}`} />
         </div>
       )}
 

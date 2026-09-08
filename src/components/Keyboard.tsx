@@ -2,13 +2,22 @@ import React, { useState, useEffect } from 'react';
 import './Keyboard.css';
 import { useOS } from '../hooks/useOS';
 
-  const Keyboard: React.FC = () => {
+  interface KeyboardProps {
+    resetKey?: string | number;
+  }
+
+  const Keyboard: React.FC<KeyboardProps> = ({ resetKey }) => {
   // 1. OSの判定
   const os = useOS();
   const isMac = os === 'Mac';
 
   // 2. 押されているキーの状態をこのファイル内で管理
   const [pressedKeys, setPressedKeys] = useState<Set<string>>(new Set());
+
+  // 正解・問題切り替え時に、タッチで固定した修飾キーを解除する
+  useEffect(() => {
+    setPressedKeys(new Set());
+  }, [resetKey]);
 
   const normalizeKey = (key: string) => key.length === 1 ? key.toUpperCase() : key;
 
