@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import '../App.css'; // Will be updated if App.css is moved, or we can keep it as is
 import type { ViewState, Difficulty } from '../types';
 import Home from '../components/Home';
 import Game from '../components/Game';
