@@ -1,58 +1,58 @@
 {
   "id": "practical_4",
-  "titleEn": "Class Presentation Edition",
-  "titleJa": "学級発表会のスライド準備",
-  "descriptionEn": "Prepare a clear presentation slide by removing old text and correcting a mistake.",
-  "descriptionJa": "学級発表会のスライドを、必要な情報だけが伝わる形に整えよう。",
-  "leftColumnTitleEn": "Presentation Plan",
-  "leftColumnTitleJa": "発表会の企画メモ",
-  "rightColumnTitleEn": "Slide Draft",
-  "rightColumnTitleJa": "発表スライド案",
+  "titleEn": "Science Contest Investigation",
+  "titleJa": "科学コンテストの謎を調査せよ！",
+  "descriptionEn": "Investigate conflicting experiment notes and prepare reliable evidence.",
+  "descriptionJa": "食い違う実験メモを調べて、信頼できる発表材料を見つけよう。",
+  "leftColumnTitleEn": "Lab Notebook",
+  "leftColumnTitleJa": "科学部の実験ノート",
+  "rightColumnTitleEn": "Contest Presentation",
+  "rightColumnTitleJa": "コンテスト発表資料",
   "initialLeftText": [
-    "【学級発表会 企画メモ】",
-    "テーマ：地域の防災について",
-    "発表日：11月8日（金）",
-    "担当：2年3組 防災チーム",
-    "伝えたいこと：家族で避難場所を確認しておく",
-    "発表の順番：問題提起 → 調査結果 → 自分たちの提案"
+    "【テーマ：植物は音楽で成長する？】",
+    "実験日：6月12日　A班：毎日10分、静かな音楽を流した",
+    "実験日：6月12日　B班：毎日10分、何も流さなかった",
+    "結果メモ：A班の平均は12cm、B班の平均は9cm",
+    "注意メモ：測定した時間が班ごとに違っていた可能性あり",
+    "発表のポイント：音楽だけが原因だと決めつけず、追加実験が必要"
   ],
-  "initialRightText": "【発表スライド案】\n\nタイトル：\n（タイトル未定）\n\n発表日：11月8日（金）\n\nメッセージ：\n（ここにメッセージ）\n（ここにメッセージ）",
+  "initialRightText": "【科学コンテスト 発表資料】\n\n問い：音楽は植物の成長に影響する？\n\n観察結果：\n（ここに見つけた結果）\n\n考察：\n（ここに考察）\n\n次の実験：\n（ここに提案）",
   "missions": [
     {
       "id": 1,
-      "titleEn": "Select the plan notes",
-      "titleJa": "小問1：発表のポイントをすべて選択しよう！",
-      "descriptionEn": "Select all of the planning notes before moving them into the slide.",
-      "descriptionJa": "企画メモを確認して、発表に使う情報をまとめて選択しよう！",
-      "shortcutId": "select_all",
-      "successAction": { "type": "highlight_left", "targetText": "テーマ：地域の防災について" }
+      "titleEn": "Find the measurement note",
+      "titleJa": "小問1：測定結果を検索して見つけよう！",
+      "descriptionEn": "Search the lab notebook for the numerical result needed in the presentation.",
+      "descriptionJa": "発表に必要な数値を、実験ノートの中から検索して見つけよう！",
+      "shortcutId": "search",
+      "successAction": { "type": "highlight_left", "targetText": "結果メモ：A班の平均は12cm、B班の平均は9cm" }
     },
     {
       "id": 2,
-      "titleEn": "Remove the duplicate placeholder",
-      "titleJa": "小問2：重複したメッセージ欄を切り取ろう！",
-      "descriptionEn": "Cut the extra placeholder so the slide has room for one clear message.",
-      "descriptionJa": "同じ入力欄が2つあります。余分な欄を切り取って、読みやすくしよう！",
-      "shortcutId": "cut",
-      "successAction": { "type": "replace_right", "replaceTarget": "（ここにメッセージ）\n（ここにメッセージ）", "replaceWith": "（ここにメッセージ）" }
+      "titleEn": "Copy reliable evidence",
+      "titleJa": "小問2：結果のメモをコピーしよう！",
+      "descriptionEn": "Copy the measurement note so it can be quoted as evidence.",
+      "descriptionJa": "見つけた測定結果を、発表資料に使うためコピーしよう！",
+      "shortcutId": "copy",
+      "successAction": { "type": "highlight_left", "targetText": "結果メモ：A班の平均は12cm、B班の平均は9cm" }
     },
     {
       "id": 3,
-      "titleEn": "Paste the key message",
-      "titleJa": "小問3：大切なメッセージを貼り付けよう！",
-      "descriptionEn": "Paste the team's key message into the slide. A wrong sentence may appear, so check the result.",
-      "descriptionJa": "家族で避難場所を確認しておく、という提案をスライドに貼り付けよう。もし違う文章が出たら、次の操作で直そう！",
+      "titleEn": "Paste the evidence",
+      "titleJa": "小問3：発表資料に結果を貼り付けよう！",
+      "descriptionEn": "Paste the measured result into the evidence section.",
+      "descriptionJa": "コピーした測定結果を、発表資料の観察結果に貼り付けよう！",
       "shortcutId": "paste",
-      "successAction": { "type": "replace_right", "replaceTarget": "（ここにメッセージ）", "replaceWith": "別の文章が貼り付けられました" }
+      "successAction": { "type": "replace_right", "replaceTarget": "（ここに見つけた結果）", "replaceWith": "A班の平均は12cm、B班の平均は9cm" }
     },
     {
       "id": 4,
-      "titleEn": "Undo the wrong paste",
-      "titleJa": "小問4：間違った文章を元に戻そう！",
-      "descriptionEn": "A wrong sentence was pasted into the slide. Undo that last action.",
-      "descriptionJa": "別の文章が貼り付けられてしまいました。直前の操作を取り消して、正しい内容に戻そう！",
+      "titleEn": "Undo the overconfident conclusion",
+      "titleJa": "小問4：決めつけた結論を取り消そう！",
+      "descriptionEn": "The draft says music is definitely the cause. Undo that unsafe conclusion.",
+      "descriptionJa": "『音楽が必ず成長させる』と決めつけた文章が入りました。直前の操作を取り消して、追加実験の必要性を残そう！",
       "shortcutId": "undo",
-      "successAction": { "type": "replace_right", "replaceTarget": "別の文章が貼り付けられました", "replaceWith": "家族で避難場所を確認しておく" }
+      "successAction": { "type": "replace_right", "replaceTarget": "（ここに考察）", "replaceWith": "音楽だけが原因だと決めつけず、追加実験が必要" }
     }
   ]
 }

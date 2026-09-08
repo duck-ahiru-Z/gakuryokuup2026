@@ -1,57 +1,57 @@
 {
   "id": "practical_6",
-  "titleEn": "Career Interview Edition",
-  "titleJa": "進路インタビューを記事にまとめよう",
-  "descriptionEn": "Turn interview notes into a clear article for the school website.",
-  "descriptionJa": "将来の仕事について聞いたメモを、学校サイトの記事にまとめよう。",
-  "leftColumnTitleEn": "Interview Notes",
-  "leftColumnTitleJa": "インタビューメモ",
-  "rightColumnTitleEn": "School Website Article",
-  "rightColumnTitleJa": "学校サイトの記事案",
+  "titleEn": "Space Team Web Editor",
+  "titleJa": "宇宙開発チームの紹介ページを作ろう",
+  "descriptionEn": "Design and save a web page introducing a future space development team.",
+  "descriptionJa": "将来の宇宙開発チームを紹介するページを、見やすく完成させよう。",
+  "leftColumnTitleEn": "Mission Briefing",
+  "leftColumnTitleJa": "宇宙開発ミッション資料",
+  "rightColumnTitleEn": "Team Web Page",
+  "rightColumnTitleJa": "チーム紹介ページ",
   "initialLeftText": [
-    "【卒業生インタビュー】",
-    "仕事：地域の図書館で働く司書",
-    "大切にしていること：相手の知りたい気持ちを尊重する",
-    "中学生へのアドバイス：好きなことを少しずつ深めよう",
-    "印象に残った言葉：本は知らない世界への入口になる"
+    "【PROJECT ORBIT】",
+    "2038年、月面基地から火星探査機を出発させる計画",
+    "チームの目標：遠い星の環境を調べ、未来の暮らしに役立てる",
+    "合言葉：知りたい気持ちが、未来を動かす",
+    "メンバー：操縦担当、観測担当、通信担当、地上サポート"
   ],
-  "initialRightText": "【進路インタビュー】\n\n仕事：\n（ここに仕事）\n\n大切にしていること：\n（ここに内容）\n\n中学生へのアドバイス：\n（ここにアドバイス）",
+  "initialRightText": "【PROJECT ORBIT チーム紹介】\n\nPROJECT ORBIT\n\n目標：\n遠い星の環境を調べ、未来の暮らしに役立てる\n\n合言葉：\n知りたい気持ちが、未来を動かす\n\n[下書き]",
   "missions": [
     {
       "id": 1,
-      "titleEn": "Select the interview notes",
-      "titleJa": "小問1：インタビューのメモをすべて選択しよう！",
-      "descriptionEn": "Select all the notes before transferring the important information.",
-      "descriptionJa": "記事に使うメモを確認するため、まず全体を選択しよう！",
-      "shortcutId": "select_all",
-      "successAction": { "type": "highlight_left", "targetText": "仕事：地域の図書館で働く司書" }
+      "titleEn": "Make the project name stand out",
+      "titleJa": "小問1：プロジェクト名を目立たせよう！",
+      "descriptionEn": "Bold the project name so visitors notice the mission immediately.",
+      "descriptionJa": "ページを見た人が最初に気づくように、プロジェクト名を太字にしよう！",
+      "shortcutId": "bold",
+      "successAction": { "type": "replace_right", "replaceTarget": "PROJECT ORBIT\n", "replaceWith": "**PROJECT ORBIT**\n" }
     },
     {
       "id": 2,
-      "titleEn": "Copy the job title",
-      "titleJa": "小問2：仕事の名前をコピーしよう！",
-      "descriptionEn": "Copy the interviewee's job so the article can introduce it correctly.",
-      "descriptionJa": "卒業生の仕事を正しく紹介するため、仕事の名前をコピーしよう！",
-      "shortcutId": "copy",
-      "successAction": { "type": "highlight_left", "targetText": "仕事：地域の図書館で働く司書" }
+      "titleEn": "Center the team slogan",
+      "titleJa": "小問2：チームの合言葉を中央に配置しよう！",
+      "descriptionEn": "Center the slogan to make the page feel like an inspiring mission poster.",
+      "descriptionJa": "未来への思いが伝わるように、チームの合言葉を中央に配置しよう！",
+      "shortcutId": "center_align",
+      "successAction": { "type": "replace_right", "replaceTarget": "合言葉：\n知りたい気持ちが、未来を動かす", "replaceWith": "合言葉：\n知りたい気持ちが、未来を動かす" }
     },
     {
       "id": 3,
-      "titleEn": "Paste the job title",
-      "titleJa": "小問3：仕事の名前を記事に貼り付けよう！",
-      "descriptionEn": "Paste the copied job title into the article.",
-      "descriptionJa": "コピーした仕事の名前を、記事の空欄に貼り付けよう！",
-      "shortcutId": "paste",
-      "successAction": { "type": "replace_right", "replaceTarget": "（ここに仕事）", "replaceWith": "地域の図書館で働く司書" }
+      "titleEn": "Restore the mission page",
+      "titleJa": "小問3：閉じてしまった資料ページを復元しよう！",
+      "descriptionEn": "The mission brief was closed by mistake. Reopen the last closed tab.",
+      "descriptionJa": "ミッション資料のページを間違えて閉じてしまいました。直前のタブを復元しよう！",
+      "shortcutId": "reopen_tab",
+      "successAction": { "type": "none" }
     },
     {
       "id": 4,
-      "titleEn": "Redo the article edit",
-      "titleJa": "小問4：取り消した編集をやり直そう！",
-      "descriptionEn": "The correct advice disappeared after an undo. Redo the edit to restore it.",
-      "descriptionJa": "正しいアドバイスまで消えてしまいました。取り消した編集をやり直して記事を完成させよう！",
-      "shortcutId": "redo",
-      "successAction": { "type": "replace_right", "replaceTarget": "（ここにアドバイス）", "replaceWith": "好きなことを少しずつ深めよう" }
+      "titleEn": "Save the launch page",
+      "titleJa": "小問4：完成した紹介ページを保存しよう！",
+      "descriptionEn": "The team page is ready. Save the final version before publishing it.",
+      "descriptionJa": "紹介ページが完成しました。公開前に完成版を保存しよう！",
+      "shortcutId": "save",
+      "successAction": { "type": "append_right", "textToAppend": "\n\n[PROJECT ORBIT 紹介ページ・保存完了]" }
     }
   ]
 }

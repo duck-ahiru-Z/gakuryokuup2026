@@ -1,58 +1,59 @@
 {
   "id": "practical_5",
-  "titleEn": "Science Report Edition",
-  "titleJa": "科学部の実験レポートを完成させよう",
-  "descriptionEn": "Use editing shortcuts to organize observations and complete a science report.",
-  "descriptionJa": "観察メモを整理し、読み手に伝わる実験レポートに仕上げよう。",
-  "leftColumnTitleEn": "Observation Notes",
-  "leftColumnTitleJa": "観察メモ",
-  "rightColumnTitleEn": "Experiment Report",
-  "rightColumnTitleJa": "実験レポート",
+  "titleEn": "Festival Budget Mission",
+  "titleJa": "文化祭の予算ミスを修正せよ！",
+  "descriptionEn": "Check a festival budget, fix a duplicated cost, and save the final plan.",
+  "descriptionJa": "文化祭の予算案を確認し、重複した費用を直して完成版を保存しよう。",
+  "leftColumnTitleEn": "Treasurer's Notes",
+  "leftColumnTitleJa": "会計係のメモ",
+  "rightColumnTitleEn": "Festival Budget Plan",
+  "rightColumnTitleJa": "文化祭 予算案",
   "initialLeftText": [
-    "【ペットボトルロケット実験】",
-    "目的：空気の力でどこまで飛ぶか調べる",
-    "条件：水の量を変えて3回飛ばす",
-    "結果：水が少なすぎると、あまり飛ばなかった",
-    "結果：水が多すぎると、重くなって飛ばなかった",
-    "結論：水の量には、よく飛ぶちょうどよい範囲がある"
+    "【クラス企画：手作り迷路】",
+    "使える予算：30,000円",
+    "木材：12,000円",
+    "装飾材料：6,000円",
+    "景品：4,000円",
+    "予備費：8,000円",
+    "注意：装飾材料が二重に計上されている可能性あり"
   ],
-  "initialRightText": "【実験レポート】\n\n実験名：ペットボトルロケット\n\n目的：\n（ここに目的）\n\n結果：\n（ここに結果）\n\n結論：\n（ここに結論）",
+  "initialRightText": "【文化祭 予算案】\n\n企画名：手作り迷路\n\n木材：12,000円\n装飾材料：6,000円\n装飾材料：6,000円\n景品：4,000円\n\n合計：28,000円\n\n確認：未確認",
   "missions": [
     {
       "id": 1,
-      "titleEn": "Copy the purpose",
-      "titleJa": "小問1：実験の目的をコピーしよう！",
-      "descriptionEn": "Copy the purpose from the observation notes so it can be used in the report.",
-      "descriptionJa": "観察メモから実験の目的をコピーして、レポートに使えるようにしよう！",
-      "shortcutId": "copy",
-      "successAction": { "type": "highlight_left", "targetText": "目的：空気の力でどこまで飛ぶか調べる" }
+      "titleEn": "Select the budget draft",
+      "titleJa": "小問1：予算案全体を選択しよう！",
+      "descriptionEn": "Select the whole draft before checking every line of the budget.",
+      "descriptionJa": "金額を確認して修正するため、まず予算案全体を選択しよう！",
+      "shortcutId": "select_all",
+      "successAction": { "type": "highlight_left", "targetText": "使える予算：30,000円" }
     },
     {
       "id": 2,
-      "titleEn": "Paste the purpose",
-      "titleJa": "小問2：目的をレポートに貼り付けよう！",
-      "descriptionEn": "Paste the copied purpose into the report.",
-      "descriptionJa": "コピーした目的を、レポートの空欄に貼り付けよう！",
-      "shortcutId": "paste",
-      "successAction": { "type": "replace_right", "replaceTarget": "（ここに目的）", "replaceWith": "空気の力でどこまで飛ぶか調べる" }
+      "titleEn": "Cut the duplicated cost",
+      "titleJa": "小問2：重複した材料費を切り取ろう！",
+      "descriptionEn": "Remove the duplicated decoration cost from the budget.",
+      "descriptionJa": "装飾材料費が2回入っています。余分な1行を切り取って正しい予算にしよう！",
+      "shortcutId": "cut",
+      "successAction": { "type": "replace_right", "replaceTarget": "装飾材料：6,000円\n装飾材料：6,000円", "replaceWith": "装飾材料：6,000円" }
     },
     {
       "id": 3,
-      "titleEn": "Cut the repeated result",
-      "titleJa": "小問3：重複した結果を切り取ろう！",
-      "descriptionEn": "Remove the repeated result sentence from the report.",
-      "descriptionJa": "結果が同じ内容で重複しています。不要な文章を切り取って整理しよう！",
-      "shortcutId": "cut",
-      "successAction": { "type": "replace_right", "replaceTarget": "（ここに結果）", "replaceWith": "水の量によって飛ぶ距離が変わった" }
+      "titleEn": "Replace the total",
+      "titleJa": "小問3：合計金額を正しく置換しよう！",
+      "descriptionEn": "Replace the old total with the correct total after removing the duplicate.",
+      "descriptionJa": "重複を直した後の合計は22,000円です。古い合計金額を一括置換しよう！",
+      "shortcutId": "replace",
+      "successAction": { "type": "replace_right", "replaceTarget": "28,000円", "replaceWith": "22,000円" }
     },
     {
       "id": 4,
-      "titleEn": "Undo the rushed edit",
-      "titleJa": "小問4：急いで消した文章を元に戻そう！",
-      "descriptionEn": "Undo the rushed edit so the report can be completed accurately.",
-      "descriptionJa": "結論を書く前に文章を消してしまいました。直前の操作を取り消そう！",
-      "shortcutId": "undo",
-      "successAction": { "type": "replace_right", "replaceTarget": "（ここに結論）", "replaceWith": "水の量には、よく飛ぶちょうどよい範囲がある" }
+      "titleEn": "Save the approved plan",
+      "titleJa": "小問4：確認済みの予算案を保存しよう！",
+      "descriptionEn": "The treasurer checked the numbers. Save the approved budget plan.",
+      "descriptionJa": "会計係の確認が終わりました。修正した予算案を保存して提出しよう！",
+      "shortcutId": "save",
+      "successAction": { "type": "append_right", "textToAppend": "\n\n[会計確認済み・保存完了]" }
     }
   ]
 }
