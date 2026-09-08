@@ -26,6 +26,12 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
     return uiLang === 'EN' ? enText : parseRubyText(jaText, furiganaEnabled);
   };
 
+  const normalDifficultyTitles: Record<Difficulty, { titleEn: string; titleJa: string }> = {
+    EASY: { titleEn: 'BEGINNER', titleJa: '[初心者](しょしんしゃ)' },
+    NORMAL: { titleEn: 'BASIC MODE', titleJa: '[基本](きほん)モード' },
+    HARD: { titleEn: 'ADVANCED', titleJa: '[上級者](じょうきゅうしゃ)' }
+  };
+
   const handleSelectNormal = (diff: Difficulty) => {
     setDifficulty(diff);
     setSelectedModeId('normal');
@@ -52,6 +58,9 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
   };
 
   const selectedData = selectedModeId ? (gameModes as GameModeData[]).find(m => m.id === selectedModeId) : null;
+  const selectedDisplayData = selectedData && selectedModeId === 'normal'
+    ? { ...selectedData, ...normalDifficultyTitles[difficulty] }
+    : selectedData;
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -89,7 +98,7 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
           <div className="sidebar-section">
             <h3 className="sidebar-title">
               <PlayCircle size={20} />
-              {uiLang === 'EN' ? 'NORMAL MODE' : parseRubyText('[通常](つうじょう)モード', furiganaEnabled)}
+              {uiLang === 'EN' ? 'BASIC MODE' : parseRubyText('[基本](きほん)モード', furiganaEnabled)}
             </h3>
             <div className="diff-buttons">
               {[
@@ -152,15 +161,15 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
 
         {/* 右側：詳細 (Detail) */}
         <div className="mode-detail">
-          {selectedData ? (
+          {selectedDisplayData ? (
             <div className="detail-content animate-fade-in">
               <h2 className="detail-title">
-                {renderDynamicText(selectedData.titleEn, selectedData.titleJa)}
+                {renderDynamicText(selectedDisplayData.titleEn, selectedDisplayData.titleJa)}
               </h2>
               
               <div className="mode-image-wrapper">
-                {selectedData.imageUri ? (
-                  <img src={selectedData.imageUri} alt="Mode preview" className="mode-image" />
+                {selectedDisplayData.imageUri ? (
+                  <img src={selectedDisplayData.imageUri} alt="Mode preview" className="mode-image" />
                 ) : (
                   <div className="mode-image-placeholder">
                     <FileText size={48} opacity={0.5} />
@@ -170,7 +179,7 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
               </div>
 
               <p className="detail-desc">
-                {renderDynamicText(selectedData.descriptionEn, selectedData.descriptionJa)}
+                {renderDynamicText(selectedDisplayData.descriptionEn, selectedDisplayData.descriptionJa)}
               </p>
 
               <button className="primary-btn start-btn" onClick={handleStart}>
