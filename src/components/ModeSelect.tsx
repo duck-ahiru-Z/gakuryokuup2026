@@ -73,6 +73,9 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
       if (key === '4') setSelectedModeId('practical_1');
       if (key === '5') setSelectedModeId('practical_2');
       if (key === '6') setSelectedModeId('practical_3');
+      if (key === '7') setSelectedModeId('practical_4');
+      if (key === '8') setSelectedModeId('practical_5');
+      if (key === '9') setSelectedModeId('practical_6');
     };
     
     window.addEventListener('keydown', handleKeyDown);
