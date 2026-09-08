@@ -64,6 +64,18 @@
         "replaceTarget": "PROJECT ALPHA",
         "replaceWith": "PROJECT NOVA"
       }
+    },
+    {
+      "id": 4,
+      "titleEn": "Save the bug report",
+      "titleJa": "小問4：完成したバグ報告書を保存せよ！",
+      "descriptionEn": "Save the corrected bug report before sending it to the development team.",
+      "descriptionJa": "修正したバグ報告書を開発チームへ送る前に、忘れず保存しよう！",
+      "shortcutId": "save",
+      "successAction": {
+        "type": "append_right",
+        "textToAppend": "\n\n[バグ報告書・保存完了]"
+      }
     }
   ]
 }

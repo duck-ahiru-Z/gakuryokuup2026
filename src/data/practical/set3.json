@@ -22,7 +22,7 @@
         {
             "id": 1,
             "titleEn": "Make the Title Bold",
-            "titleJa": "小問1：タイトルを目立たせよう【★☆☆】",
+            "titleJa": "小問1：タイトルを目立たせよう",
             "descriptionEn": "Make the movie title bold to stand out.",
             "descriptionJa": "紹介ページのタイトルが普通の文章と同じ見た目になっています。映画のタイトル「STARLIGHT」を太字にして目立たせよう！",
             "shortcutId": "bold",
@@ -35,7 +35,7 @@
         {
             "id": 2,
             "titleEn": "Center Align Tagline",
-            "titleJa": "小問2：キャッチコピーを中央に配置しよう【★★☆】",
+            "titleJa": "小問2：キャッチコピーを中央に配置しよう",
             "descriptionEn": "Center align the tagline for better visual appeal.",
             "descriptionJa": "キャッチコピーが左端に寄っています。ポスターのように印象的に見せるため、キャッチコピーを中央に配置しよう！",
             "shortcutId": "center_align",
@@ -48,13 +48,26 @@
         {
             "id": 3,
             "titleEn": "Save the Document",
-            "titleJa": "小問3：映画の紹介ページを保存せよ！【★★★】",
+            "titleJa": "小問3：映画の紹介ページを保存せよ！",
             "descriptionEn": "Save your completed introduction page.",
             "descriptionJa": "紹介ページが完成！せっかく作ったデータが消えないように、上書き保存（セーブ）しよう！",
             "shortcutId": "save",
             "successAction": {
             "type": "append_right",
             "textToAppend": "\n\n[ファイル保存完了]"
+            }
+        },
+        {
+            "id": 4,
+            "titleEn": "Italicize the tagline",
+            "titleJa": "小問4：キャッチコピーを斜体にしよう！",
+            "descriptionEn": "Italicize the tagline to give the poster a cinematic feeling.",
+            "descriptionJa": "映画らしい雰囲気を出すため、キャッチコピーを斜体にしよう！",
+            "shortcutId": "italic",
+            "successAction": {
+            "type": "replace_right",
+            "replaceTarget": "キャッチコピー：",
+            "replaceWith": "キャッチコピー："
             }
         }
     ]
