@@ -21,11 +21,11 @@
   "missions": [
     {
       "id": 1,
-      "titleEn": "Select the budget draft",
-      "titleJa": "小問1：予算案全体を選択しよう！",
-      "descriptionEn": "Select the whole draft before checking every line of the budget.",
-      "descriptionJa": "金額を確認して修正するため、まず予算案全体を選択しよう！",
-      "shortcutId": "select_all",
+      "titleEn": "Zoom in on the small figures",
+      "titleJa": "小問1：細かい金額を拡大して確認しよう！",
+      "descriptionEn": "Zoom in so every small number in the budget can be checked carefully.",
+      "descriptionJa": "小さな数字を読み間違えないように、予算案を拡大して確認しよう！",
+      "shortcutId": "zoom_in",
       "successAction": { "type": "highlight_left", "targetText": "使える予算：30,000円" }
     },
     {
@@ -48,12 +48,12 @@
     },
     {
       "id": 4,
-      "titleEn": "Save the approved plan",
-      "titleJa": "小問4：確認済みの予算案を保存しよう！",
-      "descriptionEn": "The treasurer checked the numbers. Save the approved budget plan.",
-      "descriptionJa": "会計係の確認が終わりました。修正した予算案を保存して提出しよう！",
-      "shortcutId": "save",
-      "successAction": { "type": "append_right", "textToAppend": "\n\n[会計確認済み・保存完了]" }
+      "titleEn": "Save a clean copy",
+      "titleJa": "小問4：確認用の予算案を別名保存しよう！",
+      "descriptionEn": "Save a separate copy of the checked budget for the festival committee.",
+      "descriptionJa": "確認した予算案を、実行委員会に渡す別ファイルとして保存しよう！",
+      "shortcutId": "save_as",
+      "successAction": { "type": "append_right", "textToAppend": "\n\n[文化祭実行委員会提出用・別名保存完了]" }
     }
   ]
 }

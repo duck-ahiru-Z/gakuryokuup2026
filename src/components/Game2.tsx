@@ -97,6 +97,15 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         if (mission.shortcutId === 'cut' && pressedChar === 'x') actionMatches = true;
         if (mission.shortcutId === 'undo' && pressedChar === 'z') actionMatches = true;
         if (mission.shortcutId === 'redo' && (isMac ? (pressedChar === 'z' && e.shiftKey) : pressedChar === 'y')) actionMatches = true;
+        if (mission.shortcutId === 'italic' && pressedChar === 'i') actionMatches = true;
+        if (mission.shortcutId === 'underline' && pressedChar === 'u') actionMatches = true;
+        if (mission.shortcutId === 'insert_link' && pressedChar === 'k') actionMatches = true;
+        if (mission.shortcutId === 'paste_plain' && e.shiftKey && pressedChar === 'v') actionMatches = true;
+        if (mission.shortcutId === 'save_as' && e.shiftKey && pressedChar === 's') actionMatches = true;
+        if (mission.shortcutId === 'left_align' && pressedChar === 'l') actionMatches = true;
+        if (mission.shortcutId === 'zoom_in' && (e.key === '+' || e.code === 'NumpadAdd')) actionMatches = true;
+        if (mission.shortcutId === 'zoom_out' && (e.key === '-' || e.code === 'NumpadSubtract')) actionMatches = true;
+        if (mission.shortcutId === 'zoom_reset' && pressedChar === '0') actionMatches = true;
         if (mission.shortcutId === 'reopen_tab' && e.shiftKey && pressedChar === 't') actionMatches = true;
         if (mission.shortcutId === 'replace' && pressedChar === 'h') actionMatches = true;
 

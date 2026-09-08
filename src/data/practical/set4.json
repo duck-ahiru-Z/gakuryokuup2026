@@ -29,30 +29,30 @@
     },
     {
       "id": 2,
-      "titleEn": "Copy reliable evidence",
-      "titleJa": "小問2：結果のメモをコピーしよう！",
-      "descriptionEn": "Copy the measurement note so it can be quoted as evidence.",
-      "descriptionJa": "見つけた測定結果を、発表資料に使うためコピーしよう！",
-      "shortcutId": "copy",
+      "titleEn": "Redo the comparison table",
+      "titleJa": "小問2：消えてしまった比較結果をやり直そう！",
+      "descriptionEn": "The comparison table was undone by mistake. Redo the last edit to restore the evidence.",
+      "descriptionJa": "比較結果を取り消してしまいました。やり直して、発表に必要な証拠を復元しよう！",
+      "shortcutId": "redo",
       "successAction": { "type": "highlight_left", "targetText": "結果メモ：A班の平均は12cm、B班の平均は9cm" }
     },
     {
       "id": 3,
-      "titleEn": "Paste the evidence",
-      "titleJa": "小問3：発表資料に結果を貼り付けよう！",
-      "descriptionEn": "Paste the measured result into the evidence section.",
-      "descriptionJa": "コピーした測定結果を、発表資料の観察結果に貼り付けよう！",
-      "shortcutId": "paste",
+      "titleEn": "Paste the evidence without formatting",
+      "titleJa": "小問3：書式なしで結果を貼り付けよう！",
+      "descriptionEn": "Paste the measurement as plain text so the presentation style stays consistent.",
+      "descriptionJa": "資料の見た目を崩さないように、測定結果を文字だけで貼り付けよう！",
+      "shortcutId": "paste_plain",
       "successAction": { "type": "replace_right", "replaceTarget": "（ここに見つけた結果）", "replaceWith": "A班の平均は12cm、B班の平均は9cm" }
     },
     {
       "id": 4,
-      "titleEn": "Undo the overconfident conclusion",
-      "titleJa": "小問4：決めつけた結論を取り消そう！",
-      "descriptionEn": "The draft says music is definitely the cause. Undo that unsafe conclusion.",
-      "descriptionJa": "『音楽が必ず成長させる』と決めつけた文章が入りました。直前の操作を取り消して、追加実験の必要性を残そう！",
-      "shortcutId": "undo",
-      "successAction": { "type": "replace_right", "replaceTarget": "（ここに考察）", "replaceWith": "音楽だけが原因だと決めつけず、追加実験が必要" }
+      "titleEn": "Save the revised evidence",
+      "titleJa": "小問4：修正した発表資料を別名保存しよう！",
+      "descriptionEn": "Save the careful version as a separate file before submitting it.",
+      "descriptionJa": "決めつけを避けた発表資料を、元のメモとは別のファイルとして保存しよう！",
+      "shortcutId": "save_as",
+      "successAction": { "type": "append_right", "textToAppend": "\n\n[科学コンテスト提出版・別名保存完了]" }
     }
   ]
 }

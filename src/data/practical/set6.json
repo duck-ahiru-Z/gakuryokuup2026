@@ -19,21 +19,21 @@
   "missions": [
     {
       "id": 1,
-      "titleEn": "Make the project name stand out",
-      "titleJa": "小問1：プロジェクト名を目立たせよう！",
-      "descriptionEn": "Bold the project name so visitors notice the mission immediately.",
-      "descriptionJa": "ページを見た人が最初に気づくように、プロジェクト名を太字にしよう！",
-      "shortcutId": "bold",
+      "titleEn": "Italicize the mission motto",
+      "titleJa": "小問1：ミッションの合言葉を斜体にしよう！",
+      "descriptionEn": "Italicize the motto to give the future-focused message a special tone.",
+      "descriptionJa": "未来への思いが伝わるように、ミッションの合言葉を斜体で強調しよう！",
+      "shortcutId": "italic",
       "successAction": { "type": "replace_right", "replaceTarget": "PROJECT ORBIT\n", "replaceWith": "**PROJECT ORBIT**\n" }
     },
     {
       "id": 2,
-      "titleEn": "Center the team slogan",
-      "titleJa": "小問2：チームの合言葉を中央に配置しよう！",
-      "descriptionEn": "Center the slogan to make the page feel like an inspiring mission poster.",
-      "descriptionJa": "未来への思いが伝わるように、チームの合言葉を中央に配置しよう！",
-      "shortcutId": "center_align",
-      "successAction": { "type": "replace_right", "replaceTarget": "合言葉：\n知りたい気持ちが、未来を動かす", "replaceWith": "合言葉：\n知りたい気持ちが、未来を動かす" }
+      "titleEn": "Underline the launch goal",
+      "titleJa": "小問2：打ち上げの目標に下線を引こう！",
+      "descriptionEn": "Underline the goal so readers can find the team's purpose quickly.",
+      "descriptionJa": "ページを読む人が目的をすぐ見つけられるよう、目標に下線を引こう！",
+      "shortcutId": "underline",
+      "successAction": { "type": "replace_right", "replaceTarget": "遠い星の環境を調べ、未来の暮らしに役立てる", "replaceWith": "遠い星の環境を調べ、未来の暮らしに役立てる" }
     },
     {
       "id": 3,
@@ -46,12 +46,12 @@
     },
     {
       "id": 4,
-      "titleEn": "Save the launch page",
-      "titleJa": "小問4：完成した紹介ページを保存しよう！",
-      "descriptionEn": "The team page is ready. Save the final version before publishing it.",
-      "descriptionJa": "紹介ページが完成しました。公開前に完成版を保存しよう！",
-      "shortcutId": "save",
-      "successAction": { "type": "append_right", "textToAppend": "\n\n[PROJECT ORBIT 紹介ページ・保存完了]" }
+      "titleEn": "Save a named launch version",
+      "titleJa": "小問4：完成した紹介ページを別名保存しよう！",
+      "descriptionEn": "Save a named version before publishing the team page.",
+      "descriptionJa": "公開前に、完成した紹介ページを名前を付けて保存しよう！",
+      "shortcutId": "save_as",
+      "successAction": { "type": "append_right", "textToAppend": "\n\n[PROJECT ORBIT 紹介ページ・別名保存完了]" }
     }
   ]
 }
