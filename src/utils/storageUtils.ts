@@ -54,6 +54,14 @@ export const storageUtils = {
     return stats;
   },
 
+  spendXP: (amount: number): boolean => {
+    const stats = storageUtils.getStats();
+    if (stats.xp < amount) return false;
+    stats.xp -= amount;
+    storageUtils.saveStats(stats);
+    return true;
+  },
+
   recordGameResult: (modeId: string, score: number): void => {
     const stats = storageUtils.getStats();
     stats.recentScores.unshift({ modeId, score, timestamp: Date.now() });

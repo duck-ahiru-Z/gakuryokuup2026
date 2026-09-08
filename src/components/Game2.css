@@ -157,6 +157,17 @@
     to { transform: scale(1); opacity: 1; }
 }
 
+.g2-hint-btn {
+    margin-top: 1rem;
+    width: auto;
+}
+
+.g2-hint-message {
+    color: var(--accent-color);
+    font-weight: 700;
+    margin: 1rem auto 0;
+}
+
 .g2-prep {
     align-items: center;
     justify-content: center;

@@ -50,6 +50,37 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
   const [centeredLine, setCenteredLine] = useState<string | null>(null);
   
   const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
+  const [hintedSteps, setHintedSteps] = useState<number[]>([]);
+  const [hintMessage, setHintMessage] = useState<string | null>(null);
+
+  const getShortcutHint = (shortcutId: string) => {
+    const hints: Record<string, string> = {
+      select_all: 'Ctrl + A', search: 'Ctrl + F', copy: 'Ctrl + C', paste: 'Ctrl + V',
+      cut: 'Ctrl + X', undo: 'Ctrl + Z', redo: 'Ctrl + Y', italic: 'Ctrl + I',
+      underline: 'Ctrl + U', insert_link: 'Ctrl + K', paste_plain: 'Ctrl + Shift + V',
+      save_as: 'Ctrl + Shift + S', left_align: 'Ctrl + L', zoom_in: 'Ctrl + +',
+      zoom_out: 'Ctrl + -', zoom_reset: 'Ctrl + 0', reopen_tab: 'Ctrl + Shift + T',
+      replace: 'Ctrl + H', bold: 'Ctrl + B', center_align: 'Ctrl + E', save: 'Ctrl + S'
+    };
+    return hints[shortcutId] || shortcutId;
+  };
+
+  const handleHint = () => {
+    const mission = currentSet.missions[currentStep];
+    if (!mission) return;
+    if (!hintedSteps.includes(currentStep)) {
+      if (!storageUtils.spendXP(10)) {
+        setHintMessage(uiLang === 'EN' ? 'You need 10 XP to use a hint.' : 'ヒントには10XP必要です。');
+        return;
+      }
+      setHintedSteps(prev => [...prev, currentStep]);
+    }
+    setHintMessage(
+      uiLang === 'EN'
+        ? `Try pressing ${getShortcutHint(mission.shortcutId)}.`
+        : `「${getShortcutHint(mission.shortcutId)}」を押してみましょう。`
+    );
+  };
 
   // ★ キー識別用ヘルパー関数（e.codeからアルファベットを抽出、またはe.keyを小文字化）
   const getKeyName = (e: KeyboardEvent): string[] => {
@@ -267,6 +298,12 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
             <div className="m-header">
               <h3 className="m-title">{uiLang === 'EN' ? currentMission.titleEn : currentMission.titleJa}</h3>
               <p className="m-desc">{uiLang === 'EN' ? currentMission.descriptionEn : currentMission.descriptionJa}</p>
+              {hintMessage && <p className="g2-hint-message">{hintMessage}</p>}
+              <button className="secondary-btn g2-hint-btn" onClick={handleHint}>
+                {hintedSteps.includes(currentStep)
+                  ? (uiLang === 'EN' ? 'SHOW HINT AGAIN' : 'ヒントを再表示')
+                  : (uiLang === 'EN' ? 'HINT (-10 XP)' : 'ヒント（-10XP）')}
+              </button>
             </div>
           </div>
         )}
