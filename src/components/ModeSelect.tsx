@@ -113,7 +113,7 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
           <div className="sidebar-section">
             <h3 className="sidebar-title">
               <PlayCircle size={20} />
-              {uiLang === 'EN' ? 'BASIC MODE' : parseRubyText('[基本](きほん)モード', furiganaEnabled)}
+              {uiLang === 'EN' ? 'BASIC MODE' : (furiganaEnabled ? parseRubyText('[基本](きほん)モード', true) : '基本モード')}
             </h3>
             <div className="diff-buttons">
               {[

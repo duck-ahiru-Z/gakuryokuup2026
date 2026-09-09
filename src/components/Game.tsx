@@ -38,7 +38,11 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
     timeLeft,
     showExplanation,
     handleSuccess,
-  } = useGameState(finalScore === null, difficulty, handleGameEnd);
+    hintedMissionId,
+    hintMessage,
+    handleHint,
+    handleSkip,
+  } = useGameState(finalScore === null, difficulty, handleGameEnd, uiLang);
 
   const { playSound, speakWord } = useAudio(sfxVolume);
 
@@ -146,7 +150,7 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
                   : ''}
               </p>
               <div className="target-keys">
-                {difficulty === 'HARD' ? (
+                {hintedMissionId !== currentMission?.id ? (
                   <span className="key-badge highlight">?</span>
                 ) : (
                   currentMission && resolveKeys(currentMission, os).map((displayKey, i) => {
@@ -159,12 +163,24 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
                   })
                 )}
               </div>
+              {hintMessage && <p className="game-hint-message">{hintMessage}</p>}
             </div>
           )}
         </div>
 
         <div className="keyboard-area">
           <Keyboard />
+        </div>
+
+        <div className="game-action-bar" aria-label={uiLang === 'EN' ? 'Mission assistance' : 'ミッション補助'}>
+          <button className="secondary-btn" onClick={handleHint}>
+            {hintedMissionId === currentMission?.id
+              ? (uiLang === 'EN' ? 'SHOW HINT AGAIN' : 'ヒントを再表示')
+              : (uiLang === 'EN' ? 'HINT (-10 XP)' : 'ヒント（-10XP）')}
+          </button>
+          <button className="secondary-btn" onClick={handleSkip}>
+            {uiLang === 'EN' ? 'SKIP (-25 XP)' : 'スキップ（-25XP）'}
+          </button>
         </div>
       </div>
     </DisableContextMenu>

@@ -2,17 +2,20 @@ import { useState, useEffect, useCallback } from 'react';
 import { SHORTCUTS } from '../data/shortcutsData';
 import type { ShortcutData, Difficulty } from '../types';
 import { useOS } from './useOS';
+import { storageUtils } from '../utils/storageUtils';
 
 const GAME_DURATION_SECONDS = 30;
 const BASE_SCORE_PER_SUCCESS = 100;
 const EXPLANATION_DURATION_MS = 2000;
 
 
-export function useGameState(isActive: boolean, difficulty: Difficulty, onGameEnd: (score: number) => void) {
+export function useGameState(isActive: boolean, difficulty: Difficulty, onGameEnd: (score: number) => void, uiLang: 'EN' | 'JA') {
   const [currentMission, setCurrentMission] = useState<ShortcutData | null>(null);
   const [playerScore, setPlayerScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(GAME_DURATION_SECONDS); 
   const [showExplanation, setShowExplanation] = useState(false);
+  const [hintedMissionId, setHintedMissionId] = useState<string | null>(null);
+  const [hintMessage, setHintMessage] = useState<string | null>(null);
   const os = useOS();
   
   const generateMission = useCallback(() => {
@@ -32,6 +35,8 @@ export function useGameState(isActive: boolean, difficulty: Difficulty, onGameEn
     const randomIndex = Math.floor(Math.random() * validShortcuts.length);
     setCurrentMission(validShortcuts[randomIndex]);
     setShowExplanation(false);
+    setHintedMissionId(null);
+    setHintMessage(null);
   }, [difficulty, os]);
 
   useEffect(() => {
@@ -67,11 +72,36 @@ export function useGameState(isActive: boolean, difficulty: Difficulty, onGameEn
     }, EXPLANATION_DURATION_MS);
   }, [generateMission, difficulty]);
 
+  const handleHint = useCallback(() => {
+    if (!currentMission) return;
+
+    if (hintedMissionId !== currentMission.id) {
+      if (!storageUtils.spendXP(10)) {
+        setHintMessage(uiLang === 'EN' ? 'You need 10 XP to use a hint.' : 'ヒントには10XP必要です。');
+        return;
+      }
+      setHintedMissionId(currentMission.id);
+    }
+    setHintMessage(uiLang === 'EN' ? 'The shortcut is shown above.' : 'ショートカットキーを上に表示しています。');
+  }, [currentMission, hintedMissionId, uiLang]);
+
+  const handleSkip = useCallback(() => {
+    if (!storageUtils.spendXP(25)) {
+      setHintMessage(uiLang === 'EN' ? 'You need 25 XP to skip a mission.' : 'スキップには25XP必要です。');
+      return;
+    }
+    generateMission();
+  }, [generateMission, uiLang]);
+
   return {
     currentMission,
     playerScore,
     timeLeft,
     showExplanation,
     handleSuccess,
+    hintedMissionId,
+    hintMessage,
+    handleHint,
+    handleSkip,
   };
 }
