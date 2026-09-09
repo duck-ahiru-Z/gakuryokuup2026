@@ -81,6 +81,20 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
 
   const { pressedKeys, clearKeys } = useKeyboardShortcut(finalScore === null, handleAttempt);
 
+  useEffect(() => {
+    if (finalScore === null) return;
+
+    const handleResultKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        onNavigate('result');
+      }
+    };
+
+    window.addEventListener('keydown', handleResultKeyDown);
+    return () => window.removeEventListener('keydown', handleResultKeyDown);
+  }, [finalScore, onNavigate]);
+
   if (finalScore !== null) {
     return (
       <div className="game-over-container">
@@ -91,8 +105,9 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
             <span className="highlight">{finalScore}</span>
           </div>
         </div>
-        <button className="primary-btn mt-2" onClick={() => onNavigate('result')}>
+        <button className="primary-btn mt-2" onClick={() => onNavigate('result')} title="Shortcut: Enter">
           {uiLang === 'EN' ? 'VIEW STATUS' : 'ステータスを確認'}
+          <span className="enter-badge">Enter</span>
         </button>
       </div>
     );
