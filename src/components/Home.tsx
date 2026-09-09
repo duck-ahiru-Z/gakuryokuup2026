@@ -17,6 +17,8 @@ interface HomeProps {
   setDarkMode: (enabled: boolean) => void;
   bgmVolume: number;
   setBgmVolume: (volume: number) => void;
+  isBgmPlaying: boolean;
+  onToggleBgm: () => void;
   sfxVolume: number;
   setSfxVolume: (volume: number) => void;
 }
@@ -24,7 +26,7 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = ({ 
   onNavigate, difficulty, setDifficulty, 
   uiLang, setUiLang, furiganaEnabled, setFuriganaEnabled, darkMode, setDarkMode,
-  bgmVolume, setBgmVolume, sfxVolume, setSfxVolume
+  bgmVolume, setBgmVolume, isBgmPlaying, onToggleBgm, sfxVolume, setSfxVolume
 }) => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const APP_TITLE = "Shortcut English";
@@ -161,6 +163,8 @@ const Home: React.FC<HomeProps> = ({
           setDarkMode={setDarkMode}
           bgmVolume={bgmVolume}
           setBgmVolume={setBgmVolume}
+          isBgmPlaying={isBgmPlaying}
+          onToggleBgm={onToggleBgm}
           sfxVolume={sfxVolume}
           setSfxVolume={setSfxVolume}
         />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Volume2, VolumeX, Music, Moon, Sun } from 'lucide-react';
+import { X, Volume2, VolumeX, Music, Moon, Sun, Play, Pause } from 'lucide-react';
 import './Settings.css';
 
 interface SettingsProps {
@@ -12,11 +12,13 @@ interface SettingsProps {
   setDarkMode: (enabled: boolean) => void;
   bgmVolume: number;
   setBgmVolume: (volume: number) => void;
+  isBgmPlaying: boolean;
+  onToggleBgm: () => void;
   sfxVolume: number;
   setSfxVolume: (volume: number) => void;
 }
 
-const Settings: React.FC<SettingsProps> = ({ onClose, uiLang, setUiLang, furiganaEnabled, setFuriganaEnabled, darkMode, setDarkMode, bgmVolume, setBgmVolume, sfxVolume, setSfxVolume }) => {
+const Settings: React.FC<SettingsProps> = ({ onClose, uiLang, setUiLang, furiganaEnabled, setFuriganaEnabled, darkMode, setDarkMode, bgmVolume, setBgmVolume, isBgmPlaying, onToggleBgm, sfxVolume, setSfxVolume }) => {
 
   return (
     <div className="settings-overlay">
@@ -60,6 +62,16 @@ const Settings: React.FC<SettingsProps> = ({ onClose, uiLang, setUiLang, furigan
               <span>{uiLang === 'EN' ? 'MUSIC' : <ruby>音楽<rt>{furiganaEnabled && 'おんがく'}</rt></ruby>}</span>
             </div>
             <div className="slider-wrapper">
+              <button
+                type="button"
+                className="music-preview-btn"
+                onClick={onToggleBgm}
+                disabled={bgmVolume === 0}
+                aria-label={isBgmPlaying ? (uiLang === 'EN' ? 'Pause music' : '音楽を停止') : (uiLang === 'EN' ? 'Play music' : '音楽を再生')}
+              >
+                {isBgmPlaying ? <Pause size={16} /> : <Play size={16} />}
+                <span>{isBgmPlaying ? (uiLang === 'EN' ? 'PAUSE' : '停止') : (uiLang === 'EN' ? 'PLAY' : '再生')}</span>
+              </button>
               <input 
                 type="range" 
                 min="0" 
