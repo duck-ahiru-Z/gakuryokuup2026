@@ -5,7 +5,9 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    width: 100%;
     max-width: 1000px;
+    min-width: 0;
     margin: 0 auto;
     height: 100%;
 }
@@ -152,9 +154,120 @@
     letter-spacing: 2px;
 }
 
+.g2-success-next {
+    margin-top: 0.75rem;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    text-align: center;
+}
+
 @keyframes popIn {
     from { transform: scale(0.7); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
+}
+
+.g2-hint-btn {
+    width: auto;
+}
+
+.g2-skip-btn {
+    width: auto;
+    color: var(--text-secondary);
+}
+
+.g2-action-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0 0.25rem;
+    margin-top: -0.25rem;
+}
+
+.g2-hint-message {
+    color: var(--accent-color);
+    font-weight: 700;
+    margin: 1rem auto 0;
+}
+
+.g2-prep {
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.g2-prep-card {
+    width: min(920px, 100%);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    padding: 2.25rem 3rem;
+}
+
+.g2-prep-kicker {
+    color: var(--accent-color);
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    margin: 0 0 0.5rem;
+}
+
+.g2-prep-card h2 {
+    color: var(--text-primary);
+    margin: 0 0 1.5rem;
+}
+
+.g2-prep-card h3 {
+    color: var(--accent-color);
+    margin-bottom: 0.75rem;
+}
+
+.g2-prep-card ol {
+    color: var(--text-primary);
+    line-height: 1.9;
+    padding-left: 1.5rem;
+}
+
+.g2-prep-note {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    border-left: 3px solid var(--accent-color);
+    padding-left: 0.75rem;
+}
+
+.g2-prep-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.g2-prep-actions .primary-btn,
+.g2-prep-actions .secondary-btn {
+    width: auto;
+    min-width: 0;
+    padding: 0.7rem 1.25rem;
+}
+
+.g2-prep-actions .primary-btn {
+    min-width: 220px;
+}
+
+@media (max-width: 620px) {
+    .g2-prep-card {
+        padding: 1.5rem;
+    }
+
+    .g2-prep-actions {
+        flex-direction: column-reverse;
+    }
+
+    .g2-prep-actions .primary-btn,
+    .g2-prep-actions .secondary-btn {
+        width: 100%;
+    }
+
+    .g2-action-bar {
+        justify-content: center;
+    }
 }
 
 .new-record-badge {

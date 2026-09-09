@@ -30,6 +30,7 @@ export const storageUtils = {
   saveStats: (stats: UserStats): void => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(stats));
+      window.dispatchEvent(new Event('shortcut-stats-updated'));
     } catch (e) {
       console.error('Failed to save stats to localStorage', e);
     }
@@ -52,6 +53,14 @@ export const storageUtils = {
 
     storageUtils.saveStats(stats);
     return stats;
+  },
+
+  spendXP: (amount: number): boolean => {
+    const stats = storageUtils.getStats();
+    if (stats.xp < amount) return false;
+    stats.xp -= amount;
+    storageUtils.saveStats(stats);
+    return true;
   },
 
   recordGameResult: (modeId: string, score: number): void => {

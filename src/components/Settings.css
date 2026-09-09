@@ -121,6 +121,23 @@
   width: 100%;
 }
 
+.music-preview-btn {
+  min-width: 5.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.7rem;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.music-preview-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 .sharp-slider {
   -webkit-appearance: none;
   width: 100%;

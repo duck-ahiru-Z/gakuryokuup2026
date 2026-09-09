@@ -1,5 +1,6 @@
 import React from 'react';
-import { X, Volume2, VolumeX, Music, Moon, Sun } from 'lucide-react';
+import { X, Volume2, VolumeX, Music, Moon, Sun, Play, Pause } from 'lucide-react';
+import { useAudio } from '../hooks/useAudio';
 import './Settings.css';
 
 interface SettingsProps {
@@ -12,11 +13,14 @@ interface SettingsProps {
   setDarkMode: (enabled: boolean) => void;
   bgmVolume: number;
   setBgmVolume: (volume: number) => void;
+  isBgmPlaying: boolean;
+  onToggleBgm: () => void;
   sfxVolume: number;
   setSfxVolume: (volume: number) => void;
 }
 
-const Settings: React.FC<SettingsProps> = ({ onClose, uiLang, setUiLang, furiganaEnabled, setFuriganaEnabled, darkMode, setDarkMode, bgmVolume, setBgmVolume, sfxVolume, setSfxVolume }) => {
+const Settings: React.FC<SettingsProps> = ({ onClose, uiLang, setUiLang, furiganaEnabled, setFuriganaEnabled, darkMode, setDarkMode, bgmVolume, setBgmVolume, isBgmPlaying, onToggleBgm, sfxVolume, setSfxVolume }) => {
+  const { playSound } = useAudio(sfxVolume);
 
   return (
     <div className="settings-overlay">
@@ -60,6 +64,17 @@ const Settings: React.FC<SettingsProps> = ({ onClose, uiLang, setUiLang, furigan
               <span>{uiLang === 'EN' ? 'MUSIC' : <ruby>音楽<rt>{furiganaEnabled && 'おんがく'}</rt></ruby>}</span>
             </div>
             <div className="slider-wrapper">
+              <button
+                type="button"
+                className="music-preview-btn"
+                onClick={onToggleBgm}
+                onPointerDown={(event) => event.stopPropagation()}
+                disabled={bgmVolume === 0}
+                aria-label={isBgmPlaying ? (uiLang === 'EN' ? 'Pause music' : '音楽を停止') : (uiLang === 'EN' ? 'Play music' : '音楽を再生')}
+              >
+                {isBgmPlaying ? <Pause size={16} /> : <Play size={16} />}
+                <span>{isBgmPlaying ? (uiLang === 'EN' ? 'PAUSE' : '停止') : (uiLang === 'EN' ? 'PLAY' : '再生')}</span>
+              </button>
               <input 
                 type="range" 
                 min="0" 
@@ -80,6 +95,16 @@ const Settings: React.FC<SettingsProps> = ({ onClose, uiLang, setUiLang, furigan
               <span>{uiLang === 'EN' ? 'SOUND EFFECTS' : <ruby>効果音<rt>{furiganaEnabled && 'こうかおん'}</rt></ruby>}</span>
             </div>
             <div className="slider-wrapper">
+              <button
+                type="button"
+                className="music-preview-btn"
+                onClick={() => playSound('success')}
+                disabled={sfxVolume === 0}
+                aria-label={uiLang === 'EN' ? 'Preview sound effect' : '効果音を試聴'}
+              >
+                <Play size={16} />
+                <span>{uiLang === 'EN' ? 'DEMO' : '試聴'}</span>
+              </button>
               <input 
                 type="range" 
                 min="0" 

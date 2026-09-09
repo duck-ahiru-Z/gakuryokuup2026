@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './Keyboard.css';
 import { useOS } from '../hooks/useOS';
 
-  const Keyboard: React.FC = () => {
+  interface KeyboardProps {
+    resetKey?: string | number;
+  }
+
+  const Keyboard: React.FC<KeyboardProps> = ({ resetKey }) => {
   // 1. OSの判定
   const os = useOS();
   const isMac = os === 'Mac';
@@ -10,7 +14,36 @@ import { useOS } from '../hooks/useOS';
   // 2. 押されているキーの状態をこのファイル内で管理
   const [pressedKeys, setPressedKeys] = useState<Set<string>>(new Set());
 
+  // 正解・問題切り替え時に、タッチで固定した修飾キーを解除する
+  useEffect(() => {
+    setPressedKeys(new Set());
+  }, [resetKey]);
+
   const normalizeKey = (key: string) => key.length === 1 ? key.toUpperCase() : key;
+
+  const getEventKey = (event: KeyboardEvent) => {
+    const codeAliases: Record<string, string> = {
+      ControlLeft: 'Control',
+      ControlRight: 'Control',
+      ShiftLeft: 'Shift',
+      ShiftRight: 'Shift',
+      AltLeft: 'Alt',
+      AltRight: 'Alt',
+      MetaLeft: 'Meta',
+      MetaRight: 'Meta',
+      Space: ' ',
+      Enter: 'Enter',
+      Escape: 'Escape',
+      Tab: 'Tab',
+      Backspace: 'Backspace',
+      CapsLock: 'CapsLock'
+    };
+
+    if (codeAliases[event.code]) return codeAliases[event.code];
+    if (event.code.startsWith('Key')) return event.code.slice(3).toUpperCase();
+    if (event.code.startsWith('Digit')) return event.code.slice(5);
+    return event.key;
+  };
 
   const modifierState = (keys: Set<string>) => ({
     ctrlKey: keys.has('Control'),
@@ -75,13 +108,13 @@ import { useOS } from '../hooks/useOS';
         return;
       }
 
-      setPressedKeys((prev) => new Set(prev).add(normalizeKey(e.key)));
+      setPressedKeys((prev) => new Set(prev).add(normalizeKey(getEventKey(e))));
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
       setPressedKeys((prev) => {
         const next = new Set(prev);
-        next.delete(normalizeKey(e.key));
+        next.delete(normalizeKey(getEventKey(e)));
         return next;
       });
     };

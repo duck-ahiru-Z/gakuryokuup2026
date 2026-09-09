@@ -34,6 +34,12 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
     HARD: { titleEn: 'ADVANCED', titleJa: '[上級者](じょうきゅうしゃ)' }
   };
 
+  const normalDifficultyImages: Record<Difficulty, string> = {
+    EASY: '/images/difficulty/beginner.jpg',
+    NORMAL: '/images/difficulty/intermediate.jpg',
+    HARD: '/images/difficulty/advanced.jpg'
+  };
+
   const handleSelectNormal = (diff: Difficulty) => {
     setDifficulty(diff);
     setSelectedModeId('normal');
@@ -61,7 +67,7 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
 
   const selectedData = selectedModeId ? (gameModes as GameModeData[]).find(m => m.id === selectedModeId) : null;
   const selectedDisplayData = selectedData && selectedModeId === 'normal'
-    ? { ...selectedData, ...normalDifficultyTitles[difficulty] }
+    ? { ...selectedData, ...normalDifficultyTitles[difficulty], imageUri: normalDifficultyImages[difficulty] }
     : selectedData;
 
   useEffect(() => {
@@ -107,7 +113,7 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
           <div className="sidebar-section">
             <h3 className="sidebar-title">
               <PlayCircle size={20} />
-              {uiLang === 'EN' ? 'BASIC MODE' : parseRubyText('[基本](きほん)モード', furiganaEnabled)}
+              {uiLang === 'EN' ? 'BASIC MODE' : (furiganaEnabled ? parseRubyText('[基本](きほん)モード', true) : '基本モード')}
             </h3>
             <div className="diff-buttons">
               {[

@@ -27,7 +27,10 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
   const os = useOS();
 
   useEffect(() => {
-    setStats(storageUtils.getStats());
+    const refreshStats = () => setStats(storageUtils.getStats());
+    refreshStats();
+    window.addEventListener('shortcut-stats-updated', refreshStats);
+    return () => window.removeEventListener('shortcut-stats-updated', refreshStats);
   }, []);
 
   useEffect(() => {
@@ -67,7 +70,7 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
   const getModeTitle = (modeId: string) => {
     const difficultyLabels: Record<string, { en: string; ja: string }> = {
       EASY: { en: 'BEGINNER', ja: '[初心者](しょしんしゃ)' },
-      NORMAL: { en: 'NORMAL', ja: '[通常](つうじょう)' },
+      NORMAL: { en: 'INTERMEDIATE', ja: '[中級者](ちゅうきゅうしゃ)' },
       HARD: { en: 'ADVANCED', ja: '[上級者](じょうきゅうしゃ)' },
     };
     const difficultyLabel = difficultyLabels[modeId];

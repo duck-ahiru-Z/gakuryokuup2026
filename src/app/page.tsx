@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import type { ViewState, Difficulty } from '../types';
 import Home from '../components/Home';
 import Game from '../components/Game';
@@ -23,6 +23,19 @@ function Page() {
   const [bgmVolume, setBgmVolume] = useState(50);
   const [sfxVolume, setSfxVolume] = useState(50);
   const [settingsLoaded, setSettingsLoaded] = useState(false);
+  const [isBgmPlaying, setIsBgmPlaying] = useState(false);
+  const bgmRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const savedModeId = window.localStorage.getItem('shortcutAcademy.selectedModeId');
+    if (savedModeId) setSelectedModeId(savedModeId);
+  }, []);
+
+  const updateSelectedModeId = (modeId: string | null) => {
+    if (!modeId) return;
+    setSelectedModeId(modeId);
+    window.localStorage.setItem('shortcutAcademy.selectedModeId', modeId);
+  };
 
   useEffect(() => {
     const savedLang = window.localStorage.getItem('shortcutAcademy.uiLang');
@@ -47,6 +60,66 @@ function Page() {
     window.localStorage.setItem('shortcutAcademy.bgmVolume', String(bgmVolume));
     window.localStorage.setItem('shortcutAcademy.sfxVolume', String(sfxVolume));
   }, [uiLang, furiganaEnabled, darkMode, bgmVolume, sfxVolume, settingsLoaded]);
+
+  // BGMは最初のユーザー操作後に再生し、画面遷移中も継続する
+  useEffect(() => {
+    if (!settingsLoaded) return;
+
+    const bgm = new Audio('/audio/bgm/shortcut-english-main.mp3');
+    bgm.loop = true;
+    bgm.preload = 'auto';
+    bgm.volume = bgmVolume / 100;
+    bgmRef.current = bgm;
+
+    const startBgm = () => {
+      if (bgm.volume <= 0 || !bgm.paused) return;
+      bgm.play().then(() => setIsBgmPlaying(true)).catch(() => {
+        // ブラウザの自動再生制限中は、次のユーザー操作で再試行する
+      });
+    };
+
+    const handlePause = () => setIsBgmPlaying(false);
+    const handlePlay = () => setIsBgmPlaying(true);
+    bgm.addEventListener('pause', handlePause);
+    bgm.addEventListener('play', handlePlay);
+
+    window.addEventListener('pointerdown', startBgm);
+    window.addEventListener('keydown', startBgm);
+
+    return () => {
+      window.removeEventListener('pointerdown', startBgm);
+      window.removeEventListener('keydown', startBgm);
+      bgm.removeEventListener('pause', handlePause);
+      bgm.removeEventListener('play', handlePlay);
+      bgm.pause();
+      bgm.src = '';
+      bgmRef.current = null;
+      setIsBgmPlaying(false);
+    };
+  }, [settingsLoaded]);
+
+  useEffect(() => {
+    if (!bgmRef.current) return;
+    bgmRef.current.volume = bgmVolume / 100;
+    if (bgmVolume <= 0) {
+      bgmRef.current.pause();
+      setIsBgmPlaying(false);
+    }
+  }, [bgmVolume]);
+
+  const toggleBgm = () => {
+    const bgm = bgmRef.current;
+    if (!bgm || bgmVolume <= 0) return;
+
+    if (bgm.paused) {
+      bgm.play().then(() => setIsBgmPlaying(true)).catch(() => {
+        // ブラウザが再生を拒否した場合は、状態を再生中にしない
+      });
+    } else {
+      bgm.pause();
+      setIsBgmPlaying(false);
+    }
+  };
 
   const updateUiLang = (lang: 'EN' | 'JA') => {
     setUiLang(lang);
@@ -88,6 +161,8 @@ function Page() {
             setDarkMode={updateDarkMode}
             bgmVolume={bgmVolume}
             setBgmVolume={setBgmVolume}
+            isBgmPlaying={isBgmPlaying}
+            onToggleBgm={toggleBgm}
             sfxVolume={sfxVolume}
             setSfxVolume={setSfxVolume}
           />
@@ -99,7 +174,7 @@ function Page() {
             difficulty={difficulty}
             setDifficulty={setDifficulty}
             selectedModeId={selectedModeId}
-            setSelectedModeId={setSelectedModeId}
+            setSelectedModeId={updateSelectedModeId}
             uiLang={uiLang}
             furiganaEnabled={furiganaEnabled}
           />
@@ -108,7 +183,7 @@ function Page() {
         return <Game onNavigate={setCurrentView} difficulty={difficulty} furiganaEnabled={furiganaEnabled} uiLang={uiLang} sfxVolume={sfxVolume} />;
       //game2はデバック用
       case 'game2' as any:
-        return <Game2 onNavigate={setCurrentView} difficulty={difficulty} selectedModeId={selectedModeId} uiLang={uiLang} sfxVolume={sfxVolume} />;
+        return <Game2 onNavigate={setCurrentView} difficulty={difficulty} selectedModeId={selectedModeId} uiLang={uiLang} furiganaEnabled={furiganaEnabled} sfxVolume={sfxVolume} />;
       case 'result':
         return <Result onNavigate={setCurrentView} uiLang={uiLang} furiganaEnabled={furiganaEnabled} />;
       case 'dictionary':
@@ -129,6 +204,8 @@ function Page() {
             setDarkMode={updateDarkMode}
             bgmVolume={bgmVolume}
             setBgmVolume={setBgmVolume}
+            isBgmPlaying={isBgmPlaying}
+            onToggleBgm={toggleBgm}
             sfxVolume={sfxVolume}
             setSfxVolume={setSfxVolume}
           />

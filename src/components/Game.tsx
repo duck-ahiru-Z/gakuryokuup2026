@@ -38,7 +38,12 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
     timeLeft,
     showExplanation,
     handleSuccess,
-  } = useGameState(finalScore === null, difficulty, handleGameEnd);
+    continueAfterSuccess,
+    hintedMissionId,
+    hintMessage,
+    handleHint,
+    handleSkip,
+  } = useGameState(finalScore === null, difficulty, handleGameEnd, uiLang);
 
   const { playSound, speakWord } = useAudio(sfxVolume);
 
@@ -77,6 +82,51 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
 
   const { pressedKeys, clearKeys } = useKeyboardShortcut(finalScore === null, handleAttempt);
 
+  useEffect(() => {
+    if (finalScore === null) return;
+
+    const handleResultKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        onNavigate('result');
+      }
+    };
+
+    window.addEventListener('keydown', handleResultKeyDown);
+    return () => window.removeEventListener('keydown', handleResultKeyDown);
+  }, [finalScore, onNavigate]);
+
+  useEffect(() => {
+    if (finalScore !== null) return;
+
+    const handleQuitKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        onNavigate('modeSelect');
+      }
+    };
+
+    window.addEventListener('keydown', handleQuitKeyDown, true);
+    return () => window.removeEventListener('keydown', handleQuitKeyDown, true);
+  }, [finalScore, onNavigate]);
+
+  useEffect(() => {
+    if (!showExplanation) return;
+
+    const handleExplanationKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        clearKeys();
+        continueAfterSuccess();
+      }
+    };
+
+    window.addEventListener('keydown', handleExplanationKeyDown, true);
+    return () => window.removeEventListener('keydown', handleExplanationKeyDown, true);
+  }, [showExplanation, continueAfterSuccess, clearKeys]);
+
   if (finalScore !== null) {
     return (
       <div className="game-over-container">
@@ -87,8 +137,9 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
             <span className="highlight">{finalScore}</span>
           </div>
         </div>
-        <button className="primary-btn mt-2" onClick={() => onNavigate('result')}>
+        <button className="primary-btn mt-2" onClick={() => onNavigate('result')} title="Shortcut: Enter">
           {uiLang === 'EN' ? 'VIEW STATUS' : 'ステータスを確認'}
+          <span className="enter-badge">Enter</span>
         </button>
       </div>
     );
@@ -102,9 +153,11 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
             className="secondary-btn" 
             style={{ width: 'auto', padding: '0.5rem 1rem' }} 
             onClick={() => onNavigate('modeSelect')}
+            title="Shortcut: Esc"
           >
             <ArrowLeft size={16} />
-            <span>{uiLang === 'EN' ? 'QUIT' : '中断'}</span>
+            <span>{uiLang === 'EN' ? 'QUIT' : parseRubyText('[中断](ちゅうだん)', furiganaEnabled)}</span>
+            <span className="enter-badge">Esc</span>
           </button>
           
           <div className="score-box" style={{ marginLeft: 'auto', marginRight: '2rem' }}>
@@ -135,6 +188,11 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
                   isUnlocked={true} 
                 />
               </div>
+              <p className="explanation-next-hint">
+                {uiLang === 'EN'
+                  ? 'Press Enter to continue'
+                  : parseRubyText('Enterキーで[次](つぎ)へ[進](すす)む', furiganaEnabled)}
+              </p>
             </div>
           ) : (
             <div className="mission-card">
@@ -146,7 +204,7 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
                   : ''}
               </p>
               <div className="target-keys">
-                {difficulty === 'HARD' ? (
+                {hintedMissionId !== currentMission?.id ? (
                   <span className="key-badge highlight">?</span>
                 ) : (
                   currentMission && resolveKeys(currentMission, os).map((displayKey, i) => {
@@ -159,12 +217,24 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
                   })
                 )}
               </div>
+              {hintMessage && <p className="game-hint-message">{hintMessage}</p>}
             </div>
           )}
         </div>
 
         <div className="keyboard-area">
           <Keyboard />
+        </div>
+
+        <div className="game-action-bar" aria-label={uiLang === 'EN' ? 'Mission assistance' : 'ミッション補助'}>
+          <button className="secondary-btn" onClick={handleHint}>
+            {hintedMissionId === currentMission?.id
+              ? (uiLang === 'EN' ? 'SHOW HINT AGAIN' : 'ヒントを再表示')
+              : (uiLang === 'EN' ? 'HINT (-10 XP)' : 'ヒント（-10XP）')}
+          </button>
+          <button className="secondary-btn" onClick={handleSkip}>
+            {uiLang === 'EN' ? 'SKIP (-25 XP)' : 'スキップ（-25XP）'}
+          </button>
         </div>
       </div>
     </DisableContextMenu>
