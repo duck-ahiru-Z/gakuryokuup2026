@@ -97,6 +97,21 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
   }, [finalScore, onNavigate]);
 
   useEffect(() => {
+    if (finalScore !== null) return;
+
+    const handleQuitKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        onNavigate('modeSelect');
+      }
+    };
+
+    window.addEventListener('keydown', handleQuitKeyDown, true);
+    return () => window.removeEventListener('keydown', handleQuitKeyDown, true);
+  }, [finalScore, onNavigate]);
+
+  useEffect(() => {
     if (!showExplanation) return;
 
     const handleExplanationKeyDown = (e: KeyboardEvent) => {
@@ -138,9 +153,11 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
             className="secondary-btn" 
             style={{ width: 'auto', padding: '0.5rem 1rem' }} 
             onClick={() => onNavigate('modeSelect')}
+            title="Shortcut: Esc"
           >
             <ArrowLeft size={16} />
-            <span>{uiLang === 'EN' ? 'QUIT' : '中断'}</span>
+            <span>{uiLang === 'EN' ? 'QUIT' : parseRubyText('[中断](ちゅうだん)', furiganaEnabled)}</span>
+            <span className="enter-badge">Esc</span>
           </button>
           
           <div className="score-box" style={{ marginLeft: 'auto', marginRight: '2rem' }}>

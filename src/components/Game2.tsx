@@ -5,6 +5,7 @@ import { ArrowLeft, Trophy } from 'lucide-react';
 import { useOS } from '../hooks/useOS';
 import { useAudio } from '../hooks/useAudio';
 import Keyboard from './Keyboard';
+import { parseRubyText } from '../utils/shortcutUtils';
 import './Game2.css';
 
 // Dynamic import of practical sets
@@ -29,10 +30,11 @@ interface GameProps {
   difficulty: Difficulty;
   selectedModeId?: string;
   uiLang: 'EN' | 'JA';
+  furiganaEnabled: boolean;
   sfxVolume: number;
 }
 
-const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1', uiLang, sfxVolume }) => {
+const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1', uiLang, furiganaEnabled, sfxVolume }) => {
   const os = useOS();
   const { playSound, speakWord } = useAudio(sfxVolume);
   const isMac = os === 'Mac';
@@ -159,6 +161,11 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
 
       if (!hasStarted) return;
 
+      if (e.key === 'Escape') {
+        onNavigate('modeSelect');
+        return;
+      }
+
       if (clearTime !== null) {
         if (e.key === 'Enter') {
           onNavigate('result');
@@ -261,8 +268,8 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
     return (
       <div className="game2-container g2-prep">
         <div className="g2-prep-card">
-          <p className="g2-prep-kicker">{uiLang === 'EN' ? 'PRACTICAL MODE' : '実践モード'}</p>
-          <h2>{uiLang === 'EN' ? currentSet.titleEn : currentSet.titleJa}</h2>
+          <p className="g2-prep-kicker">{uiLang === 'EN' ? 'PRACTICAL MODE' : parseRubyText('[実践](じっせん)モード', furiganaEnabled)}</p>
+          <h2>{uiLang === 'EN' ? currentSet.titleEn : parseRubyText(currentSet.titleJa, furiganaEnabled)}</h2>
           <h3>{uiLang === 'EN' ? 'How to play' : '遊び方'}</h3>
           <ol>
             <li>{uiLang === 'EN' ? 'Read the mission shown in the center.' : '画面中央のミッションを読みます。'}</li>
@@ -277,7 +284,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
           <div className="g2-prep-actions">
             <button className="secondary-btn" onClick={() => onNavigate('modeSelect')} title="Shortcut: Esc">
               <ArrowLeft size={16} />
-              {uiLang === 'EN' ? 'BACK' : '戻る'}
+              {uiLang === 'EN' ? 'BACK' : parseRubyText('[戻](もど)る', furiganaEnabled)}
               <span className="enter-badge">Esc</span>
             </button>
             <button className="primary-btn" onClick={startPractice} title="Shortcut: Enter">
@@ -295,11 +302,12 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
   return (
     <div className="game2-container">
       <div className="g2-header">
-        <button className="secondary-btn" style={{ width: 'auto', padding: '0.5rem 1rem' }} onClick={() => onNavigate('modeSelect')}>
+        <button className="secondary-btn" style={{ width: 'auto', padding: '0.5rem 1rem' }} onClick={() => onNavigate('modeSelect')} title="Shortcut: Esc">
           <ArrowLeft size={16} />
-          <span>{uiLang === 'EN' ? 'QUIT' : '中断'}</span>
+          <span>{uiLang === 'EN' ? 'QUIT' : parseRubyText('[中断](ちゅうだん)', furiganaEnabled)}</span>
+          <span className="enter-badge">Esc</span>
         </button>
-        <h2 className="g2-title">{uiLang === 'EN' ? currentSet.titleEn : currentSet.titleJa}</h2>
+        <h2 className="g2-title">{uiLang === 'EN' ? currentSet.titleEn : parseRubyText(currentSet.titleJa, furiganaEnabled)}</h2>
         <div className="g2-progress">
           {uiLang === 'EN' ? 'STEP' : 'ステップ'} {Math.min(currentStep + 1, currentSet.missions.length)} / {currentSet.missions.length}
         </div>
@@ -307,7 +315,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
 
       <div className="g2-workspace">
         <div className="g2-pane left-pane">
-          <div className="pane-header">{uiLang === 'EN' ? currentSet.leftColumnTitleEn : currentSet.leftColumnTitleJa}</div>
+          <div className="pane-header">{uiLang === 'EN' ? currentSet.leftColumnTitleEn : parseRubyText(currentSet.leftColumnTitleJa, furiganaEnabled)}</div>
           <div className="pane-content">
             {currentSet.initialLeftText && currentSet.initialLeftText.map((line, idx) => {
               const action = currentMission?.successAction;
@@ -322,7 +330,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         </div>
 
         <div className="g2-pane right-pane">
-          <div className="pane-header">{uiLang === 'EN' ? currentSet.rightColumnTitleEn : currentSet.rightColumnTitleJa}</div>
+          <div className="pane-header">{uiLang === 'EN' ? currentSet.rightColumnTitleEn : parseRubyText(currentSet.rightColumnTitleJa, furiganaEnabled)}</div>
           <div className="pane-content right-content-area">
             {rightContent.split('\n').map((line, idx) => (
               <p key={idx} className={centeredLine && line.includes(centeredLine) ? 'centered-line' : ''}>
@@ -350,8 +358,8 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         ) : (
           <div className="g2-mission-info">
             <div className="m-header">
-              <h3 className="m-title">{uiLang === 'EN' ? currentMission.titleEn : currentMission.titleJa}</h3>
-              <p className="m-desc">{uiLang === 'EN' ? currentMission.descriptionEn : currentMission.descriptionJa}</p>
+              <h3 className="m-title">{uiLang === 'EN' ? currentMission.titleEn : parseRubyText(currentMission.titleJa, furiganaEnabled)}</h3>
+              <p className="m-desc">{uiLang === 'EN' ? currentMission.descriptionEn : parseRubyText(currentMission.descriptionJa, furiganaEnabled)}</p>
               {hintMessage && <p className="g2-hint-message">{hintMessage}</p>}
             </div>
           </div>

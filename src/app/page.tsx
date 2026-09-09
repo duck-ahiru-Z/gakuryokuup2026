@@ -172,7 +172,7 @@ function Page() {
         return <Game onNavigate={setCurrentView} difficulty={difficulty} furiganaEnabled={furiganaEnabled} uiLang={uiLang} sfxVolume={sfxVolume} />;
       //game2はデバック用
       case 'game2' as any:
-        return <Game2 onNavigate={setCurrentView} difficulty={difficulty} selectedModeId={selectedModeId} uiLang={uiLang} sfxVolume={sfxVolume} />;
+        return <Game2 onNavigate={setCurrentView} difficulty={difficulty} selectedModeId={selectedModeId} uiLang={uiLang} furiganaEnabled={furiganaEnabled} sfxVolume={sfxVolume} />;
       case 'result':
         return <Result onNavigate={setCurrentView} uiLang={uiLang} furiganaEnabled={furiganaEnabled} />;
       case 'dictionary':
