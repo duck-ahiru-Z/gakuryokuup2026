@@ -192,6 +192,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
       if (actionMatches) {
         playSound('success');
         speakWord(mission.shortcutId);
+        storageUtils.recordAttempt(true, mission.shortcutId);
 
         // execute action
         const action = mission.successAction;
@@ -223,6 +224,8 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
             }
           }
         }, 1500);
+      } else if (!['Control', 'Shift', 'Alt', 'Meta', 'OS'].includes(e.key)) {
+        storageUtils.recordAttempt(false, mission.shortcutId);
       }
     },
     [currentStep, hasStarted, isMac, currentSet, startTime, showSuccessOverlay, clearTime, playSound, speakWord, onNavigate]

@@ -30,6 +30,7 @@ export const storageUtils = {
   saveStats: (stats: UserStats): void => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(stats));
+      window.dispatchEvent(new Event('shortcut-stats-updated'));
     } catch (e) {
       console.error('Failed to save stats to localStorage', e);
     }

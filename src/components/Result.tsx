@@ -27,7 +27,10 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
   const os = useOS();
 
   useEffect(() => {
-    setStats(storageUtils.getStats());
+    const refreshStats = () => setStats(storageUtils.getStats());
+    refreshStats();
+    window.addEventListener('shortcut-stats-updated', refreshStats);
+    return () => window.removeEventListener('shortcut-stats-updated', refreshStats);
   }, []);
 
   useEffect(() => {
