@@ -108,6 +108,22 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
     setHasStarted(true);
   }, []);
 
+  const advanceAfterSuccess = useCallback(() => {
+    setShowSuccessOverlay(false);
+    if (currentStep < currentSet.missions.length - 1) {
+      setCurrentStep(prev => prev + 1);
+      return;
+    }
+
+    playSound('clear');
+    if (startTime) {
+      const elapsed = Math.floor((Date.now() - startTime) / 1000);
+      setIsNewRecord(storageUtils.recordPracticalTime(selectedModeId, elapsed));
+      setClearTime(elapsed);
+      storageUtils.addXP(300);
+    }
+  }, [currentStep, currentSet.missions.length, playSound, selectedModeId, startTime]);
+
   useEffect(() => {
     if (hasStarted) return;
 
@@ -149,7 +165,12 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         }
         return;
       }
-      if (showSuccessOverlay) return;
+      if (showSuccessOverlay) {
+        if (e.key === 'Enter') {
+          advanceAfterSuccess();
+        }
+        return;
+      }
       
       const mission = currentSet.missions[currentStep];
       if (!mission) return;
@@ -209,26 +230,11 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
 
         storageUtils.addXP(50);
         setShowSuccessOverlay(true);
-
-        setTimeout(() => {
-          setShowSuccessOverlay(false);
-          if (currentStep < currentSet.missions.length - 1) {
-            setCurrentStep(prev => prev + 1);
-          } else {
-            playSound('clear');
-            if (startTime) {
-              const elapsed = Math.floor((Date.now() - startTime) / 1000);
-              setIsNewRecord(storageUtils.recordPracticalTime(selectedModeId, elapsed));
-              setClearTime(elapsed);
-              storageUtils.addXP(300);
-            }
-          }
-        }, 1500);
       } else if (!['Control', 'Shift', 'Alt', 'Meta', 'OS'].includes(e.key)) {
         storageUtils.recordAttempt(false, mission.shortcutId);
       }
     },
-    [currentStep, hasStarted, isMac, currentSet, startTime, showSuccessOverlay, clearTime, playSound, speakWord, onNavigate]
+    [currentStep, hasStarted, isMac, currentSet, showSuccessOverlay, clearTime, playSound, speakWord, onNavigate, advanceAfterSuccess]
   );
 
   useEffect(() => {
@@ -375,7 +381,8 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
       {showSuccessOverlay && (
         <div className="g2-success-overlay">
           <div className="g2-success-content">
-            <span className="g2-success-text">SUCCESS!</span>
+            <span className="g2-success-text">{uiLang === 'EN' ? 'SUCCESS!' : '正解！'}</span>
+            <p className="g2-success-next">{uiLang === 'EN' ? 'Press Enter to continue' : 'Enterキーで次へ進む'}</p>
           </div>
         </div>
       )}
