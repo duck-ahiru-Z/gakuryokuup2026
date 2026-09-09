@@ -27,6 +27,17 @@ function Page() {
   const bgmRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
+    const savedModeId = window.localStorage.getItem('shortcutAcademy.selectedModeId');
+    if (savedModeId) setSelectedModeId(savedModeId);
+  }, []);
+
+  const updateSelectedModeId = (modeId: string | null) => {
+    if (!modeId) return;
+    setSelectedModeId(modeId);
+    window.localStorage.setItem('shortcutAcademy.selectedModeId', modeId);
+  };
+
+  useEffect(() => {
     const savedLang = window.localStorage.getItem('shortcutAcademy.uiLang');
     const savedFurigana = window.localStorage.getItem('shortcutAcademy.furiganaEnabled');
     const savedDarkMode = window.localStorage.getItem('shortcutAcademy.darkMode');
@@ -163,7 +174,7 @@ function Page() {
             difficulty={difficulty}
             setDifficulty={setDifficulty}
             selectedModeId={selectedModeId}
-            setSelectedModeId={setSelectedModeId}
+            setSelectedModeId={updateSelectedModeId}
             uiLang={uiLang}
             furiganaEnabled={furiganaEnabled}
           />
