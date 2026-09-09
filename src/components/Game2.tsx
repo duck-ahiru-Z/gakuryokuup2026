@@ -64,7 +64,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
       zoom_out: 'Ctrl + -', zoom_reset: 'Ctrl + 0', reopen_tab: 'Ctrl + Shift + T',
       replace: 'Ctrl + H', bold: 'Ctrl + B', center_align: 'Ctrl + E', save: 'Ctrl + S'
     };
-    return hints[shortcutId] || shortcutId;
+    return (hints[shortcutId] || shortcutId).replace(/Ctrl/g, isMac ? 'Cmd' : 'Ctrl');
   };
 
   const handleHint = () => {
@@ -183,6 +183,14 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
       if (!mission) return;
 
       const modifierPressed = isMac ? e.metaKey : e.ctrlKey;
+      const hasUnexpectedModifier = isMac
+        ? e.ctrlKey || e.altKey
+        : e.metaKey || e.altKey;
+      const requiresShift =
+        (isMac && mission.shortcutId === 'redo') ||
+        ['paste_plain', 'save_as', 'reopen_tab'].includes(mission.shortcutId) ||
+        (mission.shortcutId === 'zoom_in' && e.key === '+' && e.code !== 'NumpadAdd');
+      const hasUnexpectedShift = e.shiftKey && !requiresShift;
       let actionMatches = false;
 
       // ★ e.code による判定（Ctrl同時押し時のe.key文字化け対策）
@@ -191,7 +199,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         : e.key.toLowerCase();
 
       // 標準の修飾キー（Windows: Ctrl, Mac: Cmd）を使用するショートカット
-      if (modifierPressed) {
+      if (modifierPressed && !hasUnexpectedModifier && !hasUnexpectedShift) {
         if (mission.shortcutId === 'select_all' && pressedChar === 'a') actionMatches = true;
         if (mission.shortcutId === 'search' && pressedChar === 'f') actionMatches = true;
         if (mission.shortcutId === 'copy' && pressedChar === 'c') actionMatches = true;

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { SHORTCUTS } from '../data/shortcutsData';
 import type { ShortcutData, Difficulty } from '../types';
 import { useOS } from './useOS';
@@ -15,6 +15,7 @@ export function useGameState(isActive: boolean, difficulty: Difficulty, onGameEn
   const [showExplanation, setShowExplanation] = useState(false);
   const [hintedMissionId, setHintedMissionId] = useState<string | null>(null);
   const [hintMessage, setHintMessage] = useState<string | null>(null);
+  const previousMissionIdRef = useRef<string | null>(null);
   const os = useOS();
   
   const generateMission = useCallback(() => {
@@ -31,8 +32,13 @@ export function useGameState(isActive: boolean, difficulty: Difficulty, onGameEn
     
     if (validShortcuts.length === 0) return; // Safeguard
     
-    const randomIndex = Math.floor(Math.random() * validShortcuts.length);
-    setCurrentMission(validShortcuts[randomIndex]);
+    const candidates = validShortcuts.length > 1 && previousMissionIdRef.current
+      ? validShortcuts.filter(sc => sc.id !== previousMissionIdRef.current)
+      : validShortcuts;
+    const randomIndex = Math.floor(Math.random() * candidates.length);
+    const nextMission = candidates[randomIndex];
+    previousMissionIdRef.current = nextMission.id;
+    setCurrentMission(nextMission);
     setShowExplanation(false);
     setHintedMissionId(null);
     setHintMessage(null);

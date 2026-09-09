@@ -61,7 +61,7 @@ function Page() {
     bgmRef.current = bgm;
 
     const startBgm = () => {
-      if (bgmVolume <= 0 || !bgm.paused) return;
+      if (bgm.volume <= 0 || !bgm.paused) return;
       bgm.play().then(() => setIsBgmPlaying(true)).catch(() => {
         // ブラウザの自動再生制限中は、次のユーザー操作で再試行する
       });
