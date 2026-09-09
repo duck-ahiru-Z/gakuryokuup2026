@@ -102,6 +102,7 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
     const handleExplanationKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter') {
         e.preventDefault();
+        e.stopImmediatePropagation();
         clearKeys();
         continueAfterSuccess();
       }
