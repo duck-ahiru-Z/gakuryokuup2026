@@ -6,7 +6,6 @@ import { storageUtils } from '../utils/storageUtils';
 
 const GAME_DURATION_SECONDS = 30;
 const BASE_SCORE_PER_SUCCESS = 100;
-const EXPLANATION_DURATION_MS = 2000;
 
 
 export function useGameState(isActive: boolean, difficulty: Difficulty, onGameEnd: (score: number) => void, uiLang: 'EN' | 'JA') {
@@ -66,11 +65,12 @@ export function useGameState(isActive: boolean, difficulty: Difficulty, onGameEn
     const multiplier = difficulty === 'HARD' ? 1.5 : (difficulty === 'EASY' ? 0.8 : 1.0);
     setPlayerScore(prev => prev + Math.floor(BASE_SCORE_PER_SUCCESS * multiplier));
     setShowExplanation(true);
-    
-    setTimeout(() => {
-      generateMission();
-    }, EXPLANATION_DURATION_MS);
   }, [generateMission, difficulty]);
+
+  const continueAfterSuccess = useCallback(() => {
+    if (!showExplanation) return;
+    generateMission();
+  }, [generateMission, showExplanation]);
 
   const handleHint = useCallback(() => {
     if (!currentMission) return;
@@ -99,6 +99,7 @@ export function useGameState(isActive: boolean, difficulty: Difficulty, onGameEn
     timeLeft,
     showExplanation,
     handleSuccess,
+    continueAfterSuccess,
     hintedMissionId,
     hintMessage,
     handleHint,

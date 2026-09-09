@@ -38,6 +38,7 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
     timeLeft,
     showExplanation,
     handleSuccess,
+    continueAfterSuccess,
     hintedMissionId,
     hintMessage,
     handleHint,
@@ -94,6 +95,21 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
     window.addEventListener('keydown', handleResultKeyDown);
     return () => window.removeEventListener('keydown', handleResultKeyDown);
   }, [finalScore, onNavigate]);
+
+  useEffect(() => {
+    if (!showExplanation) return;
+
+    const handleExplanationKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        clearKeys();
+        continueAfterSuccess();
+      }
+    };
+
+    window.addEventListener('keydown', handleExplanationKeyDown);
+    return () => window.removeEventListener('keydown', handleExplanationKeyDown);
+  }, [showExplanation, continueAfterSuccess, clearKeys]);
 
   if (finalScore !== null) {
     return (
@@ -154,6 +170,9 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
                   isUnlocked={true} 
                 />
               </div>
+              <p className="explanation-next-hint">
+                {uiLang === 'EN' ? 'Press Enter to continue' : 'Enterキーで次へ進む'}
+              </p>
             </div>
           ) : (
             <div className="mission-card">
