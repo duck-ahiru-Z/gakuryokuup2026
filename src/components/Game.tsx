@@ -107,8 +107,8 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
       }
     };
 
-    window.addEventListener('keydown', handleExplanationKeyDown);
-    return () => window.removeEventListener('keydown', handleExplanationKeyDown);
+    window.addEventListener('keydown', handleExplanationKeyDown, true);
+    return () => window.removeEventListener('keydown', handleExplanationKeyDown, true);
   }, [showExplanation, continueAfterSuccess, clearKeys]);
 
   if (finalScore !== null) {
@@ -171,7 +171,9 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
                 />
               </div>
               <p className="explanation-next-hint">
-                {uiLang === 'EN' ? 'Press Enter to continue' : 'Enterキーで次へ進む'}
+                {uiLang === 'EN'
+                  ? 'Press Enter to continue'
+                  : parseRubyText('Enterキーで[次](つぎ)へ[進](すす)む', furiganaEnabled)}
               </p>
             </div>
           ) : (
