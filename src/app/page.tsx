@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import type { ViewState, Difficulty } from '../types';
 import Home from '../components/Home';
 import Game from '../components/Game';
@@ -23,6 +23,7 @@ function Page() {
   const [bgmVolume, setBgmVolume] = useState(50);
   const [sfxVolume, setSfxVolume] = useState(50);
   const [settingsLoaded, setSettingsLoaded] = useState(false);
+  const bgmRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const savedLang = window.localStorage.getItem('shortcutAcademy.uiLang');
@@ -47,6 +48,41 @@ function Page() {
     window.localStorage.setItem('shortcutAcademy.bgmVolume', String(bgmVolume));
     window.localStorage.setItem('shortcutAcademy.sfxVolume', String(sfxVolume));
   }, [uiLang, furiganaEnabled, darkMode, bgmVolume, sfxVolume, settingsLoaded]);
+
+  // BGMは最初のユーザー操作後に再生し、画面遷移中も継続する
+  useEffect(() => {
+    if (!settingsLoaded) return;
+
+    const bgm = new Audio('/audio/bgm/shortcut-english-main.mp3');
+    bgm.loop = true;
+    bgm.preload = 'auto';
+    bgm.volume = bgmVolume / 100;
+    bgmRef.current = bgm;
+
+    const startBgm = () => {
+      if (bgmVolume <= 0 || !bgm.paused) return;
+      bgm.play().catch(() => {
+        // ブラウザの自動再生制限中は、次のユーザー操作で再試行する
+      });
+    };
+
+    window.addEventListener('pointerdown', startBgm);
+    window.addEventListener('keydown', startBgm);
+
+    return () => {
+      window.removeEventListener('pointerdown', startBgm);
+      window.removeEventListener('keydown', startBgm);
+      bgm.pause();
+      bgm.src = '';
+      bgmRef.current = null;
+    };
+  }, [settingsLoaded]);
+
+  useEffect(() => {
+    if (!bgmRef.current) return;
+    bgmRef.current.volume = bgmVolume / 100;
+    if (bgmVolume <= 0) bgmRef.current.pause();
+  }, [bgmVolume]);
 
   const updateUiLang = (lang: 'EN' | 'JA') => {
     setUiLang(lang);
