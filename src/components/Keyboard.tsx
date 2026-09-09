@@ -21,6 +21,30 @@ import { useOS } from '../hooks/useOS';
 
   const normalizeKey = (key: string) => key.length === 1 ? key.toUpperCase() : key;
 
+  const getEventKey = (event: KeyboardEvent) => {
+    const codeAliases: Record<string, string> = {
+      ControlLeft: 'Control',
+      ControlRight: 'Control',
+      ShiftLeft: 'Shift',
+      ShiftRight: 'Shift',
+      AltLeft: 'Alt',
+      AltRight: 'Alt',
+      MetaLeft: 'Meta',
+      MetaRight: 'Meta',
+      Space: ' ',
+      Enter: 'Enter',
+      Escape: 'Escape',
+      Tab: 'Tab',
+      Backspace: 'Backspace',
+      CapsLock: 'CapsLock'
+    };
+
+    if (codeAliases[event.code]) return codeAliases[event.code];
+    if (event.code.startsWith('Key')) return event.code.slice(3).toUpperCase();
+    if (event.code.startsWith('Digit')) return event.code.slice(5);
+    return event.key;
+  };
+
   const modifierState = (keys: Set<string>) => ({
     ctrlKey: keys.has('Control'),
     shiftKey: keys.has('Shift'),
@@ -84,13 +108,13 @@ import { useOS } from '../hooks/useOS';
         return;
       }
 
-      setPressedKeys((prev) => new Set(prev).add(normalizeKey(e.key)));
+      setPressedKeys((prev) => new Set(prev).add(normalizeKey(getEventKey(e))));
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
       setPressedKeys((prev) => {
         const next = new Set(prev);
-        next.delete(normalizeKey(e.key));
+        next.delete(normalizeKey(getEventKey(e)));
         return next;
       });
     };
