@@ -1,9 +1,9 @@
 {
     "id": "practical_3",
     "titleEn": "Movie Production Edition",
-    "titleJa": "PRACTICAL MISSION: 映画制作チームの一員になろう！",
+    "titleJa": "[映画](えいが)[制作](せいさく)チームの[一員](いちいん)になろう！",
     "descriptionEn": "Use bold, center align, and save shortcuts to complete the movie promo page.",
-    "descriptionJa": "映画企画資料を参考に、太字指定、中央揃え、上書き保存を使って映画の紹介ページを完成させよう！",
+    "descriptionJa": "[映画](えいが)[企画](きかく)[資料](しりょう)を[参考](さんこう)に、[太字](ふとじ)[指定](してい)、[中央](ちゅうおう)[揃](そろ)え、[上書](うわが)き[保存](ほぞん)を[使](つか)って[映画](えいが)の[紹介](しょうかい)ページを[完成](かんせい)させよう！",
     "leftColumnTitleEn": "Movie Planning Document",
     "leftColumnTitleJa": "映画企画資料",
     "rightColumnTitleEn": "Promo Page Editor",
@@ -22,9 +22,9 @@
         {
             "id": 1,
             "titleEn": "Make the Title Bold",
-            "titleJa": "小問1：タイトルを目立たせよう",
+            "titleJa": "[小問](しょうもん)1：タイトルを[目立](めだ)たせよう",
             "descriptionEn": "Make the movie title bold to stand out.",
-            "descriptionJa": "紹介ページのタイトルが普通の文章と同じ見た目になっています。映画のタイトル「STARLIGHT」を太字にして目立たせよう！",
+            "descriptionJa": "[紹介](しょうかい)ページのタイトルが[普通](ふつう)の[文章](ぶんしょう)と[同](おな)じ[見](み)た[目](め)になっています。[映画](えいが)のタイトル「STARLIGHT」を[太字](ふとじ)にして[目立](めだ)たせよう！",
             "shortcutId": "bold",
             "successAction": {
             "type": "replace_right",
@@ -35,9 +35,9 @@
         {
             "id": 2,
             "titleEn": "Center Align Tagline",
-            "titleJa": "小問2：キャッチコピーを中央に配置しよう",
+            "titleJa": "[小問](しょうもん)2：キャッチコピーを[中央](ちゅうおう)に[配置](はいち)しよう",
             "descriptionEn": "Center align the tagline for better visual appeal.",
-            "descriptionJa": "キャッチコピーが左端に寄っています。ポスターのように印象的に見せるため、キャッチコピーを中央に配置しよう！",
+            "descriptionJa": "キャッチコピーが[左端](ひだりはし)に[寄](よ)っています。ポスターのように[印象的](いんしょうてき)に[見](み)せるため、キャッチコピーを[中央](ちゅうおう)に[配置](はいち)しよう！",
             "shortcutId": "center_align",
             "successAction": {
             "type": "replace_right",
@@ -48,9 +48,9 @@
         {
             "id": 3,
             "titleEn": "Save the Document",
-            "titleJa": "小問3：映画の紹介ページを保存せよ！",
+            "titleJa": "[小問](しょうもん)3：[映画](えいが)の[紹介](しょうかい)ページを[保存](ほぞん)せよ！",
             "descriptionEn": "Save your completed introduction page.",
-            "descriptionJa": "紹介ページが完成！せっかく作ったデータが消えないように、上書き保存（セーブ）しよう！",
+            "descriptionJa": "[紹介](しょうかい)ページが[完成](かんせい)！せっかく[作](つく)ったデータが[消](き)えないように、[上書](うわが)き[保存](ほぞん)（セーブ）しよう！",
             "shortcutId": "save",
             "successAction": {
             "type": "append_right",
@@ -60,9 +60,9 @@
         {
             "id": 4,
             "titleEn": "Italicize the tagline",
-            "titleJa": "小問4：キャッチコピーを斜体にしよう！",
+            "titleJa": "[小問](しょうもん)4：キャッチコピーを[斜体](しゃたい)にしよう！",
             "descriptionEn": "Italicize the tagline to give the poster a cinematic feeling.",
-            "descriptionJa": "映画らしい雰囲気を出すため、キャッチコピーを斜体にしよう！",
+            "descriptionJa": "[映画](えいが)らしい[雰囲気](ふんいき)を[出](だ)すため、キャッチコピーを[斜体](しゃたい)にしよう！",
             "shortcutId": "italic",
             "successAction": {
             "type": "replace_right",

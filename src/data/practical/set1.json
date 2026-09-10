@@ -1,7 +1,7 @@
 {
   "id": "practical_1",
   "titleEn": "School Newspaper Edition",
-  "titleJa": "MISSION 1: 取材メモから「日程」を探せ！",
+  "titleJa": "[学校新聞](がっこうしんぶん)[作成](さくせい)",
   "descriptionEn": "Use search, copy, paste, and undo to edit an article.",
   "descriptionJa": "大量のメモから「文化祭の日程」を探してください。",
   "leftColumnTitleEn": "Research Notes",
@@ -21,9 +21,9 @@
     {
       "id": 1,
       "titleEn": "Find the schedule",
-      "titleJa": "MISSION 1: 取材メモから「日程」を探せ！",
+      "titleJa": "MISSION 1: [取材](しゅざい)メモから「[日程](にってい)」を[探](さが)せ！",
       "descriptionEn": "Find the festival schedule from the notes.",
-      "descriptionJa": "大量のメモから「文化祭の日程」を探してください。",
+      "descriptionJa": "[大量](たいりょう)のメモから「[文化祭](ぶんかさい)の[日程](にってい)」を[探](さが)してください。",
       "shortcutId": "search",
       "successAction": {
         "type": "highlight_left",
@@ -33,9 +33,9 @@
     {
       "id": 2,
       "titleEn": "Copy the schedule",
-      "titleJa": "MISSION 1-b: 見つけた日程をコピーせよ！",
+      "titleJa": "MISSION 1-b: [見](み)つけた[日程](にってい)をコピーせよ！",
       "descriptionEn": "Copy the festival schedule.",
-      "descriptionJa": "見つけた日程をコピーしてください。",
+      "descriptionJa": "[見](み)つけた[日程](にってい)をコピーしてください。",
       "shortcutId": "copy",
       "successAction": {
         "type": "none"
@@ -44,9 +44,9 @@
     {
       "id": 3,
       "titleEn": "Paste the schedule",
-      "titleJa": "MISSION 2: 見つけた情報を記事に挿入せよ！",
+      "titleJa": "MISSION 2: [見](み)つけた[情報](じょうほう)を[記事](きじ)に[挿入]せよ！",
       "descriptionEn": "Paste the schedule into the article.",
-      "descriptionJa": "コピーした日程を編集画面に貼り付けてください。",
+      "descriptionJa": "コピーした[日程](にってい)を[編集画面](へんしゅうがめん)に[貼](は)り[付](つ)けてください。",
       "shortcutId": "paste",
       "successAction": {
         "type": "replace_right",
@@ -57,9 +57,9 @@
     {
       "id": 4,
       "titleEn": "Undo the mistake",
-      "titleJa": "MISSION 3: 間違えた入力を取り消せ！",
+      "titleJa": "MISSION 3: [間違](まちが)えた[入力](にゅうりょく)を[取](と)り[消](け)せ！",
       "descriptionEn": "Undo the accidental paste.",
-      "descriptionJa": "⚠️速報：誤った日程が入ってしまいました！ 直前の操作を取り消してください。",
+      "descriptionJa": "⚠️[速報](そくほう)：[誤](あやま)った[日程](にってい)が[入](はい)ってしまいました！ [直前](ちょくぜん)の[操作](そうさ)を[取](と)り[消](け)してください。",
       "shortcutId": "undo",
       "successAction": {
         "type": "replace_right",

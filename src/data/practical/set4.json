@@ -1,17 +1,17 @@
 {
   "id": "practical_4",
   "titleEn": "Science Contest Investigation",
-  "titleJa": "科学コンテストの謎を調査せよ！",
+  "titleJa": "[科学](かがく)コンテストの[謎](なぞ)を[調査](ちょうさ)せよ！",
   "descriptionEn": "Investigate conflicting experiment notes and prepare reliable evidence.",
-  "descriptionJa": "食い違う実験メモを調べて、信頼できる発表材料を見つけよう。",
+  "descriptionJa": "[食](く)い[違](ちが)う[実験](じっけん)メモを[調](しら)べて、[信頼](しんらい)できる[発表](はっぴょう)[材料](ざいりょう)を[見](み)つけよう。",
   "leftColumnTitleEn": "Lab Notebook",
   "leftColumnTitleJa": "科学部の実験ノート",
   "rightColumnTitleEn": "Contest Presentation",
   "rightColumnTitleJa": "コンテスト発表資料",
   "initialLeftText": [
     "【テーマ：植物は音楽で成長する？】",
-    "実験日：6月12日　A班：毎日10分、静かな音楽を流した",
-    "実験日：6月12日　B班：毎日10分、何も流さなかった",
+    "実験日：6月12日 A班：毎日10分、静かな音楽を流した",
+    "実験日：6月12日 B班：毎日10分、何も流さなかった",
     "結果メモ：A班の平均は12cm、B班の平均は9cm",
     "注意メモ：測定した時間が班ごとに違っていた可能性あり",
     "発表のポイント：音楽だけが原因だと決めつけず、追加実験が必要"
@@ -21,36 +21,36 @@
     {
       "id": 1,
       "titleEn": "Find the measurement note",
-      "titleJa": "小問1：測定結果を検索して見つけよう！",
+      "titleJa": "[小問](しょうもん)1：[測定](そくてい)[結果](けっか)を[検索](けんさく)して[見](み)つけよう！",
       "descriptionEn": "Search the lab notebook for the numerical result needed in the presentation.",
-      "descriptionJa": "発表に必要な数値を、実験ノートの中から検索して見つけよう！",
+      "descriptionJa": "[発表](はっぴょう)に[必要](ひつよう)な[数値](すうち)を、[実験](じっけん)ノートの[中](なか)から[検索](けんさく)して[見](み)つけよう！",
       "shortcutId": "search",
       "successAction": { "type": "highlight_left", "targetText": "結果メモ：A班の平均は12cm、B班の平均は9cm" }
     },
     {
       "id": 2,
       "titleEn": "Redo the comparison table",
-      "titleJa": "小問2：消えてしまった比較結果をやり直そう！",
+      "titleJa": "[小問](しょうもん)2：[消](き)えてしまった[比較](ひかく)[結果](けっか)をやり[直](なお)そう！",
       "descriptionEn": "The comparison table was undone by mistake. Redo the last edit to restore the evidence.",
-      "descriptionJa": "比較結果を取り消してしまいました。やり直して、発表に必要な証拠を復元しよう！",
+      "descriptionJa": "[比較](ひかく)[結果](けっか)を[取](と)り[消](け)してしまいました。やり[直](なお)して、[発表](はっぴょう)に[必要](ひつよう)な[証拠](しょうこ)を[復元](ふくげん)しよう！",
       "shortcutId": "redo",
       "successAction": { "type": "highlight_left", "targetText": "結果メモ：A班の平均は12cm、B班の平均は9cm" }
     },
     {
       "id": 3,
       "titleEn": "Paste the evidence without formatting",
-      "titleJa": "小問3：書式なしで結果を貼り付けよう！",
+      "titleJa": "[小問](しょうもん)3：[書式](しょしき)なしで[結果](けっか)を[貼](は)り[付](つ)けよう！",
       "descriptionEn": "Paste the measurement as plain text so the presentation style stays consistent.",
-      "descriptionJa": "資料の見た目を崩さないように、測定結果を文字だけで貼り付けよう！",
+      "descriptionJa": "[資料](しりょう)の[見](み)た[目](め)を[崩](くず)さないように、[測定](そくてい)[結果](けっか)を[文字](もじ)だけで[貼](は)り[付](つ)けよう！",
       "shortcutId": "paste_plain",
       "successAction": { "type": "replace_right", "replaceTarget": "（ここに見つけた結果）", "replaceWith": "A班の平均は12cm、B班の平均は9cm" }
     },
     {
       "id": 4,
       "titleEn": "Save the revised evidence",
-      "titleJa": "小問4：修正した発表資料を別名保存しよう！",
+      "titleJa": "[小問](しょうもん)4：[修正](しゅうせい)した[発表](はっぴょう)[資料](しりょう)を[別名](べつめい)[保存](ほぞん)しよう！",
       "descriptionEn": "Save the careful version as a separate file before submitting it.",
-      "descriptionJa": "決めつけを避けた発表資料を、元のメモとは別のファイルとして保存しよう！",
+      "descriptionJa": "[決](き)めつけを[避](さ)けた[発表](はっぴょう)[資料](しりょう)を、[元](もと)のメモとは[別](べつ)のファイルとして[保存](ほぞん)しよう！",
       "shortcutId": "save_as",
       "successAction": { "type": "append_right", "textToAppend": "\n\n[科学コンテスト提出版・別名保存完了]" }
     }

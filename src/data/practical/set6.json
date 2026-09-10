@@ -1,9 +1,9 @@
 {
   "id": "practical_6",
   "titleEn": "Space Team Web Editor",
-  "titleJa": "宇宙開発チームの紹介ページを作ろう",
+  "titleJa": "[宇宙](うちゅう)[開発](かいはつ)チームの[紹介](しょうかい)ページを[作](つく)ろう",
   "descriptionEn": "Design and save a web page introducing a future space development team.",
-  "descriptionJa": "将来の宇宙開発チームを紹介するページを、見やすく完成させよう。",
+  "descriptionJa": "[将来](しょうらい)の[宇宙](うちゅう)[開発](かいはつ)チームを[紹介](しょうかい)するページを、[見](み)やすく[完成](かんせい)させよう。",
   "leftColumnTitleEn": "Mission Briefing",
   "leftColumnTitleJa": "宇宙開発ミッション資料",
   "rightColumnTitleEn": "Team Web Page",
@@ -20,36 +20,36 @@
     {
       "id": 1,
       "titleEn": "Italicize the mission motto",
-      "titleJa": "小問1：ミッションの合言葉を斜体にしよう！",
+      "titleJa": "[小問](しょうもん)1：ミッションの[合言葉](あいことば)を[斜体](しゃたい)にしよう！",
       "descriptionEn": "Italicize the motto to give the future-focused message a special tone.",
-      "descriptionJa": "未来への思いが伝わるように、ミッションの合言葉を斜体で強調しよう！",
+      "descriptionJa": "[未来](みらい)への[思](おも)いが[伝](つた)わるように、ミッションの[合言葉](あいことば)を[斜体](しゃたい)で[強調](きょうちょう)しよう！",
       "shortcutId": "italic",
       "successAction": { "type": "replace_right", "replaceTarget": "PROJECT ORBIT\n", "replaceWith": "**PROJECT ORBIT**\n" }
     },
     {
       "id": 2,
       "titleEn": "Underline the launch goal",
-      "titleJa": "小問2：打ち上げの目標に下線を引こう！",
+      "titleJa": "[小問](しょうもん)2：[打](う)ち[上](あ)げの[目標](もくひょう)に[下線](かせん)を[引](ひ)こう！",
       "descriptionEn": "Underline the goal so readers can find the team's purpose quickly.",
-      "descriptionJa": "ページを読む人が目的をすぐ見つけられるよう、目標に下線を引こう！",
+      "descriptionJa": "ページを[読](よ)む[人](ひと)が[目的](もくてき)をすぐ[見](み)つけられるよう、[目標](もくひょう)に[下線](かせん)を[引](ひ)こう！",
       "shortcutId": "underline",
       "successAction": { "type": "replace_right", "replaceTarget": "遠い星の環境を調べ、未来の暮らしに役立てる", "replaceWith": "遠い星の環境を調べ、未来の暮らしに役立てる" }
     },
     {
       "id": 3,
       "titleEn": "Restore the mission page",
-      "titleJa": "小問3：閉じてしまった資料ページを復元しよう！",
+      "titleJa": "[小問](しょうもん)3：[閉](と)じてしまった[資料](しりょう)ページを[復元](ふくげん)しよう！",
       "descriptionEn": "The mission brief was closed by mistake. Reopen the last closed tab.",
-      "descriptionJa": "ミッション資料のページを間違えて閉じてしまいました。直前のタブを復元しよう！",
+      "descriptionJa": "ミッション[資料](しりょう)のページを[間違](まちが)えて[閉](と)じてしまいました。[直前](ちょくぜん)のタブを[復元](ふくげん)しよう！",
       "shortcutId": "reopen_tab",
       "successAction": { "type": "none" }
     },
     {
       "id": 4,
       "titleEn": "Save a named launch version",
-      "titleJa": "小問4：完成した紹介ページを別名保存しよう！",
+      "titleJa": "[小問](しょうもん)4：[完成](かんせい)した[紹介](しょうかい)ページを[別名](べつめい)[保存](ほぞん)しよう！",
       "descriptionEn": "Save a named version before publishing the team page.",
-      "descriptionJa": "公開前に、完成した紹介ページを名前を付けて保存しよう！",
+      "descriptionJa": "[公開](こうかい)[前](まえ)に、[完成](かんせい)した[紹介](しょうかい)ページを[名前](なまえ)を[付](つ)けて[保存](ほぞん)しよう！",
       "shortcutId": "save_as",
       "successAction": { "type": "append_right", "textToAppend": "\n\n[PROJECT ORBIT 紹介ページ・別名保存完了]" }
     }

@@ -278,16 +278,16 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         <div className="g2-prep-card">
           <p className="g2-prep-kicker">{uiLang === 'EN' ? 'PRACTICAL MODE' : parseRubyText('[実践](じっせん)モード', furiganaEnabled)}</p>
           <h2>{uiLang === 'EN' ? currentSet.titleEn : parseRubyText(currentSet.titleJa, furiganaEnabled)}</h2>
-          <h3>{uiLang === 'EN' ? 'How to play' : '遊び方'}</h3>
+          <h3>{uiLang === 'EN' ? 'How to play' : parseRubyText('[遊](あそ)び[方](かた)', furiganaEnabled)}</h3>
           <ol>
-            <li>{uiLang === 'EN' ? 'Read the mission shown in the center.' : '画面中央のミッションを読みます。'}</li>
-            <li>{uiLang === 'EN' ? 'Press the shortcut that completes the task.' : 'お題を達成するショートカットキーを押します。'}</li>
-            <li>{uiLang === 'EN' ? 'A correct answer advances you to the next step.' : '正解すると次のステップへ進みます。'}</li>
+            <li>{uiLang === 'EN' ? 'Read the mission shown in the center.' : parseRubyText('[画面中央](がめんちゅうおう)のミッションを[読](よ)みます。', furiganaEnabled)}</li>
+            <li>{uiLang === 'EN' ? 'Press the shortcut that completes the task.' : parseRubyText('お[題](だい)を[達成](たっせい)するショートカットキーを[押](お)します。', furiganaEnabled)}</li>
+            <li>{uiLang === 'EN' ? 'A correct answer advances you to the next step.' : parseRubyText('[正解](せいかい)すると[次](つぎ)のステップへ[進](すす)みます。', furiganaEnabled)}</li>
           </ol>
           <p className="g2-prep-note">
             {uiLang === 'EN'
               ? 'Not sure what to do? Use the Hint button during the mission. You can also skip a mission if needed.'
-              : 'わからないときは、プレイ中のヒントボタンを使えます。それでも難しいときはスキップできます。'}
+              : parseRubyText('わからないときは、プレイ[中](ちゅう)のヒントボタンを[使](つか)えます。それでも[難](むずか)しいときはスキップできます。',furiganaEnabled)}
           </p>
           <div className="g2-prep-actions">
             <button className="secondary-btn" onClick={() => onNavigate('modeSelect')} title="Shortcut: Esc">
@@ -296,7 +296,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
               <span className="enter-badge">Esc</span>
             </button>
             <button className="primary-btn" onClick={startPractice} title="Shortcut: Enter">
-              {uiLang === 'EN' ? 'START PRACTICE' : '実技を始める'}
+              {uiLang === 'EN' ? 'START PRACTICE' : parseRubyText('[実践](じっせん)を[始](はじ)める', furiganaEnabled)}
               <span className="enter-badge">Enter</span>
             </button>
           </div>
