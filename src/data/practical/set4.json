@@ -50,7 +50,7 @@
       "titleEn": "Save the revised evidence",
       "titleJa": "[小問](しょうもん)4：[修正](しゅうせい)した[発表](はっぴょう)[資料](しりょう)を[別名](べつめい)[保存](ほぞん)しよう！",
       "descriptionEn": "Save the careful version as a separate file before submitting it.",
-      "descriptionJa": "［[決](き)めつけを[避](さ)けた[発表](はっぴょう)[資料](しりょう)を、[元](もと)のメモとは[別](べつ)のファイルとして[保存](ほぞん)しよう！",
+      "descriptionJa": "[決](き)めつけを[避](さ)けた[発表](はっぴょう)[資料](しりょう)を、[元](もと)のメモとは[別](べつ)のファイルとして[保存](ほぞん)しよう！",
       "shortcutId": "save_as",
       "successAction": { "type": "append_right", "textToAppend": "\n\n[科学コンテスト提出版・別名保存完了]" }
     }
