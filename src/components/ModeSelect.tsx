@@ -29,9 +29,9 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
   };
 
   const normalDifficultyTitles: Record<Difficulty, { titleEn: string; titleJa: string }> = {
-    EASY: { titleEn: 'BEGINNER', titleJa: '[初心者](しょしんしゃ)' },
-    NORMAL: { titleEn: 'INTERMEDIATE', titleJa: '[中級者](ちゅうきゅうしゃ)' },
-    HARD: { titleEn: 'ADVANCED', titleJa: '[上級者](じょうきゅうしゃ)' }
+    EASY: { titleEn: 'EASY', titleJa: '[簡単](かんたん)' },
+    NORMAL: { titleEn: 'NORMAL', titleJa: '[普通](ふつう)' },
+    HARD: { titleEn: 'HARD', titleJa: '[難](むずか)しい' }
   };
 
   const normalDifficultyImages: Record<Difficulty, string> = {
@@ -117,9 +117,9 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
             </h3>
             <div className="diff-buttons">
               {[
-                { id: 'EASY' as Difficulty, labelEn: 'EASY', labelJa: '[初心者](しょしんしゃ)', key: '1' },
-                { id: 'NORMAL' as Difficulty, labelEn: 'INTERMEDIATE', labelJa: '[中級者](ちゅうきゅうしゃ)', key: '2' },
-                { id: 'HARD' as Difficulty, labelEn: 'HARD', labelJa: '[上級者](じょうきゅうしゃ)', key: '3' }
+                { id: 'EASY' as Difficulty, labelEn: 'EASY', labelJa: '[簡単](かんたん)', key: '1' },
+                { id: 'NORMAL' as Difficulty, labelEn: 'NORMAL', labelJa: '[普通](ふつう)', key: '2' },
+                { id: 'HARD' as Difficulty, labelEn: 'HARD', labelJa: '[難](むずか)しい', key: '3' }
               ].map(diff => (
                 <button 
                   key={diff.id}
@@ -135,11 +135,11 @@ const ModeSelect: React.FC<ModeSelectProps> = ({
             </div>
           </div>
 
-          {/* 実技問題セクション */}
+          {/* 実践モードセクション */}
           <div className="sidebar-section">
             <h3 className="sidebar-title">
               <FileText size={20} />
-              {uiLang === 'EN' ? 'PRACTICAL EXAMS' : parseRubyText('[実技問題](じつぎもんだい)', furiganaEnabled)}
+              {uiLang === 'EN' ? 'PRACTICAL MODE' : (furiganaEnabled ? parseRubyText('[実践](じっせん)モード', true) : '実践モード')}
             </h3>
             <div className="practical-list">
               {practicalModes.map((mode, index) => {

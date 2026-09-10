@@ -1,9 +1,9 @@
 {
   "id": "practical_2",
   "titleEn": "Game Test & Bug Report Edition",
-  "titleJa": "PRACTICAL MISSION: バグ報告と資料修正",
+  "titleJa": "バグ[報告](ほうこく)と[資料](しりょう)[修正](しゅうせい)",
   "descriptionEn": "Use screenshot, reopen tab, and replace functions to solve game dev issues.",
-  "descriptionJa": "スクリーンショット、閉じたタブの復元、置換機能を使ってゲーム開発の問題を解決してください。",
+  "descriptionJa": "スクリーンショット、[閉](と)じたタブの[復元](ふくげん)、[置換](ちかん)[機能](きのう)を[使](つか)ってゲーム[開発](かいはつ)の[問題](もんだい)を[解決](かいけつ)してください。",
   "leftColumnTitleEn": "Test Specification",
   "leftColumnTitleJa": "情報源（ゲームテスト仕様書）",
   "rightColumnTitleEn": "Bug Report",
@@ -32,9 +32,9 @@
     {
       "id": 1,
       "titleEn": "Mission 1: Select all error logs!",
-      "titleJa": "小問1：エラーログをすべて選択せよ！",
+      "titleJa": "[小問](しょうもん)1：エラーログをすべて[選択](せんたく)せよ！",
       "descriptionEn": "Select all the error logs to prepare for the bug report.",
-      "descriptionJa": "テスト中に画面表示がおかしくなり、大量のエラーログが出ました。ログをすべて選択（全選択）して報告の準備をしよう！",
+      "descriptionJa": "テスト[中](ちゅう)に[画面](がめん)[表示](ひょうじ)がおかしくなり、[大量](たいりょう)のエラーログが[出](で)ました。ログをすべて[選択](せんたく)（[全](ぜん)[選択](せんたく)）して[報告](ほうこく)の[準備](じゅんび)をしよう！",
       "shortcutId": "select_all",
       "successAction": {
         "type": "highlight_left",
@@ -44,9 +44,9 @@
     {
       "id": 2,
       "titleEn": "Reopen Closed Tab",
-      "titleJa": "小問2：間違えて閉じた攻略ページを復元せよ！",
+      "titleJa": "[小問](しょうもん)2：[間違](まちが)えて[閉](と)じた[攻略](こうりゃく)ページを[復元](ふくげん)せよ！",
       "descriptionEn": "Reopen the browser tab that was accidentally closed.",
-      "descriptionJa": "バグの原因を調べている最中に重要なページを閉じてしまいました！さっきまで開いていたページをもう一度復元しよう！",
+      "descriptionJa": "バグの[原因](げんいん)を[調](しら)べている[最中](さいちゅう)に[重要](じゅうよう)なページを[閉](と)じてしまいました！さっきまで[開](ひら)いていたページをもう[一度](いちど)[復元](ふくげん)しよう！",
       "shortcutId": "reopen_tab",
       "successAction": {
         "type": "none"
@@ -55,9 +55,9 @@
     {
       "id": 3,
       "titleEn": "Batch Replace Title",
-      "titleJa": "小問3：開発資料を一気に修正せよ！",
+      "titleJa": "[小問](しょうもん)3：[開発](かいはつ)[資料](しりょう)を[一気](いっき)に[修正](しゅうせい)せよ！",
       "descriptionEn": "Replace 'PROJECT ALPHA' with 'PROJECT NOVA' all at once.",
-      "descriptionJa": "ゲームタイトルの変更が発生しました！資料内に無数にある「PROJECT ALPHA」を「PROJECT NOVA」に一括置換しよう！",
+      "descriptionJa": "ゲームタイトルの[変更](へんこう)が[発生](はっせい)しました！[資料](しりょう)[内](ない)に[無数](むすう)にある「PROJECT ALPHA」を「PROJECT NOVA」に[一括](いっかつ)[置換](ちかん)しよう！",
       "shortcutId": "replace",
       "successAction": {
         "type": "replace_right",
@@ -68,9 +68,9 @@
     {
       "id": 4,
       "titleEn": "Save the bug report",
-      "titleJa": "小問4：完成したバグ報告書を保存せよ！",
+      "titleJa": "[小問](しょうもん)4：[完成](かんせい)したバグ[報告書](ほうこくしょ)を[保存](ほぞん)せよ！",
       "descriptionEn": "Save the corrected bug report before sending it to the development team.",
-      "descriptionJa": "修正したバグ報告書を開発チームへ送る前に、忘れず保存しよう！",
+      "descriptionJa": "[修正](しゅうせい)したバグ[報告書](ほうこくしょ)を[開発](かいはつ)チームへ[送](おく)る[前](まえ)に、[忘](わす)れず[保存](ほぞん)しよう！",
       "shortcutId": "save",
       "successAction": {
         "type": "append_right",

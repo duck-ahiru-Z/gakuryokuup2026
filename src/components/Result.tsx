@@ -69,9 +69,9 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
 
   const getModeTitle = (modeId: string) => {
     const difficultyLabels: Record<string, { en: string; ja: string }> = {
-      EASY: { en: 'BEGINNER', ja: '[初心者](しょしんしゃ)' },
-      NORMAL: { en: 'INTERMEDIATE', ja: '[中級者](ちゅうきゅうしゃ)' },
-      HARD: { en: 'ADVANCED', ja: '[上級者](じょうきゅうしゃ)' },
+      EASY: { en: 'EASY', ja: '[簡単](かんたん)' },
+      NORMAL: { en: 'NORMAL', ja: '[普通](ふつう)' },
+      HARD: { en: 'HARD', ja: '[難](むずか)しい' },
     };
     const difficultyLabel = difficultyLabels[modeId];
     if (difficultyLabel) {
@@ -88,7 +88,7 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
-        <h2 className="title">{uiLang === 'EN' ? 'PLAYER ' : parseRubyText('[プレイヤー](ぷれいやー)', furiganaEnabled)}<span className="highlight">{uiLang === 'EN' ? 'STATUS' : parseRubyText('[ステータス](すてーたす)', furiganaEnabled)}</span></h2>
+        <h2 className="title">{uiLang === 'EN' ? 'PLAYER ' : 'プレイヤー'}<span className="highlight">{uiLang === 'EN' ? 'STATUS' : 'ステータス'}</span></h2>
       </div>
 
       <div className="dashboard-grid">
@@ -100,7 +100,7 @@ const Result: React.FC<ResultProps> = ({ onNavigate, uiLang, furiganaEnabled }) 
           </div>
           <div className="status-main">
             <div className="rank-display">
-              <span className="rank-label">{uiLang === 'EN' ? 'RANK' : parseRubyText('[ランク](らんく)', furiganaEnabled)}</span>
+              <span className="rank-label">{uiLang === 'EN' ? 'RANK' : 'ランク'}</span>
               <span className="rank-value">{getRankName(stats.rank)}</span>
               {uiLang === 'JA' && <span className="rank-sub">{stats.rank.toUpperCase()}</span>}
             </div>

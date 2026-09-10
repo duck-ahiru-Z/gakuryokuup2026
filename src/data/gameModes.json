@@ -12,18 +12,18 @@
     "id": "practical_1",
     "type": "practical",
     "titleEn": "School Newspaper Edition",
-    "titleJa": "[学校新聞](がっこうしんぶん)[作成編](さくせいへん)",
+    "titleJa": "[学校新聞](がっこうしんぶん)[作成](さくせい)",
     "descriptionEn": "Use search, copy, paste, and undo to edit an article.",
-    "descriptionJa": "メモから[日程](にってい)を[探](さが)して[記事](きじ)にまとめる",
+    "descriptionJa": "メモから[日程](にってい)を[探](さが)して[記事](きじ)にまとめよう。",
     "imageUri": "/images/practical/practical-1.jpg"
   },
   {
     "id": "practical_2",
     "type": "practical",
     "titleEn": "Bug Report & Fixes",
-    "titleJa": "[バグ報告](ばぐほうこく)と[資料修正](しりょうしゅうせい)",
+    "titleJa": "バグ[報告](ほうこく)と[資料修正](しりょうしゅうせい)",
     "descriptionEn": "Use select all, reopen tab, and replace functions to solve game dev issues.",
-    "descriptionJa": "[全選択](ぜんせんたく)、[閉](と)じたタブの[復元](ふくげん)、[置換](ちかん)の[機能](きのう)を[使](つか)ってゲーム[開発](かいはつ)の[問題](もんだい)を[解決](かいけつ)してください。",
+    "descriptionJa": "[全選択](ぜんせんたく)、[閉](と)じたタブの[復元](ふくげん)、[置換](ちかん)の[機能](きのう)を[使](つか)ってゲーム[開発](かいはつ)の[問題](もんだい)を[解決](かいけつ)しよう。",
     "imageUri": "/images/practical/practical-2.jpg"
   },
   {
@@ -32,7 +32,7 @@
     "titleEn": "Movie Production Team",
     "titleJa": "[映画制作](えいがせいさく)チーム",
     "descriptionEn": "Make text bold or italic to convey the charm.",
-    "descriptionJa": "[文字](もじ)を[太字](ふとじ)や[斜体](しゃたい)にして[魅力](みりょく)を[伝](つた)える",
+    "descriptionJa": "[文字](もじ)を[太字](ふとじ)や[斜体](しゃたい)にして[魅力](みりょく)を[伝](つた)えよう。",
     "imageUri": "/images/practical/practical-3.jpg"
   },
   {
@@ -41,7 +41,7 @@
     "titleEn": "Science Contest Investigation",
     "titleJa": "[科学](かがく)コンテストの[謎](なぞ)を[調査](ちょうさ)せよ！",
     "descriptionEn": "Investigate conflicting experiment notes and prepare reliable evidence.",
-    "descriptionJa": "食い違う実験メモを調べて、信頼できる発表材料を見つけよう。",
+    "descriptionJa": "[食](く)い[違](ちが)う[実験](じっけん)メモを[調](しら)べて、[信頼](しんらい)できる[発表材料](はっぴょうざいりょう)を[見](み)つけよう。",
     "imageUri": "/images/practical/practical-4.jpg"
   },
   {
@@ -50,7 +50,7 @@
     "titleEn": "Festival Budget Mission",
     "titleJa": "[文化祭](ぶんかさい)の[予算](よさん)ミスを[修正](しゅうせい)せよ！",
     "descriptionEn": "Check a festival budget, fix a duplicated cost, and save the final plan.",
-    "descriptionJa": "文化祭の予算案を確認し、重複した費用を直して完成版を保存しよう。",
+    "descriptionJa": "[文化祭](ぶんかさい)の[予算案](よさんあん)を[確認](かくにん)し、[重複](ちょうふく)した[費用](ひよう)を[直](なお)して[完成版](かんせいばん)を[保存](ほぞん)しよう。",
     "imageUri": "/images/practical/practical-5.jpg"
   },
   {
@@ -59,7 +59,7 @@
     "titleEn": "Space Team Web Editor",
     "titleJa": "[宇宙開発](うちゅうかいはつ)チームの[紹介](しょうかい)ページを作ろう",
     "descriptionEn": "Design and save a web page introducing a future space development team.",
-    "descriptionJa": "将来の宇宙開発チームを紹介するページを、見やすく完成させよう。",
+    "descriptionJa": "[将来](しょうらい)の[宇宙開発](うちゅうかいはつ)チームを[紹介](しょうかい)するページを、[見](み)やすく[完成](かんせい)させよう。",
     "imageUri": "/images/practical/practical-6.jpg"
   }
 ]
