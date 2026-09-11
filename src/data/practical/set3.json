@@ -65,9 +65,8 @@
             "descriptionJa": "[映画](えいが)らしい[雰囲気](ふんいき)を[出](だ)すため、キャッチコピーを[斜体](しゃたい)にしよう！",
             "shortcutId": "italic",
             "successAction": {
-            "type": "replace_right",
-            "replaceTarget": "キャッチコピー：",
-            "replaceWith": "キャッチコピー："
+            "type": "italicize_right",
+            "targetText": "「その一歩が、未来を変える。」"
             }
         }
     ]

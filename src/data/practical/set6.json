@@ -24,7 +24,7 @@
       "descriptionEn": "Italicize the motto to give the future-focused message a special tone.",
       "descriptionJa": "[未来](みらい)への[思](おも)いが[伝](つた)わるように、ミッションの[合言葉](あいことば)を[斜体](しゃたい)で[強調](きょうちょう)しよう！",
       "shortcutId": "italic",
-      "successAction": { "type": "replace_right", "replaceTarget": "PROJECT ORBIT\n", "replaceWith": "**PROJECT ORBIT**\n" }
+      "successAction": { "type": "italicize_right", "targetText": "知りたい気持ちが、未来を動かす" }
     },
     {
       "id": 2,
@@ -33,7 +33,7 @@
       "descriptionEn": "Underline the goal so readers can find the team's purpose quickly.",
       "descriptionJa": "ページを[読](よ)む[人](ひと)が[目的](もくてき)をすぐ[見](み)つけられるよう、[目標](もくひょう)に[下線](かせん)を[引](ひ)こう！",
       "shortcutId": "underline",
-      "successAction": { "type": "replace_right", "replaceTarget": "遠い星の環境を調べ、未来の暮らしに役立てる", "replaceWith": "遠い星の環境を調べ、未来の暮らしに役立てる" }
+      "successAction": { "type": "underline_right", "targetText": "遠い星の環境を調べ、未来の暮らしに役立てる" }
     },
     {
       "id": 3,

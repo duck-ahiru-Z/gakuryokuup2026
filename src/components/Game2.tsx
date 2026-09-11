@@ -48,8 +48,11 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
   const [isNewRecord, setIsNewRecord] = useState(false);
   
   const [searchHighlighted, setSearchHighlighted] = useState(false);
+  const [zoomedLeft, setZoomedLeft] = useState(false);
   const [rightContent, setRightContent] = useState(currentSet.initialRightText || '');
   const [centeredLine, setCenteredLine] = useState<string | null>(null);
+  const [italicizedLine, setItalicizedLine] = useState<string | null>(null);
+  const [underlinedLine, setUnderlinedLine] = useState<string | null>(null);
   
   const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
   const [hintedSteps, setHintedSteps] = useState<number[]>([]);
@@ -234,6 +237,15 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         const action = mission.successAction;
         if (action.type === 'highlight_left') {
           setSearchHighlighted(true);
+        } else if (action.type === 'zoom_left') {
+          setZoomedLeft(true);
+          setSearchHighlighted(true);
+        } else if (action.type === 'restore_right') {
+          setRightContent(prev => prev + (action.textToAppend || ''));
+        } else if (action.type === 'italicize_right') {
+          setItalicizedLine(action.targetText || null);
+        } else if (action.type === 'underline_right') {
+          setUnderlinedLine(action.targetText || null);
         } else if (action.type === 'replace_right') {
           setRightContent(prev => prev.replace(action.replaceTarget || '', action.replaceWith || ''));
           if (mission.shortcutId === 'center_align') {
@@ -324,10 +336,10 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
       <div className="g2-workspace">
         <div className="g2-pane left-pane">
           <div className="pane-header">{uiLang === 'EN' ? currentSet.leftColumnTitleEn : parseRubyText(currentSet.leftColumnTitleJa, furiganaEnabled)}</div>
-          <div className="pane-content">
+          <div className={`pane-content ${zoomedLeft ? 'zoomed-content' : ''}`}>
             {currentSet.initialLeftText && currentSet.initialLeftText.map((line, idx) => {
               const action = currentMission?.successAction;
-              const isTarget = action?.type === 'highlight_left' && line.includes(action.targetText || '');
+              const isTarget = ['highlight_left', 'zoom_left'].includes(action?.type || '') && line.includes(action?.targetText || '');
               return (
                 <p key={idx} className={`${isTarget && searchHighlighted ? 'search-found' : ''}`}>
                   {line}
@@ -341,7 +353,11 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
           <div className="pane-header">{uiLang === 'EN' ? currentSet.rightColumnTitleEn : parseRubyText(currentSet.rightColumnTitleJa, furiganaEnabled)}</div>
           <div className="pane-content right-content-area">
             {rightContent.split('\n').map((line, idx) => (
-              <p key={idx} className={centeredLine && line.includes(centeredLine) ? 'centered-line' : ''}>
+              <p key={idx} className={[
+                centeredLine && line.includes(centeredLine) ? 'centered-line' : '',
+                italicizedLine && line.includes(italicizedLine) ? 'italicized-line' : '',
+                underlinedLine && line.includes(underlinedLine) ? 'underlined-line' : '',
+              ].filter(Boolean).join(' ')}>
                 {line.includes('**') ? <strong>{line.replace(/\*\*/g, '')}</strong> : line}
               </p>
             ))}

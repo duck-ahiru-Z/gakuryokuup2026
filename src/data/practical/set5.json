@@ -26,7 +26,7 @@
       "descriptionEn": "Zoom in so every small number in the budget can be checked carefully.",
       "descriptionJa": "[小](ちい)さな[数字](すうじ)を[読](よ)み[間違](まちが)えないように、[予算案](よさんあん)を[拡大](かくだい)して[確認](かくにん)しよう！",
       "shortcutId": "zoom_in",
-      "successAction": { "type": "highlight_left", "targetText": "使える予算：30,000円" }
+      "successAction": { "type": "zoom_left", "targetText": "使える予算：30,000円" }
     },
     {
       "id": 2,

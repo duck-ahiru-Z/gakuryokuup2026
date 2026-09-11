@@ -154,6 +154,11 @@
     letter-spacing: 2px;
 }
 
+.zoomed-content {
+    font-size: 1.15rem;
+    line-height: 1.8;
+}
+
 .g2-success-next {
     margin-top: 0.75rem;
     color: var(--text-secondary);
@@ -282,4 +287,14 @@
 
 .centered-line {
     text-align: center;
+}
+
+.italicized-line {
+    font-style: italic;
+}
+
+.underlined-line {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
 }
