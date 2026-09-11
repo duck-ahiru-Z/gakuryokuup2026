@@ -34,7 +34,7 @@
       "descriptionEn": "The comparison table was undone by mistake. Redo the last edit to restore the evidence.",
       "descriptionJa": "[比較](ひかく)[結果](けっか)を[取](と)り[消](け)してしまいました。やり[直](なお)して、[発表](はっぴょう)に[必要](ひつよう)な[証拠](しょうこ)を[復元](ふくげん)しよう！",
       "shortcutId": "redo",
-      "successAction": { "type": "highlight_left", "targetText": "結果メモ：A班の平均は12cm、B班の平均は9cm" }
+      "successAction": { "type": "restore_right", "textToAppend": "\n\n比較表を復元しました：A班 12cm / B班 9cm" }
     },
     {
       "id": 3,

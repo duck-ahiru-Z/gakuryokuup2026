@@ -50,7 +50,7 @@ export interface PracticalMission {
   
   // What happens when the shortcut is successfully pressed
   successAction: {
-    type: 'highlight_left' | 'append_right' | 'replace_right' | 'none';
+    type: 'highlight_left' | 'zoom_left' | 'restore_right' | 'italicize_right' | 'underline_right' | 'append_right' | 'replace_right' | 'none';
     targetText?: string;
     textToAppend?: string;
     replaceTarget?: string;
