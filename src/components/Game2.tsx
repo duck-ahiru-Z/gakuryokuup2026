@@ -6,6 +6,8 @@ import { useOS } from '../hooks/useOS';
 import { useAudio } from '../hooks/useAudio';
 import Keyboard from './Keyboard';
 import { parseRubyText } from '../utils/shortcutUtils';
+import { SHORTCUTS } from '../data/shortcutsData';
+import { DictionaryCard } from './DictionaryCard';
 import './Game2.css';
 
 // Dynamic import of practical sets
@@ -327,6 +329,9 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
   }
 
   const currentMission = currentSet.missions[currentStep];
+  const currentShortcut = currentMission
+    ? SHORTCUTS.find(shortcut => shortcut.id === currentMission.shortcutId)
+    : undefined;
 
   return (
     <div className="game2-container">
@@ -423,6 +428,17 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         <div className="g2-success-overlay">
           <div className="g2-success-content">
             <span className="g2-success-text">{uiLang === 'EN' ? 'SUCCESS!' : '正解！'}</span>
+            {currentShortcut && (
+              <div className="g2-success-card">
+                <DictionaryCard
+                  sc={currentShortcut}
+                  os={os}
+                  uiLang={uiLang}
+                  furiganaEnabled={furiganaEnabled}
+                  isUnlocked={true}
+                />
+              </div>
+            )}
             <p className="g2-success-next">{uiLang === 'EN' ? 'Press Enter to continue' : 'Enterキーで次へ進む'}</p>
             <button
               type="button"
