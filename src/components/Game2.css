@@ -154,6 +154,13 @@
     overflow-y: auto;
 }
 
+.g2-success-explanation-title {
+    margin: 1rem 0 0;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+}
+
 .g2-success-text {
     color: var(--success-color);
     font-size: 2.5rem;
