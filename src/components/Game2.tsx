@@ -9,6 +9,7 @@ import { parseRubyText } from '../utils/shortcutUtils';
 import { SHORTCUTS } from '../data/shortcutsData';
 import { DictionaryCard } from './DictionaryCard';
 import './Game2.css';
+import './Dictionary.css';
 
 // Dynamic import of practical sets
 import set1 from '../data/practical/set1.json';
