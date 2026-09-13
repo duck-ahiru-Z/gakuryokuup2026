@@ -266,7 +266,12 @@
 }
 
 .g2-prep-actions .primary-btn {
-    min-width: 220px;
+    min-width: 260px;
+    padding: 0.9rem 1.25rem;
+    font-size: clamp(1.25rem, 3vw, 1.65rem);
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
 }
 
 @media (max-width: 620px) {
