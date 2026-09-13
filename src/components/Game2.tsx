@@ -428,6 +428,9 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         <div className="g2-success-overlay">
           <div className="g2-success-content">
             <span className="g2-success-text">{uiLang === 'EN' ? 'SUCCESS!' : '正解！'}</span>
+            <h3 className="g2-success-explanation-title">
+              {uiLang === 'EN' ? 'SHORTCUT EXPLANATION' : 'ショートカット解説'}
+            </h3>
             {currentShortcut && (
               <div className="g2-success-card">
                 <DictionaryCard
