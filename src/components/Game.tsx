@@ -193,6 +193,16 @@ const Game: React.FC<GameProps> = ({ onNavigate, difficulty, furiganaEnabled, ui
                   ? 'Press Enter to continue'
                   : parseRubyText('Enterキーで[次](つぎ)へ[進](すす)む', furiganaEnabled)}
               </p>
+              <button
+                type="button"
+                className="primary-btn explanation-next-btn"
+                onClick={() => {
+                  clearKeys();
+                  continueAfterSuccess();
+                }}
+              >
+                {uiLang === 'EN' ? 'NEXT' : parseRubyText('[次](つぎ)へ[進](すす)む', furiganaEnabled)}
+              </button>
             </div>
           ) : (
             <div className="mission-card">

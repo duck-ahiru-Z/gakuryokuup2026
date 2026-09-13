@@ -53,7 +53,7 @@ export function useGameState(isActive: boolean, difficulty: Difficulty, onGameEn
   }, [isActive, generateMission]);
 
   useEffect(() => {
-    if (!isActive || timeLeft <= 0) {
+    if (!isActive || showExplanation || timeLeft <= 0) {
       if (isActive && timeLeft <= 0) {
         onGameEnd(playerScore);
       }
@@ -65,7 +65,7 @@ export function useGameState(isActive: boolean, difficulty: Difficulty, onGameEn
     }, 1000);
     
     return () => clearInterval(timer);
-  }, [isActive, timeLeft, onGameEnd, playerScore]);
+  }, [isActive, showExplanation, timeLeft, onGameEnd, playerScore]);
 
   const handleSuccess = useCallback(() => {
     const multiplier = difficulty === 'HARD' ? 1.5 : (difficulty === 'EASY' ? 0.8 : 1.0);

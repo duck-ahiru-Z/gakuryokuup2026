@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import type { ViewState, Difficulty, PracticalSet } from '../types';
 import { storageUtils } from '../utils/storageUtils';
 import { ArrowLeft, Trophy } from 'lucide-react';
@@ -6,6 +6,8 @@ import { useOS } from '../hooks/useOS';
 import { useAudio } from '../hooks/useAudio';
 import Keyboard from './Keyboard';
 import { parseRubyText } from '../utils/shortcutUtils';
+import { SHORTCUTS } from '../data/shortcutsData';
+import { DictionaryCard } from './DictionaryCard';
 import './Game2.css';
 
 // Dynamic import of practical sets
@@ -46,6 +48,8 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
   const [startTime, setStartTime] = useState<number | null>(null);
   const [clearTime, setClearTime] = useState<number | null>(null);
   const [isNewRecord, setIsNewRecord] = useState(false);
+  const successOverlayStartedAtRef = useRef<number | null>(null);
+  const pausedDurationRef = useRef(0);
   
   const [searchHighlighted, setSearchHighlighted] = useState(false);
   const [zoomedLeft, setZoomedLeft] = useState(false);
@@ -110,10 +114,16 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
 
   const startPractice = useCallback(() => {
     setStartTime(Date.now());
+    pausedDurationRef.current = 0;
+    successOverlayStartedAtRef.current = null;
     setHasStarted(true);
   }, []);
 
   const advanceAfterSuccess = useCallback(() => {
+    if (successOverlayStartedAtRef.current !== null) {
+      pausedDurationRef.current += Date.now() - successOverlayStartedAtRef.current;
+      successOverlayStartedAtRef.current = null;
+    }
     setShowSuccessOverlay(false);
     if (currentStep < currentSet.missions.length - 1) {
       setCurrentStep(prev => prev + 1);
@@ -122,7 +132,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
 
     playSound('clear');
     if (startTime) {
-      const elapsed = Math.floor((Date.now() - startTime) / 1000);
+      const elapsed = Math.floor((Date.now() - startTime - pausedDurationRef.current) / 1000);
       setIsNewRecord(storageUtils.recordPracticalTime(selectedModeId, elapsed));
       setClearTime(elapsed);
       storageUtils.addXP(300);
@@ -256,6 +266,7 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         }
 
         storageUtils.addXP(50);
+        successOverlayStartedAtRef.current = Date.now();
         setShowSuccessOverlay(true);
       } else if (!['Control', 'Shift', 'Alt', 'Meta', 'OS'].includes(e.key)) {
         storageUtils.recordAttempt(false, mission.shortcutId);
@@ -318,6 +329,9 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
   }
 
   const currentMission = currentSet.missions[currentStep];
+  const currentShortcut = currentMission
+    ? SHORTCUTS.find(shortcut => shortcut.id === currentMission.shortcutId)
+    : undefined;
 
   return (
     <div className="game2-container">
@@ -414,7 +428,25 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
         <div className="g2-success-overlay">
           <div className="g2-success-content">
             <span className="g2-success-text">{uiLang === 'EN' ? 'SUCCESS!' : '正解！'}</span>
+            {currentShortcut && (
+              <div className="g2-success-card">
+                <DictionaryCard
+                  sc={currentShortcut}
+                  os={os}
+                  uiLang={uiLang}
+                  furiganaEnabled={furiganaEnabled}
+                  isUnlocked={true}
+                />
+              </div>
+            )}
             <p className="g2-success-next">{uiLang === 'EN' ? 'Press Enter to continue' : 'Enterキーで次へ進む'}</p>
+            <button
+              type="button"
+              className="primary-btn g2-success-next-btn"
+              onClick={advanceAfterSuccess}
+            >
+              {uiLang === 'EN' ? 'NEXT' : '次へ進む'}
+            </button>
           </div>
         </div>
       )}

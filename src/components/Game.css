@@ -205,6 +205,11 @@
   font-weight: 700;
 }
 
+.explanation-next-btn {
+  width: auto;
+  min-width: 10rem;
+}
+
 .game-hint-message {
   margin: 0;
   color: var(--accent-color);
