@@ -331,7 +331,10 @@ const Game2: React.FC<GameProps> = ({ onNavigate, selectedModeId = 'practical_1'
 
   const currentMission = currentSet.missions[currentStep];
   const currentShortcut = currentMission
-    ? SHORTCUTS.find(shortcut => shortcut.id === currentMission.shortcutId)
+    ? SHORTCUTS.find(shortcut =>
+        shortcut.id === currentMission.shortcutId ||
+        (currentMission.shortcutId === 'search' && shortcut.id === 'find')
+      )
     : undefined;
 
   return (
